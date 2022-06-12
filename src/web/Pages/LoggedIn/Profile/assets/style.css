@@ -1,0 +1,35 @@
+.overlay{
+    position: absolute;
+
+
+}
+.b-left
+{
+    border-left: 1px solid;
+}
+.p-border{
+    padding: 1.5rem 0 1.5rem 1.5rem;
+}
+.p-border-t{
+    padding: 0 0 0 1.5rem;
+}
+.p-border-md{
+    padding: 2rem 0 2rem 2rem;
+}
+.p-border-t-md{
+    padding: 0 0 0.5rem 2rem;
+}
+.mt-10-5{
+    margin-top: 150px;
+}
+.col-7-5{
+    margin: 30px 0 0 30px;
+    width: 63% !important;
+}
+.b-radius {
+    
+    border: 1px solid;
+    border-radius: 50px !important;
+    padding: 10px;
+
+}

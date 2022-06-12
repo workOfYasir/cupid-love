@@ -1,0 +1,18 @@
+.ruler{
+    display: none !important;
+}
+.ruler::after{
+    display: none !important;
+}
+.multi-range-slider .ruler {
+    display: none !important;
+}
+.multi-range-slider .bar-inner {
+    background-color: #D63583;
+    border: 0px !important;
+    box-shadow: unset !important;
+}
+.multi-range-slider {
+    border: 0px !important;
+    box-shadow: unset !important;
+}

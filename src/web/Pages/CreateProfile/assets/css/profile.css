@@ -1,0 +1,16 @@
+body{
+    height: auto !important;
+    margin: 0px !important;
+}
+html{
+    height: 100% !important;
+    margin: 0px !important;
+}
+#root{
+    height: 100% !important;
+    margin: 0px !important;
+}
+
+.pb-20{
+    padding-bottom: 20% !important;
+}

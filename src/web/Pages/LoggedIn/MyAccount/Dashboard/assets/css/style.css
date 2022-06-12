@@ -1,0 +1,22 @@
+.img-plus{
+    position:absolute;
+    bottom:270px;
+    right:-15px;
+    padding: 10px !important;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+}
+.border-style-groove{
+    border-style:groove;
+    margin: 0 !important;
+}
+.border-radius-50{
+    border-radius:50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    -ms-border-radius:50%;
+    -o-border-radius:50%;
+}
