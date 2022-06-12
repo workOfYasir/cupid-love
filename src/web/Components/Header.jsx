@@ -289,10 +289,12 @@ console.log('location.pathname:',location.pathname);
                                         }
                                         </ul>
                                         </div>
+                                        {(location.pathname=='/' || location.pathname=='') ? (
                                         <div className=" col d-flex flex-column justify-content-center">
                                         
                                          <Link to="/pricing" className="btn btn-outline border"> Upgrade</Link> 
                                         </div>
+                                        ):("")}
                                     </div>
                                 </div>
                             </div>
