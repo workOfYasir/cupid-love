@@ -255,8 +255,8 @@ console.log('location.pathname:',location.pathname);
                                             <li> <Link to="/"><img src={window.location.origin + "/images/logo.png"} className="img-fluid" alt="logo" /> </Link> </li>
                                         </ul>
                                         </div>
-<div className="col-10 p-0">
-                                        <ul className="p-4 d-flex justify-content-center primary-text ">
+<div className={(location.pathname=='/' || location.pathname=='') ?("col") : ("col-10")}>
+            <ul className={(location.pathname=='/' || location.pathname=='') ?("float-right d-flex pt-4 text-white") : ("p-4 d-flex justify-content-center primary-text")} >
                                         {(location.pathname=='/' || location.pathname=='') ? (
                                             <>
                                                 <li>
@@ -289,12 +289,12 @@ console.log('location.pathname:',location.pathname);
                                         }
                                         </ul>
                                         </div>
-                                        {(location.pathname=='/' || location.pathname=='') ? (
+                                        {(location.pathname=='/' || location.pathname=='') ?(""): (
                                         <div className=" col d-flex flex-column justify-content-center">
                                         
                                          <Link to="/pricing" className="btn btn-outline border"> Upgrade</Link> 
                                         </div>
-                                        ):("")}
+                                        )}
                                     </div>
                                 </div>
                             </div>
