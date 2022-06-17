@@ -13,6 +13,11 @@ export const StoreProvider = (props) => {
     // linear loader
     linearLoader: false,
     setLinearLoader: action((e) => (store.linearLoader = e)),
+
+    //subHeader
+    subHeader: true,
+    setSubHeader: action((e) => (store.subHeader = e)),
+
    
   }));
 

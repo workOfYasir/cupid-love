@@ -45,7 +45,7 @@
 .showMore:focus ~ .hideShowContent {
     display: none;
   }
-
+ 
   .showLess:focus ~ .hideShowContent {
     display: block;
   }

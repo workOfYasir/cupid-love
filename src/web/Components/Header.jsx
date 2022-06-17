@@ -1,22 +1,16 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useContext} from 'react'
 import { Link,useLocation } from "react-router-dom";
 import { Observer } from "mobx-react-lite";
+import { StoreContext } from "./../store";
+import { isVisible } from '@testing-library/user-event/dist/utils';
 
 const Header = () => {
     const [isActive, setActive] = useState(false);
-
-    // function toggleClass(){
-    //     console.log('okok');
-    //   setActive(isActive==false);
-    // };
+    const store = useContext(StoreContext);
    
     const location = useLocation()
-    // console.log('isActive'.isActive);
-    // useEffect(() => {
-    //     setActive(isActive==false);
-           
-    // })
-console.log('location.pathname:',location.pathname);
+ 
+
     return (
         <Observer>
             {() => (
@@ -250,7 +244,7 @@ console.log('location.pathname:',location.pathname);
                             <div className="container-fluid mt-3">
                                 <div className="row position-relative">
                                     <div className={(location.pathname=='/' || location.pathname=='') ?   ('col-12 position-relative d-flex') :("col-12 position-relative d-sm-flex d-block")}>
-<div className={(location.pathname=='/' || location.pathname=='') ?  ("col-1 p-0") : ("col-sm-1 col-12  text-left text-sm-center p-0")}>
+<div className={(location.pathname=='/' || location.pathname=='') ?  ("col-1 p-0") : ("col-sm-1 col-12  text-left text-sm-center p-0 d-none")}>
 
 
                                         <Link to="/"   >
@@ -269,22 +263,25 @@ console.log('location.pathname:',location.pathname);
                                                 </li>
                                             </>
                                         
-
-               
                                         ): (
                                             <>
                                             <li className="active  "><Link className='primary-text mx-2' to="/"> Home <i className="fa fa-angle-down fa-indicator"></i></Link>
 
     
                                             </li>
-                                            <li><Link className='primary-text mx-2' to="/myaccount"> Profile <i className="fa fa-angle-down fa-indicator"></i></Link>
+                                            <li><Link className='primary-text mx-2 ' to="/myaccount"> Profile <i className="fa fa-angle-down fa-indicator"></i></Link>
 
 </li>
-                                            <li><Link className='primary-text mx-2' to="/matches">Matches <i className="fa fa-angle-down fa-indicator"></i></Link>
+                                            <li><Link className='primary-text mx-2 ' to="/matches">Matches <i className="fa fa-angle-down fa-indicator"></i></Link>
 
                                             </li>
                                             <li><Link className='primary-text mx-2' to="/search">Search <i className="fa fa-angle-down fa-indicator"></i></Link>
 
+                                            </li>
+                                            <li>
+                                                <div className="menu" onClick={()=>{(store.subHeader==false)?(store.setSubHeader(true)):(store.setSubHeader(false))}}>
+                                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                                </div>
                                             </li>
                                             </>
                                         ) 
@@ -292,7 +289,7 @@ console.log('location.pathname:',location.pathname);
                                         </ul>
                                         </div>
                                         {(location.pathname=='/' || location.pathname=='') ?(""): (
-                                        <div className=" col d-flex flex-column justify-content-center">
+                                        <div className=" col d-sm-flex d-none flex-column justify-content-center">
                                         
                                          <Link to="/pricing" className="btn btn-outline border"> Upgrade</Link> 
                                         </div>

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useContext} from 'react'
 import {  useLocation} from "react-router-dom";
 import { Observer } from "mobx-react-lite";
 import Profile from '../Pages/LoggedIn/MyAccount/Profile/Profile'
@@ -14,24 +14,25 @@ import NewMatches from '../Pages/LoggedIn/Matches/NewMatches/NewMatches'
 import RecentlyView from './../Pages/LoggedIn/Matches/RecentlyView/RecentlyView'
 import BasicSearch from './../Pages/LoggedIn/Search/BasicSearch/BasicSearch'
 import AdvanceSearch from './../Pages/LoggedIn/Search/AdvanceSearch/AdvanceSearch'
-
+import { StoreContext } from "./../store";
 import Header from './Header'
 
 const SubHeader = () => {
   const location = useLocation()
+  const store = useContext(StoreContext);
 
   return (
     <Observer>
     {() => (
         <>
         <Header/>
-        <div className="col-md-12 ">
+        <div className='col-12'>
         {(location.pathname=='/myaccount') ? (
           <>
           <div className="text-center">
           <div className="justify-content-center">
               
-            <ul className="primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02 " role="tablist">
+            <ul className={(store.subHeader==false)?('profile-sub-nav primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02'):('col-12 d-none')} role="tablist">
               <li className="nav-item">
                 <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" aria-controls="tab-10" aria-selected="true">Dashboard</a>
               </li>
@@ -76,7 +77,7 @@ const SubHeader = () => {
           <div className="text-center">
           <div className="justify-content-center">
               
-            <ul className="primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02 " role="tablist">
+            <ul className={(store.subHeader==false)?('matches-sub-nav primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02'):('col-12 d-none')} role="tablist">
               <li className="nav-item">
                 <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" aria-controls="tab-10" aria-selected="true">New Matches</a>
               </li>
@@ -122,7 +123,7 @@ const SubHeader = () => {
           <div className="text-center">
           <div className="justify-content-center">
               
-            <ul className="primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02 " role="tablist">
+            <ul className={(store.subHeader==false)?('search-sub-nav primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02'):('col-12 d-none')} role="tablist">
               <li className="nav-item">
                 <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" aria-controls="tab-10" aria-selected="true">Basic Search</a>
               </li>
