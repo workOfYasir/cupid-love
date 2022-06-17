@@ -210,31 +210,46 @@ const MyMatches = () => {
           </div>
         </div>*/}
      
-   
-        <div className="employers-list mb-5 shadow rounded p-0">
-          <div className="col-4">
-            <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
+     <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 bg-img">
+         <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
+          <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
+            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
+            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" />
           </div>
-          <div className="col-5 p-2">
-                            <div className="col-12  d-flex">
-                            <div className="col-8 d-flex">
-                                <div className="col-7">
-                                    <h5>
-                                     <Link to="/public/profile">Neelam M </Link>
+          <div className="d-block d-sm-none">
+
+          
+          <div className="text-sm-dark text-white m-auto">
+            No Photo Added
+          </div>
+          <button id="submit" name="submit" type="submit" value="Send" className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"><span>Request a Photo<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button>
+          </div>
+          <div className="col-sm-5 offset-12 p-2">
+                            <div className="col-12 d-flex">
+                            <div className="col-sm-8 col-12 d-flex">
+                                <div className="col-sm-7 col-6 text-start">
+                                    <h5 className='d-sm-block d-none'>
+                                     <Link to="/public/profile">Sana M </Link>
                                     </h5>
-                             
+                             <div className="d-sm-none text-sm-dark text-white d-block" style={{fontSize:'18px'}}>
+                             <Link to="/public/profile">    Sana M</Link>
+                             </div>
                                 </div>
-                                <div className="col-1">
+                                <div className="col-1 d-sm-block d-none">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 d-sm-block d-none">
                                     <span class="badge bg-secondary">New</span>
                                 </div>
-                       
+                       <div className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
+                       <i class="fa fa-male" aria-hidden="true"></i>
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                        You & Her 
+                       </div>
                             </div>
-                       <div className="col-4 text-end">
+                       <div className="col-4 d-sm-block d-none text-end text-dark">
 
-                        
+                     
                             <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 
@@ -248,7 +263,7 @@ const MyMatches = () => {
                         </div>
                   
                         </div>
-                        <div className="col-12 d-flex">
+                        <div className="col-12 d-sm-flex d-none">
 
                     
                     <div className="col-6 ">
@@ -274,14 +289,14 @@ const MyMatches = () => {
                           
              
                   
-                  <hr  className="col-12 m-2 d-block" />
+                  <hr  className="col-12 m-2 d-sm-block d-none" />
                   <div className="col-12 d-block ">
                       <div className="col-12 d-flex pt-1">
-        <div className="col-6  ">
+        <div className="col-6 text-start text-sm-dark text-white  ">
 
 25 5.7ft
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Bhatti
         </div>
@@ -290,22 +305,23 @@ Bhatti
         
           </div>
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Pakistani
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Islam
         </div>
 
           </div>
+       
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none ">
 
 BSCS
         </div>
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none">
 
 Engineer
         </div>
@@ -314,9 +330,9 @@ Engineer
      
                       </div>
               </div>
-              
-              <div className="col-3 p-border text-center">
-                <div className="h-100 b-left text-center">
+              <hr  className="col-12 m-2 d-sm-none d-block" />
+              <div className="col-sm-3 d-sm-block d-none p-border text-center">
+                <div className="h-100 b-left text-center text-sm-dark text-white">
 <div className="col-12 font-style-italic ">
  Like This Profile
 
@@ -328,31 +344,61 @@ Engineer
 Connect Now
                 </div>
               </div>
+              <div className="d-sm-none d-flex col-12">
+            <div className="col-6 text-left col-8 d-flex flex-column justify-content-center"> Like This Profile</div>
+            <div className="col-6 d-flex">
+<div className="col-8 d-flex flex-column text-sm-dark text-white justify-content-center">
+Connect Now
+</div>
+<div className="col-2">
+
+
+<i class="fa fa-check-circle text-success" style={{fontSize:'40px'}} aria-hidden="true"></i>
+</div>
+
+</div>
+              </div>
         </div>
-        <div className="employers-list mb-5 shadow rounded p-0">
-          <div className="col-4">
-            <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
+        <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 bg-img">
+         <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
+          <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
+            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
+            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" />
           </div>
-          <div className="col-5 p-2">
-                            <div className="col-12  d-flex">
-                            <div className="col-8 d-flex">
-                                <div className="col-7">
-                                    <h5>
-                                     <Link to="/public/profile">Shazia B </Link>
+          <div className="d-block d-sm-none">
+
+          
+          <div className="text-sm-dark text-white m-auto">
+            No Photo Added
+          </div>
+          <button id="submit" name="submit" type="submit" value="Send" className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"><span>Request a Photo<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button>
+          </div>
+          <div className="col-sm-5 offset-12 p-2">
+                            <div className="col-12 d-flex">
+                            <div className="col-sm-8 col-12 d-flex">
+                                <div className="col-sm-7 col-6 text-start">
+                                    <h5 className='d-sm-block d-none'>
+                                     <Link to="/public/profile">Sana M </Link>
                                     </h5>
-                             
+                             <div className="d-sm-none text-sm-dark text-white d-block" style={{fontSize:'18px'}}>
+                             <Link to="/public/profile">    Sana M</Link>
+                             </div>
                                 </div>
-                                <div className="col-1">
+                                <div className="col-1 d-sm-block d-none">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 d-sm-block d-none">
                                     <span class="badge bg-secondary">New</span>
                                 </div>
-                       
+                       <div className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
+                       <i class="fa fa-male" aria-hidden="true"></i>
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                        You & Her 
+                       </div>
                             </div>
-                       <div className="col-4 text-end">
+                       <div className="col-4 d-sm-block d-none text-end text-dark">
 
-                        
+                     
                             <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 
@@ -366,7 +412,7 @@ Connect Now
                         </div>
                   
                         </div>
-                        <div className="col-12 d-flex">
+                        <div className="col-12 d-sm-flex d-none">
 
                     
                     <div className="col-6 ">
@@ -392,14 +438,14 @@ Connect Now
                           
              
                   
-                  <hr  className="col-12 m-2 d-block" />
+                  <hr  className="col-12 m-2 d-sm-block d-none" />
                   <div className="col-12 d-block ">
                       <div className="col-12 d-flex pt-1">
-        <div className="col-6  ">
+        <div className="col-6 text-start text-sm-dark text-white  ">
 
 25 5.7ft
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Bhatti
         </div>
@@ -408,22 +454,23 @@ Bhatti
         
           </div>
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Pakistani
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Islam
         </div>
 
           </div>
+       
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none ">
 
 BSCS
         </div>
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none">
 
 Engineer
         </div>
@@ -432,9 +479,9 @@ Engineer
      
                       </div>
               </div>
-              
-              <div className="col-3 p-border text-center">
-                <div className="h-100 b-left text-center">
+              <hr  className="col-12 m-2 d-sm-none d-block" />
+              <div className="col-sm-3 d-sm-block d-none p-border text-center">
+                <div className="h-100 b-left text-center text-sm-dark text-white">
 <div className="col-12 font-style-italic ">
  Like This Profile
 
@@ -446,31 +493,61 @@ Engineer
 Connect Now
                 </div>
               </div>
+              <div className="d-sm-none d-flex col-12">
+            <div className="col-6 text-left col-8 d-flex flex-column justify-content-center"> Like This Profile</div>
+            <div className="col-6 d-flex">
+<div className="col-8 d-flex flex-column text-sm-dark text-white justify-content-center">
+Connect Now
+</div>
+<div className="col-2">
+
+
+<i class="fa fa-check-circle text-success" style={{fontSize:'40px'}} aria-hidden="true"></i>
+</div>
+
+</div>
+              </div>
         </div>
-        <div className="employers-list mb-5 shadow rounded p-0">
-          <div className="col-4">
-            <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
+        <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 bg-img">
+         <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
+          <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
+            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
+            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" />
           </div>
-          <div className="col-5 p-2">
-                            <div className="col-12  d-flex">
-                            <div className="col-8 d-flex">
-                                <div className="col-7">
-                                    <h5>
-                                     <Link to="/public/profile">Iram J </Link>
+          <div className="d-block d-sm-none">
+
+          
+          <div className="text-sm-dark text-white m-auto">
+            No Photo Added
+          </div>
+          <button id="submit" name="submit" type="submit" value="Send" className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"><span>Request a Photo<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button>
+          </div>
+          <div className="col-sm-5 offset-12 p-2">
+                            <div className="col-12 d-flex">
+                            <div className="col-sm-8 col-12 d-flex">
+                                <div className="col-sm-7 col-6 text-start">
+                                    <h5 className='d-sm-block d-none'>
+                                     <Link to="/public/profile">Sana M </Link>
                                     </h5>
-                             
+                             <div className="d-sm-none text-sm-dark text-white d-block" style={{fontSize:'18px'}}>
+                             <Link to="/public/profile">    Sana M</Link>
+                             </div>
                                 </div>
-                                <div className="col-1">
+                                <div className="col-1 d-sm-block d-none">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 d-sm-block d-none">
                                     <span class="badge bg-secondary">New</span>
                                 </div>
-                       
+                       <div className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
+                       <i class="fa fa-male" aria-hidden="true"></i>
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                        You & Her 
+                       </div>
                             </div>
-                       <div className="col-4 text-end">
+                       <div className="col-4 d-sm-block d-none text-end text-dark">
 
-                        
+                     
                             <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 
@@ -484,7 +561,7 @@ Connect Now
                         </div>
                   
                         </div>
-                        <div className="col-12 d-flex">
+                        <div className="col-12 d-sm-flex d-none">
 
                     
                     <div className="col-6 ">
@@ -510,14 +587,14 @@ Connect Now
                           
              
                   
-                  <hr  className="col-12 m-2 d-block" />
+                  <hr  className="col-12 m-2 d-sm-block d-none" />
                   <div className="col-12 d-block ">
                       <div className="col-12 d-flex pt-1">
-        <div className="col-6  ">
+        <div className="col-6 text-start text-sm-dark text-white  ">
 
 25 5.7ft
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Bhatti
         </div>
@@ -526,22 +603,23 @@ Bhatti
         
           </div>
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Pakistani
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Islam
         </div>
 
           </div>
+       
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none ">
 
 BSCS
         </div>
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none">
 
 Engineer
         </div>
@@ -550,9 +628,9 @@ Engineer
      
                       </div>
               </div>
-              
-              <div className="col-3 p-border text-center">
-                <div className="h-100 b-left text-center">
+              <hr  className="col-12 m-2 d-sm-none d-block" />
+              <div className="col-sm-3 d-sm-block d-none p-border text-center">
+                <div className="h-100 b-left text-center text-sm-dark text-white">
 <div className="col-12 font-style-italic ">
  Like This Profile
 
@@ -564,32 +642,61 @@ Engineer
 Connect Now
                 </div>
               </div>
-        </div>
+              <div className="d-sm-none d-flex col-12">
+            <div className="col-6 text-left col-8 d-flex flex-column justify-content-center"> Like This Profile</div>
+            <div className="col-6 d-flex">
+<div className="col-8 d-flex flex-column text-sm-dark text-white justify-content-center">
+Connect Now
+</div>
+<div className="col-2">
 
-        <div className="employers-list mb-5 shadow rounded p-0">
-          <div className="col-4">
-            <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
+
+<i class="fa fa-check-circle text-success" style={{fontSize:'40px'}} aria-hidden="true"></i>
+</div>
+
+</div>
+              </div>
+        </div>
+        <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 bg-img">
+         <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
+          <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
+            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
+            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" />
           </div>
-          <div className="col-5 p-2">
-                            <div className="col-12  d-flex">
-                            <div className="col-8 d-flex">
-                                <div className="col-7">
-                                    <h5>
-                                     <Link to="/public/profile">Ayesha A </Link>
+          <div className="d-block d-sm-none">
+
+          
+          <div className="text-sm-dark text-white m-auto">
+            No Photo Added
+          </div>
+          <button id="submit" name="submit" type="submit" value="Send" className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"><span>Request a Photo<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button>
+          </div>
+          <div className="col-sm-5 offset-12 p-2">
+                            <div className="col-12 d-flex">
+                            <div className="col-sm-8 col-12 d-flex">
+                                <div className="col-sm-7 col-6 text-start">
+                                    <h5 className='d-sm-block d-none'>
+                                     <Link to="/public/profile">Sana M </Link>
                                     </h5>
-                             
+                             <div className="d-sm-none text-sm-dark text-white d-block" style={{fontSize:'18px'}}>
+                             <Link to="/public/profile">    Sana M</Link>
+                             </div>
                                 </div>
-                                <div className="col-1">
+                                <div className="col-1 d-sm-block d-none">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 d-sm-block d-none">
                                     <span class="badge bg-secondary">New</span>
                                 </div>
-                       
+                       <div className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
+                       <i class="fa fa-male" aria-hidden="true"></i>
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                        You & Her 
+                       </div>
                             </div>
-                       <div className="col-4 text-end">
+                       <div className="col-4 d-sm-block d-none text-end text-dark">
 
-                        
+                     
                             <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 
@@ -603,7 +710,7 @@ Connect Now
                         </div>
                   
                         </div>
-                        <div className="col-12 d-flex">
+                        <div className="col-12 d-sm-flex d-none">
 
                     
                     <div className="col-6 ">
@@ -629,14 +736,14 @@ Connect Now
                           
              
                   
-                  <hr  className="col-12 m-2 d-block" />
+                  <hr  className="col-12 m-2 d-sm-block d-none" />
                   <div className="col-12 d-block ">
                       <div className="col-12 d-flex pt-1">
-        <div className="col-6  ">
+        <div className="col-6 text-start text-sm-dark text-white  ">
 
 25 5.7ft
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Bhatti
         </div>
@@ -645,22 +752,23 @@ Bhatti
         
           </div>
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Pakistani
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Islam
         </div>
 
           </div>
+       
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none ">
 
 BSCS
         </div>
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none">
 
 Engineer
         </div>
@@ -669,9 +777,9 @@ Engineer
      
                       </div>
               </div>
-              
-              <div className="col-3 p-border text-center">
-                <div className="h-100 b-left text-center">
+              <hr  className="col-12 m-2 d-sm-none d-block" />
+              <div className="col-sm-3 d-sm-block d-none p-border text-center">
+                <div className="h-100 b-left text-center text-sm-dark text-white">
 <div className="col-12 font-style-italic ">
  Like This Profile
 
@@ -683,31 +791,61 @@ Engineer
 Connect Now
                 </div>
               </div>
+              <div className="d-sm-none d-flex col-12">
+            <div className="col-6 text-left col-8 d-flex flex-column justify-content-center"> Like This Profile</div>
+            <div className="col-6 d-flex">
+<div className="col-8 d-flex flex-column text-sm-dark text-white justify-content-center">
+Connect Now
+</div>
+<div className="col-2">
+
+
+<i class="fa fa-check-circle text-success" style={{fontSize:'40px'}} aria-hidden="true"></i>
+</div>
+
+</div>
+              </div>
         </div>
-        <div className="employers-list mb-5 shadow rounded p-0">
-          <div className="col-4">
-            <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
+        <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 bg-img">
+         <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
+          <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
+            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
+            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" />
           </div>
-          <div className="col-5 p-2">
-                            <div className="col-12  d-flex">
-                            <div className="col-8 d-flex">
-                                <div className="col-7">
-                                    <h5>
-                                     <Link to="/public/profile">Mahnoor M </Link>
+          <div className="d-block d-sm-none">
+
+          
+          <div className="text-sm-dark text-white m-auto">
+            No Photo Added
+          </div>
+          <button id="submit" name="submit" type="submit" value="Send" className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"><span>Request a Photo<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button>
+          </div>
+          <div className="col-sm-5 offset-12 p-2">
+                            <div className="col-12 d-flex">
+                            <div className="col-sm-8 col-12 d-flex">
+                                <div className="col-sm-7 col-6 text-start">
+                                    <h5 className='d-sm-block d-none'>
+                                     <Link to="/public/profile">Sana M </Link>
                                     </h5>
-                             
+                             <div className="d-sm-none text-sm-dark text-white d-block" style={{fontSize:'18px'}}>
+                             <Link to="/public/profile">    Sana M</Link>
+                             </div>
                                 </div>
-                                <div className="col-1">
+                                <div className="col-1 d-sm-block d-none">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 d-sm-block d-none">
                                     <span class="badge bg-secondary">New</span>
                                 </div>
-                       
+                       <div className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
+                       <i class="fa fa-male" aria-hidden="true"></i>
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                        You & Her 
+                       </div>
                             </div>
-                       <div className="col-4 text-end">
+                       <div className="col-4 d-sm-block d-none text-end text-dark">
 
-                        
+                     
                             <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 
@@ -721,7 +859,7 @@ Connect Now
                         </div>
                   
                         </div>
-                        <div className="col-12 d-flex">
+                        <div className="col-12 d-sm-flex d-none">
 
                     
                     <div className="col-6 ">
@@ -747,14 +885,14 @@ Connect Now
                           
              
                   
-                  <hr  className="col-12 m-2 d-block" />
+                  <hr  className="col-12 m-2 d-sm-block d-none" />
                   <div className="col-12 d-block ">
                       <div className="col-12 d-flex pt-1">
-        <div className="col-6  ">
+        <div className="col-6 text-start text-sm-dark text-white  ">
 
 25 5.7ft
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Bhatti
         </div>
@@ -763,22 +901,23 @@ Bhatti
         
           </div>
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Pakistani
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Islam
         </div>
 
           </div>
+       
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none ">
 
 BSCS
         </div>
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none">
 
 Engineer
         </div>
@@ -787,9 +926,9 @@ Engineer
      
                       </div>
               </div>
-              
-              <div className="col-3 p-border text-center">
-                <div className="h-100 b-left text-center">
+              <hr  className="col-12 m-2 d-sm-none d-block" />
+              <div className="col-sm-3 d-sm-block d-none p-border text-center">
+                <div className="h-100 b-left text-center text-sm-dark text-white">
 <div className="col-12 font-style-italic ">
  Like This Profile
 
@@ -801,31 +940,61 @@ Engineer
 Connect Now
                 </div>
               </div>
+              <div className="d-sm-none d-flex col-12">
+            <div className="col-6 text-left col-8 d-flex flex-column justify-content-center"> Like This Profile</div>
+            <div className="col-6 d-flex">
+<div className="col-8 d-flex flex-column text-sm-dark text-white justify-content-center">
+Connect Now
+</div>
+<div className="col-2">
+
+
+<i class="fa fa-check-circle text-success" style={{fontSize:'40px'}} aria-hidden="true"></i>
+</div>
+
+</div>
+              </div>
         </div>
-        <div className="employers-list mb-5 shadow rounded p-0">
-          <div className="col-4">
-            <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
+        <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 bg-img">
+         <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
+          <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
+            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
+            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" />
           </div>
-          <div className="col-5 p-2">
-                            <div className="col-12  d-flex">
-                            <div className="col-8 d-flex">
-                                <div className="col-7">
-                                    <h5>
-                                     <Link to="/public/profile">Rimsha A </Link>
+          <div className="d-block d-sm-none">
+
+          
+          <div className="text-sm-dark text-white m-auto">
+            No Photo Added
+          </div>
+          <button id="submit" name="submit" type="submit" value="Send" className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"><span>Request a Photo<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button>
+          </div>
+          <div className="col-sm-5 offset-12 p-2">
+                            <div className="col-12 d-flex">
+                            <div className="col-sm-8 col-12 d-flex">
+                                <div className="col-sm-7 col-6 text-start">
+                                    <h5 className='d-sm-block d-none'>
+                                     <Link to="/public/profile">Sana M </Link>
                                     </h5>
-                             
+                             <div className="d-sm-none text-sm-dark text-white d-block" style={{fontSize:'18px'}}>
+                             <Link to="/public/profile">    Sana M</Link>
+                             </div>
                                 </div>
-                                <div className="col-1">
+                                <div className="col-1 d-sm-block d-none">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 d-sm-block d-none">
                                     <span class="badge bg-secondary">New</span>
                                 </div>
-                       
+                       <div className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
+                       <i class="fa fa-male" aria-hidden="true"></i>
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                        You & Her 
+                       </div>
                             </div>
-                       <div className="col-4 text-end">
+                       <div className="col-4 d-sm-block d-none text-end text-dark">
 
-                        
+                     
                             <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 
@@ -839,7 +1008,7 @@ Connect Now
                         </div>
                   
                         </div>
-                        <div className="col-12 d-flex">
+                        <div className="col-12 d-sm-flex d-none">
 
                     
                     <div className="col-6 ">
@@ -865,14 +1034,14 @@ Connect Now
                           
              
                   
-                  <hr  className="col-12 m-2 d-block" />
+                  <hr  className="col-12 m-2 d-sm-block d-none" />
                   <div className="col-12 d-block ">
                       <div className="col-12 d-flex pt-1">
-        <div className="col-6  ">
+        <div className="col-6 text-start text-sm-dark text-white  ">
 
 25 5.7ft
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Bhatti
         </div>
@@ -881,22 +1050,23 @@ Bhatti
         
           </div>
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Pakistani
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Islam
         </div>
 
           </div>
+       
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none ">
 
 BSCS
         </div>
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none">
 
 Engineer
         </div>
@@ -905,9 +1075,9 @@ Engineer
      
                       </div>
               </div>
-              
-              <div className="col-3 p-border text-center">
-                <div className="h-100 b-left text-center">
+              <hr  className="col-12 m-2 d-sm-none d-block" />
+              <div className="col-sm-3 d-sm-block d-none p-border text-center">
+                <div className="h-100 b-left text-center text-sm-dark text-white">
 <div className="col-12 font-style-italic ">
  Like This Profile
 
@@ -919,31 +1089,61 @@ Engineer
 Connect Now
                 </div>
               </div>
+              <div className="d-sm-none d-flex col-12">
+            <div className="col-6 text-left col-8 d-flex flex-column justify-content-center"> Like This Profile</div>
+            <div className="col-6 d-flex">
+<div className="col-8 d-flex flex-column text-sm-dark text-white justify-content-center">
+Connect Now
+</div>
+<div className="col-2">
+
+
+<i class="fa fa-check-circle text-success" style={{fontSize:'40px'}} aria-hidden="true"></i>
+</div>
+
+</div>
+              </div>
         </div>
-        <div className="employers-list mb-5 shadow rounded p-0">
-          <div className="col-4">
-            <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
+        <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 bg-img">
+         <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
+          <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
+            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
+            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" />
           </div>
-          <div className="col-5 p-2">
-                            <div className="col-12  d-flex">
-                            <div className="col-8 d-flex">
-                                <div className="col-7">
-                                    <h5>
-                                     <Link to="/public/profile">Munaza M </Link>
+          <div className="d-block d-sm-none">
+
+          
+          <div className="text-sm-dark text-white m-auto">
+            No Photo Added
+          </div>
+          <button id="submit" name="submit" type="submit" value="Send" className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"><span>Request a Photo<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button>
+          </div>
+          <div className="col-sm-5 offset-12 p-2">
+                            <div className="col-12 d-flex">
+                            <div className="col-sm-8 col-12 d-flex">
+                                <div className="col-sm-7 col-6 text-start">
+                                    <h5 className='d-sm-block d-none'>
+                                     <Link to="/public/profile">Sana M </Link>
                                     </h5>
-                             
+                             <div className="d-sm-none text-sm-dark text-white d-block" style={{fontSize:'18px'}}>
+                             <Link to="/public/profile">    Sana M</Link>
+                             </div>
                                 </div>
-                                <div className="col-1">
+                                <div className="col-1 d-sm-block d-none">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 d-sm-block d-none">
                                     <span class="badge bg-secondary">New</span>
                                 </div>
-                       
+                       <div className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
+                       <i class="fa fa-male" aria-hidden="true"></i>
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                        You & Her 
+                       </div>
                             </div>
-                       <div className="col-4 text-end">
+                       <div className="col-4 d-sm-block d-none text-end text-dark">
 
-                        
+                     
                             <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 
@@ -957,7 +1157,7 @@ Connect Now
                         </div>
                   
                         </div>
-                        <div className="col-12 d-flex">
+                        <div className="col-12 d-sm-flex d-none">
 
                     
                     <div className="col-6 ">
@@ -983,14 +1183,14 @@ Connect Now
                           
              
                   
-                  <hr  className="col-12 m-2 d-block" />
+                  <hr  className="col-12 m-2 d-sm-block d-none" />
                   <div className="col-12 d-block ">
                       <div className="col-12 d-flex pt-1">
-        <div className="col-6  ">
+        <div className="col-6 text-start text-sm-dark text-white  ">
 
 25 5.7ft
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Bhatti
         </div>
@@ -999,22 +1199,23 @@ Bhatti
         
           </div>
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Pakistani
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Islam
         </div>
 
           </div>
+       
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none ">
 
 BSCS
         </div>
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none">
 
 Engineer
         </div>
@@ -1023,9 +1224,9 @@ Engineer
      
                       </div>
               </div>
-              
-              <div className="col-3 p-border text-center">
-                <div className="h-100 b-left text-center">
+              <hr  className="col-12 m-2 d-sm-none d-block" />
+              <div className="col-sm-3 d-sm-block d-none p-border text-center">
+                <div className="h-100 b-left text-center text-sm-dark text-white">
 <div className="col-12 font-style-italic ">
  Like This Profile
 
@@ -1037,31 +1238,61 @@ Engineer
 Connect Now
                 </div>
               </div>
+              <div className="d-sm-none d-flex col-12">
+            <div className="col-6 text-left col-8 d-flex flex-column justify-content-center"> Like This Profile</div>
+            <div className="col-6 d-flex">
+<div className="col-8 d-flex flex-column text-sm-dark text-white justify-content-center">
+Connect Now
+</div>
+<div className="col-2">
+
+
+<i class="fa fa-check-circle text-success" style={{fontSize:'40px'}} aria-hidden="true"></i>
+</div>
+
+</div>
+              </div>
         </div>
-        <div className="employers-list mb-5 shadow rounded p-0">
-          <div className="col-4">
-            <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
+        <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 bg-img">
+         <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
+          <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
+            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
+            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" />
           </div>
-          <div className="col-5 p-2">
-                            <div className="col-12  d-flex">
-                            <div className="col-8 d-flex">
-                                <div className="col-7">
-                                    <h5>
-                                     <Link to="/public/profile">Adan J </Link>
+          <div className="d-block d-sm-none">
+
+          
+          <div className="text-sm-dark text-white m-auto">
+            No Photo Added
+          </div>
+          <button id="submit" name="submit" type="submit" value="Send" className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"><span>Request a Photo<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button>
+          </div>
+          <div className="col-sm-5 offset-12 p-2">
+                            <div className="col-12 d-flex">
+                            <div className="col-sm-8 col-12 d-flex">
+                                <div className="col-sm-7 col-6 text-start">
+                                    <h5 className='d-sm-block d-none'>
+                                     <Link to="/public/profile">Sana M </Link>
                                     </h5>
-                             
+                             <div className="d-sm-none text-sm-dark text-white d-block" style={{fontSize:'18px'}}>
+                             <Link to="/public/profile">    Sana M</Link>
+                             </div>
                                 </div>
-                                <div className="col-1">
+                                <div className="col-1 d-sm-block d-none">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 d-sm-block d-none">
                                     <span class="badge bg-secondary">New</span>
                                 </div>
-                       
+                       <div className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
+                       <i class="fa fa-male" aria-hidden="true"></i>
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                        You & Her 
+                       </div>
                             </div>
-                       <div className="col-4 text-end">
+                       <div className="col-4 d-sm-block d-none text-end text-dark">
 
-                        
+                     
                             <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 
@@ -1075,7 +1306,7 @@ Connect Now
                         </div>
                   
                         </div>
-                        <div className="col-12 d-flex">
+                        <div className="col-12 d-sm-flex d-none">
 
                     
                     <div className="col-6 ">
@@ -1101,14 +1332,14 @@ Connect Now
                           
              
                   
-                  <hr  className="col-12 m-2 d-block" />
+                  <hr  className="col-12 m-2 d-sm-block d-none" />
                   <div className="col-12 d-block ">
                       <div className="col-12 d-flex pt-1">
-        <div className="col-6  ">
+        <div className="col-6 text-start text-sm-dark text-white  ">
 
 25 5.7ft
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Bhatti
         </div>
@@ -1117,22 +1348,23 @@ Bhatti
         
           </div>
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Pakistani
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Islam
         </div>
 
           </div>
+       
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none ">
 
 BSCS
         </div>
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none">
 
 Engineer
         </div>
@@ -1141,9 +1373,9 @@ Engineer
      
                       </div>
               </div>
-              
-              <div className="col-3 p-border text-center">
-                <div className="h-100 b-left text-center">
+              <hr  className="col-12 m-2 d-sm-none d-block" />
+              <div className="col-sm-3 d-sm-block d-none p-border text-center">
+                <div className="h-100 b-left text-center text-sm-dark text-white">
 <div className="col-12 font-style-italic ">
  Like This Profile
 
@@ -1155,31 +1387,61 @@ Engineer
 Connect Now
                 </div>
               </div>
+              <div className="d-sm-none d-flex col-12">
+            <div className="col-6 text-left col-8 d-flex flex-column justify-content-center"> Like This Profile</div>
+            <div className="col-6 d-flex">
+<div className="col-8 d-flex flex-column text-sm-dark text-white justify-content-center">
+Connect Now
+</div>
+<div className="col-2">
+
+
+<i class="fa fa-check-circle text-success" style={{fontSize:'40px'}} aria-hidden="true"></i>
+</div>
+
+</div>
+              </div>
         </div>
-        <div className="employers-list mb-5 shadow rounded p-0">
-          <div className="col-4">
-            <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
+        <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 bg-img">
+         <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
+          <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
+            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
+            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" />
           </div>
-          <div className="col-5 p-2">
-                            <div className="col-12  d-flex">
-                            <div className="col-8 d-flex">
-                                <div className="col-7">
-                                    <h5>
-                                     <Link to="/public/profile"> Marukh S </Link>
+          <div className="d-block d-sm-none">
+
+          
+          <div className="text-sm-dark text-white m-auto">
+            No Photo Added
+          </div>
+          <button id="submit" name="submit" type="submit" value="Send" className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"><span>Request a Photo<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button>
+          </div>
+          <div className="col-sm-5 offset-12 p-2">
+                            <div className="col-12 d-flex">
+                            <div className="col-sm-8 col-12 d-flex">
+                                <div className="col-sm-7 col-6 text-start">
+                                    <h5 className='d-sm-block d-none'>
+                                     <Link to="/public/profile">Sana M </Link>
                                     </h5>
-                             
+                             <div className="d-sm-none text-sm-dark text-white d-block" style={{fontSize:'18px'}}>
+                             <Link to="/public/profile">    Sana M</Link>
+                             </div>
                                 </div>
-                                <div className="col-1">
+                                <div className="col-1 d-sm-block d-none">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 d-sm-block d-none">
                                     <span class="badge bg-secondary">New</span>
                                 </div>
-                       
+                       <div className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
+                       <i class="fa fa-male" aria-hidden="true"></i>
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                        You & Her 
+                       </div>
                             </div>
-                       <div className="col-4 text-end">
+                       <div className="col-4 d-sm-block d-none text-end text-dark">
 
-                        
+                     
                             <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 
@@ -1193,7 +1455,7 @@ Connect Now
                         </div>
                   
                         </div>
-                        <div className="col-12 d-flex">
+                        <div className="col-12 d-sm-flex d-none">
 
                     
                     <div className="col-6 ">
@@ -1219,14 +1481,14 @@ Connect Now
                           
              
                   
-                  <hr  className="col-12 m-2 d-block" />
+                  <hr  className="col-12 m-2 d-sm-block d-none" />
                   <div className="col-12 d-block ">
                       <div className="col-12 d-flex pt-1">
-        <div className="col-6  ">
+        <div className="col-6 text-start text-sm-dark text-white  ">
 
 25 5.7ft
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Bhatti
         </div>
@@ -1235,22 +1497,23 @@ Bhatti
         
           </div>
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Pakistani
         </div>
-        <div className="col-6 ">
+        <div className="col-6 text-start text-sm-dark text-white ">
 
 Islam
         </div>
 
           </div>
+       
           <div className="col-12 d-flex pt-1">
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none ">
 
 BSCS
         </div>
-        <div className="col-6 ">
+        <div className="col-6 d-sm-block d-none">
 
 Engineer
         </div>
@@ -1259,9 +1522,9 @@ Engineer
      
                       </div>
               </div>
-              
-              <div className="col-3 p-border text-center">
-                <div className="h-100 b-left text-center">
+              <hr  className="col-12 m-2 d-sm-none d-block" />
+              <div className="col-sm-3 d-sm-block d-none p-border text-center">
+                <div className="h-100 b-left text-center text-sm-dark text-white">
 <div className="col-12 font-style-italic ">
  Like This Profile
 
@@ -1272,6 +1535,169 @@ Engineer
 
 Connect Now
                 </div>
+              </div>
+              <div className="d-sm-none d-flex col-12">
+            <div className="col-6 text-left col-8 d-flex flex-column justify-content-center"> Like This Profile</div>
+            <div className="col-6 d-flex">
+<div className="col-8 d-flex flex-column text-sm-dark text-white justify-content-center">
+Connect Now
+</div>
+<div className="col-2">
+
+
+<i class="fa fa-check-circle text-success" style={{fontSize:'40px'}} aria-hidden="true"></i>
+</div>
+
+</div>
+              </div>
+        </div>
+        <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 bg-img">
+         <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
+          <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
+            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
+            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" />
+          </div>
+          <div className="d-block d-sm-none">
+
+          
+          <div className="text-sm-dark text-white m-auto">
+            No Photo Added
+          </div>
+          <button id="submit" name="submit" type="submit" value="Send" className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"><span>Request a Photo<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button>
+          </div>
+          <div className="col-sm-5 offset-12 p-2">
+                            <div className="col-12 d-flex">
+                            <div className="col-sm-8 col-12 d-flex">
+                                <div className="col-sm-7 col-6 text-start">
+                                    <h5 className='d-sm-block d-none'>
+                                     <Link to="/public/profile">Sana M </Link>
+                                    </h5>
+                             <div className="d-sm-none text-sm-dark text-white d-block" style={{fontSize:'18px'}}>
+                             <Link to="/public/profile">    Sana M</Link>
+                             </div>
+                                </div>
+                                <div className="col-1 d-sm-block d-none">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </div>
+                                <div className="col-4 d-sm-block d-none">
+                                    <span class="badge bg-secondary">New</span>
+                                </div>
+                       <div className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
+                       <i class="fa fa-male" aria-hidden="true"></i>
+                        <i class="fa fa-female" aria-hidden="true"></i>
+                        You & Her 
+                       </div>
+                            </div>
+                       <div className="col-4 d-sm-block d-none text-end text-dark">
+
+                     
+                            <div class="dropdown">
+                                        <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                            </div>
+                        </div>
+                  
+                        </div>
+                        <div className="col-12 d-sm-flex d-none">
+
+                    
+                    <div className="col-6 ">
+                    Online Now
+                    </div>
+                    <div class="dropdown">
+                                        <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                
+  <i class="fa fa-male" aria-hidden="true"></i>
+  <i class="fa fa-female" aria-hidden="true"></i>
+  You & Her 
+
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                            </div>
+                            </div>
+           
+                      
+                          
+             
+                  
+                  <hr  className="col-12 m-2 d-sm-block d-none" />
+                  <div className="col-12 d-block ">
+                      <div className="col-12 d-flex pt-1">
+        <div className="col-6 text-start text-sm-dark text-white  ">
+
+25 5.7ft
+        </div>
+        <div className="col-6 text-start text-sm-dark text-white ">
+
+Bhatti
+        </div>
+
+
+        
+          </div>
+          <div className="col-12 d-flex pt-1">
+        <div className="col-6 text-start text-sm-dark text-white ">
+
+Pakistani
+        </div>
+        <div className="col-6 text-start text-sm-dark text-white ">
+
+Islam
+        </div>
+
+          </div>
+       
+          <div className="col-12 d-flex pt-1">
+        <div className="col-6 d-sm-block d-none ">
+
+BSCS
+        </div>
+        <div className="col-6 d-sm-block d-none">
+
+Engineer
+        </div>
+        
+          </div>
+     
+                      </div>
+              </div>
+              <hr  className="col-12 m-2 d-sm-none d-block" />
+              <div className="col-sm-3 d-sm-block d-none p-border text-center">
+                <div className="h-100 b-left text-center text-sm-dark text-white">
+<div className="col-12 font-style-italic ">
+ Like This Profile
+
+</div>
+<h1>
+<i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+</h1>
+
+Connect Now
+                </div>
+              </div>
+              <div className="d-sm-none d-flex col-12">
+            <div className="col-6 text-left col-8 d-flex flex-column justify-content-center"> Like This Profile</div>
+            <div className="col-6 d-flex">
+<div className="col-8 d-flex flex-column text-sm-dark text-white justify-content-center">
+Connect Now
+</div>
+<div className="col-2">
+
+
+<i class="fa fa-check-circle text-success" style={{fontSize:'40px'}} aria-hidden="true"></i>
+</div>
+
+</div>
               </div>
         </div>
         <div className="row">

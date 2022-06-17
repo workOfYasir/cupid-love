@@ -10,16 +10,16 @@ const Photos = () => {
         <>
           
             
-             <div className="row">
+             <div className="d-flex">
 
              
-            <div className="col-3 p-1">
+            <div className="col-sm-3 col-6 p-1">
                 <div className="thumbnail">
                 <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='border p-1' style={{ border:"1px solid #eeeeee !important" }} srcset="" />
                     
                 </div>
             </div>
-            <div className="col-3 p-1">
+            <div className="col-sm-3 col-6 p-1">
                 <div className="thumbnail">
                 <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='border p-1' style={{ border:"1px solid #eeeeee !important" }} srcset="" />
                     

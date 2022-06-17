@@ -8,8 +8,8 @@ const Settings = () => {
     <Observer>
     {()=>(
         <>
-            <div className="row">
-                <div className="col-6">
+            <div className="d-sm-flex d-block">
+                <div className="col-sm-6 col-12 ">
                     <b>Choose display option</b><br />
                     <div className="d-flex pt-3">
                         <input type="radio" className='p-1 align-self-center' name="option"  /><span className='px-2'>Visible to all Members</span> <span className="rounded p-1 font-size-10 align-self-center border primary-text">Recommended</span>
@@ -19,7 +19,7 @@ const Settings = () => {
                     </div>
                     
                 </div>
-                <div className="col-4 text-center pt-2 bg-grey">
+                <div className="col-sm-4 col-12 text-center pt-2 bg-grey">
                 This is how your Photos will look to other Members
                     <div className="px-2 pb-5 pt-1 ">
                         

@@ -244,19 +244,21 @@ console.log('location.pathname:',location.pathname);
 
                 <div className="menu">
 
-                    <nav id="menu" className="mega-menu">
+                    <nav id="menu" className="">
 
                         <section className="menu-list-items">
-                            <div className="container mt-3">
+                            <div className="container-fluid mt-3">
                                 <div className="row position-relative">
-                                    <div className="col-md-12 position-relative d-flex">
-<div className=" col-1 p-0">
-                                        <ul className="menu-logo">
-                                            <li> <Link to="/"><img src={window.location.origin + "/images/logo.png"} className="img-fluid" alt="logo" /> </Link> </li>
-                                        </ul>
-                                        </div>
-<div className={(location.pathname=='/' || location.pathname=='') ?("col") : ("col-10")}>
-            <ul className={(location.pathname=='/' || location.pathname=='') ?("float-right d-flex pt-4 text-white") : ("p-4 d-flex justify-content-center primary-text")} >
+                                    <div className={(location.pathname=='/' || location.pathname=='') ?   ('col-12 position-relative d-flex') :("col-12 position-relative d-sm-flex d-block")}>
+<div className={(location.pathname=='/' || location.pathname=='') ?  ("col-1 p-0") : ("col-sm-1 col-12  text-left text-sm-center p-0")}>
+
+
+                                        <Link to="/"   >
+                                            <img className="col-sm-12 col-4 offset-sm-0 offset-4 m-0"  src={window.location.origin + "/images/logo.png"}  alt="logo" /> 
+                                            </Link> 
+                                            </div>       
+<div className={(location.pathname=='/' || location.pathname=='') ?("col") : ("col-12 col-sm-10")}>
+            <ul className={(location.pathname=='/' || location.pathname=='') ?("float-right d-flex pt-4 text-white") : ("p-sm-4 p-0 pt-4 d-flex w-100 justify-content-center primary-text")} >
                                         {(location.pathname=='/' || location.pathname=='') ? (
                                             <>
                                                 <li>

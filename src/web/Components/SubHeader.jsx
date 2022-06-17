@@ -28,10 +28,10 @@ const SubHeader = () => {
         <div className="col-md-12 ">
         {(location.pathname=='/myaccount') ? (
           <>
-          <div className="text-center primary-bg shadow">
+          <div className="text-center">
           <div className="justify-content-center">
               
-            <ul className="nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02 " role="tablist">
+            <ul className="primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02 " role="tablist">
               <li className="nav-item">
                 <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" aria-controls="tab-10" aria-selected="true">Dashboard</a>
               </li>
@@ -73,10 +73,10 @@ const SubHeader = () => {
           </>
         ) : (location.pathname=='/matches') ? (
           <>
-          <div className="text-center primary-bg shadow">
+          <div className="text-center">
           <div className="justify-content-center">
               
-            <ul className="nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02 " role="tablist">
+            <ul className="primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02 " role="tablist">
               <li className="nav-item">
                 <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" aria-controls="tab-10" aria-selected="true">New Matches</a>
               </li>
@@ -119,10 +119,10 @@ const SubHeader = () => {
           </>
           ) : (location.pathname=='/search') ? (
           <>
-          <div className="text-center primary-bg shadow">
+          <div className="text-center">
           <div className="justify-content-center">
               
-            <ul className="nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02 " role="tablist">
+            <ul className="primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02 " role="tablist">
               <li className="nav-item">
                 <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" aria-controls="tab-10" aria-selected="true">Basic Search</a>
               </li>

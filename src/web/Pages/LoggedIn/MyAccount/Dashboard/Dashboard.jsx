@@ -13,7 +13,7 @@ const Dashboard = () => {
            
               <div className='container mt-3' >
                 <div className='row'>
-                  <div className="col-4 ">
+                  <div className="col-12 col-sm-4 ">
                     <div className="card border-0 shadow">
 
                       <img src={ process.env.PUBLIC_URL +"/images/team/team-v1.png" } className="card-img-top" alt="..." />
@@ -73,7 +73,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                   
-                  <div className="col">
+                  <div className="col p-sm-3">
                   <h4>Your Activity Summary</h4>
                     <div className="col-12 d-flex">
                       <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
@@ -130,8 +130,8 @@ const Dashboard = () => {
                   </div>
 
                 </div>
-                <div className=" pt-5 ">
-                  <div className="col-12 d-flex">
+                <div className=" pt-sm-5 pt-1">
+                  <div className="col-12 d-sm-flex d-none">
                   <div className="col-4 m-2">
                   <h5>Premium Matches <span className="bg-danger p-1 text-white rounded-3 ">17</span></h5>
                   </div>
@@ -142,10 +142,14 @@ const Dashboard = () => {
                   <h5>Recommended Matches <span className="bg-danger p-1 text-white rounded-3 ">22</span></h5>
                   </div>
                   </div>
-                  <div className="col-12 d-flex">
-                  <div className="col-4 m-2 shadow bg-white">
+                  <div className="col-12 d-sm-flex d-block">
+                  <h5 className='p-3 pt-5 col-12 text-center d-block d-sm-none'>Premium Matches <span className="bg-danger p-1 text-white rounded-3 ">17</span></h5>
+                 
+                  <div className="col-sm-4 col-12 m-sm-2 m-0  shadow bg-white">
+                  
+                 
                   <div className="col-12 p-4 d-flex rounded">
-
+                
                     <div className="col-2">
                       <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='img-fluid border-radius-50' srcset="" />
                   
@@ -219,7 +223,9 @@ const Dashboard = () => {
                     </div>
                   </div>
                   </div>
-                  <div className="col-4 m-2 shadow bg-white">
+                  <h5 className='p-3 col-12 text-center d-block d-sm-none'>New Matches <span className="bg-danger p-1 text-white rounded-3 ">18</span></h5>
+                 
+                  <div className="col-sm-4 col-12 m-sm-2 m-0 shadow bg-white">
                   <div className="col-12 p-4 d-flex rounded">
                     
     <div className="col-2">
@@ -296,8 +302,10 @@ const Dashboard = () => {
     </div>
   </div>
   </div>
-  <div className="col-4 m-2 shadow bg-white">
-                  <div className="col-12 p-4 d-flex rounded">
+  <h5 className='p-3 col-12 text-center d-block d-sm-none'>Recommended Matches <span className="bg-danger p-1 text-white rounded-3 ">22</span></h5>
+   
+  <div className="col-sm-4 col-12 m-sm-2 m-0 shadow bg-white">
+                 <div className="col-12 p-4 d-flex rounded">
                     
     <div className="col-2">
       <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='img-fluid border-radius-50' srcset="" />

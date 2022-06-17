@@ -33,7 +33,7 @@ const PartnerPreference = () => {
                     <label for="">Age</label>
                     </div>
 
-                    <div className="col-8">
+                    <div className="col-8 offset-sm-0 offset-1">
                     <MultiRangeSlider
                       min={0}
                       max={100}
@@ -55,7 +55,7 @@ const PartnerPreference = () => {
                     <label for="">Height</label>
                     </div>
 
-                    <div className="col-8">
+                    <div className="col-8 offset-sm-0 offset-1">
                     <MultiRangeSlider
                       min={0}
                       max={100}
@@ -78,7 +78,7 @@ const PartnerPreference = () => {
                     <label for="" className=''>Marital status</label>
                     </div>
 
-                    <div className="col-8">
+                    <div className="col-8 offset-sm-0 offset-1">
                     <div className="mb-3">
 
                       <select className="form-control p-2" name="" id="">
@@ -95,7 +95,7 @@ const PartnerPreference = () => {
                     <label for="" className=''>Education</label>
                     </div>
 
-                    <div className="col-8">
+                    <div className="col-8 offset-sm-0 offset-1">
                     <div className="mb-3">
 
                       <select className="form-control p-2" name="" id="">
@@ -113,7 +113,7 @@ const PartnerPreference = () => {
                     <label for="" className=''>Location</label>
                     </div>
 
-                    <div className="col-8">
+                    <div className="col-8 offset-sm-0 offset-1">
                     <div className="mb-3">
 
                       <select className="form-control p-2" name="" id="">
@@ -131,7 +131,7 @@ const PartnerPreference = () => {
                     <label for="" className=''>Cast</label>
                     </div>
 
-                    <div className="col-8">
+                    <div className="col-8 offset-sm-0 offset-1">
                     <div className="mb-3">
 
                       <select className="form-control p-2" name="" id="">
