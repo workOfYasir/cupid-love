@@ -18,7 +18,7 @@ const RecentlyView = () => {
     </div>
     
     <div className="row">
-    <div className="col-3 ">
+    <div className="col-sm-3 col-12 p-sm-0 p-3">
         <div className="shadow rounded p-0 m-1">
         <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
         <div className="p-1">
@@ -31,7 +31,8 @@ const RecentlyView = () => {
         </div>
         </div>
       </div>
-      <div className="col-3 ">
+      <div className="d-sm-none d-block pt-3"> &nbsp;</div>
+      <div className="col-sm-3 col-12 p-sm-0 p-3">
         <div className="shadow rounded p-0 m-1">
         <img className="img-fluid rounded" src={window.location.origin + "/images/profile/default.png"} alt="" />
         <div className="p-1">
@@ -44,7 +45,8 @@ const RecentlyView = () => {
         </div>
         </div>
       </div>
-            <div className="col-3 ">
+      <div className="d-sm-none d-block pt-3"> &nbsp;</div>
+      <div className="col-sm-3 col-12 p-sm-0 p-3">
         <div className="shadow rounded p-0 m-1">
         <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
         <div className="p-1">
@@ -57,7 +59,8 @@ const RecentlyView = () => {
         </div>
         </div>
       </div>
-      <div className="col-3 ">
+      <div className="d-sm-none d-block pt-3"> &nbsp;</div>
+      <div className="col-sm-3 col-12 p-sm-0 p-3">
         <div className="shadow rounded p-0 m-1">
         <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
         <div className="p-1">
