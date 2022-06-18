@@ -790,3 +790,7 @@ Action-box Page
 .bg-grey{
   background-color: #f7f7f7 !important;
 }
+
+.font-lato{
+  display: none !important;
+}

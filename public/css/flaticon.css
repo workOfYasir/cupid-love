@@ -76,3 +76,8 @@
 .flaticon-fireworks:before { content: "\f12c"; }
 .flaticon-wedding-rings:before { content: "\f12d"; }
 .flaticon-cheers:before { content: "\f12e"; }
+
+
+.font-lato{
+  display: none !important;
+}
