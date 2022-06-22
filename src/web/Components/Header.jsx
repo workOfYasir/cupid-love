@@ -225,7 +225,7 @@ const Header = () => {
                             </div>
 
                             </div>
-                            <div className=" col-12 mb-0 "> <a className="button col-4 btn btn-theme rounded-sm animated right-icn" data-bs-dismiss="modal"><span>Close<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>  <a href='/createProfile' className="button col-4 btn-theme rounded-sm btn btn   animated right-icn" data-bs-dismiss="modal"><span>submit<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a> </div>
+                            <div className=" col-12 mb-0 "> <a className="button col-4 btn btn-theme rounded-sm animated right-icn" data-bs-dismiss="modal"><span>Close<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>  <Link to='/createProfile' className="button col-4 btn-theme rounded-sm btn btn   animated right-icn" data-bs-dismiss="modal"><span>submit<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></Link> </div>
                             </div>
                             </div>
                         
