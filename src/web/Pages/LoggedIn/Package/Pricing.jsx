@@ -9,7 +9,7 @@ const Pricing = () => {
     <Observer>
     {()=>(
     <>
-<div className="bg-danger col-12 d-flex p-3">
+<div className="bg-danger col-12 d-flex d-sm-none p-3">
 <div className="col-6"><h5 className='text-white'>Upgrade to Premimum </h5></div>
 <div className="col-6 text-end d-flex flex-column justify-content-center"><h5 className='text-white'><Link to="/matches">Skip</Link></h5></div>
 </div>
