@@ -279,7 +279,7 @@ const Header = () => {
 
                                             </li>
                                             <li>
-                                                <div className="menu" onClick={()=>{(store.subHeader==false)?(store.setSubHeader(true)):(store.setSubHeader(false))}}>
+                                                <div className="menu d-sm-none d-block" onClick={()=>{(store.subHeader==false)?(store.setSubHeader(true)):(store.setSubHeader(false))}}>
                                                     <i class="fa fa-bars" aria-hidden="true"></i>
                                                 </div>
                                             </li>

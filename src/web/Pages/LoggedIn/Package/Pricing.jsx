@@ -297,7 +297,7 @@ const Pricing = () => {
       </div>
 
  </div>
- <section id="home-slider" className="fullscreen">
+ <section id="home-slider" className="fullscreen d-sm-none d-block">
             <div id="main-slider" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner" style={{ height:"500px" }}>
                 

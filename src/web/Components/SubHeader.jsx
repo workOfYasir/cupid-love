@@ -32,7 +32,7 @@ const SubHeader = () => {
           <div className="text-center">
           <div className="justify-content-center">
               
-            <ul className={(store.subHeader==false)?('profile-sub-nav primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02'):('col-12 d-none')} role="tablist">
+            <ul className={(store.subHeader==false)?('profile-sub-nav primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02'):('profile-sub-nav primary-bg shadow nav nav-tabs justify-content-center col-12 nav-tabs-02 d-none d-sm-flex')} role="tablist">
               <li className="nav-item">
                 <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" aria-controls="tab-10" aria-selected="true">Dashboard</a>
               </li>
@@ -77,7 +77,7 @@ const SubHeader = () => {
           <div className="text-center">
           <div className="justify-content-center">
               
-            <ul className={(store.subHeader==false)?('matches-sub-nav primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02'):('col-12 d-none')} role="tablist">
+            <ul className={(store.subHeader==false)?('matches-sub-nav primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02'):('matches-sub-nav primary-bg shadow nav nav-tabs justify-content-center col-12 nav-tabs-02 d-none d-sm-flex')} role="tablist">
               <li className="nav-item">
                 <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" aria-controls="tab-10" aria-selected="true">New Matches</a>
               </li>
@@ -123,7 +123,7 @@ const SubHeader = () => {
           <div className="text-center">
           <div className="justify-content-center">
               
-            <ul className={(store.subHeader==false)?('search-sub-nav primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02'):('col-12 d-none')} role="tablist">
+            <ul className={(store.subHeader==false)?('search-sub-nav primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02'):('profile-sub-nav primary-bg shadow nav nav-tabs justify-content-center col-12 nav-tabs-02 d-none d-sm-flex')} role="tablist">
               <li className="nav-item">
                 <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" aria-controls="tab-10" aria-selected="true">Basic Search</a>
               </li>
