@@ -96,14 +96,14 @@ const Header = () => {
                                         <label htmlFor="exampleInput">First Name</label>
                                         <div className="form-group">
 
-                                        <input type="text" className="form-control p-2 b-radius form-field" id="exampleInput" placeholder="Enter First Name" />
+                                        <input type="text" className="form-control p-2 form-field" id="exampleInput" placeholder="Enter First Name" />
                                         </div>
                                         </div>
                                         <div className="row mb-3">
                                         <label htmlFor="exampleInput">Last Name</label>
                                         <div className="form-group">
 
-                                        <input type="text" className="form-control p-2 b-radius form-field"  id="exampleInput" placeholder=" Enter Last Name" />
+                                        <input type="text" className="form-control p-2 form-field"  id="exampleInput" placeholder=" Enter Last Name" />
                                         </div>
                                         </div>
                                         <div className="mb-3">
@@ -184,7 +184,7 @@ const Header = () => {
                             <label htmlFor="exampleInput">Email ID</label>
                             <div className="form-group mb-3">
 
-                            <input type="text" className="form-control form-field p-2 b-radius" id="exampleInput" placeholder="Enter Email ID" />
+                            <input type="text" className="form-control form-field p-2 " id="exampleInput" placeholder="Enter Email ID" />
                             </div>
 
                             <div className="form-group mb-3 text-center">
@@ -225,7 +225,7 @@ const Header = () => {
                             </div>
 
                             </div>
-                            <div className=" col-12 mb-0 "> <a className="button col-4 btn btn-theme rounded-sm animated right-icn" data-bs-dismiss="modal"><span>Close<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>  <Link to='/createProfile' className="button col-4 btn-theme rounded-sm btn btn   animated right-icn" data-bs-dismiss="modal"><span>submit<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></Link> </div>
+                            <div className=" col-12 mb-0 "> <a className="button col-4 btn btn-theme rounded-sm animated right-icn" data-bs-dismiss="modal"><span>Close<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>  <a href='/createProfile' className="button col-4 btn-theme rounded-sm btn btn   animated right-icn" data-bs-dismiss="modal"><span>submit<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a> </div>
                             </div>
                             </div>
                         
