@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import { Observer } from "mobx-react-lite";
-// import './../../Components/Header'
-// import './../../Components/Footer'
+import './../../Components/Header'
+import './../../Components/Footer'
 import './assets/css/profile.css'
 const CreateProfile = () => {
   
@@ -46,7 +46,7 @@ const CreateProfile = () => {
                                         <div className="row mb-3">
                                         <label htmlFor="exampleInput">Last Name</label>
                                         <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter First Name" />
+                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Last Name" />
                                         </div>
                                         </div>
                                         <div className="mb-3">
@@ -61,7 +61,7 @@ const CreateProfile = () => {
                                         <div className="row mb-3">
                                         <label htmlFor="exampleInput">Age</label>
                                         <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter First Name" />
+                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Age" />
                                         </div>
                                         </div>
                                         <div className="mb-3">
@@ -124,13 +124,13 @@ const CreateProfile = () => {
                                         <div className="row mb-3">
                                         <label htmlFor="exampleInput">Disablity</label>
                                         <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter First Name" />
+                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Disablity if any" />
                                         </div>
                                         </div>
                                         <div className="row mb-3">
                                         <label htmlFor="exampleInput">Star</label>
                                         <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter First Name" />
+                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Star" />
                                         </div>
                                         </div>
                                         <div className="mb-3">
@@ -161,13 +161,13 @@ const CreateProfile = () => {
                                         <div className="row mb-3">
                                         <label htmlFor="exampleInput">Hobbies</label>
                                         <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter First Name" />
+                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Hobbies" />
                                         </div>
                                         </div>
                                         <div className="row mb-3">
                                         <label htmlFor="exampleInput">Interest</label>
                                         <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter First Name" />
+                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Interest" />
                                         </div>
                                         </div>
                                         </div>
@@ -328,7 +328,7 @@ const CreateProfile = () => {
                             <label htmlFor="exampleInput">Number</label>
                             <div className="form-group mb-3">
 
-                            <input type="text" className="form-control form-field p-2  " id="exampleInput" placeholder="Enter Email ID" />
+                            <input type="text" className="form-control form-field p-2  " id="exampleInput" placeholder="Enter Number" />
                             </div>
 
                            
@@ -338,7 +338,7 @@ const CreateProfile = () => {
                             <label htmlFor="exampleInput">Number</label>
                             <div className="form-group mb-3">
 
-                            <input type="text" className="form-control form-field p-2  " id="exampleInput" placeholder="Enter Email ID" />
+                            <input type="text" className="form-control form-field p-2  " id="exampleInput" placeholder="Enter WhatsApp Number" />
                             </div>
 
                            

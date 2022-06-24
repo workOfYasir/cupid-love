@@ -419,8 +419,6 @@ POTENZA.stepwizard = function () {
      var navListItems = $('.step-form div.setup-panel div a'),
          allWells = $('.step-form .setup-content'),
          allNextBtn = $('.step-form .nextBtn');
-         $('#step-1').show();
-         $('#step-2').hide();
         allWells.hide();
 
   navListItems.on('click', function (e) {
