@@ -1,12 +1,87 @@
-import React from 'react'
-import { Link } from "react-router-dom";
+import React ,{useEffect, useState}from 'react'
+
+import { useNavigate } from "react-router-dom";
+
 import { Observer } from "mobx-react-lite";
 import './../../Components/Header'
 import './../../Components/Footer'
 import './assets/css/profile.css'
+import axios from 'axios';
 const CreateProfile = () => {
-  
+    const [formValue, setformValue] = React.useState({
+        email: '',
+        password: ''
+      });
 
+      const [cast, setCasts] = useState();
+
+      const [sector, setSectors] = useState();
+
+      const navigate = useNavigate();
+    const url='http://127.0.0.1:8000/api/';
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+
+        const loginFormData = new FormData();
+        loginFormData.append("email", formValue.email)
+        loginFormData.append("password", formValue.password)
+      
+        try {
+
+      
+           setformValue({
+            email:'',
+            password:''
+           })
+           navigate('/pricing')
+
+        } catch(error) {
+          console.log(error)
+        }
+      }
+    const handleChange = (event) => {
+        setformValue({
+          ...formValue,
+          [event.target.name]: event.target.value
+        });
+      }
+ 
+      const casts = async(access_token)=>{
+        try {
+           console.log('access_token',access_token);
+         axios.get(`${url}get-casts`,{
+            headers: {
+                'Authorization': `Bearer ${access_token}`
+              }
+         }).then((response)=>{
+                const data = response.data
+                setCasts(data)
+            })
+          } catch(error) {
+            console.log(error)
+          }
+      }
+      const sectors = async(access_token)=>{
+        try {
+            console.log('access_token',access_token);
+            axios.get(`${url}get-sectors`,{
+            headers: {
+                'Authorization': `Bearer ${access_token}`
+              }
+         }).then((response)=>{
+                const data = response.data
+                setSectors(data)
+            })
+          } catch(error) {
+            console.log(error)
+          }
+      }
+      useEffect(() => {
+        const token = localStorage.getItem('accessToken')
+
+        casts(token);
+        sectors(token);
+    }, []);
     return (
         <Observer>
             {() => (
@@ -37,47 +112,19 @@ const CreateProfile = () => {
                                 <h4 className="title text-dark divider-3 mb-5">Basic And Lifestyle</h4>
                                 <div className="row justify-content-center">
                                         <div className="col-md-12 text-start">
-                                        <div className="row mb-3">
-                                        <label htmlFor="exampleInput">First Name</label>
-                                        <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter First Name" />
-                                        </div>
-                                        </div>
-                                        <div className="row mb-3">
-                                        <label htmlFor="exampleInput">Last Name</label>
-                                        <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Last Name" />
-                                        </div>
-                                        </div>
+                                        
                                         <div className="mb-3">
                                         <label className="form-label">Gender</label>
-                                        <select className="form-select" aria-label="Default select example" name="" id="">
+                                        <select className="form-select" name="gender" aria-label="Default select example" id="">
                                             <option>Select one</option>
                                             <option value="">Male</option>
                                             <option value="">Female</option>
                                         
                                         </select>
                                         </div>
-                                        <div className="row mb-3">
-                                        <label htmlFor="exampleInput">Age</label>
-                                        <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Age" />
-                                        </div>
-                                        </div>
-                                        <div className="mb-3">
-                                        <label className="form-label">Date Of Birth</label>
-                                        <select className="form-select" aria-label="Default select example" name="" id="">
-                                            <option>Select one</option>
-                                            <option value="">Birth</option>
-                                            <option value="">1900</option>
-                                            <option value="">1950</option>
-                                            <option value="">2000</option>
-                                        
-                                        </select>
-                                        </div>
                                         <div className="mb-3">
                                         <label className="form-label">Material Status</label>
-                                        <select className="form-select" aria-label="Default select example" name="" id="">
+                                        <select className="form-select" name="material_status" aria-label="Default select example" id="">
                                             <option>Select one</option>
                                             <option value="">Single</option>
                                             <option value="">Divorced</option>
@@ -87,20 +134,10 @@ const CreateProfile = () => {
                                         </select>
                                         </div>
                                         
-                                        <div className="mb-3">
-                                        <label className="form-label">His Martial Status</label>
-                                        <select className="form-select" aria-label="Default select example" name="" id="">
-                                            <option>Select one</option>
-                                            <option value="">Birth</option>
-                                            <option value="">1900</option>
-                                            <option value="">1950</option>
-                                            <option value="">2000</option>
-                                        
-                                        </select>
-                                        </div>
+                                      
                                         <div className="mb-3">
                                         <label className="form-label">Height</label>
-                                        <select className="form-select" aria-label="Default select example" name="" id="">
+                                        <select className="form-select" aria-label="Default select example" name="height" id="">
                                             <option>Select one</option>
                                             <option value="">Birth</option>
                                             <option value="">1900</option>
@@ -109,33 +146,22 @@ const CreateProfile = () => {
                                         
                                         </select>
                                         </div>
-                                        <div className="mb-3">
-                                        <label htmlFor="" className="form-label">Religion</label>
-                                        <select className="form-select" name="" id="">
-                                        <option>Select one</option>
-                                        <option value="">Muslim</option>
-                                        <option value="">Hindu</option>
-                                        <option value="">Cristians</option>
-                                        <option value="">Sikh</option>
-
-
-                                        </select>
-                                        </div>
+                                        
                                         <div className="row mb-3">
                                         <label htmlFor="exampleInput">Disablity</label>
                                         <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Disablity if any" />
+                                        <input type="text" className="form-control p-2   form-field" name='disability' id="exampleInput" placeholder="Enter Disablity if any" />
                                         </div>
                                         </div>
                                         <div className="row mb-3">
                                         <label htmlFor="exampleInput">Star</label>
                                         <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Star" />
+                                        <input type="text" className="form-control p-2   form-field" name='star' id="exampleInput" placeholder="Enter Star" />
                                         </div>
                                         </div>
                                         <div className="mb-3">
                                         <label htmlFor="" className="form-label">Blood Group</label>
-                                        <select className="form-select" name="" id="">
+                                        <select className="form-select" name="blood_group" id="">
                                             <option>Select one</option>
                                             <option value="">A+</option>
                                             <option value="">A-</option>
@@ -148,26 +174,33 @@ const CreateProfile = () => {
                                         </select>
                                         </div>
                                         <div className="mb-3">
-                                        <label className="form-label">Sub-Community</label>
-                                        <select className="form-select" aria-label="Default select example" name="" id="">
+                                        <label className="form-label">Cast</label>
+                                        <select className="form-select" name="cast" aria-label="Default select example" id="">
                                             <option>Select one</option>
-                                            <option value="">Birth</option>
-                                            <option value="">1900</option>
-                                            <option value="">1950</option>
-                                            <option value="">2000</option>
-                                        
+                                        {cast?.map((data) => (
+                                    <option value={data.id}>{data.name}</option>
+                                   ))}
+                                        </select>
+                                        </div>
+                                        <div className="mb-3">
+                                        <label className="form-label">Sector</label>
+                                        <select className="form-select" name="sector" aria-label="Default select example" id="">
+                                            <option>Select one</option>
+                                        {sector?.map((data) => (
+                                    <option value={data.id}>{data.name}</option>
+                                   ))}
                                         </select>
                                         </div>
                                         <div className="row mb-3">
                                         <label htmlFor="exampleInput">Hobbies</label>
                                         <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Hobbies" />
+                                        <input type="text" className="form-control p-2   form-field" name='hobbies' id="exampleInput" placeholder="Enter Hobbies" />
                                         </div>
                                         </div>
                                         <div className="row mb-3">
                                         <label htmlFor="exampleInput">Interest</label>
                                         <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" id="exampleInput" placeholder="Enter Interest" />
+                                        <input type="text" className="form-control p-2   form-field" name='interest' id="exampleInput" placeholder="Enter Interest" />
                                         </div>
                                         </div>
                                         </div>
@@ -188,7 +221,7 @@ const CreateProfile = () => {
                             <div className="form-group mb-0">
                             <div className="mb-3">
                                 <label className="form-label">Qualification</label>
-                                <select className="form-select" aria-label="Default select example" name="" id="">
+                                <select className="form-select" aria-label="Default select example" name="edjucation" id="">
                                     <option>Select one</option>
                                     <option value="">PHd</option>
                                     <option value="">MS/M-Phil</option>
@@ -199,7 +232,7 @@ const CreateProfile = () => {
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">Work With</label>
-                                <select className="form-select" aria-label="Default select example" name="" id="">
+                                <select className="form-select" aria-label="Default select example" name="work_with" id="">
                                     <option>Select one</option>
                                     <option value="">Govt Job</option>
                                     <option value="">Private Job</option>
@@ -209,7 +242,7 @@ const CreateProfile = () => {
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">As</label>
-                                <select className="form-select" aria-label="Default select example" name="" id="">
+                                <select className="form-select" aria-label="Default select example" name="work_as" id="">
                                     <option>Select one</option>
                                     <option value="">Banking</option>
                                     <option value="">Software Developer</option>
@@ -220,7 +253,7 @@ const CreateProfile = () => {
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">Monthly Income</label>
-                                <select className="form-select" aria-label="Default select example" name="" id="">
+                                <select className="form-select" aria-label="Default select example" name="income" id="">
                                     <option>Select one</option>
                                     <option value="">20,000</option>
                                     <option value="">30,000</option>
@@ -235,53 +268,10 @@ const CreateProfile = () => {
 
                                 </select>
                             </div>
-                            <div className="mb-3">
-                                <label className="form-label">Current Residency Country</label>
-                                <select className="form-select" aria-label="Default select example" name="" id="">
-                                    <option>Select one</option>
-                                    <option value="">Birth</option>
-                                    <option value="">1900</option>
-                                    <option value="">1950</option>
-                                    <option value="">2000</option>
-                                
-                                </select>
-                            </div>
-                            <div className="mb-3">
-                                <label className="form-label">State of Residency</label>
-                                <select className="form-select" aria-label="Default select example" name="" id="">
-                                    <option>Select one</option>
-                                    <option value="">Birth</option>
-                                    <option value="">1900</option>
-                                    <option value="">1950</option>
-                                    <option value="">2000</option>
-                                
-                                </select>
-                            </div>
-                            <div className="mb-3">
-                                <label className="form-label">City</label>
-                                <select className="form-select" aria-label="Default select example" name="" id="">
-                                    <option>Select one</option>
-                                    <option value="">Birth</option>
-                                    <option value="">1900</option>
-                                    <option value="">1950</option>
-                                    <option value="">2000</option>
-                                
-                                </select>
-                            </div>
-                            <div className="mb-3">
-                                <label className="form-label">Town</label>
-                                <select className="form-select" aria-label="Default select example" name="" id="">
-                                    <option>Select one</option>
-                                    <option value="">Birth</option>
-                                    <option value="">1900</option>
-                                    <option value="">1950</option>
-                                    <option value="">2000</option>
-                                
-                                </select>
-                            </div>
+                         
                             <div className="mb-3">
                                 <label className="form-label">Living In This Country Since</label>
-                                <select className="form-select" aria-label="Default select example" name="" id="">
+                                <select className="form-select" aria-label="Default select example" name="living_since" id="">
                                     <option>Select one</option>
                                     <option value="">Birth</option>
                                     <option value="">1900</option>
@@ -292,7 +282,7 @@ const CreateProfile = () => {
                             </div>
                             <div className="form-group mb-3">
                             <label className="title divider-3 text-dark mb-3">about me</label>
-                            <textarea className="form-control bg-white form-field" rows="3"></textarea>
+                            <textarea className="form-control bg-white form-field" name='description' rows="3"></textarea>
                             </div>
 
 
@@ -313,7 +303,7 @@ const CreateProfile = () => {
                             <div className="row  justify-content-center">
                             <div className="col-md-12 text-start text-capitalize text-white">
                            
-                            <div className="row">
+                            {/* <div className="row">
                             <label htmlFor="exampleInput">Email ID</label>
                             <div className="form-group mb-3">
 
@@ -322,13 +312,13 @@ const CreateProfile = () => {
 
                            
 
-                            </div>
+                            </div> */}
 
                             <div className="row">
                             <label htmlFor="exampleInput">Number</label>
                             <div className="form-group mb-3">
 
-                            <input type="text" className="form-control form-field p-2  " id="exampleInput" placeholder="Enter Number" />
+                            <input type="text" className="form-control form-field p-2  " name='phone_number' id="exampleInput" placeholder="Enter Number" />
                             </div>
 
                            
@@ -338,7 +328,7 @@ const CreateProfile = () => {
                             <label htmlFor="exampleInput">Number</label>
                             <div className="form-group mb-3">
 
-                            <input type="text" className="form-control form-field p-2  " id="exampleInput" placeholder="Enter WhatsApp Number" />
+                            <input type="text" className="form-control form-field p-2  " name="whatsapp_number" id="exampleInput" placeholder="Enter WhatsApp Number" />
                             </div>
 
                            
