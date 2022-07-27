@@ -144,7 +144,7 @@ const PartnerPreference = () => {
                     
                   </div>
                   <div className="col-12 text-center">
-                  <a className="button col-4 btn btn-theme rounded-sm animated right-icn" data-bs-dismiss="modal"><span>Close<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a> 
+                  <a className="button col-4 btn btn-theme rounded-sm animated right-icn" data-bs-dismiss="modal"><span>Save<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a> 
                   </div>
                   
                 </form>

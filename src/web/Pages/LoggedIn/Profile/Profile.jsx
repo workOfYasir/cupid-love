@@ -1,12 +1,53 @@
-import React from 'react'
+import React,{useLayoutEffect,useState,useContext} from 'react'
 import { Link } from 'react-router-dom';
 import './assets/style.css'
+import axios from 'axios'; 
 import { Observer } from "mobx-react-lite";
 import Header from './../../../Components/SubHeader'
 import Footer from './../../../Components/Footer'
+import { StoreContext } from "./../../../store";
 
 const Profile = () => {
-   
+  const [profileData,setProfile] = useState()
+  const store = useContext(StoreContext);
+
+  const getProfile = async(access_token,user_id)=>{
+    try {
+      const userId = new FormData();
+      userId.append("id", user_id)
+    const headers = { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${access_token}` 
+  };
+      const response =   await axios({
+
+        method: "post",
+        url: `${store.url}get-profile`,
+        data: userId,
+        headers: headers,
+              
+          
+          
+     }).then((response)=>{
+            const data = response.data
+            
+            setProfile(data[0])
+        })
+
+      } catch(error) {
+        console.log(error)
+      }
+  }
+
+ 
+  
+  useLayoutEffect(()=>{
+    const token = localStorage.getItem('accessToken')
+    const user = localStorage.getItem('user')
+
+    getProfile(token,JSON.parse(user).id)
+  },[])
   return (
     <Observer>
     {()=>(
@@ -87,13 +128,13 @@ const Profile = () => {
 Age/Height
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-:25 5.7ft
+        {profileData?.height}
         </div>
         <div className="col-6 ">
 Cast
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-Bhatti
+        {profileData?.cast.name}
         </div>
 
 
@@ -101,16 +142,16 @@ Bhatti
           </div>
           <div className="col-6 d-flex pt-4">
         <div className="col-6 ">
-Nationality
+National
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-Pakistani
+        {profileData?.country.name}
         </div>
         <div className="col-6 ">
 Religion
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-Islam
+        {profileData?.religion.name}
         </div>
 
           </div>
@@ -119,13 +160,13 @@ Islam
 Education
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-BSCS
+        {profileData?.qualification}
         </div>
         <div className="col-6 ">
 Job
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-Engineer
+        {profileData?.job}
         </div>
         
           </div>

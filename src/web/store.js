@@ -18,6 +18,9 @@ export const StoreProvider = (props) => {
     subHeader: true,
     setSubHeader: action((e) => (store.subHeader = e)),
 
+    // url
+    url:"http://127.0.0.1:8000/api/",
+    setUrl: action((e) => (store.url = e)),
    
   }));
 

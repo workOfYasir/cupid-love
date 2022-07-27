@@ -1,3 +1,4 @@
+
 import React,{useState,useEffect,useContext} from 'react'
 import { useNavigate } from "react-router-dom";
 // import { navigate } from "@reach/router"
@@ -6,13 +7,15 @@ import axios from 'axios';
 import { Observer } from "mobx-react-lite";
 import { StoreContext } from "./../store";
 import { isVisible } from '@testing-library/user-event/dist/utils';
+import $ from "jquery";
 
 const Header = () => {
+    const store = useContext(StoreContext);
     const [isActive, setActive] = useState(false);
     const [country, setCountries] = useState();
     const [state, setStates] = useState();
     const [city, setCities] = useState();
-    const store = useContext(StoreContext);
+
     const location = useLocation();
     const navigate = useNavigate();
     const [religion, setReligions] = useState();
@@ -45,7 +48,7 @@ const Header = () => {
         try {
           const response = await axios({
             method: "post",
-            url: "http://127.0.0.1:8000/api/login",
+            url: `${store.url}login`,
             data: loginFormData,
             headers: { "Content-Type": "multipart/form-data" },
            })  
@@ -55,6 +58,10 @@ const Header = () => {
             email:'',
             password:''
            })
+           document.body.classList.remove('model-open');
+           document.body.style.overflow='unset';
+           document.body.style.paddingRight='0px';
+        
            navigate('/pricing')
                 
             
@@ -83,7 +90,7 @@ const Header = () => {
       const religions = async()=>{
         try {
    
-            axios.get('http://127.0.0.1:8000/api/get-religions',{
+            axios.get(`${store.url}get-religions`,{
 
          }).then((response)=>{
                 const data = response.data.religions
@@ -96,7 +103,7 @@ const Header = () => {
       const countries = async()=>{
         try {
       
-            axios.get('http://127.0.0.1:8000/api/get-countrys',{
+            axios.get(`${store.url}get-countrys`,{
             
          }).then((response)=>{
                 const data = response.data[0].countrys
@@ -110,7 +117,7 @@ const Header = () => {
       // const states = async()=>{
       //   try {
       
-      //       axios.get('http://127.0.0.1:8000/api/get-states',{
+      //       axios.get('${store.url}get-states',{
               
       //    }).then((response)=>{
       //           const data = response.data.states
@@ -128,7 +135,7 @@ const Header = () => {
           statesFormData.append('country_id', country_id); 
               axios({
                 method: "post",
-                url: "http://127.0.0.1:8000/api/get-states-by-country",
+                url: `${store.url}get-states-by-country`,
                 data: statesFormData,
                 headers: { "Content-Type": "multipart/form-data" },
    
@@ -144,7 +151,7 @@ const Header = () => {
       // const cities = async()=>{
       //   try {
       
-      //       axios.get('http://127.0.0.1:8000/api/get-cities',{
+      //       axios.get('${store.url}get-cities',{
               
       //    }).then((response)=>{
       //           const data = response.data.cities
@@ -161,7 +168,7 @@ const Header = () => {
           citiesFormData.append('state_id', state_id); 
               axios({
                 method: "post",
-                url: "http://127.0.0.1:8000/api/get-cities-by-state",
+                url: `${store.url}get-cities-by-state`,
                 data: citiesFormData,
                 headers: { "Content-Type": "multipart/form-data" },
               
@@ -177,7 +184,7 @@ const Header = () => {
       const sectors = async()=>{
         try {
       
-            axios.get('http://127.0.0.1:8000/api/get-sectors',{
+            axios.get(`${store.url}get-sectors`,{
          }).then((response)=>{
                 const data = response.data.sectors
                 setSectors(data)
@@ -203,20 +210,17 @@ const Header = () => {
         registerFormData.append('userProfile[date_of_Birth]',formValue.date_of_Birth_year+'-'+formValue.date_of_Birth_month+'-'+formValue.date_of_Birth_day)
         registerFormData.append('userProfile[sector_id]',formValue.sector_id)    
         registerFormData.append('userProfile[religion_id]',formValue.religion_id)
+        registerFormData.append('userProfile[country_id]',formValue.country)   
+        registerFormData.append('userProfile[state_id]',formValue.state)   
+        registerFormData.append('userProfile[city_id]',formValue.city)   
 // console.log(registerFormData,formValue);
         try {
           const loginResponse = await axios({
             method: "post",
-            url: "http://127.0.0.1:8000/api/register",
+            url: `${store.url}register`,
             data: registerFormData,
             headers: { "Content-Type": "multipart/form-data" },
            })  
-        //    const profileResponse = await axios({
-        //     method: "post",
-        //     url: "http://127.0.0.1:8000/api/create-profile",
-        //     data: profileFormData,
-        //     headers: { "Content-Type": "multipart/form-data" },
-        //    }) 
            localStorage.setItem('accessToken', loginResponse.data.token);
            localStorage.setItem('user', JSON.stringify(loginResponse.data.user));
            setformValue({
@@ -235,17 +239,20 @@ const Header = () => {
             state:'',
             city:'',
            })
-        //    navigate('/pricing')
+           document.body.classList.remove('model-open');
+           document.body.style.overflow='unset';
+           document.body.style.paddingRight='0px';
+        
+           navigate('/createProfile')
         } catch(error) {
           console.log(error)
         }
       }
       useEffect(() => {
-        // console.log('plk');
+
         console.log(formValue);
         const token = localStorage.getItem('accessToken')
-        // states();
-        // cities();
+
         countries();
         sectors();
         religions();
@@ -325,11 +332,11 @@ const Header = () => {
                                         <label className="form-label">Profile For</label>
                                         <select className="form-select" name="On_behalf" aria-label="Default select example"  value={formValue.On_behalf} onChange={handleChange} id="">
                                         <option>Select one</option>
-                                        <option value="">Myself</option>
-                                        <option value="">Son</option>
-                                        <option value="">Daughter</option>
-                                        <option value="">Sister</option>
-                                        <option value="">Brother</option>
+                                        <option value="Myself">Myself</option>
+                                        <option value="Son">Son</option>
+                                        <option value="Daughter">Daughter</option>
+                                        <option value="Sister">Sister</option>
+                                        <option value="Brother">Brother</option>
                                         </select>
                                         </div>
                                         <div className="row mb-3">
@@ -427,17 +434,17 @@ const Header = () => {
                             <div className="form-group mb-3 text-center">
                             <label htmlFor="my-select" className="col-4 text-grey">Day
                             <select id="my-select" name="date_of_Birth_day"  value={formValue.date_of_Birth_day} onChange={handleChange} className="form-select">
-                            <option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                            <option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>
                             </select>
                             </label>
                             <label htmlFor="my-select" className="col-4 text-grey">Month
                             <select id="my-select" className="form-select" value={formValue.date_of_Birth_month} onChange={handleChange} name="date_of_Birth_month">
-                            <option>Jan</option><option>Feb</option><option>Mar</option><option>Apr</option><option>May</option><option>Jun</option><option>Jul</option><option>Aug</option><option>Sep</option><option>Oct</option><option>Nov</option><option>Dec</option>
+                            <option vlaue="Jan">Jan</option><option vlaue="Feb">Feb</option><option vlaue="Mar">Mar</option><option vlaue="Apr">Apr</option><option vlaue="May">May</option><option vlaue="Jun">Jun</option><option vlaue="Jul">Jul</option><option vlaue="Aug">Aug</option><option vlaue="Sep">Sep</option><option vlaue="Oct">Oct</option><option vlaue="Nov">Nov</option><option vlaue="Dec">Dec</option>
                             </select>
                             </label>
                             <label htmlFor="my-select" className="col-4 text-grey">Month
                             <select id="my-select" className="form-select" value={formValue.date_of_Birth_year} onChange={handleChange} name="date_of_Birth_year">
-                            <option>2001</option><option>2000</option><option>1999</option><option>1998</option><option>1997</option><option>1996</option><option>1995</option><option>1994</option><option>1993</option><option>1992</option><option>1991</option><option>1990</option><option>1989</option><option>1988</option><option>1987</option><option>1986</option><option>1985</option><option>1984</option><option>1983</option><option>1982</option><option>1981</option><option>1980</option><option>1979</option><option>1978</option><option>1977</option><option>1976</option><option>1975</option><option>1974</option><option>1973</option><option>1972</option><option>1971</option><option>1970</option><option>1969</option><option>1968</option><option>1967</option><option>1966</option><option>1965</option><option>1964</option><option>1963</option><option>1962</option><option>1961</option><option>1960</option><option>1959</option><option>1958</option><option>1957</option><option>1956</option><option>1955</option><option>1954</option><option>1953</option><option>1952</option><option>1951</option><option>1950</option>
+                            <option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option><option value="1959">1959</option><option value="1958">1958</option><option value="1957">1957</option><option value="1956">1956</option><option value="1955">1955</option><option value="1954">1954</option><option value="1953">1953</option><option value="1952">1952</option><option value="1951">1951</option><option value="1950">1950</option>
                             </select>
                             </label>
                             </div>

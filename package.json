@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.6.0",
     "mobx": "^6.5.0",
     "mobx-react": "^7.4.0",
     "multi-range-slider-react": "^1.0.7",

@@ -1,12 +1,13 @@
-import React,{ useLayoutEffect,useState } from 'react'
+import React,{ useLayoutEffect,useState ,useContext} from 'react'
 import axios from 'axios'; 
 import { Observer } from "mobx-react-lite";
-
+import { StoreContext } from "./../../../../store";
 
 
 
 
 const Profile = () => {
+  const store = useContext(StoreContext);
   const [profileData,setProfile] = useState()
 
 
@@ -22,7 +23,7 @@ const Profile = () => {
       const response =   await axios({
 
         method: "post",
-        url: "http://127.0.0.1:8000/api/get-profile",
+        url: `${store.url}get-profile`,
         data: userId,
         headers: headers,
               
@@ -160,11 +161,11 @@ Job
               <div className=" mb-3 col-md-6">
                 <label className="d-block mb-3">Gender</label>
                   <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name="customRadio" id="customRadio1"/>
-                    <label className="form-check-label" for="customRadio1">Male</label>
+                    <input className="form-check-input" checked={(profileData?.gender=="Male")?"checked":""} type="radio" name="customRadio" id="customRadio1"/>
+                    <label className="form-check-label" for="customRadio1">{profileData?.gender}</label>
                   </div>
                   <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name="customRadio" id="customRadio2" checked="checked"/>
+                    <input className="form-check-input" type="radio" checked={(profileData?.gender=="Female")?"checked":""} name="customRadio" id="customRadio2" />
                     <label className="form-check-label" for="customRadio2">Female</label>
                   </div>
               </div>
@@ -172,19 +173,64 @@ Job
                 <label className="form-label text-dark">Job Title</label>
                 <input type="text" disabled className="form-control p-0" value={profileData?.job}/>
               </div>
-              {/* <div className=" mb-3 col-md-6 select-border">
-                <label className="form-label text-dark">Job Title</label>
-                <select className="form-control p-0 basic-select" disabled>
-                  <option value="value 01" selected="selected">Test Selector</option>
-                  <option value="value 02">Needham, MA</option>
-                  <option value="value 03">New Castle, PA</option>
-                </select>
-              </div> */}
 
               <div className=" mb-3 col-md-6">
-                <label className="form-label text-dark">Salary</label>
-                <input type="text" disabled className="form-control p-0" value={profileData?.annual_income}/>
+                <label className="form-label text-dark">Hobbies</label>
+                <input type="text" disabled className="form-control p-0" value={profileData?.hobbies}/>
               </div>
+
+              <div className=" mb-3 col-md-6">
+                <label className="form-label text-dark">Interest</label>
+                <input type="text" disabled className="form-control p-0" value={profileData?.interest}/>
+              </div>
+
+              <div className=" mb-3 col-md-6">
+                <label className="form-label text-dark">Star</label>
+                <input type="text" disabled className="form-control p-0" value={profileData?.star}/>
+              </div>
+
+              <div className=" mb-3 col-md-6">
+                <label className="form-label text-dark">Disability</label>
+                <input type="text" disabled className="form-control p-0" value={profileData?.disability}/>
+              </div>
+
+              <div className=" mb-3 col-md-6">
+                <label className="form-label text-dark">Blood Group</label>
+                <input type="text" disabled className="form-control p-0" value={profileData?.blood_group}/>
+              </div>
+
+              <div className=" mb-3 col-md-6">
+                <label className="form-label text-dark">Country</label>
+                <input type="text" disabled className="form-control p-0" value={profileData?.country.name}/>
+              </div>
+
+
+              <div className=" mb-3 col-md-6">
+                <label className="form-label text-dark">City</label>
+                <input type="text" disabled className="form-control p-0" value={profileData?.city.name}/>
+              </div>
+              <div className=" mb-3 col-md-6">
+                <label className="form-label text-dark">State</label>
+                <input type="text" disabled className="form-control p-0" value={profileData?.state.name}/>
+              </div>
+
+              <div className=" mb-3 col-md-6">
+                <label className="form-label text-dark"><i class="fas fa-grin-tongue-wink    "></i></label>
+                <input type="text" disabled className="form-control p-0" value={profileData?.town}/>
+              </div>
+
+
+              <div className=" mb-3 col-md-6">
+                <label className="form-label text-dark">Religion</label>
+                <input type="text" disabled className="form-control p-0" value={profileData?.religion.name}/>
+              </div>
+
+              <div className=" mb-3 col-md-6">
+                <label className="form-label text-dark">Sector</label>
+                <input type="text" disabled className="form-control p-0" value={profileData?.sector.name}/>
+              </div>
+
+
               <div className=" mb-0 col-md-12">
                 <label className="form-label text-dark">Description</label>
                 <textarea className="form-control p-0" disabled rows="5" placeholder={profileData?.about}>{profileData?.about}</textarea>
