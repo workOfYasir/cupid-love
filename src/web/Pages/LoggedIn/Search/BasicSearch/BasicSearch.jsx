@@ -12,7 +12,7 @@ const BasicSearch = () => {
                 Age
             </div>
             <div className="col-8 d-flex">
-              <select className="col-2 form-control " name="" id="">
+              <select className="col-2 form-control " name="age_from" id="">
               <option>Doesn't Matter</option>
               <option>18</option>
                 <option>19</option>
@@ -28,7 +28,7 @@ const BasicSearch = () => {
                   <option>29</option>
               </select>
               <span className='px-2 align-self-center' >To</span>
-              <select className="col-2 form-control " name="" id="">
+              <select className="col-2 form-control " name="age_to" id="">
               <option>Doesn't Matter</option>
               <option>18</option>
                 <option>19</option>
@@ -50,7 +50,7 @@ const BasicSearch = () => {
                 Height
             </div>
             <div className="col-8 d-flex">
-              <select className="col-2 form-control " name="" id="">
+              <select className="col-2 form-control " name="height_from" id="">
               <option>Doesn't Matter</option>
                 <option>5'1 ft</option>
                 <option>5'2 ft</option>
@@ -68,7 +68,7 @@ const BasicSearch = () => {
                 <option>6'4 ft</option>
               </select>
               <span className='px-2 align-self-center' >To</span>
-              <select className="col-2 form-control " name="" id="">
+              <select className="col-2 form-control " name="height_to" id="">
               <option>Doesn't Matter</option>
               <option>5'1 ft</option>
                 <option>5'2 ft</option>
@@ -92,7 +92,7 @@ const BasicSearch = () => {
                 Martial Status
             </div>
             <div className="col-8">
-              <select className="form-control " name="" id="">      <option>Doesn't Matter</option>
+              <select className="form-control " name="martial_status" id="">      <option>Doesn't Matter</option>
                 <option>Single</option>
                 <option>Divorced</option>
                 <option></option>
@@ -104,7 +104,7 @@ const BasicSearch = () => {
                 Religion
             </div>
             <div className="col-8">
-              <select className="form-control " name="" id="">      <option>Doesn't Matter</option>
+              <select className="form-control " name="religion" id="">      <option>Doesn't Matter</option>
                 <option>Islam</option>
                 <option>Christian</option>
                 <option>Hindu</option>
@@ -116,7 +116,7 @@ const BasicSearch = () => {
                 Mother Tongue
             </div>
             <div className="col-8">
-              <select className="form-control " name="" id="">      <option>Doesn't Matter</option>
+              <select className="form-control " name="religion" id="">      <option>Doesn't Matter</option>
                 <option>Urdu</option>
                 <option>Punjabi</option>
                 <option>English</option>
@@ -128,7 +128,7 @@ const BasicSearch = () => {
                 Community
             </div>
             <div className="col-8">
-              <select className="form-control " name="" id="">      <option>Doesn't Matter</option>
+              <select className="form-control " name="community" id="">      <option>Doesn't Matter</option>
                 <option>Muslim</option>
                 <option>Hindu</option>
                 <option>Christian</option>
@@ -140,7 +140,7 @@ const BasicSearch = () => {
                 Country Living In
             </div>
             <div className="col-8">
-              <select className="form-control " name="" id="">      <option>Doesn't Matter</option>
+              <select className="form-control " name="country" id="">      <option>Doesn't Matter</option>
                 <option>Pakistan</option>
                 <option>Europ</option>
                 <option>UAE</option>
@@ -152,7 +152,7 @@ const BasicSearch = () => {
                 State Living In
             </div>
             <div className="col-8">
-              <select className="form-control " name="" id="">      <option>Doesn't Matter</option>
+              <select className="form-control " name="state" id="">      <option>Doesn't Matter</option>
                 <option>Punjab</option>
                 <option>Sindh</option>
                 <option>Sarhad</option>
@@ -165,7 +165,7 @@ const BasicSearch = () => {
                 City / District
             </div>
             <div className="col-8">
-              <select className="form-control " name="" id="">      <option>Doesn't Matter</option>
+              <select className="form-control " name="city" id="">      <option>Doesn't Matter</option>
                 <option>Lahore</option>
                 <option>Sheikhupura</option>
                 <option>Mian Channu</option>
@@ -182,12 +182,12 @@ const BasicSearch = () => {
               <div className="col-8 d-flex">
                 <div className="form-check form-check-inline">
                 
-                <input className="form-check-input" type="checkbox" name="check1" id="" value="checkedValue"/> Visible to all
+                <input className="form-check-input" type="checkbox" name="photo_visibility" id="" value="checkedValue"/> Visible to all
             
                 </div>
                 <div className="form-check form-check-inline">
                   
-                  <input className="form-check-input" type="checkbox" name="check2" id="" value="checkedValue"/> Protected Picture
+                  <input className="form-check-input" type="checkbox" name="photo_visibility" id="" value="checkedValue"/> Protected Picture
               
                 </div>
               </div>
@@ -200,12 +200,12 @@ const BasicSearch = () => {
               <div className="col-8 d-flex">
                 <div className="form-check form-check-inline">
                 
-                <input className="form-check-input" type="checkbox" name="check1" id="" value="checkedValue"/>  Profiles that I have already Viewed
+                <input className="form-check-input" type="checkbox" name="vistited_profiles" id="" value="checkedValue"/>  Profiles that I have already Viewed
             
                 </div>
                 <div className="form-check form-check-inline">
                   
-                  <input className="form-check-input" type="checkbox" name="check2" id="" value="checkedValue"/>  Profiles that have Filtered me out
+                  <input className="form-check-input" type="checkbox" name="profiles_visited_me" id="" value="checkedValue"/>  Profiles that have Filtered me out
               
                 </div>
               </div>

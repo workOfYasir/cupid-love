@@ -322,7 +322,7 @@ const Header = () => {
                         <div className="step-forms">
           
                         <form method="post" onSubmit={handleSubmitRegister} className="text-center mt-3">
-                            <input type="hidden" name='password' value='test123' />
+                        
                             <div className={(isActive) ? 'row ref-1 d-none': 'row ref-1  justify-content-center d-block'} id="step-1">
                                 <div className="col-md-12">
                                 <h4 className="title text-dark divider-3 mb-5">Profile</h4>
@@ -429,6 +429,11 @@ const Header = () => {
                             <div className="form-group mb-3">
 
                             <input type="text" name="email"  value={formValue.email} onChange={handleChange} className="form-control form-field p-2 " id="exampleInput" placeholder="Enter Email ID" />
+                            </div>
+                            <label htmlFor="exampleInput">Password</label>
+                            <div className="form-group mb-3">
+                            {/* <input type="hidden" name='password' value='test123' /> */}
+                            <input type="text" name='password' value={formValue.password} onChange={handleChange} className="form-control form-field p-2 " id="exampleInput" placeholder="Enter Password" />
                             </div>
 
                             <div className="form-group mb-3 text-center">

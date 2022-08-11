@@ -5,7 +5,9 @@ import { Observer } from "mobx-react-lite";
  
 
 const Gallery = () => {
-   
+  
+  
+
   return (
     <Observer>
     {()=>(

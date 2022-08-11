@@ -12,7 +12,7 @@ const AdvanceSearch = () => {
                 Age
             </div>
             <div className="col-8 d-flex">
-              <select className="col-2 form-control " name="" id="">
+              <select className="col-2 form-control " name="age_from" id="">
                 <option>Doesn't Matter</option>
               <option>Select Age</option>
               <option>18</option>
@@ -29,7 +29,7 @@ const AdvanceSearch = () => {
                   <option>29</option>
               </select>
               <span className='px-2 align-self-center' >To</span>
-              <select className="col-2 form-control " name="" id="">
+              <select className="col-2 form-control " name="age_to" id="">
               <option>Doesn't Matter</option>
               <option>18</option>
                 <option>19</option>
@@ -51,7 +51,7 @@ const AdvanceSearch = () => {
                 Height
             </div>
             <div className="col-8 d-flex">
-              <select className="col-2 form-control " name="" id="">
+              <select className="col-2 form-control " name="height_from" id="">
               <option>Doesn't Matter</option>
                 <option>5'1 ft</option>
                 <option>5'2 ft</option>
@@ -69,7 +69,7 @@ const AdvanceSearch = () => {
                 <option>6'4 ft</option>
               </select>
               <span className='px-2 align-self-center' >To</span>
-              <select className="col-2 form-control " name="" id="">
+              <select className="col-2 form-control " name="height_to" id="">
               <option>Doesn't Matter</option>
                 <option>5'1 ft</option>
                 <option>5'2 ft</option>
@@ -93,7 +93,7 @@ const AdvanceSearch = () => {
                 Martial Status
             </div>
             <div className="col-8">
-              <select className="form-control " name="" id=""><option>Doesn't Matter</option>
+              <select className="form-control " name="martial_status" id=""><option>Doesn't Matter</option>
                 <option>Single</option>
                 <option>Divorced</option>
                 <option></option>
@@ -105,7 +105,7 @@ const AdvanceSearch = () => {
                 Religion
             </div>
             <div className="col-8">
-              <select className="form-control " name="" id=""><option>Doesn't Matter</option>
+              <select className="form-control " name="religion" id=""><option>Doesn't Matter</option>
                 <option>Islam</option>
                 <option>Christian</option>
                 <option>Hindu</option>
@@ -117,7 +117,7 @@ const AdvanceSearch = () => {
                 Mother Tongue
             </div>
             <div className="col-8">
-              <select className="form-control " name="" id=""><option>Doesn't Matter</option>
+              <select className="form-control " name="language" id=""><option>Doesn't Matter</option>
                 <option>Urdu</option>
                 <option>Punjabi</option>
                 <option>English</option>
@@ -126,13 +126,14 @@ const AdvanceSearch = () => {
           </div>
           <div className="row pt-1">
             <div className="col-4">
-                Community
+                Sactor
             </div>
             <div className="col-8">
-              <select className="form-control " name="" id=""><option>Doesn't Matter</option>
-                <option>Muslim</option>
-                <option>Hindu</option>
-                <option>Christian</option>
+              <select className="form-control " name="sactor" id=""><option>Doesn't Matter</option>
+                <option>Shia</option>
+                <option>Sunni</option>
+                <option>Deobandi</option>
+                <option>ahl e hadis</option>
               </select>
             </div>
           </div>
@@ -149,7 +150,7 @@ const AdvanceSearch = () => {
                 Country Living In
                 </div>
                 <div className="col-8 pt-2">
-                  <select className="form-control " name="" id=""><option>Doesn't Matter</option>
+                  <select className="form-control " name="country" id=""><option>Doesn't Matter</option>
                     <option>Pakistan</option>
                     <option>Europ</option>
                     <option>UAE</option>
@@ -159,7 +160,7 @@ const AdvanceSearch = () => {
                 State Living In
                 </div>
                 <div className="col-8 pt-2">
-                  <select className="form-control " name="" id=""><option>Doesn't Matter</option>
+                  <select className="form-control " name="state" id=""><option>Doesn't Matter</option>
                     <option>Punjab</option>
                     <option>Sindh</option>
                     <option>Sarhad</option>
@@ -170,7 +171,7 @@ const AdvanceSearch = () => {
                 City / District
                 </div>
                 <div className="col-8 pt-2">
-                  <select className="form-control " name="" id=""><option>Doesn't Matter</option>
+                  <select className="form-control " name="city" id=""><option>Doesn't Matter</option>
                     <option>Lahore</option>
                     <option>Sheikhupura</option>
                     <option>Mian Channu</option>
@@ -179,19 +180,6 @@ const AdvanceSearch = () => {
                     <option>KhariyaWala</option>
                   </select>
                 </div>
-                <div className="col-4 pt-2">
-                  Residency Status
-            </div>
-            <div className="col-8 pt-2">
-              <select className="form-control " name="" id=""><option>Doesn't Matter</option>
-                <option>Permanent</option>
-                <option>Sheikhupura</option>
-                <option>Mian Channu</option>
-                <option>Gujarawala</option>
-                <option>Gojra</option>
-                <option>KhariyaWala</option>
-              </select>
-            </div>
                   </div>
                 </div>
               </div>
@@ -205,7 +193,7 @@ const AdvanceSearch = () => {
                   Qualification
                   </div>
                   <div className="col-8 pt-2">
-                    <select className="form-control " name="" id=""><option>Doesn't Matter</option>
+                    <select className="form-control " name="education" id=""><option>Doesn't Matter</option>
                       <option>Inter</option>
                       <option>Bacholer</option>
                       <option>Under Graduate</option>
@@ -218,7 +206,7 @@ const AdvanceSearch = () => {
                   Education Area
                   </div>
                   <div className="col-8 pt-2">
-                    <select className="form-control " name="" id=""><option>Doesn't Matter</option>
+                    <select className="form-control " name="education_in" id=""><option>Doesn't Matter</option>
                       <option>Art</option>
                       <option>Science</option>
                       <option>Computer</option>
@@ -231,7 +219,7 @@ const AdvanceSearch = () => {
                   Working With
                   </div>
                   <div className="col-8 pt-2">
-                    <select className="form-control " name="" id=""><option>Doesn't Matter</option>
+                    <select className="form-control " name="working_with" id=""><option>Doesn't Matter</option>
                       <option>Govrt Sector</option>
                       <option>Private Sector</option>
                     </select>
@@ -240,7 +228,7 @@ const AdvanceSearch = () => {
                   Profession
                   </div>
                   <div className="col-8 pt-2">
-                    <select className="form-control " name="" id=""><option>Doesn't Matter</option>
+                    <select className="form-control " name="working_in" id=""><option>Doesn't Matter</option>
                       <option>Hr</option>
                       <option>Manager</option>
                       <option>CEO</option>
@@ -254,7 +242,7 @@ const AdvanceSearch = () => {
                   Income (Anual)
                   </div>
                   <div className="col-8 pt-2">
-                    <select className="form-control " name="" id=""><option>Doesn't Matter</option>
+                    <select className="form-control " name="income" id=""><option>Doesn't Matter</option>
                       <option>Less Then 1 lakh </option>
                       <option>1 Lakh</option>
                       <option>2 Lakh</option>
@@ -270,11 +258,11 @@ const AdvanceSearch = () => {
                   </div>
                 </div>
               </div>
-              <div className="accordion-item">
+               {/*   <div className="accordion-item">
                 <h2 className="accordion-header" id="headingThree">
                   <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Search using Keywords <i className="fas fa-chevron-down fa-xs"></i></button>
                 </h2>
-                <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordion-Two">
+                  <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordion-Two">
                   <div className="accordion-body row p-0 d-block">
                   <div className="col-12 pt-2">
                   For very specific results, filter your search using keywords.
@@ -284,7 +272,7 @@ const AdvanceSearch = () => {
                   </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="row pt-3">
             <div className="col-4">
                   Photo Setting
@@ -292,12 +280,12 @@ const AdvanceSearch = () => {
               <div className="col-8 d-flex">
                 <div className="form-check form-check-inline">
                 
-                <input className="form-check-input" type="checkbox" name="check1" id="" value="checkedValue"/> Visible to all
+                <input className="form-check-input" type="checkbox" name="photo_visible" id="" value="checkedValue"/> Visible to all
             
                 </div>
                 <div className="form-check form-check-inline">
                   
-                  <input className="form-check-input" type="checkbox" name="check2" id="" value="checkedValue"/> Protected Picture
+                  <input className="form-check-input" type="checkbox" name="photo_visible" id="" value="checkedValue"/> Protected Picture
               
                 </div>
               </div>
@@ -310,12 +298,12 @@ const AdvanceSearch = () => {
               <div className="col-8 d-flex">
                 <div className="form-check form-check-inline">
                 
-                <input className="form-check-input" type="checkbox" name="check1" id="" value="checkedValue"/>  Profiles that I have already Viewed
+                <input className="form-check-input" type="checkbox" name="visited_profiles" id="" value="checkedValue"/>  Profiles that I have already Viewed
             
                 </div>
                 <div className="form-check form-check-inline">
                   
-                  <input className="form-check-input" type="checkbox" name="check2" id="" value="checkedValue"/>  Profiles that have Filtered me out
+                  <input className="form-check-input" type="checkbox" name="profiles_visited_me" id="" value="checkedValue"/>  Profiles that have Filtered me out
               
                 </div>
               </div>
@@ -324,7 +312,7 @@ const AdvanceSearch = () => {
           <div className="col-12">
             <b>Save upto 5 Searches</b>
           </div>
-          <div className="row pt-1">
+          {/* <div className="row pt-1">
             <div className="col-4">
             Save Search as
             </div>
@@ -358,7 +346,7 @@ const AdvanceSearch = () => {
                 </label>
               </div>
             </div>
-          </div>
+          </div> */}
             </div>
           </div>
           <div className="col-12 text-center pt-2">

@@ -19,9 +19,16 @@ export const StoreProvider = (props) => {
     setSubHeader: action((e) => (store.subHeader = e)),
 
     // url
-    url:"http://127.0.0.1:8000/api/",
+    url:"http://127.0.0.1:3232/api/",
+    // url:"https://admin.urgentrishta.co/api/",
     setUrl: action((e) => (store.url = e)),
-   
+
+    
+    // url
+    mediaUrl:"http://127.0.0.1:3232/",
+    // mediaUrl:"https://admin.urgentrishta.co/",
+    setMediaUrl: action((e) => (store.mediaUrl = e)),
+      
   }));
 
   return (

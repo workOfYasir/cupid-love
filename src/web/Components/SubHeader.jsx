@@ -84,9 +84,6 @@ const SubHeader = () => {
               <li className="nav-item">
                 <a className="btn text-light " id="tab-02" data-bs-toggle="tab" href="#tab-11" role="tab" aria-controls="tab-11" aria-selected="false">My Matches</a>
               </li>
-              {/* <li className="nav-item">
-                <a className="btn text-light " id="tab-03" data-bs-toggle="tab" href="#tab-12" role="tab" aria-controls="tab-12" aria-selected="false">Near Me</a>
-              </li> */}
               <li className="nav-item">
                 <a className="btn text-light " id="tab-04" data-bs-toggle="tab" href="#tab-13" role="tab" aria-controls="tab-13" aria-selected="false">Recently Viewed</a>
               </li>
@@ -106,9 +103,6 @@ const SubHeader = () => {
                 <MyMatches />
             </p>
           </div>
-          {/* <div className="tab-pane fade" id="tab-12" role="tabpanel" aria-labelledby="tab-02">
-            <p><NearMe /></p>
-          </div> */}
           <div className="tab-pane fade" id="tab-13" role="tabpanel" aria-labelledby="tab-03">
             <p><RecentlyView/></p>
           </div>

@@ -6,15 +6,21 @@ import { Observer } from "mobx-react-lite";
 import Header from './../../../Components/SubHeader'
 import Footer from './../../../Components/Footer'
 import { StoreContext } from "./../../../store";
+import { useParams } from 'react-router-dom';
+import { data } from 'jquery';
 
 const Profile = () => {
   const [profileData,setProfile] = useState()
+  const [authUserData,setAuthUserData] = useState()
+  const [userData,setUserData] = useState()
+  const [preferencesMatch,setPreferencesMatch] = useState()
   const store = useContext(StoreContext);
+const param = useParams();
 
   const getProfile = async(access_token,user_id)=>{
     try {
       const userId = new FormData();
-      userId.append("id", user_id)
+      userId.append("user_id", user_id)
     const headers = { 
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -31,8 +37,12 @@ const Profile = () => {
           
      }).then((response)=>{
             const data = response.data
-            
-            setProfile(data[0])
+            console.log(data['data']['data']);
+            console.log(data['data']['user'][0]);
+            setProfile(data['data']['user'][0])
+            setUserData(data['data']['other_user'])
+            setAuthUserData(data['data']['auth_user'])
+            setPreferencesMatch(data['data']['data'])
         })
 
       } catch(error) {
@@ -44,9 +54,8 @@ const Profile = () => {
   
   useLayoutEffect(()=>{
     const token = localStorage.getItem('accessToken')
-    const user = localStorage.getItem('user')
-
-    getProfile(token,JSON.parse(user).id)
+// console.log(param.userId);
+    getProfile(token,param.userId)
   },[])
   return (
     <Observer>
@@ -67,7 +76,7 @@ const Profile = () => {
                             <div className="col-8 d-flex">
                                 <div className="col-7">
                                     <h5>
-                                    Marukh S 
+                                    {profileData?.user.first_name+' '+profileData?.user.last_name} 
                                     </h5>
                              
                                 </div>
@@ -134,7 +143,7 @@ Age/Height
 Cast
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-        {profileData?.cast.name}
+        {(profileData?.cast==null)?'':profileData?.cast.name}
         </div>
 
 
@@ -145,13 +154,14 @@ Cast
 National
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-        {profileData?.country.name}
+        {(profileData?.country==null)?'':profileData?.country.name}
+
         </div>
         <div className="col-6 ">
 Religion
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-        {profileData?.religion.name}
+        {(profileData?.religion==null)?'':profileData?.religion.name}
         </div>
 
           </div>
@@ -196,7 +206,11 @@ Contact her directly
 
                 </div>
                 <div className="col-3 overlay d-sm-block d-none">
+                {profileData?.user.picture==null ?
                     <img src="/images/profile/02.jpg" className='img-fluid rounded' alt="" />
+                    :
+                    <img src={store.mediaUrl+profileData?.user.picture.image_path} style={{width:'100%'} } className='img-fluid rounded' alt="" />
+                    }
                 </div>
 
 {/*  */}
@@ -204,9 +218,17 @@ Contact her directly
 <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 d-sm-none d-block pt-5 bg-img">
          <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
           <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
-            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
-            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" />
-          </div>
+          {/* {profileData?.user.picture!=null ?
+          <>  <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={store.mediaUrl+profileData?.user.picture.image_path} alt="" />
+          <img className="img-fluid b-sm-radius d-sm-block d-none" src= {store.mediaUrl+profileData?.user.picture.image_path} alt="" /></>
+:
+<> */}
+  <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={window.location.origin + "/images/profile/default.png"} alt="" />
+            <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/profile/default.png"} alt="" /> 
+            {/* </> */}
+           
+         {/* } */}
+            </div>
           <div className="d-block d-sm-none">
 
           
@@ -220,10 +242,10 @@ Contact her directly
                             <div className="col-sm-8 col-12 d-flex">
                                 <div className="col-sm-7 col-6 text-start">
                                     <h5 className='d-sm-block d-none'>
-                                     <Link to="/public/profile">Sana M </Link>
+                                     <Link to={"/public/profile/"+profileData?.user_id}>{(profileData?.user)?'':profileData?.user.first_name+' '+profileData?.user.last_name} </Link>
                                     </h5>
                              <div className="d-sm-none text-sm-dark text-white d-block" style={{fontSize:'18px'}}>
-                             <Link to="/public/profile">    Sana M</Link>
+                             <Link to={"/public/profile/"+profileData?.user_id}>    {(profileData?.user)?'':profileData?.user.first_name+' '+profileData?.user.last_name}</Link>
                              </div>
                                 </div>
                                 <div className="col-1 d-sm-block d-none">
@@ -467,13 +489,13 @@ Connect Now
         <i class="fa fa-paragraph px-1" aria-hidden="true"></i>
         </div>
   
-       <div className='flex-column justify-content-center d-flex px-3' >About Marukh S</div>
+       <div className='flex-column justify-content-center d-flex px-3' >About {profileData?.user.first_name+' '+profileData?.user.last_name}</div>
        </h4>
         <div className="p-border-t-md">
       
         <div className="col-11 p-sm-0  p-border-md b-left">
-        Hello, here is a quick introduction about my daughter.
-She has completed her MBA(3.5 years) major in finance, also she did her bachelor in science with double math and physics. Her optimistic personality is adored by one and all. Her hobbies are reading books and playing badminton. She is looking for a boy with whom she can lead a happy and content life. Whatsapp. Further added we are middle class family.
+
+        {profileData?.about}
         </div>
         </div>
         <h4 className='d-flex'> 
@@ -543,10 +565,10 @@ She has completed her MBA(3.5 years) major in finance, also she did her bachelor
       
         <div className="col-11 p-border-md b-left">
       <ul>
-        <li>  Muslim, Urdu</li>
-        <li>  Sheikh</li>
-        <li>  Offers Namaz five times, fasts on Ramadan</li>
-        <li>  Lives in Lahore, Punjab, Pakistan (Citizen)</li>
+        <li>  {profileData?.religion==null?'':profileData?.religion.name}</li>
+        <li>   {profileData?.cast==null?'':profileData?.cast.name}</li>
+        <li>   {profileData?.hobbies}, {profileData?.interest}</li>
+        <li>  Lives in {profileData?.city==null?'':profileData?.city.name}, {profileData?.state==null?'':profileData?.state.name}, {profileData?.country==null?'':profileData?.country.name} (Citizen)</li>
       </ul>
         </div>
         </div>
@@ -559,9 +581,9 @@ She has completed her MBA(3.5 years) major in finance, also she did her bachelor
        </h4>
         <div className="p-border-t-md">
       
-        <div className="col-11 p-border-md b-left">
+        {/* <div className="col-11 p-border-md b-left">
         Her father is employed and her mother is a homemaker. She has 1 brother (unmarried) and 3 sisters (1 married).
-        </div>
+        </div> */}
         </div>
         <h4 className='d-flex'> 
         <div className="b-radius">
@@ -575,9 +597,8 @@ She has completed her MBA(3.5 years) major in finance, also she did her bachelor
         <div className="col-11 p-border-md b-left">
       <ul>
 
-<li>MSc / MFin / MS - Master of Science in Finance / Master of Finance</li>
-<li>Finance / Commerce</li>
-<li>Currently not working</li>
+<li>{profileData?.qualification}</li>
+<li>{(profileData?.job==null)?'Currently Not Working':profileData?.job}</li>
 </ul>
         </div>
         </div>
@@ -599,7 +620,10 @@ She has completed her MBA(3.5 years) major in finance, also she did her bachelor
         <div className="col-3" >
   
           <div class="image-cropper" style={{ width:' 100px',height: '100px',position: 'relative',overflow: 'hidden',borderRadius: '50%'}}>
-  <img src="/images/profile/03.jpg" style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" />
+          {profileData?.user.picture==null ?
+ <img src="/images/profile/02.jpg" style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" /> 
+ 
+  :<img src={store.mediaUrl+profileData?.user.picture.image_path} style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" />}
 </div>
 
 
@@ -612,7 +636,9 @@ She has completed her MBA(3.5 years) major in finance, also she did her bachelor
           <div className="col-3 ps-sm-0" >
   
   <div class="image-cropper" style={{ width:' 100px',height: '100px',position: 'relative',overflow: 'hidden',borderRadius: '50%'}}>
-<img src="/images/profile/02.jpg" style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" />
+  {authUserData?.image_path==null ?
+<img src="/images/profile/03.jpg" style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" />
+:<img src={store.mediaUrl+authUserData?.image_path} style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" />}
 </div>
 </div>
           </div>
@@ -631,25 +657,34 @@ She has completed her MBA(3.5 years) major in finance, also she did her bachelor
       <div className="row pt-3">
         <div className="col-10">
           <div className="col-12 p-0 text-danger">Age</div>
-          <div className="col-12 p-0">22 to 27</div>
+          <div className="col-12 p-0">{userData?.min_age} to {userData?.max_age}</div>
         </div>
+        {preferencesMatch?.age==true?
         <div className="col-2 text-success text-end d-flex justify-content-center flex-column"> <i class="fa fa-check-circle" aria-hidden="true"></i></div>
+      : <div className="col-2 text-danger text-end d-flex justify-content-center flex-column"> <i class="fa fa-cross-circle" aria-hidden="true"></i></div>
+      }
       </div>
        <hr className="m-2 p-0" />
       <div className="row">
         <div className="col-10">
           <div className="col-12 p-0 text-danger">Height</div>
-          <div className="col-12 p-0">5' 1"(154cm) to 6' 0"(182cm)</div>
+          <div className="col-12 p-0">{userData?.min_height} to {userData?.max_height}</div>
         </div>
+        {preferencesMatch?.height==true?
         <div className="col-2 text-success text-end d-flex justify-content-center flex-column"> <i class="fa fa-check-circle" aria-hidden="true"></i></div>
+      : <div className="col-2 text-danger text-end d-flex justify-content-center flex-column"> <i class="fa fa-cross-circle" aria-hidden="true"></i></div>
+      }
       </div>
        <hr className="m-2 p-0" />
       <div className="row">
         <div className="col-10">
           <div className="col-12 p-0 text-danger">Marital Status</div>
-          <div className="col-12 p-0">Never Married</div>
+          <div className="col-12 p-0">{userData?.martial_status}</div>
         </div>
+        {preferencesMatch?.martial_status==true?
         <div className="col-2 text-success text-end d-flex justify-content-center flex-column"> <i class="fa fa-check-circle" aria-hidden="true"></i></div>
+      : <div className="col-2 text-danger text-end d-flex justify-content-center flex-column"> <i class="fa fa-cross-circle" aria-hidden="true"></i></div>
+      }
       </div>
        <hr className="m-2 p-0" />
       <div className="row">
@@ -657,7 +692,7 @@ She has completed her MBA(3.5 years) major in finance, also she did her bachelor
           <div className="col-12 p-0 text-danger">Religion / Community</div>
           <div className="col-12 p-0">
             <span>
-            Muslim: Rajput, Muslim: Sunni, Muslim: Sheikh, 
+            {userData?.religion}:{userData?.community}
             </span>
           {/* <div className="more showMore"  tabindex="0">...<span className=" text-primary">More</span></div>
           <div className="less showLess" tabindex="0"><span className=" text-primary" tabindex="0">Less</span></div> */}
@@ -671,15 +706,22 @@ She has completed her MBA(3.5 years) major in finance, also she did her bachelor
 
 
         </div>
+        {preferencesMatch?.religion==true?
         <div className="col-2 text-success text-end d-flex justify-content-center flex-column"> <i class="fa fa-check-circle" aria-hidden="true"></i></div>
+      : <div className="col-2 text-danger text-end d-flex justify-content-center flex-column"> <i class="fa fa-cross-circle" aria-hidden="true"></i></div>
+      }
       </div>
        <hr className="m-2 p-0" />
        <div className="row">
         <div className="col-10">
           <div className="col-12 p-0 text-danger">Mother Tongue</div>
-          <div className="col-12 p-0">Urdu</div>
+          <div className="col-12 p-0">{userData?.mother_tongue}</div>
         </div>
+        
+        {preferencesMatch?.mother_tongue==true?
         <div className="col-2 text-success text-end d-flex justify-content-center flex-column"> <i class="fa fa-check-circle" aria-hidden="true"></i></div>
+      : <div className="col-2 text-danger text-end d-flex justify-content-center flex-column"> <i class="fa fa-cross-circle" aria-hidden="true"></i></div>
+      }
       </div>
       
 
@@ -687,9 +729,12 @@ She has completed her MBA(3.5 years) major in finance, also she did her bachelor
       <div className="row">
         <div className="col-10">
           <div className="col-12 p-0 text-danger">Country Living in</div>
-          <div className="col-12 p-0">Pakistan</div>
+          <div className="col-12 p-0">{userData?.country_living_in}</div>
         </div>
+{preferencesMatch?.country_living_in==true?
         <div className="col-2 text-success text-end d-flex justify-content-center flex-column"> <i class="fa fa-check-circle" aria-hidden="true"></i></div>
+      : <div className="col-2 text-danger text-end d-flex justify-content-center flex-column"> <i class="fa fa-cross-circle" aria-hidden="true"></i></div>
+      }
       </div>
       
 

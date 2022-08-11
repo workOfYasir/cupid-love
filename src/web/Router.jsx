@@ -16,7 +16,7 @@ const Router = () => {
           <Route exact path="/search" element={<AuthHome/>} />
           <Route exect path='/createProfile' element={<CreateProfile/>} />
           <Route exect path='/pricing' element={<Pricing/>} />
-          <Route exact path="/public/profile" element={<PublicProfile/>} />
+          <Route exact path="/public/profile/:userId" element={<PublicProfile/>} />
           
       </Routes >
     </BrowserRouter>
