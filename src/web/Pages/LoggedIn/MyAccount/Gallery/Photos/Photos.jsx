@@ -20,10 +20,12 @@ image: event.target.files[0]
     e.preventDefault()
     
     const token = localStorage.getItem('accessToken')
-
+    const user = localStorage.getItem('user')
+    const user_id = JSON.parse(user)['id'];
     const formData = new FormData();
 
     formData.append('image',formValue.image)
+    formData.append('user_id',user_id)
 
     try {
    

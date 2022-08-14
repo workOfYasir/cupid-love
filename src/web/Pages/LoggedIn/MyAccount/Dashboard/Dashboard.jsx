@@ -1,11 +1,17 @@
-import React from 'react'
+import React,{useLayoutEffect,useState} from 'react'
 import { Observer } from "mobx-react-lite";
 import './assets/css/style.css'
 import './assets/css/card.css'
  
 
 const Dashboard = () => {
-   
+  const [profileData,setProfile] = useState()
+  useLayoutEffect(()=>{
+    const token = localStorage.getItem('accessToken')
+    const user = localStorage.getItem('user')
+
+    setProfile(JSON.parse(user))
+  },[])
   return (
     <Observer>
     {()=>(
@@ -24,7 +30,7 @@ const Dashboard = () => {
                       <div className="row p-0 m-0">
                         <div className="col-6 p-3">
                           <div className="col-12 ">
-                            <h6 className='text-dark'>Yasir Iqbal</h6>
+                            <h6 className='text-dark'>{profileData?.first_name+' '+profileData?.last_name}</h6>
                           
                           </div>
                           <div className="col-12">

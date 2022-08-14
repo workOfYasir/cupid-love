@@ -15,6 +15,7 @@ const Header = () => {
     const [country, setCountries] = useState();
     const [state, setStates] = useState();
     const [city, setCities] = useState();
+    const [cast, setCasts] = useState();
 
     const location = useLocation();
     const navigate = useNavigate();

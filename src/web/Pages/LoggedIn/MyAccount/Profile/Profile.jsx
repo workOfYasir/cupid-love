@@ -14,7 +14,7 @@ const Profile = () => {
   const getProfile = async(access_token,user_id)=>{
     try {
       const userId = new FormData();
-      userId.append("id", user_id)
+      userId.append("user_id", user_id)
     const headers = { 
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -31,8 +31,8 @@ const Profile = () => {
           
      }).then((response)=>{
             const data = response.data
-            
-            setProfile(data[0])
+            console.log(data);
+            setProfile(data['data']['user'][0])
         })
 
       } catch(error) {
@@ -54,7 +54,7 @@ const Profile = () => {
         <>
         <div className="col-12 p-3 h4 shadow rounded bg-white">
           <div className="container mt-3">
-          Hamza Ejaz
+          {profileData?.user.first_name+' '+profileData?.user.last_name}
           </div>
 
         </div>
@@ -63,7 +63,12 @@ const Profile = () => {
    
           <div className="col-sm-4 col-12">
           <div className="card bg-dark text-white">
+          {profileData?.user.picture==null ?
           <img src="images/team/team-v1.png" className="card-img-top" alt="..."/>
+          :
+                    <img src={store.mediaUrl+profileData?.user.picture.image_path} className="card-img-top" alt="..."/>
+                    }
+
           <div className="card-img-overlay">
           
             
@@ -85,7 +90,7 @@ Age/Height
 Cast
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-{profileData?.cast.name}
+        {(profileData?.cast==null)?'':profileData?.cast.name}
         </div>
 
 
@@ -96,13 +101,16 @@ Cast
 National
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-{profileData?.country.name}
+        {(profileData?.country==null)?'':profileData?.country.name}
+
         </div>
         <div className="col-6 ">
 Religion
         </div>
         <div className="col-6" style={{fontWeight:"bold"}}>
-{profileData?.religion.name}
+
+{(profileData?.religion==null)?'':profileData?.religion.name}
+
         </div>
 
           </div>
@@ -201,17 +209,17 @@ Job
 
               <div className=" mb-3 col-md-6">
                 <label className="form-label text-dark">Country</label>
-                <input type="text" disabled className="form-control p-0" value={profileData?.country.name}/>
+                <input type="text" disabled className="form-control p-0" value={(profileData?.country==null)?'':profileData?.country.name}/>
               </div>
 
 
               <div className=" mb-3 col-md-6">
                 <label className="form-label text-dark">City</label>
-                <input type="text" disabled className="form-control p-0" value={profileData?.city.name}/>
+                <input type="text" disabled className="form-control p-0" value=  {(profileData?.city==null)?'':profileData?.city.name}/>
               </div>
               <div className=" mb-3 col-md-6">
                 <label className="form-label text-dark">State</label>
-                <input type="text" disabled className="form-control p-0" value={profileData?.state.name}/>
+                <input type="text" disabled className="form-control p-0" value=  {(profileData?.state==null)?'':profileData?.state.name}/>
               </div>
 
               <div className=" mb-3 col-md-6">
@@ -222,12 +230,12 @@ Job
 
               <div className=" mb-3 col-md-6">
                 <label className="form-label text-dark">Religion</label>
-                <input type="text" disabled className="form-control p-0" value={profileData?.religion.name}/>
+                <input type="text" disabled className="form-control p-0" value=  {(profileData?.religion==null)?'':profileData?.religion.name}/>
               </div>
 
               <div className=" mb-3 col-md-6">
                 <label className="form-label text-dark">Sector</label>
-                <input type="text" disabled className="form-control p-0" value={profileData?.sector.name}/>
+                <input type="text" disabled className="form-control p-0" value=  {(profileData?.sector==null)?'':profileData?.sector.name}/>
               </div>
 
 
@@ -244,7 +252,7 @@ Job
             <h4 className="mb-3">Address</h4>
             <div className=" mb-3 shadow rounded-lg p-3">
               <label className="form-label text-dark">Enter Your Location</label>
-              <input type="text" disabled className="form-control p-0" value={profileData?.town+', '+profileData?.city.name+', '+profileData?.state.name+' '+profileData?.country.name}/>
+              <input type="text" disabled className="form-control p-0" value={profileData?.town+', '+  (profileData?.city==null)?'':profileData?.city.name+', '+  (profileData?.state==null)?'':profileData?.state.name+' '+  (profileData?.country==null)?'':profileData?.country.name}/>
             </div>
             {/* <div className="company-address-map">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.95373531590414!3d-37.817323442021134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sEnvato!5e0!3m2!1sen!2sin!4v1559039794237!5m2!1sen!2sin"  height="400" allowfullscreen></iframe>
