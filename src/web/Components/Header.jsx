@@ -1,7 +1,8 @@
 
 import React,{useState,useEffect,useContext} from 'react'
 import { useNavigate } from "react-router-dom";
-// import { navigate } from "@reach/router"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Link,useLocation } from "react-router-dom";
 import axios from 'axios';
 import { Observer } from "mobx-react-lite";
@@ -10,6 +11,7 @@ import { isVisible } from '@testing-library/user-event/dist/utils';
 import $ from "jquery";
 
 const Header = () => {
+  const resolveAfter3Sec = new Promise(resolve => setTimeout(resolve, 3000));
     const store = useContext(StoreContext);
     const [isActive, setActive] = useState(false);
     const [country, setCountries] = useState();
@@ -41,6 +43,9 @@ const Header = () => {
     
     const handleSubmitLogin = async(e) => {
         e.preventDefault()
+        document.body.classList.remove('model-open');
+        document.body.style.overflow='unset';
+        document.body.style.paddingRight='0px';
 
         const loginFormData = new FormData();
         loginFormData.append("email", formValue.email)
@@ -52,22 +57,20 @@ const Header = () => {
             url: `${store.url}login`,
             data: loginFormData,
             headers: { "Content-Type": "multipart/form-data" },
-           })  
-           localStorage.setItem('accessToken', response.data.token);
+           })  .then((response)=>{
+            toast.success("LoggedIn Successfully")
+            localStorage.setItem('accessToken', response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
+        
+       
            setformValue({
             email:'',
             password:''
            })
-           document.body.classList.remove('model-open');
-           document.body.style.overflow='unset';
-           document.body.style.paddingRight='0px';
-        
            navigate('/pricing')
-                
-            
-            
-           
+        })
+          
+ 
            console.log(response);
         } catch(error) {
           console.log(error)
@@ -263,7 +266,7 @@ const Header = () => {
             {() => (
             <>
             <header id="header" className="dark">
-            
+            <ToastContainer /> 
                 <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <form onSubmit={handleSubmitLogin}>
@@ -533,6 +536,7 @@ const Header = () => {
                                         {(location.pathname=='/' || location.pathname=='') ? (
                                             <>
                                                 <li>
+                                              
                                                     <a href="#"  data-bs-toggle="modal" data-bs-target="#exampleModal2" id="register">Register</a>
                                                 </li>
                                                 <li>

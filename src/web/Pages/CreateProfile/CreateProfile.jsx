@@ -6,9 +6,32 @@ import { Observer } from "mobx-react-lite";
 import './../../Components/Header'
 import './../../Components/Footer'
 import './assets/css/profile.css'
+
 import { StoreContext } from "./../../store";
 import axios from 'axios';
 const CreateProfile = () => {
+
+    const [isActive, setIsActive] = useState(false);
+    const [isActive2, setIsActive2] = useState(false);
+    const [isActive3, setIsActive3] = useState(false);
+
+    async function handleClick(data){
+      // 👇️ toggle
+     console.log(data);
+      if(data==1){
+        setIsActive2(current => !current);
+        setIsActive(current => !current);
+
+      }else if(data==2){
+        setIsActive3(current => !current);
+        setIsActive2(current => !current);        
+      }
+
+  
+      // 👇️ or set to true
+      // setIsActive(true);
+    };
+
     const store = useContext(StoreContext);
     const [formValue, setformValue] = React.useState({
         gender: '',
@@ -137,16 +160,13 @@ const user_id = JSON.parse(user)['id'];
   
       useEffect(() => {
         const token = localStorage.getItem('accessToken')
-
         casts(token);
-
     }, []);
     return (
         <Observer>
             {() => (
                 <>
                 <div className="w-100 h-100 bg-content pb-20 pt-4">
-
                 
                 <div className="container mt-3 bg-white" >
 
@@ -154,20 +174,20 @@ const user_id = JSON.parse(user)['id'];
                         <div className="step-form">
                         <div className="stepwizard">
                         <div className="stepwizard-row setup-panel">
-                        <div className="stepwizard-step"> <a href="#steps-1" className="btn btn-circle">1 <span><i className="fa fa-check" aria-hidden="true"></i></span></a>
+                        <div className="stepwizard-step stepwizard-step-1"> <a href="#steps-1" className="btn btn-circle step-01">1 <span><i className="fa fa-check" aria-hidden="true" style={{ disabled: isActive ? "disabled":"" }}></i></span></a>
                         <p className="text-dark">Basic And Lifestyle</p>
                         </div>
-                        <div className="stepwizard-step"> <a href="#steps-2" className="btn btn-circle" disabled="disabled">2 <span><i className="fa fa-check" aria-hidden="true"></i></span></a>
+                        <div className="stepwizard-step stepwizard-step-2"> <a href="#steps-2" className="btn btn-circle step-02" >2 <span><i className="fa fa-check" aria-hidden="true"  style={{ disabled: isActive2 ? "":"disabled" }}></i></span></a>
                         <p className="text-dark">About you</p>
                         </div>
-                        <div className="stepwizard-step"> <a href="#steps-3" className="btn btn-circle" disabled="disabled">3 <span><i className="fa fa-check" aria-hidden="true"></i></span></a>
+                        <div className="stepwizard-step stepwizard-step-3"> <a href="#steps-3" className="btn btn-circle step-03" >3 <span><i className="fa fa-check" aria-hidden="true" style={{ disabled: isActive3 ? "":"disabled" }}></i></span></a>
                         <p className="text-dark">Account</p>
                         </div>
                         </div>
                         </div>
                         <form onSubmit={handleSubmit} className="text-center mt-3">
 
-                            <div className="row  justify-content-center setup-content" id="steps-1">
+                            <div className="row  justify-content-center setup-content setup-content-1" style={{ display: isActive ? "none":"block" }} id="steps-1">
                                 <div className="col-md-12">
                                 <h4 className="title text-dark divider-3 mb-5">Basic And Lifestyle</h4>
                                 <div className="row justify-content-center">
@@ -199,11 +219,38 @@ const user_id = JSON.parse(user)['id'];
                                         <label className="form-label">Height</label>
                                         <select className="form-select" aria-label="Default select example" onChange={handleChange} name="height" id="">
                                             <option>Select one</option>
-                                            <option value="Birth">Birth</option>
-                                            <option value="1900">1900</option>
-                                            <option value="1950">1950</option>
-                                            <option value="2000">2000</option>
-                                        
+                                            <option value="5.5ft">5.5ft</option>
+                                            <option value="5.6ft">5.6ft</option>
+                                            <option value="5.7ft">5.8ft</option>
+                                            <option value="5.8ft">5.8ft</option>
+                                            <option value="5.9ft">5.9ft</option>
+                                            <option value="5.10ft">5.10ft</option>
+                                            <option value="5.11ft">5.11ft</option>
+                                            <option value="5.12ft">5.12ft</option>
+                                            <option value="6.1ft">6.1ft</option>
+                                            <option value="6.2ft">6.2ft</option>
+                                            <option value="6.3ft">6.3ft</option>
+                                            <option value="6.4ft">6.4ft</option>
+                                            <option value="6.5ft">6.5ft</option>
+                                            <option value="6.6ft">6.6ft</option>
+                                            <option value="6.7ft">6.7ft</option>
+                                            <option value="6.8ft">6.8ft</option>
+                                            <option value="6.9ft">6.9ft</option>
+                                            <option value="6.10ft">6.10ft</option>
+                                            <option value="6.11ft">6.11ft</option>
+                                            <option value="6.12ft">6.12ft</option>
+                                            <option value="7.1ft">7.1ft</option>
+                                            <option value="7.2ft">7.2ft</option>
+                                            <option value="7.3ft">7.3ft</option>
+                                            <option value="7.4ft">7.4ft</option>
+                                            <option value="7.5ft">7.5ft</option>
+                                            <option value="7.7ft">7.6ft</option>
+                                            <option value="7.7ft">7.7ft</option>
+                                            <option value="7.8ft">7.8ft</option>
+                                            <option value="7.9ft">7.9ft</option>
+                                            <option value="7.10ft">7.10ft</option>
+                                            <option value="7.11ft">7.11ft</option>
+                                            <option value="7.12ft">7.12ft</option>
                                         </select>
                                         </div>
                                         
@@ -263,10 +310,10 @@ const user_id = JSON.parse(user)['id'];
                                 we find Matches for you!</p>
                                 </div>
                                 </div>
-                                <div className=" col-12 mb-0 "> <a className="button col-4 btn btn-theme rounded-sm animated right-icn" href='/' data-bs-dismiss="modal"><span>Close<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>  <a className=" col-4 button btn-theme rounded-sm btn nextBtn btn   animated right-icn"><span>Next<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a></div>
+                                <div className=" col-12 mb-0 "> <a className="button col-4 btn btn-theme rounded-sm animated right-icn" href='/' data-bs-dismiss="modal"><span>Close<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>  <a className=" col-4 button btn-theme rounded-sm btn nextBtn btn   animated right-icn" onClick={()=>handleClick(1)}><span>Next<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a></div>
                                 </div>
                             </div>
-                            <div className="row setup-content" id="steps-2">
+                            <div className="row setup-content setup-content-2" style={{ display: isActive2 ? "block":"none" }} id="steps-2">
                             <div className="col-md-12">
                             <div className="row  justify-content-center">
                             <div className="col-md-12 text-start text-capitalize text-dark">
@@ -350,11 +397,11 @@ const user_id = JSON.parse(user)['id'];
 
                             </div>
                             </div>
-                            <div className="col-12 text-center mb-0"> <a className=" col-4 button  btn btn-theme rounded-sm animated right-icn" href='/' data-bs-dismiss="modal"><span>Close<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a> <a className=" col-4 button btn-theme rounded-sm btn nextBtn btn   animated right-icn"><span>Next<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>  </div>
+                            <div className="col-12 text-center mb-0"> <a className=" col-4 button  btn btn-theme rounded-sm animated right-icn" href='/' data-bs-dismiss="modal"><span>Close<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a> <a className=" col-4 button btn-theme rounded-sm btn nextBtn btn   animated right-icn" onClick={()=>handleClick(2)}><span>Next<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>  </div>
                             </div>
                             </div>
                             </div>
-                            <div className="row setup-content" id="steps-3">
+                            <div className="row setup-content setup-content-3" style={{ display: isActive3 ? "block":"none" }} id="steps-3">
                             <div className="col-md-12">
                             <div className="row  justify-content-center">
                             <div className="col-md-12 text-start text-capitalize text-white">

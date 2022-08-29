@@ -1,20 +1,21 @@
-import React,{useContext} from 'react'
+import React,{useState,useContext} from 'react'
 import axios from 'axios';
 import { StoreContext } from "./../../../../../store";
 import { Observer } from "mobx-react-lite";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Photos = () => {
   const store = useContext(StoreContext);
+  const [image, setImage] = useState([]);
   const [formValue, setformValue] = React.useState({
-    image: '',
+    image: [],
     
   });
   const handleChange = (event) => {
     setformValue({
-image: event.target.files[0]
-
+image: [...event.target.files]
     });
-    console.log(formValue);
+console.log(formValue.image);
   }
   const handleSubmit = async(e) => {
     e.preventDefault()
@@ -23,30 +24,28 @@ image: event.target.files[0]
     const user = localStorage.getItem('user')
     const user_id = JSON.parse(user)['id'];
     const formData = new FormData();
+ 
 
-    formData.append('image',formValue.image)
-    formData.append('user_id',user_id)
-
+  for (let i = 0; i < formValue.image.length; i++) {
+    formData.append(`image[]`, formValue.image[i]);
+  }
+  formData.append('user_id',user_id)
+console.log('========>',formValue.image);
     try {
-   
-    const headers = { 
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${token}` 
-  };
-  console.log(formData);
+
+  // console.log(formData);
       const response =   await axios({
 
         method: "post",
         url: `${store.url}image-store`,
         data: formData,
         timeout: 120000,
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': `Bearer ${token}`  },
+        headers: { 'Content-Type': 'multipart/form-data', 'Authorization': `Bearer ${token}`  },
         
     }).then((response)=>{
         // setformValue({image:''})
             const data = response.data
-            
+            toast.success("Photos Successfully Added")
             // setProfile(data[0])
         })
         // navigate('/pricing')
@@ -61,7 +60,7 @@ image: event.target.files[0]
           
             
              <div className="d-flex">
-
+<ToastContainer/>
              
             <div className="col-sm-3 col-6 p-1">
                 <div className="thumbnail">
@@ -81,7 +80,7 @@ image: event.target.files[0]
         
             </div>
             <form onSubmit={handleSubmit}  encType="multipart/form-data">
-            <input type="file" name="image"  onChange={handleChange}/>Browser Photo
+            <input type="file" name="image[]" multiple  onChange={handleChange}/>Browser Photo
         <button className="button btn-theme rouneded-sm animated right-icn">submit</button>
             </form>
             Note: You can upload 20 photos to your profile. Each photos must be less than 15 MB and in jpg, gif, png, bmp or tiff format.

@@ -1,4 +1,4 @@
-import React,{ useLayoutEffect,useState ,useContext} from 'react'
+import React,{ useEffect,useState ,useContext} from 'react'
 import MultiRangeSlider from "multi-range-slider-react";
 import { Observer } from "mobx-react-lite";
 import axios from 'axios'; 
@@ -214,7 +214,7 @@ console.log('done');
   }
 
   
-  useLayoutEffect(()=>{
+  useEffect(()=>{
    const token = localStorage.getItem('accessToken')
    const user = localStorage.getItem('user')
    countries();

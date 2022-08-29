@@ -1,11 +1,13 @@
-import React,{useState,useContext,useLayoutEffect} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import { Link } from "react-router-dom";
 import { Observer } from "mobx-react-lite";
 import { StoreContext } from "./../../../../store";
 import './../assets/css/style.css'
 import axios from 'axios';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
-const MyMatches = () => {
+const NewMatches = () => {
   const [qualification, setQualification] = React.useState();
   const [formValue, setformValue] = React.useState({
     gender: '',
@@ -15,10 +17,16 @@ const MyMatches = () => {
     cast: '',
     edjucation: '',
     country:'',
-    city:''
+    city:'',
+    days:''
   });
   const store = useContext(StoreContext);
   const [profileData,setProfile] = useState()
+  const [days,setDays] = useState()
+  const [gender,setGender] = useState()
+  const [qualificationFilter,setQualificationFilter] = useState()
+  const [income,setIncome] = useState()
+  const [martialStatus,setMartialStatus] = useState()
   const handleChange = (event) => {
     setformValue({
       ...formValue,
@@ -26,19 +34,28 @@ const MyMatches = () => {
     });
     console.log(formValue);
   }
-  const handleClick = async(e) => {
-    e.preventDefault()
+  async function filter(data,filterName){
+console.log('okokokok--------------------------',data,filterName);
     const token = localStorage.getItem('accessToken')
     const user = localStorage.getItem('user')
     const formData = new FormData();
 const user_id = JSON.parse(user)['id'];
-    formData.append('data[user_id]',user_id)
-    formData.append('data[marital_status]',formValue.material_status)
-    formData.append('data[height]',formValue.height)
-    formData.append('data[cast_id]',formValue.cast)
-    formData.append('data[edjucation]',formValue.edjucation)
-    formData.append('data[country]',formValue.country)
-    formData.append('data[city]',formValue.city)
+if(filterName=='days'){
+  formData.append('days',data)
+}else if(filterName=='income'){
+  formData.append('income',data)
+}else if(filterName=='qualificationFilter'){
+  formData.append('qualification',data)
+}else if(filterName=='gender'){
+  formData.append('gender',data)
+}
+    // formData.append('days',data)
+    // formData.append('marital_status',formValue.material_status)
+    // formData.append('height',formValue.height)
+    // formData.append('cast_id',formValue.cast)
+    // formData.append('edjucation',formValue.edjucation)
+    // formData.append('country',formValue.country)
+    // formData.append('city',formValue.city)
     console.log(formData);
     try {
    
@@ -51,12 +68,13 @@ const user_id = JSON.parse(user)['id'];
       const response =   await axios({
 
         method: "post",
-        url: `${store.url}update-profile`,
+        url: `${store.url}get-profiles`,
         data: formData,
         headers: { "Content-Type": "multipart/form-data", 'Authorization': `Bearer ${token}`  },
         
     }).then((response)=>{
-        setformValue({ gender: '',
+        setformValue({ 
+        gender: '',
         material_status: '',
         height: '',
         age:'',
@@ -66,19 +84,39 @@ const user_id = JSON.parse(user)['id'];
         city:''
       })
             const data = response.data
-            
-            // setProfile(data[0])
+            setQualification(data[0]['qualification'])
+            setProfile(data[0]['profiles'])
         })
-        // navigate('/pricing')
+
       } catch(error) {
         console.log(error)
       }
   }
 
+  const handleDays = (event) => {
+    setDays(event.target.value);
+    filter(event.target.value,'days');
+  } 
+  const handleGender = (event) => {
+    setGender(event.target.value);
+    filter(event.target.value,'gender');
+  } 
+  const handleQualificationFilter = (event) => {
+    setQualificationFilter(event.target.value);
+    filter(event.target.value,'qualificationFilter');
+  } 
+  const handleIncome = (event) => {
+    setIncome(event.target.value);
+    filter(event.target.value,'income');
+  } 
+  const handleMartialStatus = (event) => {
+    setMartialStatus(event.target.value);
+    filter(event.target.value,'martialStatus');
+  } 
   const getProfiles = async(access_token,user_id)=>{
     try {
       const userId = new FormData();
-      userId.append("id", user_id)
+      userId.append("user_id", user_id)
     const headers = { 
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -105,7 +143,7 @@ const user_id = JSON.parse(user)['id'];
   }
 
   
-  useLayoutEffect(()=>{
+  useEffect(()=>{
     const token = localStorage.getItem('accessToken')
     const user = localStorage.getItem('user')
   
@@ -132,23 +170,19 @@ const user_id = JSON.parse(user)['id'];
             <div className="collapse show" id="dateposted">
               <div className="widget-content">
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" value="" id="dateposted1" />
-                  <label className="form-check-label" for="dateposted1">Last hour</label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input" type="checkbox" value="" id="dateposted2" />
+                  <input className="form-check-input" type="radio" name="days" value={1} onClick={handleDays} id="dateposted2" />
                   <label className="form-check-label" for="dateposted2">Last 24 hour</label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" value="" id="dateposted3" />
+                  <input className="form-check-input" type="radio" name="days" value={7} onClick={handleDays} id="dateposted3" />
                   <label className="form-check-label" for="dateposted3">Last 7 days</label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" value="" id="dateposted4" />
+                  <input className="form-check-input" type="radio" name="days" value={14} onClick={handleDays} id="dateposted4" />
                   <label className="form-check-label" for="dateposted4">Last 14 days</label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" value="" id="dateposted5" />
+                  <input className="form-check-input" type="radio" name="days" value={30} onClick={handleDays} id="dateposted5" />
                   <label className="form-check-label" for="dateposted5">Last 30 days</label>
                 </div>
               </div>
@@ -157,37 +191,32 @@ const user_id = JSON.parse(user)['id'];
           < hr/>
           <div className="widget bg-white p-1 shadow rounded">
             <div className="widget-title widget-collapse bg-grey" >
-              <h6>Specialism</h6>
-              <a className="ms-auto" data-bs-toggle="collapse" href="#specialism" role="button" aria-expanded="false" aria-controls="specialism"> <i className="fa fa-chevron-down"></i> </a>
+              <h6>Martial Status</h6>
+              <a className="ms-auto" data-bs-toggle="collapse" href="#experience" role="button" aria-expanded="false" aria-controls="experience"> <i className="fa fa-chevron-down"></i> </a>
             </div>
-            <div className="collapse show" id="specialism">
+            <div className="collapse show" id="experience">
               <div className="widget-content">
+             
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="specialism1" />
-                  <label className="form-check-label" for="specialism1">IT Contractor</label>
+                  <input type="radio" className="form-check-input" value={'Single'} onClick={handleMartialStatus} id="experience2" />
+                  <label className="form-check-label" for="experience2">Single</label>
                 </div>
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="specialism2" />
-                  <label className="form-check-label" for="specialism2">Charity & Voluntary</label>
+                  <input type="radio" className="form-check-input" value={'Divorced'} onClick={handleMartialStatus} id="experience2" />
+                  <label className="form-check-label" for="experience2">Divorced</label>
                 </div>
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="specialism3" />
-                  <label className="form-check-label" for="specialism3">Digital & Creative</label>
+                  <input type="radio" className="form-check-input" value={'Window'} onClick={handleMartialStatus} id="experience2" />
+                  <label className="form-check-label" for="experience2">Window</label>
                 </div>
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="specialism4" />
-                  <label className="form-check-label" for="specialism4">Estate Agency</label>
-                </div>
-                <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="specialism5" />
-                  <label className="form-check-label" for="specialism5">Graduate</label>
+                  <input type="radio" className="form-check-input" value={'Married'} onClick={handleMartialStatus} id="experience2" />
+                  <label className="form-check-label" for="experience2">Married</label>
                 </div>
               </div>
             </div>
           </div>
-          < hr/>
-        
-          < hr/>
+          {/* < hr/>
           <div className="widget bg-white p-1 shadow rounded">
             <div className="widget-title widget-collapse bg-grey" >
               <h6>Marriage in</h6>
@@ -214,7 +243,7 @@ const user_id = JSON.parse(user)['id'];
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           < hr/>
           <div className="widget bg-white p-1 shadow rounded">
             <div className="widget-title widget-collapse bg-grey" >
@@ -224,23 +253,23 @@ const user_id = JSON.parse(user)['id'];
             <div className="collapse show" id="Offeredsalary">
               <div className="widget-content">
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="Offeredsalary1" />
+                <input type="radio" className="form-check-input" value={'10000-20000'} name='income' onClick={handleIncome} id="Offeredsalary1" />
                   <label className="form-check-label" for="Offeredsalary1">10k - 20k</label>
                 </div>
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="Offeredsalary2" />
+                <input type="radio" className="form-check-input" value={'20000-30000'} name='income' onClick={handleIncome} id="Offeredsalary2" />
                   <label className="form-check-label" for="Offeredsalary2">20k - 30k</label>
                 </div>
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="Offeredsalary3" />
+                <input type="radio" className="form-check-input" value={'30000-40000'} name='income' onClick={handleIncome} id="Offeredsalary3" />
                   <label className="form-check-label" for="Offeredsalary3">30k - 40k</label>
                 </div>
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="Offeredsalary4" />
+                <input type="radio" className="form-check-input" value={'40000-50000'} name='income' onClick={handleIncome} id="Offeredsalary4" />
                   <label className="form-check-label" for="Offeredsalary4">40k - 50k</label>
                 </div>
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="Offeredsalary5" />
+                  <input type="radio" className="form-check-input" value={'50000-60000'} name='income' onClick={handleIncome} id="Offeredsalary5" />
                   <label className="form-check-label" for="Offeredsalary5">50k - 60k</label>
                 </div>
               </div>
@@ -255,11 +284,11 @@ const user_id = JSON.parse(user)['id'];
             <div className="collapse show" id="gender">
               <div className="widget-content">
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="gender1" />
+                  <input type="checkbox" className="form-check-input" value={'Male'} name='gender' onClick={handleGender} id="gender1" />
                   <label className="form-check-label" for="gender1">Male</label>
                 </div>
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="gender2"/>
+                  <input type="checkbox" className="form-check-input" value={'Female'} name='gender' onClick={handleGender} id="gender2"/>
                   <label className="form-check-label" for="gender2">Female</label>
                 </div>
               </div>
@@ -274,15 +303,15 @@ const user_id = JSON.parse(user)['id'];
             <div className="collapse show" id="qualification">
               <div className="widget-content">
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="qualification1" />
+                  <input type="radio" className="form-check-input" name='qualificationFilter' onClick={handleQualificationFilter} id="qualification1" />
                   <label className="form-check-label" for="qualification1">Matriculation</label>
                 </div>
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="qualification2" />
+                  <input type="radio" className="form-check-input" name='qualificationFilter' onClick={handleQualificationFilter} id="qualification2" />
                   <label className="form-check-label" for="qualification2">Intermediate</label>
                 </div>
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id="qualification3" />
+                  <input type="radio" className="form-check-input" name='qualificationFilter' onClick={handleQualificationFilter} id="qualification3" />
                   <label className="form-check-label" for="qualification3">Graduate</label>
                 </div>
               </div>
@@ -296,27 +325,7 @@ const user_id = JSON.parse(user)['id'];
       </div>
        
       <div className="col-lg-9">
-        {/* <div className="row mb-4">
-          <div className="col-12">
-            <h6 className="mb-0">Showing 1-8 of <span className="text-primary">18 Matches</span></h6>
-          </div>
-        </div> 
-        <div className="job-filter mb-4 d-sm-flex align-items-center">
-
-          <div className="job-shortby ms-sm-auto d-flex align-items-center">
-            <form className="form-inline">
-              <div className="input-group mb-0 align-items-center">
-                <label className="justify-content-start me-2">Sort by :</label>
-                <div className="short-by">
-                  <select className="form-control basic-select">
-                    <option>Newest</option>
-                    <option>Oldest</option>
-                  </select>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>*/}
+       
         {profileData?.map((data) => (
           <div className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 bg-img">
           <div className="d-sm-none d-block pt-sm-0 pt-5"> &nbsp;<br/> &nbsp;<br/></div>
@@ -325,9 +334,18 @@ const user_id = JSON.parse(user)['id'];
           {data.user.picture!=null
           ?(<>
           <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
+            <Carousel showThumbs={false}>
+              {data?.user.picture.map((image) => (
+                <div>
+              
+              <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={store.mediaUrl+image?.image_path} alt="" />
+              <img className="img-fluid b-sm-radius d-sm-block d-none" src= {store.mediaUrl+image?.image_path} alt="" />
+              </div>
+            ))}
+          
+        </Carousel>
             
-            <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={store.mediaUrl+data.user.picture.image_path} alt="" />
-            <img className="img-fluid b-sm-radius d-sm-block d-none" src= {store.mediaUrl+data.user.picture.image_path} alt="" />
+            
           </div>
           <div className="d-block d-sm-none">
 
@@ -1854,4 +1872,4 @@ Connect Now
   )
 }
 
-export default MyMatches
+export default NewMatches

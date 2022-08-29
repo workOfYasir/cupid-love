@@ -8,9 +8,13 @@ import Footer from './../../../Components/Footer'
 import { StoreContext } from "./../../../store";
 import { useParams } from 'react-router-dom';
 import { data } from 'jquery';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 const Profile = () => {
   const [profileData,setProfile] = useState()
+  const [email,setEmail] = useState(null)
+  const [number,setPhone] = useState(null)
   const [authUserData,setAuthUserData] = useState()
   const [userData,setUserData] = useState()
   const [preferencesMatch,setPreferencesMatch] = useState()
@@ -49,14 +53,38 @@ const param = useParams();
         console.log(error)
       }
   }
+  async function contactInfo(){
+    const token = localStorage.getItem('accessToken')
+    try {
+    const headers = { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}` 
+  };
+      const response =   await axios({
 
- 
-  
+        method: "post",
+        url: `${store.url}contact-no`,
+        headers: headers,
+              
+     }).then((response)=>{
+            const data = response.data
+            setEmail(data[1]);
+            setPhone(data[0]);
+        })
+
+      } catch(error) {
+        console.log(error)
+      }
+  }
+  const handleContact=()=>{
+    contactInfo();
+  }
   useLayoutEffect(()=>{
     const token = localStorage.getItem('accessToken')
-// console.log(param.userId);
+
     getProfile(token,param.userId)
-  },[])
+  },[profileData?.user.picture])
   return (
     <Observer>
     {()=>(
@@ -209,7 +237,17 @@ Contact her directly
                 {profileData?.user.picture==null ?
                     <img src="/images/profile/02.jpg" className='img-fluid rounded' alt="" />
                     :
-                    <img src={store.mediaUrl+profileData?.user.picture.image_path} style={{width:'100%'} } className='img-fluid rounded' alt="" />
+                    <Carousel showThumbs={false}>
+                    {profileData?.user.picture.map((image) => (
+                      <div>
+                    <img 
+                    style={profileData?.pictures_settings=='visible' ||((data.pictures_settings=='premimum') && (data.user_subscription!=null))?{filter: 'blur(0px)',width:'100%'}:{filter: 'blur(8px)',width:'100%'}}
+                    src={store.mediaUrl+image?.image_path}  className='img-fluid rounded' alt="" /> 
+                      </div>
+                  ))}
+                
+              </Carousel>
+                   
                     }
                 </div>
 
@@ -519,9 +557,15 @@ Connect Now
     <div className="col-12">
     Contact Number
     </div>
-    <div className="col-12">
-    +92 3184X XXXXX
-    </div>
+
+    <div className="col-12"  style={(email==null&&number==null?{display:"block"}:{display:"none"})}>
+    +92 3XXXX XXXX
+      </div>
+      <div className="col-12"  style={(email==null&&number==null?{display:"none"}:{display:"block"})}>
+      {number}
+      </div>
+
+
   </div>
   </div> 
   <div className="col-12 d-flex">
@@ -533,20 +577,22 @@ Connect Now
       <div className="col-12">
       Email Id
       </div>
-      <div className="col-12">
+      <div className="col-12"  style={(email==null&&number==null?{display:"block"}:{display:"none"})}>
       XXXXXXXXXX@gmail.com
+      </div>
+      <div className="col-12"  style={(email==null&&number==null?{display:"none"}:{display:"block"})}>
+      {email}
       </div>
     </div>
     </div>
 </div>
-<div className="col-6 d-flex flex-column justify-content-center" style={{margin:"-5px"}}>
+<div className="col-6 d-flex flex-column justify-content-center" onClick={handleContact} style={(email==null&&number==null?{display:"block",margin:"-5px"}:{display:"none"})}>
   <div className="d-flex">
     <h6 className='p-2 b-radius px-3 '>
     <i class="fa fa-lock" aria-hidden="true"></i></h6>
-  <div className="text-primary">
-  Upgrade 
+  <div className="text-primary" >
+  Click 
   </div>
-
  to view details
   </div>
 
@@ -623,7 +669,16 @@ Connect Now
           {profileData?.user.picture==null ?
  <img src="/images/profile/02.jpg" style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" /> 
  
-  :<img src={store.mediaUrl+profileData?.user.picture.image_path} style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" />}
+  :
+  <Carousel showThumbs={false}>
+  {profileData?.user.picture.map((image) => (
+    <div>
+  <img src={store.mediaUrl+image?.image_path} style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" /> 
+ </div>
+))}
+
+</Carousel>
+ }
 </div>
 
 
@@ -638,7 +693,8 @@ Connect Now
   <div class="image-cropper" style={{ width:' 100px',height: '100px',position: 'relative',overflow: 'hidden',borderRadius: '50%'}}>
   {authUserData?.image_path==null ?
 <img src="/images/profile/03.jpg" style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" />
-:<img src={store.mediaUrl+authUserData?.image_path} style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" />}
+:
+<img src={store.mediaUrl+authUserData?.image_path} style={{height:'150px', display: 'inline',margin: '0 auto',width: 'auto'}} className="rounded" />}
 </div>
 </div>
           </div>

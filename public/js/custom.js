@@ -415,7 +415,7 @@ POTENZA.textrotatefn = function () {
 
 POTENZA.stepwizard = function () {
 
-  if ($(".stepwizard").exists()) {
+
      var navListItems = $('.step-form div.setup-panel div a'),
          allWells = $('.step-form .setup-content'),
          allNextBtn = $('.step-form .nextBtn');
@@ -456,7 +456,7 @@ POTENZA.stepwizard = function () {
         return false;
         });
        $('.step-form div.setup-panel div a.btn-circle').trigger('click');
-     }
+     
   };
 
  /*************************

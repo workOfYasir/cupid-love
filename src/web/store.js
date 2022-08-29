@@ -20,13 +20,13 @@ export const StoreProvider = (props) => {
 
     // url
     url:"http://127.0.0.1:8000/api/",
-    // url:"https://admin.urgentrishta.co/api/",
+    // url:"http://admin.urgentrishta.co/api/",
     setUrl: action((e) => (store.url = e)),
 
     
     // url
     mediaUrl:"http://127.0.0.1:8000/",
-    // mediaUrl:"https://admin.urgentrishta.co/",
+    // mediaUrl:"http://admin.urgentrishta.co/",
     setMediaUrl: action((e) => (store.mediaUrl = e)),
       
   }));

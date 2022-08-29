@@ -6,6 +6,9 @@ import bg1 from './Components/images/bg/bg-1.jpg'
 import bg2 from './Components/images/bg/bg-2.jpg'
 import pattern2 from './../../Components/images/pattern/02.png'
 import pattern3 from './../../Components/images/pattern/03.png'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
 const Home = () => {
   return (
     <Observer>
