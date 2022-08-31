@@ -85,6 +85,32 @@ console.log('========>',formValue.image);
             </form>
             Note: You can upload 20 photos to your profile. Each photos must be less than 15 MB and in jpg, gif, png, bmp or tiff format.
 All photos uploaded are screened as per Photo Guidelines and 98% of those get activated within 2 hours.
+        <hr className='p-5'/>
+        <div className="containter px-5">
+
+        
+        <div className="col-12 d-flex">
+
+            <div className="col-4">
+            ✔ Photos you can upload
+            </div>
+            <div className="col-4">
+            ❌ Photos you can not upload
+            </div>
+
+        </div>
+        <div className="col-12 d-flex">
+          <div className="col-4">
+          <img className="img-fluid" src={window.location.origin + "/images/guild/pic1.png"} alt="" />
+          </div>
+          <div className="col-4">
+          <img className="img-fluid" src={window.location.origin + "/images/guild/pic2.png"} alt="" />
+          </div>
+          <div className="col-4">
+          <img className="img-fluid" src={window.location.origin + "/images/guild/pic3.png"} alt="" />
+          </div>
+        </div>
+        </div>
         </>
     )}
     </Observer>

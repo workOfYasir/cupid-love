@@ -78,9 +78,9 @@ const SubHeader = () => {
           <div className="justify-content-center">
               
             <ul className={(store.subHeader==false)?('matches-sub-nav primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02'):('matches-sub-nav primary-bg shadow nav nav-tabs justify-content-center col-12 nav-tabs-02 d-none d-sm-flex')} role="tablist">
-              {/* <li className="nav-item">
+              <li className="nav-item">
                 <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" aria-controls="tab-10" aria-selected="true">New Matches</a>
-              </li> */}
+              </li>
               <li className="nav-item">
                 <a className="btn text-light " id="tab-02" data-bs-toggle="tab" href="#tab-11" role="tab" aria-controls="tab-11" aria-selected="false">My Matches</a>
               </li>
@@ -95,9 +95,9 @@ const SubHeader = () => {
           </div>
         </div>
         <div className="tab-content">
-          {/* <div className="tab-pane fade active show" id="tab-10" role="tabpanel" aria-labelledby="tab-01">
+          <div className="tab-pane fade active show" id="tab-10" role="tabpanel" aria-labelledby="tab-01">
             <p><NewMatches /></p>
-          </div> */}
+          </div>
           <div className="tab-pane fade" id="tab-11" role="tabpanel" aria-labelledby="tab-02">
             <p>
                 <MyMatches />

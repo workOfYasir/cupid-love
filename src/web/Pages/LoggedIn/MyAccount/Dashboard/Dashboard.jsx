@@ -13,9 +13,9 @@ const Dashboard = () => {
   const [profileData,setProfile] = useState()
   const [premiumData,setPremium] = useState()
   const [profiles, setProfiles] = useState()
-  const [contact,setContact]=useState() 
-  const [profileYouVisit,setProfileYouVisit]=useState()
-  const [profileVisitedYou,setProfileVisitedYou]=useState()
+  const [view_contacts,setContact]=useState() 
+  const [profileYouViewed,setProfileYouVisit]=useState()
+  const [profileViewedYou,setProfileVisitedYou]=useState()
   const [qualification, setQualification] = useState()
 
   const getProfile = async(access_token,user_id)=>{
@@ -75,7 +75,7 @@ const Dashboard = () => {
       const response =   await axios({
 
         method: "post",
-        url: `${store.url}get-profiles`,
+        url: `${store.url}get-profiles-matches`,
         data: userId,
         headers: headers,
               
@@ -109,7 +109,7 @@ const Dashboard = () => {
             const data = response.data
             setProfileVisitedYou(data['profileViewedYou'])
             setProfileYouVisit(data['profileYouViewed'])
-            setContact('contact')
+            setContact(data['contact'])
         })
       } catch(error) {
         console.log(error)
@@ -122,12 +122,13 @@ const Dashboard = () => {
     getProfile(token,JSON.parse(user).id)
     getPremium(token)
     getProfiles(token,JSON.parse(user).id)
+    getStats(token,user)
   },[profileData?.user.picture.image_name])
   return (
     <Observer>
     {()=>(
         <>
-           
+          
               <div className='container mt-3' >
                 <div className='row'>
                   <div className="col-12 col-sm-4 ">
@@ -229,7 +230,7 @@ const Dashboard = () => {
                         <span> Chat Initial</span>
                       </div>
                       <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
-                        <h3>{contact}</h3>
+                        <h3>{view_contacts}</h3>
                         <span> View Contacts</span>
                       </div>
                     </div>
@@ -263,17 +264,17 @@ const Dashboard = () => {
                 <div className=" pt-sm-5 pt-1">
                   <div className="col-12 d-sm-flex d-none">
                   <div className="col-4 m-2">
-                  <h5>Premium Matches <span className="bg-danger p-1 text-white rounded-3 ">17</span></h5>
+                  <h5>Premium Matches </h5>
                   </div>
                   <div className="col-4 m-2">
-                  <h5>New Matches <span className="bg-danger p-1 text-white rounded-3 ">18</span></h5>
+                  <h5>New Matches</h5>
                   </div>
                   <div className="col-4 m-2">
-                  <h5>Recommended Matches <span className="bg-danger p-1 text-white rounded-3 ">22</span></h5>
+                  <h5>Recommended Matches </h5>
                   </div>
                   </div>
                   <div className="col-12 d-sm-flex d-block">
-                  <h5 className='p-3 pt-5 col-12 text-center d-block d-sm-none'>Premium Matches <span className="bg-danger p-1 text-white rounded-3 ">17</span></h5>
+                  <h5 className='p-3 pt-5 col-12 text-center d-block d-sm-none'>Premium Matches </h5>
                  
                   <div className="col-sm-4 col-12 m-sm-2 m-0  shadow bg-white">
                   
@@ -302,7 +303,7 @@ const Dashboard = () => {
 
      
                   </div>
-                  <h5 className='p-3 col-12 text-center d-block d-sm-none'>New Matches <span className="bg-danger p-1 text-white rounded-3 ">18</span></h5>
+                  <h5 className='p-3 col-12 text-center d-block d-sm-none'>New Matches</h5>
                  
                   <div className="col-sm-4 col-12 m-sm-2 m-0 shadow bg-white">
                   {profiles?.map((data) => (
@@ -318,8 +319,8 @@ const Dashboard = () => {
                      } 
                     </div>
                     <div className="col">
-                      <b>{data?.user.first_name+' '+data?.user.last_name}</b> <span className="bg-danger p-1 text-white rounded">👑Premium+</span><br/>
-                      <span>24 yr, 5'2, Urdu, Karachi</span>
+                      <b>{data?.user.first_name+' '+data?.user.last_name}</b><br/>
+                      <span>24 yr,{ data?.height}, Urdu, {data?.user?.country?.name}</span>
                     </div>
                     <div className="col-2">
                       ✔
@@ -330,7 +331,7 @@ const Dashboard = () => {
 
 
   </div>
-  <h5 className='p-3 col-12 text-center d-block d-sm-none'>Recommended Matches <span className="bg-danger p-1 text-white rounded-3 ">22</span></h5>
+  <h5 className='p-3 col-12 text-center d-block d-sm-none'>Recommended Matches</h5>
    
   <div className="col-sm-4 col-12 m-sm-2 m-0 shadow bg-white">
 
@@ -347,8 +348,8 @@ const Dashboard = () => {
                      } 
                     </div>
                     <div className="col">
-                      <b>{data?.user.first_name+' '+data?.user.last_name}</b> <span className="bg-danger p-1 text-white rounded">👑Premium+</span><br/>
-                      <span>24 yr, 5'2, Urdu, Karachi</span>
+                      <b>{data?.user.first_name+' '+data?.user.last_name}</b><br/>
+                      <span>{data?.height}, {data?.country?.name}</span>
                     </div>
                     <div className="col-2">
                       ✔

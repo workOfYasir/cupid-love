@@ -1,15 +1,69 @@
 import { Observer } from 'mobx-react'
-import React from 'react'
+import React, { useState, useContext, useEffect } from "react";
 import Header from './../../Components/Header'
 import Footer from './../../Components/Footer'
+import { StoreContext } from "./../../store";
+import axios from "axios";
 import bg1 from './Components/images/bg/bg-1.jpg'
 import bg2 from './Components/images/bg/bg-2.jpg'
 import pattern2 from './../../Components/images/pattern/02.png'
 import pattern3 from './../../Components/images/pattern/03.png'
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import Carousel from "react-multi-carousel";
+import 'react-multi-carousel/lib/styles.css';
 const Home = () => {
+    const [qualification, setQualification] = React.useState();
+    const [profileData, setProfile] = useState();
+    const store = useContext(StoreContext);
+    const responsive = {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 5
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 3
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 2
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 1
+        }
+      };
+      const getProfiles = async (access_token, user_id) => {
+        try {
+          const userId = new FormData();
+          userId.append("user_id", user_id);
+          const headers = {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${access_token}`,
+          };
+          const response = await axios({
+            method: "post",
+            url: `${store.url}get-profiles`,
+            data: userId,
+            headers: headers,
+          }).then((response) => {
+            const data = response.data;
+            setQualification(data[0]["qualification"]);
+            setProfile(data[0]["profiles"]);
+            
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      useEffect(() => {
+        const token = localStorage.getItem("accessToken");
+        const user = localStorage.getItem("user");
+    
+        getProfiles(token, JSON.parse(user).id);
+      }, []);
   return (
     <Observer>
        {()=>(
@@ -258,56 +312,34 @@ const Home = () => {
                 </div>
                 <div className="row">
                 <div className="col-md-12">
-                    <div className="owl-carousel owl-theme" data-nav-arrow="true" data-items="4" data-lg-items="4" data-md-items="3" data-sm-items="3" data-xs-items="2" data-space="30">
-                    <div className="item"> <a href="profile-details.php" className="profile-item">
-                        <div className="profile-image clearfix"><img className="img-fluid w-100" src={window.location.origin + "/images/profile/01.jpg"} alt="" /></div>
-                        <div className="profile-details text-center">
-                        <h5 className="title">Bill Nelson</h5>
-                        <span>23 Years Old</span> </div>
-                        </a> </div>
-                    <div className="item"> <a href="profile-details.php" className="profile-item">
-                        <div className="profile-image clearfix"><img className="img-fluid w-100" src={window.location.origin + "/images/profile/02.jpg"} alt="" /></div>
-                        <div className="profile-details text-center">
-                        <h5 className="title">Francisco Pierce</h5>
-                        <span>21 Years Old</span> </div>
-                        </a> </div>
-                    <div className="item"> <a href="profile-details.php" className="profile-item">
-                        <div className="profile-image clearfix"><img className="img-fluid w-100" src={window.location.origin + "/images/profile/03.jpg"} alt="" /></div>
-                        <div className="profile-details text-center">
-                        <h5 className="title">Nelle Townsend</h5>
-                        <span>19 Years Old</span> </div>
-                        </a> </div>
-                    <div className="item"> <a href="profile-details.php" className="profile-item">
-                        <div className="profile-image clearfix"><img className="img-fluid w-100" src={window.location.origin + "/images/profile/04.jpg"} alt="" /></div>
-                        <div className="profile-details text-center">
-                        <h5 className="title">Glen Bell</h5>
-                        <span>20 Years Old</span> </div>
-                        </a> </div>
-                    <div className="item"> <a href="profile-details.php" className="profile-item">
-                        <div className="profile-image clearfix"><img className="img-fluid w-100" src={window.location.origin + "/images/profile/05.jpg"} alt="" /></div>
-                        <div className="profile-details text-center">
-                        <h5 className="title">Bill Nelson</h5>
-                        <span>22 Years Old</span> </div>
-                        </a> </div>
-                    <div className="item"> <a href="profile-details.php" className="profile-item">
-                        <div className="profile-image clearfix"><img className="img-fluid w-100" src={window.location.origin + "/images/profile/06.jpg"} alt="" /></div>
-                        <div className="profile-details text-center">
-                        <h5 className="title">Francisco Pierce</h5>
-                        <span>23 Years Old</span> </div>
-                        </a> </div>
-                    <div className="item"> <a href="profile-details.php" className="profile-item">
-                        <div className="profile-image clearfix"><img className="img-fluid w-100" src={window.location.origin + "/images/profile/07.jpg"} alt="" /></div>
-                        <div className="profile-details text-center">
-                        <h5 className="title">Nelle Townsend</h5>
-                        <span>19 Years Old</span> </div>
-                        </a> </div>
-                    <div className="item"> <a href="profile-details.php" className="profile-item">
-                        <div className="profile-image clearfix"><img className="img-fluid w-100" src={window.location.origin + "/images/profile/08.jpg"} alt="" /></div>
-                        <div className="profile-details text-center">
-                        <h5 className="title">Glen Bell</h5>
-                        <span>22 Years Old</span> </div>
-                        </a> </div>
+                    <Carousel responsive={responsive}>
+                    <div className='col'>
+                    <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/team/team-v2.png"} alt="" />
+                    <h5>Rimsha</h5>
+                    <b>29, 5.2ft,Lahore</b>
                     </div>
+                    <div className='col'>
+                    <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/thumbnail/thum-6.jpg"} alt="" />
+                    <h5>Aliza</h5>
+                    <b>19, 5.9ft,Sheikhupura</b>
+                    </div>
+                    <div className='col'>
+                    <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/thumbnail/thum-5.jpg"} alt="" />
+                    <h5>Samreen</h5>
+                    <b>25, 5.6ft,Karachi</b>
+                    </div>
+                    <div className='col'>
+                    <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/thumbnail/thum-3.jpg"} alt="" />
+                    <h5>Sameena</h5>
+                    <b>22, 5.4ft,Lahore</b>
+                    </div>
+                    <div className='col'>
+                    <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/thumbnail/thum-1.jpg"} alt="" />
+                    <h5>Sana Iqbal</h5>
+                    <b>24, 5.7ft,Lahore</b>
+                    </div>
+</Carousel>
+
                 </div>
                 </div>
             </div>
