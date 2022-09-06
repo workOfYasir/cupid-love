@@ -18,15 +18,29 @@ export const StoreProvider = (props) => {
     subHeader: true,
     setSubHeader: action((e) => (store.subHeader = e)),
 
+    // matchesVisible
+    matchesVisibility: false,
+    setMatchesVisibility: action((e) => (store.matchesVisibility = e)),
+
+    //matchesAdvanceVisibility
+    matchesAdvanceVisibility: false,
+    setMatchesAdvanceVisibility: action((e) => (store.matchesAdvanceVisibility = e)),
+
+    token: false,
+    setToken: action((e) => (store.token = e)),
+
+    auth:false,
+    setAuth: action((e) => (store.auth = e)),
+
     // url
-    url:"http://127.0.0.1:8000/api/",
-    // url:"http://admin.urgentrishta.co/api/",
+    // url:"http://127.0.0.1:8000/api/",
+    url:"http://urgentrishtaadmin.urgentrishta.co/api/",
     setUrl: action((e) => (store.url = e)),
 
     
     // url
-    mediaUrl:"http://127.0.0.1:8000/",
-    // mediaUrl:"http://admin.urgentrishta.co/",
+    // mediaUrl:"http://127.0.0.1:8000/",
+    mediaUrl:"http://urgentrishtaadmin.urgentrishta.co/",
     setMediaUrl: action((e) => (store.mediaUrl = e)),
       
   }));

@@ -264,7 +264,7 @@ const Profile = () => {
                         </div> 
                         <div className="col-12 text-center" style={editFields?{display:"none"}:{display:"block"}}>
                           <a href="Tel:923324010410" className="btn px-5 py-1 m-1 btn-white border rounded b-radius" >
-                           📞 Call
+                           <i className="fa fa-phone" aria-hidden="true"></i> Call
                           </a>
                           <a
                           target="_blank"
@@ -273,7 +273,7 @@ const Profile = () => {
                             <i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
                           </a>
                           <a className="btn px-5 py-1 m-1 btn-white border rounded b-radius">
-                          📲 Chat
+                          <i class="fa fa-comment" aria-hidden="true"></i> Chat
                           </a>
                         </div>
                       </div>
@@ -281,7 +281,7 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className="col-3 overlay d-sm-block d-none">
-                  {profileData?.user.picture == null ? (
+                  {profileData?.user.picture[0] == null ? (
                     <img
                       src="/images/profile/02.jpg"
                       className="img-fluid rounded"
@@ -438,7 +438,7 @@ const Profile = () => {
                       </div>
                     </div>
                     <div className="col-12 d-sm-flex d-none">
-                      <div className="col-6 ">Online Now</div>
+                      <div className="col-6 "> </div>
                       <div class="dropdown">
                         <a
                           class=" dropdown-toggle"
@@ -830,7 +830,7 @@ const Profile = () => {
                                     borderRadius: "50%",
                                   }}
                                 >
-                                  {profileData?.user.picture == null ? (
+                                  {profileData?.user.picture[0] == null ? (
                                     <img
                                       src="/images/profile/02.jpg"
                                       style={{

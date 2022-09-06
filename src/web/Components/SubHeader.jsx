@@ -119,10 +119,24 @@ const SubHeader = () => {
               
             <ul className={(store.subHeader==false)?('search-sub-nav primary-bg shadow nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02'):('profile-sub-nav primary-bg shadow nav nav-tabs justify-content-center col-12 nav-tabs-02 d-none d-sm-flex')} role="tablist">
               <li className="nav-item">
-                <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" aria-controls="tab-10" aria-selected="true">Basic Search</a>
+                <a className="btn text-light  active ms-0" id="tab-01" data-bs-toggle="tab" href="#tab-10" role="tab" 
+                 onClick={() => {
+                  store.matchesVisibility == true
+                    ? store.setMatchesVisibility(false)
+                    :   (store.matchesVisibility == false ?store.setMatchesVisibility(false):store.setMatchesVisibility(false))
+                    ;
+                }}
+                aria-controls="tab-10" aria-selected="true">Basic Search</a>
               </li>
               <li className="nav-item">
-                <a className="btn text-light " id="tab-02" data-bs-toggle="tab" href="#tab-11" role="tab" aria-controls="tab-11" aria-selected="false">Advance Search</a>
+                <a className="btn text-light "
+                  onClick={() => {
+                    store.matchesAdvanceVisibility == true
+                      ? store.setMatchesAdvanceVisibility(false)
+                      :   (store.matchesAdvanceVisibility == false ?store.setMatchesAdvanceVisibility(false):store.setMatchesAdvanceVisibility(false))
+                      ;
+                  }}
+                id="tab-02" data-bs-toggle="tab" href="#tab-11" role="tab" aria-controls="tab-11" aria-selected="false">Advance Search</a>
               </li>
               
            

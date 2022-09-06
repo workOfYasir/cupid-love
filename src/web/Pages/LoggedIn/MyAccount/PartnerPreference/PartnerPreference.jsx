@@ -6,8 +6,8 @@ import { StoreContext } from "./../../../../store";
 import './assets/css/preferences.css'
 
 const PartnerPreference = () => {
-  const [minValueHeight, set_minHeight] = useState(25);
-  const [maxValueHeight, set_maxHeight] = useState(75);
+  const [minValueHeight, set_minHeight] = useState(5.1);
+  const [maxValueHeight, set_maxHeight] = useState(6.1);
   const [minValueAge, set_minValueAge] = useState(25);
   const [maxValueAge, set_maxValueAge] = useState(75);
   const [country, setCountries] = useState();
@@ -28,10 +28,6 @@ const PartnerPreference = () => {
   const [formValue, setformValue] = React.useState({
     gender: '',
     material_status: '',
-    // min_height: '',
-    // min_age:'',
-    // max_height: '',
-    // max_age:'',
     cast: '',
     education: '',
     country:'',
@@ -262,9 +258,9 @@ console.log('done');
 
                     <div className="col-8 offset-sm-0 offset-1">
                     <MultiRangeSlider
-                      min={0}
-                      max={100}
-                      step={5}
+                      min={4}
+                      max={7}
+                      step={1}
                       ruler={true}
                       label={true}
                       preventWheel={false}

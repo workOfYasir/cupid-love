@@ -133,7 +133,7 @@ const Dashboard = () => {
                 <div className='row'>
                   <div className="col-12 col-sm-4 ">
                     <div className="card border-0 shadow">
-                    {profileData?.user.picture==null ?
+                    {profileData?.user.picture[0]==null ?
  <img src={ process.env.PUBLIC_URL +"/images/team/team-v1.png" } className="card-img-top" alt="..." />
                               :
                               <Carousel showThumbs={false}>
@@ -146,14 +146,14 @@ const Dashboard = () => {
                         </Carousel>
                              
                             }
-                      <div className="card-img-overlay">
+                      {/* <div className="card-img-overlay">
                         
                         <a href="#" className="btn btn-primary img-plus">➕</a>
-                      </div>
+                      </div> */}
                       <div className="row p-0 m-0">
                         <div className="col-6 p-3">
                           <div className="col-12 ">
-                            <h6 className='text-dark'>{profileData?.user.first_name+' '+profileData?.user.last_name}</h6>
+                            <h6 className='text-dark'>{profileData?.user.first_name}</h6>
                           
                           </div>
                           <div className="col-12">
@@ -277,12 +277,13 @@ const Dashboard = () => {
                   <h5 className='p-3 pt-5 col-12 text-center d-block d-sm-none'>Premium Matches </h5>
                  
                   <div className="col-sm-4 col-12 m-sm-2 m-0  shadow bg-white">
-                  
+                 
                   {premiumData?.map((data) => (
                     <>
                   <div className="col-12 p-4 d-flex rounded">
                 
                     <div className="col-2">
+                  
                       {data?.user_profile.user.picture[0]==null?
               
                       <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='img-fluid border-radius-50' srcset="" />
@@ -291,7 +292,7 @@ const Dashboard = () => {
                      } 
                     </div>
                     <div className="col">
-                      <b>{data?.first_name+' '+data?.last_name}</b> <span className="bg-danger p-1 text-white rounded">👑Premium+</span><br/>
+                      <b>{data?.first_name+' '+data?.last_name}</b> <span className="bg-danger p-1 text-white rounded"><i class="fa fa-diamond" aria-hidden="true"></i>Premium+</span><br/>
                       <span>24 yr, 5'2, Urdu, Karachi</span>
                     </div>
                     <div className="col-2">
@@ -319,7 +320,7 @@ const Dashboard = () => {
                      } 
                     </div>
                     <div className="col">
-                      <b>{data?.user.first_name+' '+data?.user.last_name}</b><br/>
+                      <b>{data?.user.first_name}</b><br/>
                       <span>24 yr,{ data?.height}, Urdu, {data?.user?.country?.name}</span>
                     </div>
                     <div className="col-2">
@@ -348,7 +349,7 @@ const Dashboard = () => {
                      } 
                     </div>
                     <div className="col">
-                      <b>{data?.user.first_name+' '+data?.user.last_name}</b><br/>
+                      <b>{data?.user.first_name}</b><br/>
                       <span>{data?.height}, {data?.country?.name}</span>
                     </div>
                     <div className="col-2">

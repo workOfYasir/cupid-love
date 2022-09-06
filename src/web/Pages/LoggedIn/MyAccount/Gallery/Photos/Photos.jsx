@@ -60,7 +60,7 @@ console.log('========>',formValue.image);
           
             
              <div className="d-flex">
-<ToastContainer/>
+{/* <ToastContainer/> */}
              
             <div className="col-sm-3 col-6 p-1">
                 <div className="thumbnail">

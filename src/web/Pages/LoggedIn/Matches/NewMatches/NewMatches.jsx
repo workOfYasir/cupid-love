@@ -6,94 +6,90 @@ import "./../assets/css/style.css";
 import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const MyMatches = () => {
+const NewMatches = () => {
   const [qualification, setQualification] = React.useState();
+  const [religion, setReligions] = useState();
+  const [country, setCountries] = useState();
+  const [state, setStates] = useState();
+  const [city, setCities] = useState();
+  const [cast, setCasts] = useState();
+  const [sector, setSectors] = useState();
+
   const [editFields, setEditFields] = useState(true);
   const fieldDisablity = () => {
     setEditFields(!editFields);
   };
+  const handleToast = ()=>{
+    toast.error('You are not member')
+  }
   const [formValue, setformValue] = React.useState({
     gender: "",
-    material_status: "",
+    marital_status: "",
     height: "",
     age: "",
+    income:"",
     cast: "",
     edjucation: "",
     country: "",
+    state:"",
+    sector:"",
+    religion:"",
+    blood_group:"",
+    working_with:"",
     city: "",
+    on_behalf:"",
+    qualification:"",
     days: "",
   });
   const store = useContext(StoreContext);
   const navigate = useNavigate();
   const [profileData, setProfile] = useState();
-  const [days, setDays] = useState();
-  const [gender, setGender] = useState();
-  const [qualificationFilter, setQualificationFilter] = useState();
-  const [income, setIncome] = useState();
-  const [martialStatus, setMartialStatus] = useState();
-  const [height, setHeight] = useState();
-  const [work, setWork] = useState();
-  const [bloodgroup, setBloodgroup] = useState();
-  const [onBehalf, setOnBehalf] = useState();
-  
+
   const handleChange = (event) => {
     setformValue({
       ...formValue,
       [event.target.name]: event.target.value,
     });
-    console.log(formValue);
+    console.log('formValue==========>'. event.target.value);
+    // filter();
   };
-  async function filter(data, filterName) {
+  async function filter(formValue) {
     const token = localStorage.getItem("accessToken");
     const user = localStorage.getItem("user");
     const formData = new FormData();
-    const user_id = JSON.parse(user)["id"];
-    if (filterName == "days") {
-      formData.append("days", data);
-    } else if (filterName == "income") {
-      formData.append("income", data);
-    } else if (filterName == "qualificationFilter") {
-      formData.append("qualification", data);
-    } else if (filterName == "onBehalf") {
-      formData.append("on_behalf", data);
-    } else if (filterName == "height") {
-      formData.append("height", data);
-    } else if (filterName == "bloodGroup") {
-      formData.append("blood_group", data);
-    } else if (filterName == "work") {
-      formData.append("working_with", data);
-    }
-
+    formData.append("days", formValue.days );
+    formData.append("income", formValue.income);
+    formData.append("qualification", formValue.qualification);
+    formData.append("on_behalf", formValue.on_behalf);
+    formData.append("height", formValue.height);
+    formData.append("blood_group", formValue.blood_group);
+    formData.append("working_with", formValue.working_with);
+    formData.append("marital_status", formValue.marital_status);
+    formData.append("gender", formValue.gender);
+    formData.append("religion", formValue.religion);
+    formData.append("cast", formValue.cast);
+    formData.append("sector", formValue.sector);
+    formData.append("country", formValue.country);
+    formData.append("state", formValue.state);
+    formData.append("city", formValue.city);
     try {
-      const headers = {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      };
+
       console.log(formData);
       const response = await axios({
         method: "post",
-        url: `${store.url}get-profiles`,
+        url: `${store.url}get-new-profiles`,
         data: formData,
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       }).then((response) => {
-        setformValue({
-          gender: "",
-          material_status: "",
-          height: "",
-          age: "",
-          cast: "",
-          edjucation: "",
-          country: "",
-          city: "",
-        });
+       
         const data = response.data;
         setQualification(data[0]["qualification"]);
-
         setProfile(data[0]["profiles"]);
       });
     } catch (error) {
@@ -101,42 +97,6 @@ const MyMatches = () => {
     }
   }
 
-  const handleDays = (event) => {
-    setDays(event.target.value);
-    filter(event.target.value, "days");
-  };
-  const handleGender = (event) => {
-    setGender(event.target.value);
-    filter(event.target.value, "gender");
-  };
-  const handleQualification = (event) => {
-    setQualificationFilter(event.target.value);
-    filter(event.target.value, "qualificationFilter");
-  };
-  const handleIncome = (event) => {
-    setIncome(event.target.value);
-    filter(event.target.value, "income");
-  };
-  const handleMartialStatus = (event) => {
-    setMartialStatus(event.target.value);
-    filter(event.target.value, "martialStatus");
-  };
-  const handleBloodGroup = (event) => {
-    setBloodgroup(event.target.value);
-    filter(event.target.value, "bloodGroup");
-  };
-  const handleWork = (event) => {
-    setWork(event.target.value);
-    filter(event.target.value, "work");
-  };
-  const handleHeight = (event) => {
-    setHeight(event.target.value);
-    filter(event.target.value, "height");
-  };
-  const handleOnBehalf = (event) => {
-    setOnBehalf(event.target.value);
-    filter(event.target.value, "onBehalf");
-  };
   async function profileView(viewed_id) {
     const token = localStorage.getItem("accessToken");
     const user = localStorage.getItem("user");
@@ -145,12 +105,8 @@ const MyMatches = () => {
     formData.append("viewer_id", viewer_id);
     formData.append("viewed_id", viewed_id);
     try {
-      const headers = {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      };
-      console.log(formData);
+      
+ 
       const response = await axios({
         method: "post",
         url: `${store.url}recent-visit`,
@@ -160,16 +116,7 @@ const MyMatches = () => {
           Authorization: `Bearer ${token}`,
         },
       }).then((response) => {
-        setformValue({
-          gender: "",
-          material_status: "",
-          height: "",
-          age: "",
-          cast: "",
-          edjucation: "",
-          country: "",
-          city: "",
-        });
+     
         const data = response.data;
         navigate("/public/profile/" + viewed_id);
       });
@@ -177,53 +124,118 @@ const MyMatches = () => {
       console.log(error);
     }
   }
-
-  const getProfiles = async (access_token, user_id) => {
+  const religions = async (access_token) => {
     try {
-      const userId = new FormData();
-      userId.append("user_id", user_id);
-      const headers = {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${access_token}`,
-      };
-      const response = await axios({
-        method: "post",
-        url: `${store.url}get-profiles`,
-        data: userId,
-        headers: headers,
+      axios.get(`${store.url}get-religions`, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          'Authorization': `Bearer ${access_token}`
+        }
       }).then((response) => {
-        const data = response.data;
-        setQualification(data[0]["qualification"]);
-        setProfile(data[0]["profiles"]);
-        console.log(
-          "=========================================================??>>>>/",
-          data[0]["profiles"][1]["user"]["picture"][0]["image_path"]
-        );
+        const data = response.data.religions;
+        setReligions(data);
       });
     } catch (error) {
       console.log(error);
     }
   };
-  // const mystyle = {
-  //   backgroundImage:`url(${store.url}}) !important`,
-  //   backgroundRepeat: 'no-repeat !important',
-  //   backgroundSize:'cover !important' ,
-  //   opacity: '0.5',
-  // };
+  const countries = async (access_token) => {
+    try {
+      axios.get(`${store.url}get-countrys`, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          'Authorization': `Bearer ${access_token}`
+        }
+      }).then((response) => {
+        const data = response.data[0].countrys;
+        setCountries(data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const states = async (access_token) => {
+    try {
 
+      axios({
+        method: "get",
+        url: `${store.url}get-states`,
+        headers: { "Content-Type": "multipart/form-data", 'Authorization': `Bearer ${access_token}` },
+      }).then((response) => {
+        const data = response.data.states;
+        setStates(data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const cities = async (access_token) => {
+    try {
+
+      axios({
+        method: "get",
+        url: `${store.url}get-cities`,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          'Authorization': `Bearer ${access_token}`
+        },
+      }).then((response) => {
+        const data = response.data.cities;
+        setCities(data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const sectors = async (access_token) => {
+    try {
+      axios.get(`${store.url}get-sectors`, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          'Authorization': `Bearer ${access_token}`
+        }
+      }).then((response) => {
+        const data = response.data.sectors;
+        setSectors(data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const casts = async(access_token)=>{
+    try {
+       console.log('access_token',access_token);
+     axios.get(`${store.url}get-casts`,{
+        headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': `Bearer ${access_token}`
+          }
+     }).then((response)=>{
+            const data = response.data
+            setCasts(data[0].casts)
+        })
+      } catch(error) {
+        console.log(error)
+      }
+  }
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     const user = localStorage.getItem("user");
-
-    getProfiles(token, JSON.parse(user).id);
-  }, []);
+    religions(token)
+    countries(token)
+    states(token)
+    cities(token)
+    sectors(token)
+    casts(token)
+    filter(formValue);
+  }, [formValue]);
 
   return (
     <Observer>
       {() => (
         <>
-          <section className="space-ptb">
+        {/* <ToastContainer/> */}
+        <section className="space-ptb">
             <div className="container mt-3">
               <div className="row">
                 <div className="col-lg-3 d-sm-block d-none">
@@ -250,7 +262,7 @@ const MyMatches = () => {
                               type="radio"
                               name="days"
                               value={1}
-                              onClick={handleDays}
+                              onClick={handleChange}
                               id="dateposted2"
                             />
                             <label
@@ -266,7 +278,7 @@ const MyMatches = () => {
                               type="radio"
                               name="days"
                               value={7}
-                              onClick={handleDays}
+                              onClick={handleChange}
                               id="dateposted3"
                             />
                             <label
@@ -282,7 +294,7 @@ const MyMatches = () => {
                               type="radio"
                               name="days"
                               value={14}
-                              onClick={handleDays}
+                              onClick={handleChange}
                               id="dateposted4"
                             />
                             <label
@@ -298,7 +310,7 @@ const MyMatches = () => {
                               type="radio"
                               name="days"
                               value={30}
-                              onClick={handleDays}
+                              onClick={handleChange}
                               id="dateposted5"
                             />
                             <label
@@ -308,6 +320,84 @@ const MyMatches = () => {
                               Last 30 days
                             </label>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr/>
+                    <div className="widget bg-white p-1 shadow rounded">
+                      <div className="widget-title widget-collapse bg-grey">
+                        <h6>Religions</h6>
+                        <a
+                          className="ms-auto"
+                          data-bs-toggle="collapse"
+                          href="#dateposted"
+                          role="button"
+                          aria-expanded="false"
+                          aria-controls="dateposted"
+                        >
+                          {" "}
+                        </a>
+                      </div>
+                      <div className="collapse show" id="dateposted">
+                        <div className="widget-content">
+                        {religion?.map((data) => (
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="religion"
+                              value={data.id}
+                              onClick={handleChange}
+                              id="dateposted2"
+                            />
+                            <label
+                              className="form-check-label"
+                              for="dateposted2"
+                            >
+                              {data.name}
+                            </label>
+                          </div>
+                        ))}
+                         
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                    <div className="widget bg-white p-1 shadow rounded">
+                      <div className="widget-title widget-collapse bg-grey">
+                        <h6>Sector</h6>
+                        <a
+                          className="ms-auto"
+                          data-bs-toggle="collapse"
+                          href="#dateposted"
+                          role="button"
+                          aria-expanded="false"
+                          aria-controls="dateposted"
+                        >
+                          {" "}
+                        </a>
+                      </div>
+                      <div className="collapse show" id="dateposted">
+                        <div className="widget-content">
+                        {sector?.map((data) => (
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="sector"
+                              value={data.id}
+                              onClick={handleChange}
+                              id="dateposted2"
+                            />
+                            <label
+                              className="form-check-label"
+                              for="dateposted2"
+                            >
+                              {data.name}
+                            </label>
+                          </div>
+                        ))}
+                         
                         </div>
                       </div>
                     </div>
@@ -334,7 +424,8 @@ const MyMatches = () => {
                               type="radio"
                               className="form-check-input"
                               value={"Single"}
-                              onClick={handleMartialStatus}
+                              name="marital_status"
+                              onClick={handleChange}
                               id="experience2"
                             />
                             <label
@@ -349,7 +440,8 @@ const MyMatches = () => {
                               type="radio"
                               className="form-check-input"
                               value={"Divorced"}
-                              onClick={handleMartialStatus}
+                              name="marital_status"
+                              onClick={handleChange}
                               id="experience2"
                             />
                             <label
@@ -364,7 +456,8 @@ const MyMatches = () => {
                               type="radio"
                               className="form-check-input"
                               value={"Window"}
-                              onClick={handleMartialStatus}
+                              name="marital_status"
+                              onClick={handleChange}
                               id="experience2"
                             />
                             <label
@@ -379,7 +472,8 @@ const MyMatches = () => {
                               type="radio"
                               className="form-check-input"
                               value={"Married"}
-                              onClick={handleMartialStatus}
+                              name="marital_status"
+                              onClick={handleChange}
                               id="experience2"
                             />
                             <label
@@ -415,8 +509,8 @@ const MyMatches = () => {
                               type="radio"
                               className="form-check-input"
                               value={"Son"}
-                              name="onBehalf"
-                              onClick={handleOnBehalf}
+                              name="on_behalf"
+                              onClick={handleChange}
                               id="Offeredsalary1"
                             />
                             <label
@@ -431,8 +525,8 @@ const MyMatches = () => {
                               type="radio"
                               className="form-check-input"
                               value={"Myself"}
-                              name="onBehalf"
-                              onClick={handleOnBehalf}
+                              name="on_behalf"
+                              onClick={handleChange}
                               id="Offeredsalary2"
                             />
                             <label
@@ -447,8 +541,8 @@ const MyMatches = () => {
                               type="radio"
                               className="form-check-input"
                               value={"Daughter"}
-                              name="OnBehalf"
-                              onClick={handleOnBehalf}
+                              name="on_behalf"
+                              onClick={handleChange}
                               id="Offeredsalary3"
                             />
                             <label
@@ -463,8 +557,8 @@ const MyMatches = () => {
                               type="radio"
                               className="form-check-input"
                               value={"Sister"}
-                              name="onBehalf"
-                              onClick={handleOnBehalf}
+                              name="on_behalf"
+                              onClick={handleChange}
                               id="Offeredsalary4"
                             />
                             <label
@@ -479,8 +573,8 @@ const MyMatches = () => {
                               type="radio"
                               className="form-check-input"
                               value={"Brother"}
-                              name="onBehalf"
-                              onClick={handleOnBehalf}
+                              name="on_behalf"
+                              onClick={handleChange}
                               id="Offeredsalary5"
                             />
                             <label
@@ -517,7 +611,7 @@ const MyMatches = () => {
                               className="form-check-input"
                               value={"10000-20000"}
                               name="income"
-                              onClick={handleIncome}
+                              onClick={handleChange}
                               id="Offeredsalary1"
                             />
                             <label
@@ -533,7 +627,7 @@ const MyMatches = () => {
                               className="form-check-input"
                               value={"20000-30000"}
                               name="income"
-                              onClick={handleIncome}
+                              onClick={handleChange}
                               id="Offeredsalary2"
                             />
                             <label
@@ -549,7 +643,7 @@ const MyMatches = () => {
                               className="form-check-input"
                               value={"30000-40000"}
                               name="income"
-                              onClick={handleIncome}
+                              onClick={handleChange}
                               id="Offeredsalary3"
                             />
                             <label
@@ -565,7 +659,7 @@ const MyMatches = () => {
                               className="form-check-input"
                               value={"40000-50000"}
                               name="income"
-                              onClick={handleIncome}
+                              onClick={handleChange}
                               id="Offeredsalary4"
                             />
                             <label
@@ -581,7 +675,7 @@ const MyMatches = () => {
                               className="form-check-input"
                               value={"50000-60000"}
                               name="income"
-                              onClick={handleIncome}
+                              onClick={handleChange}
                               id="Offeredsalary5"
                             />
                             <label
@@ -619,7 +713,7 @@ const MyMatches = () => {
                               className="form-check-input"
                               value={"PHd"}
                               name="qualification"
-                              onClick={handleQualification}
+                              onClick={handleChange}
                               id="Offeredsalary1"
                             />
                             <label
@@ -635,7 +729,7 @@ const MyMatches = () => {
                               className="form-check-input"
                               value={"MS/M-Phil"}
                               name="qualification"
-                              onClick={handleQualification}
+                              onClick={handleChange}
                               id="Offeredsalary2"
                             />
                             <label
@@ -651,7 +745,7 @@ const MyMatches = () => {
                               className="form-check-input"
                               value={"BS Honrs"}
                               name="qualification"
-                              onClick={handleQualification}
+                              onClick={handleChange}
                               id="Offeredsalary3"
                             />
                             <label
@@ -667,7 +761,7 @@ const MyMatches = () => {
                               className="form-check-input"
                               value={"BSC"}
                               name="qualification"
-                              onClick={handleQualification}
+                              onClick={handleChange}
                               id="Offeredsalary4"
                             />
                             <label
@@ -701,11 +795,11 @@ const MyMatches = () => {
                         <div className="widget-content">
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"A+"}
-                              name="bloodgroup"
-                              onClick={handleBloodGroup}
+                              name="blood_group"
+                              onClick={handleChange}
                               id="gender1"
                             />
                             <label className="form-check-label" for="gender1">
@@ -714,11 +808,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"A-"}
-                              name="bloodgroup"
-                              onClick={handleBloodGroup}
+                              name="blood_group"
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -727,11 +821,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"B-"}
-                              name="bloodgroup"
-                              onClick={handleBloodGroup}
+                              name="blood_group"
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -740,11 +834,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"B+"}
-                              name="bloodgroup"
-                              onClick={handleBloodGroup}
+                              name="blood_group"
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -753,11 +847,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"AB-"}
-                              name="bloodgroup"
-                              onClick={handleBloodGroup}
+                              name="blood_group"
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -766,11 +860,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"AB+"}
-                              name="bloodgroup"
-                              onClick={handleBloodGroup}
+                              name="blood_group"
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -779,11 +873,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"O-"}
-                              name="bloodgroup"
-                              onClick={handleBloodGroup}
+                              name="blood_group"
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -792,11 +886,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"O+"}
-                              name="bloodgroup"
-                              onClick={handleBloodGroup}
+                              name="blood_group"
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -827,11 +921,11 @@ const MyMatches = () => {
                         <div className="widget-content">
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"Govt Job"}
-                              name="gender"
-                              onClick={handleWork}
+                              name="working_with"
+                              onClick={handleChange}
                               id="gender1"
                             />
                             <label className="form-check-label" for="gender1">
@@ -840,11 +934,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"Private Job"}
-                              name="gender"
-                              onClick={handleWork}
+                              name="working_with"
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -853,11 +947,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"Business"}
-                              name="gender"
-                              onClick={handleWork}
+                              name="working_with"
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -886,11 +980,11 @@ const MyMatches = () => {
                         <div className="widget-content">
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"5.5ft-5.12ft"}
                               name="height"
-                              onClick={handleHeight}
+                              onClick={handleChange}
                               id="gender1"
                             />
                             <label className="form-check-label" for="gender1">
@@ -899,11 +993,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"6.0ft-6.6ft"}
                               name="height"
-                              onClick={handleHeight}
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -912,11 +1006,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"6.6ft-6.12ft"}
                               name="height"
-                              onClick={handleHeight}
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -925,11 +1019,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"7.0ft-7.6ft"}
                               name="height"
-                              onClick={handleHeight}
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -959,11 +1053,11 @@ const MyMatches = () => {
                         <div className="widget-content">
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"Male"}
                               name="gender"
-                              onClick={handleGender}
+                              onClick={handleChange}
                               id="gender1"
                             />
                             <label className="form-check-label" for="gender1">
@@ -972,11 +1066,11 @@ const MyMatches = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              type="checkbox"
+                              type="radio"
                               className="form-check-input"
                               value={"Female"}
                               name="gender"
-                              onClick={handleGender}
+                              onClick={handleChange}
                               id="gender2"
                             />
                             <label className="form-check-label" for="gender2">
@@ -987,15 +1081,163 @@ const MyMatches = () => {
                       </div>
                     </div>
                  
+                    <hr />
                     <div className="widget bg-white p-1 shadow rounded">
-                      <div className="widget-add">
-                        <img
-                          className="img-fluid"
-                          src="images/add-banner.png"
-                          alt=""
-                        />
+                      <div className="widget-title widget-collapse bg-grey">
+                        <h6>Cast</h6>
+                        <a
+                          className="ms-auto"
+                          data-bs-toggle="collapse"
+                          href="#dateposted"
+                          role="button"
+                          aria-expanded="false"
+                          aria-controls="dateposted"
+                        >
+                          {" "}
+                        </a>
+                      </div>
+                      <div className="collapse show" id="dateposted">
+                        <div className="widget-content">
+                        {cast?.map((data) => (
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="cast"
+                              value={data.id}
+                              onClick={handleChange}
+                              id="dateposted2"
+                            />
+                            <label
+                              className="form-check-label"
+                              for="dateposted2"
+                            >
+                              {data.name}
+                            </label>
+                          </div>
+                        ))}
+                         
+                        </div>
                       </div>
                     </div>
+                    <hr />
+                    <div className="widget bg-white p-1 shadow rounded">
+                      <div className="widget-title widget-collapse bg-grey">
+                        <h6>Country Living In</h6>
+                        <a
+                          className="ms-auto"
+                          data-bs-toggle="collapse"
+                          href="#dateposted"
+                          role="button"
+                          aria-expanded="false"
+                          aria-controls="dateposted"
+                        >
+                          {" "}
+                        </a>
+                      </div>
+                      <div className="collapse show" id="dateposted">
+                        <div className="widget-content">
+                        {country?.map((data) => (
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="country"
+                              value={data.id}
+                              onClick={handleChange}
+                              id="dateposted2"
+                            />
+                            <label
+                              className="form-check-label"
+                              for="dateposted2"
+                            >
+                              {data.name}
+                            </label>
+                          </div>
+                        ))}
+                         
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                    <div className="widget bg-white p-1 shadow rounded">
+                      <div className="widget-title widget-collapse bg-grey">
+                        <h6>State Living In</h6>
+                        <a
+                          className="ms-auto"
+                          data-bs-toggle="collapse"
+                          href="#dateposted"
+                          role="button"
+                          aria-expanded="false"
+                          aria-controls="dateposted"
+                        >
+                          {" "}
+                        </a>
+                      </div>
+                      <div className="collapse show" id="dateposted">
+                        <div className="widget-content">
+                        {state?.map((data) => (
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="state"
+                              value={data.id}
+                              onClick={handleChange}
+                              id="dateposted2"
+                            />
+                            <label
+                              className="form-check-label"
+                              for="dateposted2"
+                            >
+                              {data.name}
+                            </label>
+                          </div>
+                        ))}
+                         
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                    <div className="widget bg-white p-1 shadow rounded">
+                      <div className="widget-title widget-collapse bg-grey">
+                        <h6>City Living In</h6>
+                        <a
+                          className="ms-auto"
+                          data-bs-toggle="collapse"
+                          href="#dateposted"
+                          role="button"
+                          aria-expanded="false"
+                          aria-controls="dateposted"
+                        >
+                          {" "}
+                        </a>
+                      </div>
+                      <div className="collapse show" id="dateposted">
+                        <div className="widget-content">
+                        {city?.map((data) => (
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="city"
+                              value={data.id}
+                              onClick={handleChange}
+                              id="dateposted2"
+                            />
+                            <label
+                              className="form-check-label"
+                              for="dateposted2"
+                            >
+                              {data.name}
+                            </label>
+                          </div>
+                        ))}
+                         
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
                   </div>
                 </div>
 
@@ -1011,7 +1253,7 @@ const MyMatches = () => {
                         <br />
                       </div>
 
-                      {data.user.picture != null ? (
+                      {data.user.picture[0] != null ? (
                         <>
                           <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
                             <Carousel showThumbs={false}>
@@ -1113,7 +1355,7 @@ const MyMatches = () => {
                           <div className="col-sm-8 col-12 d-flex">
                             <div className="col-sm-7 col-6 text-start">
                               <h5 className="d-sm-block d-none">
-                                <span
+                                <span style={{ curser:'pointer' }}
                                   onClick={() => {
                                     profileView(data.user_id);
                                   }}
@@ -1185,7 +1427,7 @@ const MyMatches = () => {
                           </div>
                         </div>
                         <div className="col-12 d-sm-flex d-none">
-                          <div className="col-6 ">Online Now</div>
+                          <div className="col-6 "> </div>
                           <div class="dropdown">
                             <a
                               class=" dropdown-toggle"
@@ -1265,20 +1507,55 @@ const MyMatches = () => {
                           </h1>
                           Connect Now
                         </div> 
+                          {data.user?.user_plan!=null?
+                          <>
                         <div className="col-12 text-center" style={editFields?{display:"none"}:{display:"block"}}>
+                          { data.user?.user_plan.view_contacts!=null?
+                          <>
                           <a href="Tel:923324010410" className="btn px-5 py-1 m-1 btn-white border rounded b-radius" >
-                           📞 Call
+                           <i className="fa fa-phone" aria-hidden="true"></i> Call
                           </a>
-                          <a
+                          </>
+                          :
+                          <>
+                          <a onClick={handleToast} className="btn px-5 py-1 m-1 btn-white border rounded b-radius" >
+                           <i className="fa fa-phone" aria-hidden="true"></i> Call
+                          </a>
+                          </>}
+                          { (data.user?.user_plan.view_contacts!=null || data.user?.user_plan.messages!=null)?<>
+                            <a
                           target="_blank"
                           href="https://api.whatsapp.com/send?phone=923324010410&text=Hello this is the starting message"
                            className="btn px-4 py-1 m-1 btn-success border rounded b-radius">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
                           </a>
-                          <a className="btn px-5 py-1 m-1 btn-white border rounded b-radius">
-                          📲 Chat
+                          </>:<>
+                          <a
+                          href="#" onClick={handleToast}
+                           className="btn px-4 py-1 m-1 btn-success border rounded b-radius">
+                            <i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
                           </a>
-                        </div>
+                          </>}
+                          { ( data.user?.user_plan.messages!=null)?<>
+                          <a className="btn px-5 py-1 m-1 btn-white border rounded b-radius">
+                          <i class="fa fa-comment" aria-hidden="true"></i> Chat
+                          </a>
+                          </>:
+                          <>
+                           <a 
+                           onClick={handleToast}
+                           className="btn px-5 py-1 m-1 btn-white border rounded b-radius">
+                          <i class="fa fa-comment" aria-hidden="true"></i> Chat
+                          </a>
+                          </>}
+                        </div>  
+                          </>
+                          :
+                          <>
+                          </>
+                          }
+                          
+                        
                         </div>
                       </div>
                       <div className="d-sm-none d-flex col-12">
@@ -1302,7 +1579,7 @@ const MyMatches = () => {
                     </div>
                   ))}
           
-                  <div className="row">
+                  {/* <div className="row">
                     <div className="col-12 text-center mt-4 mt-sm-5">
                       <ul className="pagination justify-content-center mb-0">
                         <li className="page-item disabled">
@@ -1343,7 +1620,7 @@ const MyMatches = () => {
                         </li>
                       </ul>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -1354,4 +1631,4 @@ const MyMatches = () => {
   );
 };
 
-export default MyMatches;
+export default NewMatches;

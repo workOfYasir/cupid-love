@@ -252,7 +252,7 @@ const NearMe = () => {
 
                     
                     <div className="col-6 ">
-                    Online Now
+                     
                     </div>
                     <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -370,7 +370,7 @@ Connect Now
 
                     
                     <div className="col-6 ">
-                    Online Now
+                     
                     </div>
                     <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -488,7 +488,7 @@ Connect Now
 
                     
                     <div className="col-6 ">
-                    Online Now
+                     
                     </div>
                     <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -607,7 +607,7 @@ Connect Now
 
                     
                     <div className="col-6 ">
-                    Online Now
+                     
                     </div>
                     <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -725,7 +725,7 @@ Connect Now
 
                     
                     <div className="col-6 ">
-                    Online Now
+                     
                     </div>
                     <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -843,7 +843,7 @@ Connect Now
 
                     
                     <div className="col-6 ">
-                    Online Now
+                     
                     </div>
                     <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -961,7 +961,7 @@ Connect Now
 
                     
                     <div className="col-6 ">
-                    Online Now
+                     
                     </div>
                     <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -1079,7 +1079,7 @@ Connect Now
 
                     
                     <div className="col-6 ">
-                    Online Now
+                     
                     </div>
                     <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -1197,7 +1197,7 @@ Connect Now
 
                     
                     <div className="col-6 ">
-                    Online Now
+                     
                     </div>
                     <div class="dropdown">
                                         <a class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -1274,7 +1274,7 @@ Connect Now
                 </div>
               </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="col-12 text-center mt-4 mt-sm-5">
             <ul className="pagination justify-content-center mb-0">
               <li className="page-item disabled"> <span className="page-link b-radius-none">Prev</span> </li>
@@ -1286,7 +1286,7 @@ Connect Now
               <li className="page-item"> <a className="page-link" href="#">Next</a> </li>
             </ul>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   </div>

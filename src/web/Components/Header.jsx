@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useLocation } from "react-router-dom";
-import axios from "axios";
 import { Observer } from "mobx-react-lite";
+import axios from "axios";
 import { StoreContext } from "./../store";
 import { isVisible } from "@testing-library/user-event/dist/utils";
 import $ from "jquery";
@@ -61,7 +61,7 @@ const Header = () => {
         toast.success("LoggedIn Successfully");
         localStorage.setItem("accessToken", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
-
+        store.setToken(true)
         setformValue({
           email: "",
           password: "",
@@ -107,7 +107,6 @@ const Header = () => {
       console.log(error);
     }
   };
-
   const states = async (country_id) => {
     try {
       console.log("in function", country_id);
@@ -126,8 +125,6 @@ const Header = () => {
       console.log(error);
     }
   };
-
-
   const cities = async (state_id) => {
     try {
       var citiesFormData = new FormData();
@@ -145,7 +142,6 @@ const Header = () => {
       console.log(error);
     }
   };
-
   const sectors = async () => {
     try {
       axios.get(`${store.url}get-sectors`, {}).then((response) => {
@@ -156,7 +152,6 @@ const Header = () => {
       console.log(error);
     }
   };
-
   const getPicture = async (access_token) => {
     try {
 
@@ -254,7 +249,7 @@ const Header = () => {
       {() => (
         <>
           <header id="header" className="dark">
-            <ToastContainer />
+            {/* <ToastContainer /> */}
             <div
               className="modal fade"
               id="exampleModal"
@@ -607,6 +602,7 @@ const Header = () => {
                                         onChange={handleChange}
                                         className="form-select"
                                       >
+                                         <option>Select one</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
                                         <option value="03">03</option>
@@ -652,6 +648,7 @@ const Header = () => {
                                         onChange={handleChange}
                                         name="date_of_Birth_month"
                                       >
+                                         <option>Select one</option>
                                         <option vlaue="Jan">Jan</option>
                                         <option vlaue="Feb">Feb</option>
                                         <option vlaue="Mar">Mar</option>
@@ -670,14 +667,14 @@ const Header = () => {
                                       htmlFor="my-select"
                                       className="col-4 text-grey"
                                     >
-                                      Month
+                                      Year
                                       <select
                                         id="my-select"
                                         className="form-select"
                                         value={formValue.date_of_Birth_year}
                                         onChange={handleChange}
                                         name="date_of_Birth_year"
-                                      >
+                                      > <option>Select one</option>
                                         <option value="2001">2001</option>
                                         <option value="2000">2000</option>
                                         <option value="1999">1999</option>
@@ -930,14 +927,14 @@ const Header = () => {
                               </>
                             ) : (
                               <>
-                                <li className="active  ">
+                                <li className="active col">
                                   <Link className="primary-text mx-2" to="/">
                                     {" "}
                                     Home{" "}
                                     <i className="fa fa-angle-down fa-indicator"></i>
                                   </Link>
                                 </li>
-                                <li>
+                                <li className="col">
                                   <Link
                                     className="primary-text mx-2 "
                                     to="/myaccount"
@@ -947,7 +944,7 @@ const Header = () => {
                                     <i className="fa fa-angle-down fa-indicator"></i>
                                   </Link>
                                 </li>
-                                <li>
+                                <li className="col">
                                   <Link
                                     className="primary-text mx-2 "
                                     to="/matches"
@@ -956,7 +953,7 @@ const Header = () => {
                                     <i className="fa fa-angle-down fa-indicator"></i>
                                   </Link>
                                 </li>
-                                <li>
+                                <li className="col">
                                   <Link
                                     className="primary-text mx-2"
                                     to="/search"
@@ -965,7 +962,7 @@ const Header = () => {
                                     <i className="fa fa-angle-down fa-indicator"></i>
                                   </Link>
                                 </li>
-                                <li>
+                                <li className="col">
                                   <div
                                     className="menu d-sm-none d-block"
                                     onClick={() => {
@@ -993,10 +990,10 @@ const Header = () => {
                                 to="/pricing"
                                 className="btn btn-outline border"
                               >
-                                👑 Upgrade
+                                <i class="fa fa-diamond" aria-hidden="true"></i> Upgrade
                               </Link>
                             </div>
-                            <div className="col text-center">
+                            <div className="col  d-flex flex-column justify-content-center">
                               {picture?.image_path==null?<>
                                 <img
                                 src={
@@ -1005,8 +1002,8 @@ const Header = () => {
                                 }
                                 className="rounded"
                                 style={{ 
-                                  width:"70px",
-                                  height:"70px",  
+                                  width:"60px",
+                                  height:"60px",  
                                   display: "inline",
                                   margin: "0 auto",
                                   objectFit:"cover",

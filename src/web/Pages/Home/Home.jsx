@@ -12,9 +12,7 @@ import pattern3 from './../../Components/images/pattern/03.png'
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 const Home = () => {
-    const [qualification, setQualification] = React.useState();
-    const [profileData, setProfile] = useState();
-    const store = useContext(StoreContext);
+
     const responsive = {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -34,36 +32,7 @@ const Home = () => {
           items: 1
         }
       };
-      const getProfiles = async (access_token, user_id) => {
-        try {
-          const userId = new FormData();
-          userId.append("user_id", user_id);
-          const headers = {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Bearer ${access_token}`,
-          };
-          const response = await axios({
-            method: "post",
-            url: `${store.url}get-profiles`,
-            data: userId,
-            headers: headers,
-          }).then((response) => {
-            const data = response.data;
-            setQualification(data[0]["qualification"]);
-            setProfile(data[0]["profiles"]);
-            
-          });
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      useEffect(() => {
-        const token = localStorage.getItem("accessToken");
-        const user = localStorage.getItem("user");
-    
-        getProfiles(token, JSON.parse(user).id);
-      }, []);
+      
   return (
     <Observer>
        {()=>(
@@ -314,27 +283,27 @@ const Home = () => {
                 <div className="col-md-12">
                     <Carousel responsive={responsive}>
                     <div className='col'>
-                    <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/team/team-v2.png"} alt="" />
+                    <img className="img-fluid b-sm-radius d-sm-block d-none" style={{ width:'100%' }} src={window.location.origin + "/images/team/team-v2.png"} alt="" />
                     <h5>Rimsha</h5>
                     <b>29, 5.2ft,Lahore</b>
                     </div>
                     <div className='col'>
-                    <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/thumbnail/thum-6.jpg"} alt="" />
+                    <img className="img-fluid b-sm-radius d-sm-block d-none" style={{ width:'100%' }} src={window.location.origin + "/images/thumbnail/thum-6.jpg"} alt="" />
                     <h5>Aliza</h5>
                     <b>19, 5.9ft,Sheikhupura</b>
                     </div>
                     <div className='col'>
-                    <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/thumbnail/thum-5.jpg"} alt="" />
+                    <img className="img-fluid b-sm-radius d-sm-block d-none" style={{ width:'100%' }} src={window.location.origin + "/images/thumbnail/thum-5.jpg"} alt="" />
                     <h5>Samreen</h5>
                     <b>25, 5.6ft,Karachi</b>
                     </div>
                     <div className='col'>
-                    <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/thumbnail/thum-3.jpg"} alt="" />
+                    <img className="img-fluid b-sm-radius d-sm-block d-none" style={{ width:'100%' }} src={window.location.origin + "/images/thumbnail/thum-3.jpg"} alt="" />
                     <h5>Sameena</h5>
                     <b>22, 5.4ft,Lahore</b>
                     </div>
                     <div className='col'>
-                    <img className="img-fluid b-sm-radius d-sm-block d-none" src={window.location.origin + "/images/thumbnail/thum-1.jpg"} alt="" />
+                    <img className="img-fluid b-sm-radius d-sm-block d-none" style={{ width:'100%' }} src={window.location.origin + "/images/thumbnail/thum-1.jpg"} alt="" />
                     <h5>Sana Iqbal</h5>
                     <b>24, 5.7ft,Lahore</b>
                     </div>

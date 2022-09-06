@@ -5,19 +5,27 @@ import AuthHome from './Pages/LoggedIn/Home/Home'
 import Pricing from './Pages/LoggedIn/Package/Pricing'
 import CreateProfile from './Pages/CreateProfile/CreateProfile'
 import PublicProfile from './Pages/LoggedIn/Profile/Profile'
+import SearchedMatches from "./Pages/LoggedIn/Matches/SearchedMatches/SearchedMatches";
+import ProtectedRoutes from "./ProtectedRoutes"
+import PreventRoutes from "./PreventRoutes"
 
 const Router = () => {
+  
   return (
     <BrowserRouter>
-      <Routes >
-          <Route exact path="/" element={<Home/>} />
+      <Routes>
+        {/* <Route element={<PreventRoutes/>}> */}
+          <Route exact path="/"  element={<Home/>} />
+          <Route exect path='/createProfile' element={<CreateProfile/>} />
+        {/* </Route> */}
+        {/* <Route element={<ProtectedRoutes/>}> */}
           <Route exact path="/myaccount" element={<AuthHome/>} />
           <Route exact path="/matches" element={<AuthHome/>} />
           <Route exact path="/search" element={<AuthHome/>} />
-          <Route exect path='/createProfile' element={<CreateProfile/>} />
           <Route exect path='/pricing' element={<Pricing/>} />
           <Route exact path="/public/profile/:userId" element={<PublicProfile/>} />
-          
+          <Route exact path="/searched/profile" element={<SearchedMatches/>} />
+        {/* </Route> */}
       </Routes >
     </BrowserRouter>
           
