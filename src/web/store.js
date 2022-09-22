@@ -29,8 +29,15 @@ export const StoreProvider = (props) => {
     token: false,
     setToken: action((e) => (store.token = e)),
 
+    forgotPassword: false,
+    setForgotPassword: action((e) => (store.token = e)),
+
     auth:false,
     setAuth: action((e) => (store.auth = e)),
+
+    count: 0,
+    setCount: action((e) => (store.token = e)),
+
 
     // url
     // url:"http://127.0.0.1:8000/api/",
@@ -40,7 +47,7 @@ export const StoreProvider = (props) => {
     
     // url
     // mediaUrl:"http://127.0.0.1:8000/",
-    mediaUrl:"http://urgentrishtaadmin.urgentrishta.co/",
+    mediaUrl:"http://urgentrishtaadmin.urgentrishta.co/public/",
     setMediaUrl: action((e) => (store.mediaUrl = e)),
       
   }));

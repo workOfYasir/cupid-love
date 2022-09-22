@@ -16,55 +16,59 @@ const CreateProfile = () => {
     const [isActive3, setIsActive3] = useState(false);
 
     async function handleClick(data){
-      // 👇️ toggle
-     console.log(data);
       if(data==1){
         setIsActive2(current => !current);
         setIsActive(current => !current);
 
       }else if(data==2){
         setIsActive3(current => !current);
-        setIsActive2(current => !current);        
+        setIsActive2(current => !current);
       }
 
-  
-      // 👇️ or set to true
-      // setIsActive(true);
     };
 
     const store = useContext(StoreContext);
     const [formValue, setformValue] = React.useState({
         gender: '',
-        material_status: '',
+        marital_status: '',
         height: '',
         id:'',
         disability: '',
-        blood_group: '',
         cast: '',
-        star:'',
         hobbies: '',
         interest: '',
         edjucation: '',
+        edjucation_type: '',
+        language:'',
         work_with: '',
-        work_as: '',
+        job: '',
         income: '',
         town:'',
         living_since: '',
         description: '',
         phone_number: '',
-        whatsapp_number: ''
+        whatsapp_number: '',
+        no_of_brothers:'',
+        no_of_sister:'',
+        company_name:'',
+        family_type:'',
+        father_status:'',
+        mother_status:'',
+        brother_marital_status:'',
+        family_address:'',
+        living_with_family:'',
       });
 
       const [cast, setCasts] = useState();
 
       const navigate = useNavigate();
-    const url=`${store.url}`;
-    const handleChange = (event) => {
+      const url=`${store.url}`;
+      const handleChange = (event) => {
         setformValue({
           ...formValue,
           [event.target.name]: event.target.value
         });
-        console.log(formValue);
+
       }
 
     const handleSubmit = async(e) => {
@@ -78,23 +82,31 @@ const user_id = JSON.parse(user)['id'];
         // formData.append('data[id]',user.id)
         formData.append('data[gender]',formValue.gender)
         // formData.append('data[gender]','male')
-        formData.append('data[marital_status]',formValue.material_status)
+        formData.append('data[marital_status]',formValue.marital_status)
         formData.append('data[height]',formValue.height)
         formData.append('data[disability]',formValue.disability)
-        formData.append('data[blood_group]',formValue.blood_group)
         formData.append('data[cast_id]',formValue.cast)
         formData.append('data[hobbies]',formValue.hobbies)
         formData.append('data[interest]',formValue.interest)
         formData.append('data[qualification]',formValue.edjucation)
+        formData.append('data[edjuction_sector]',formValue.edjucation_type)
         formData.append('data[working_with]',formValue.work_with)
         formData.append('data[job]',formValue.job)
-        formData.append('data[star]',formValue.star)
         formData.append('data[annual_income]',formValue.income)
+        formData.append('data[family_address]',formValue.family_address)
         formData.append('data[town]',formValue.town)
         formData.append('data[about]',formValue.description)
-        formData.append('data[number]',formValue.number)
+        formData.append('data[number]',formValue.phone_number)
         formData.append('data[whatsapp_number]',formValue.whatsapp_number)
-        console.log(formData);
+        formData.append('data[no_of_brothers]',formValue.no_of_brothers)
+        formData.append('data[company_name]',formValue.company_name)
+        formData.append('data[language]',formValue.language)
+        formData.append('data[no_of_sister]',formValue.no_of_sister)
+        formData.append('data[family_type]',formValue.family_type)
+        formData.append('data[father_status]',formValue.father_status)
+        formData.append('data[mother_status]',formValue.mother_status)
+        formData.append('data[brother_marital_status]',formValue.brother_marital_status)
+        formData.append('data[living_with_family]',formValue.living_with_family)
         try {
        
         const headers = { 
@@ -111,27 +123,37 @@ const user_id = JSON.parse(user)['id'];
             headers: { "Content-Type": "multipart/form-data", 'Authorization': `Bearer ${token}`  },
             
         }).then((response)=>{
-            setformValue({ gender: '',
-            material_status: '',
+            setformValue({
+            gender: '',
+            marital_status: '',
             height: '',
             id:'',
             disability: '',
-            blood_group: '',
             cast: '',
-            star:'',
             hobbies: '',
             interest: '',
             edjucation: '',
+            edjucation_type:'',
+            language: '',
+            company_name:'',
             work_with: '',
-            work_as: '',
+            job: '',
             income: '',
             town:'',
             living_since: '',
             description: '',
             phone_number: '',
-            whatsapp_number: ''})
-                const data = response.data
-                
+            whatsapp_number: '',
+            no_of_brothers:'',
+            no_of_sister:'',
+            family_type:'',
+            father_status:'',
+            mother_status:'',
+            brother_marital_status:'',
+            family_address:'',
+            living_with_family:'',
+            })
+                // const data = response.data
                 // setProfile(data[0])
             })
             navigate('/pricing')
@@ -181,7 +203,7 @@ const user_id = JSON.parse(user)['id'];
                         <p className="text-dark">About you</p>
                         </div>
                         <div className="stepwizard-step stepwizard-step-3"> <a href="#steps-3" className="btn btn-circle step-03" >3 <span><i className="fa fa-check" aria-hidden="true" style={{ disabled: isActive3 ? "":"disabled" }}></i></span></a>
-                        <p className="text-dark">Account</p>
+                        <p className="text-dark">Personal</p>
                         </div>
                         </div>
                         </div>
@@ -203,8 +225,19 @@ const user_id = JSON.parse(user)['id'];
                                         </select>
                                         </div>
                                         <div className="mb-3">
+                                            <label className="form-label">Mother Tongue</label>
+                                            <select className="form-select"  onChange={handleChange} name="Language" aria-label="Default select example" id="">
+                                                <option>Select one</option>
+                                                <option value="Urdu">Urdu</option>
+                                                <option value="English">English</option>
+                                                <option value="Punjabi">Punjabi</option>
+
+                                            </select>
+                                            {/*<input type="text" className="form-control p-2   form-field" value={formValue.language} onChange={handleChange} name='Language' id="exampleInput" placeholder="Enter Language" />*/}
+                                        </div>
+                                        <div className="mb-3">
                                         <label className="form-label">Material Status</label>
-                                        <select className="form-select"  onChange={handleChange} name="material_status" aria-label="Default select example" id="">
+                                        <select className="form-select"  onChange={handleChange} name="marital_status" aria-label="Default select example" id="">
                                             <option>Select one</option>
                                             <option value="Single">Single</option>
                                             <option value="Divorced">Divorced</option>
@@ -260,33 +293,14 @@ const user_id = JSON.parse(user)['id'];
                                         <input type="text" className="form-control p-2   form-field" value={formValue.disability} onChange={handleChange} name='disability' id="exampleInput" placeholder="Enter Disablity if any" />
                                         </div>
                                         </div>
-                                        <div className="row mb-3">
-                                        <label htmlFor="exampleInput">Star</label>
-                                        <div className="form-group">
-                                        <input type="text" className="form-control p-2   form-field" value={formValue.star} onChange={handleChange} name='star' id="exampleInput" placeholder="Enter Star" />
-                                        </div>
-                                        </div>
-                                        <div className="mb-3">
-                                        <label htmlFor="" className="form-label">Blood Group</label>
-                                        <select className="form-select"  onChange={handleChange} name="blood_group" id="">
-                                            <option>Select one</option>
-                                            <option value="A+">A+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B+">B+</option>
-                                            <option value="B-">B-</option>
-                                            <option value="AB+">AB+</option>
-                                            <option value="AB-">AB-</option>
-                                            <option value="O+">O+</option>
-                                            <option value="O-">O-</option>
-                                        </select>
-                                        </div>
+
                                         <div className="mb-3">
                                         <label className="form-label">Cast</label>
                                         <select className="form-select"  onChange={handleChange} name="cast" aria-label="Default select example" id="">
                                             <option>Select one</option>
-                                        {cast?.map((data) => (
-                                    <option value={data.id}>{data.name}</option>
-                                   ))}
+                                                {cast?.map((data) => (
+                                            <option value={data.id}>{data.name}</option>
+                                           ))}
                                         </select>
                                         </div>
                                       
@@ -318,15 +332,23 @@ const user_id = JSON.parse(user)['id'];
                             <div className="row  justify-content-center">
                             <div className="col-md-12 text-start text-capitalize text-dark">
                             <div className="form-group mb-0">
+
                             <div className="mb-3">
-                                <label className="form-label">Qualification</label>
-                                <select className="form-select" aria-label="Default select example"  onChange={handleChange} name="edjucation" id="">
+                                <label className="form-label">Eduction</label>
+
+                                <input name="edjucation" type="text" onChange={handleChange} className="form-control p-2 form-field" />
+
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label">Eduction Sector</label>
+
+                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="edjucation_type" id="">
                                     <option>Select one</option>
-                                    <option value="PHd">PHd</option>
-                                    <option value="MS/M-Phil">MS/M-Phil</option>
-                                    <option value="BS Honrs">BS Honrs</option>
-                                    <option value="BSC">BSC</option>
-                                
+                                    <option value="Medical">Medical</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="IT">IT</option>
+
                                 </select>
                             </div>
                             <div className="mb-3">
@@ -341,14 +363,17 @@ const user_id = JSON.parse(user)['id'];
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">As</label>
-                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="work_as" id="">
+                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="job" id="">
                                     <option>Select one</option>
                                     <option value="Banking">Banking</option>
                                     <option value="Software Developer">Software Developer</option>
                                     <option value="Engineer">Engineer</option>
-                                 
                                 
                                 </select>
+                            </div>
+                            <div className="mb-3">
+                                <label className="form-label">In</label>
+                                <input type="text" className="form-control form-field p-2  " value={formValue.company_name} onChange={handleChange} name='company_name' id="exampleInput" placeholder="Enter Company Name" />
                             </div>
                             <div className="mb-3">
                                 <label className="form-label">Monthly Income</label>
@@ -405,17 +430,7 @@ const user_id = JSON.parse(user)['id'];
                             <div className="col-md-12">
                             <div className="row  justify-content-center">
                             <div className="col-md-12 text-start text-capitalize text-white">
-                           
-                            {/* <div className="row">
-                            <label htmlFor="exampleInput">Email ID</label>
-                            <div className="form-group mb-3">
 
-                            <input type="text" className="form-control form-field p-2  " id="exampleInput" placeholder="Enter Email ID" />
-                            </div>
-
-                           
-
-                            </div> */}
 
                             <div className="row">
                             <label htmlFor="exampleInput">Number</label>
@@ -428,17 +443,107 @@ const user_id = JSON.parse(user)['id'];
 
                             </div>
                             <div className="row">
-                            <label htmlFor="exampleInput">Number</label>
+                            <label htmlFor="exampleInput">WhatsApp</label>
                             <div className="form-group mb-3">
 
                             <input type="text" className="form-control form-field p-2  " value={formValue.whatsapp_number} onChange={handleChange} name="whatsapp_number" id="exampleInput" placeholder="Enter WhatsApp Number" />
                             </div>
 
-                           
-
                             </div>
 
-                            <div className="form-group mb-3">
+                            <div className="mb-3">
+                                <label className="form-label">No Of Brothers</label>
+                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="no_of_brothers" id="">
+                                    <option>Select one</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label">No Of Sisters</label>
+                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="no_of_sister" id="">
+                                    <option>Select one</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label">Family Type</label>
+                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="family_type" id="">
+                                    <option>Select one</option>
+                                    <option value="Joint">Joint</option>
+                                    <option value="Seperate">Seperate</option>
+                                </select>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label">Father Status</label>
+                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="father_status" id="">
+                                    <option>Select one</option>
+                                    <option value="Job Holder">Job Holder</option>
+                                    <option value="Business Man">Business Man</option>
+                                    <option value="Retired">Retired</option>
+                                    <option value="Expired">Expired</option>
+                                </select>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label">Mother Status</label>
+                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="mother_status" id="">
+                                    <option>Select one</option>
+                                    <option value="Job Holder">Job Holder</option>
+                                    <option value="Business Woman">Business Woman</option>
+                                    <option value="Retired">Retired</option>
+                                    <option value="Expired">Expired</option>
+                                </select>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label">Brother Martial Status</label>
+                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="brother_marital_status" id="">
+                                    <option>Select one</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Divorced">Divorced</option>
+                                    <option value="Single">Single</option>
+                                </select>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label">Family Address</label>
+                                <div className="form-group mb-3">
+                                    <input type="text" className="form-control form-field p-2  " value={formValue.family_address} onChange={handleChange} name="family_address" id="exampleInput" placeholder="Enter Family Address" />
+                                </div>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label">Living With Family</label>
+                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="living_with_family" id="">
+                                    <option>Select one</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+
+
+                                <div className="form-group mb-3">
                             <div className="profile-info">
                             <p className="mb-0 text-dark"><i className="fa fa-info-circle" aria-hidden="true"></i> by clicking submit you are agreeing to our terms and conditions of use.</p>
                             </div>

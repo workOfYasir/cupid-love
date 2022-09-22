@@ -6,26 +6,24 @@ import { Link, useLocation } from "react-router-dom";
 import { Observer } from "mobx-react-lite";
 import axios from "axios";
 import { StoreContext } from "./../store";
-import { isVisible } from "@testing-library/user-event/dist/utils";
-import $ from "jquery";
+
 
 const Header = () => {
   const [picture, setPicture] = useState();
   const resolveAfter3Sec = new Promise((resolve) => setTimeout(resolve, 3000));
   const store = useContext(StoreContext);
   const [isActive, setActive] = useState(false);
-  const [country, setCountries] = useState();
+  const [countries, setCountries] = useState();
   const [state, setStates] = useState();
   const [city, setCities] = useState();
-  const [cast, setCasts] = useState();
+  const [casts, setCasts] = useState();
 
   const location = useLocation();
   const navigate = useNavigate();
-  const [religion, setReligions] = useState();
-  const [sector, setSectors] = useState();
+  const [religions, setReligions] = useState();
+  const [sectors, setSectors] = useState();
 
   const [formValue, setformValue] = React.useState({
-    email: "",
     password: "",
     first_name: "",
     last_name: "",
@@ -87,21 +85,30 @@ const Header = () => {
       cities(event.target.value);
     }
   };
-  const religions = async () => {
+
+  const data = async (access_token) => {
     try {
-      axios.get(`${store.url}get-religions`, {}).then((response) => {
-        const data = response.data.religions;
-        setReligions(data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const countries = async () => {
-    try {
-      axios.get(`${store.url}get-countrys`, {}).then((response) => {
-        const data = response.data[0].countrys;
-        setCountries(data);
+
+      axios({
+        method: "get",
+        url: `${store.url}get-data`,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          'Authorization': `Bearer ${access_token}`
+        },
+      }).then((response) => {
+        const data = response.data;
+        setCountries(data.country)
+        setCasts(data.cast)
+        setReligions(data.religion)
+        setSectors(data.sector)
+        localStorage.setItem('casts',JSON.stringify(data.cast))
+        localStorage.setItem('countries',JSON.stringify(data.country))
+        localStorage.setItem('cities',JSON.stringify(data.city))
+        localStorage.setItem('states',JSON.stringify(data.state))
+        localStorage.setItem('sectors',JSON.stringify(data.sector))
+        localStorage.setItem('religions',JSON.stringify(data.religion))
+
       });
     } catch (error) {
       console.log(error);
@@ -142,16 +149,6 @@ const Header = () => {
       console.log(error);
     }
   };
-  const sectors = async () => {
-    try {
-      axios.get(`${store.url}get-sectors`, {}).then((response) => {
-        const data = response.data.sectors;
-        setSectors(data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const getPicture = async (access_token) => {
     try {
 
@@ -166,7 +163,6 @@ const Header = () => {
         headers: headers,
       }).then((response) => {
         const data = response.data;
-    console.log('p',data);
         setPicture(data);
         
       });
@@ -184,9 +180,6 @@ const Header = () => {
     registerFormData.append("userData[last_name]", formValue.last_name);
     registerFormData.append("userData[password]", formValue.password);
     registerFormData.append("userProfile[On_behalf]", formValue.On_behalf);
-    // profileFormData.append('state',formValue.)
-    // profileFormData.append('country',formValue.)
-    // profileFormData.append('city',formValue.city)
     registerFormData.append(
       "userProfile[date_of_Birth]",
       formValue.date_of_Birth_year +
@@ -211,7 +204,6 @@ const Header = () => {
       localStorage.setItem("accessToken", loginResponse.data.token);
       localStorage.setItem("user", JSON.stringify(loginResponse.data.user));
       setformValue({
-        email: "",
         password: "",
         first_name: "",
         last_name: "",
@@ -239,9 +231,7 @@ const Header = () => {
     console.log(formValue);
     const token = localStorage.getItem("accessToken");
 
-    countries();
-    sectors();
-    religions();
+    data()
     getPicture(token)
   }, []);
   return (
@@ -249,7 +239,7 @@ const Header = () => {
       {() => (
         <>
           <header id="header" className="dark">
-            {/* <ToastContainer /> */}
+
             <div
               className="modal fade"
               id="exampleModal"
@@ -264,6 +254,12 @@ const Header = () => {
                       className="modal-title title divider-3 text-dark"
                       id="exampleModalLabel"
                     >
+                      <div className="col-12">
+                      <img
+                          className="w-25 mb-2 offset-sm-0 offset-4 m-0"
+                          src={window.location.origin + "/images/logo.png"}
+                          alt="logo"
+                      /></div>
                       Sign In
                     </h4>
 
@@ -278,7 +274,7 @@ const Header = () => {
                                 id="name"
                                 className="web form-control"
                                 type="text"
-                                placeholder="User name"
+                                placeholder="Email"
                                 name="email"
                                 value={formValue.email}
                                 onChange={handleChange}
@@ -303,11 +299,12 @@ const Header = () => {
                             </div>
                           </div>
                         </div>
+
                         <div className="section-field text-uppercase">
-                          {" "}
-                          <a href="#" className="float-end text-white">
+
+                          <span style={{cursor:'pointer'}} className="float-end text-dark">
                             Forgot Password?
-                          </a>{" "}
+                          </span>
                         </div>
                         <div className="clearfix"></div>
 
@@ -357,7 +354,12 @@ const Header = () => {
                   <h4
                     className="modal-title title divider-2 text-dark"
                     id="exampleModalLabel"
-                  >
+                  > <div className="col-12">
+                    <img
+                        className="w-25 mb-2 offset-sm-0 offset-4 m-0"
+                        src={window.location.origin + "/images/logo.png"}
+                        alt="logo"
+                    /></div>
                     Sign Up
                   </h4>
 
@@ -446,7 +448,7 @@ const Header = () => {
                                     id=""
                                   >
                                     <option>Select one</option>
-                                    {religion?.map((data) => (
+                                    {religions?.map((data) => (
                                       <option value={data.id}>
                                         {data.name}
                                       </option>
@@ -455,7 +457,7 @@ const Header = () => {
                                 </div>
                                 <div className="mb-3">
                                   <label htmlFor="" className="form-label">
-                                    Community
+                                    Sectors
                                   </label>
                                   <select
                                     className="form-select"
@@ -464,7 +466,7 @@ const Header = () => {
                                     name="sector_id"
                                     id=""
                                   >
-                                    {sector?.map((data) => (
+                                    {sectors?.map((data) => (
                                       <option value={data.id}>
                                         {data.name}
                                       </option>
@@ -516,41 +518,7 @@ const Header = () => {
                             </div>
                           </div>
                         </div>
-                        {/* <div className="row ref-2" id="step-2">
-                            <div className="col-md-12">
-                            <div className="row  justify-content-center">
-                            <div className="col-md-12 text-start text-capitalize text-dark">
-                            <div className="form-group mb-0">
-                            <label className="title divider-3 text-dark mb-3">gender</label>
-                            <div className="col-12">
-                            <div className="form-check form-check-inline">
-                            <label className="form-check-label px-3">
-                            <input className="form-check-input" type="radio" name="gender" id="" value="checkedValue" /> Male
-                            </label>
 
-                            <label className="form-check-label px-3">
-                            <input className="form-check-input" type="radio" name="gender" id="" value="checkedValue" /> Female
-                            </label>
-
-                            </div>
-                            </div>
-                            <div className="form-group mb-3">
-                            <label className="title divider-3 text-dark mb-3">about me</label>
-                            <textarea className="form-control bg-white form-field" rows="3"></textarea>
-                            </div>
-
-                            <div className="form-group mb-3">
-                            <div className="profile-info">
-                            <p className="mb-0 text-dark"><i className="fa fa-info-circle" aria-hidden="true"></i> by clicking submit you are agreeing to our terms and conditions of use.</p>
-                            </div>
-                            </div>
-
-                            </div>
-                            </div>
-                            <div className=" col-12 mb-0 "> <a className="button col-4 btn btn-theme rounded-sm animated right-icn" data-bs-dismiss="modal"><span>Close<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>  <a className=" col-4 button btn-theme rounded-sm btn nextBtn btn   animated right-icn"><span>Next<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a></div>
-                            </div>
-                            </div>
-                            </div> */}
                         <div
                           className={
                             isActive == false
@@ -748,7 +716,7 @@ const Header = () => {
                                       <option select hidden>
                                         Select Country
                                       </option>
-                                      {country?.map((data) => (
+                                      {countries?.map((data) => (
                                         <option value={data.id}>
                                           {data.name}
                                         </option>
@@ -905,6 +873,7 @@ const Header = () => {
                             {location.pathname == "/" ||
                             location.pathname == "" ? (
                               <>
+
                                 <li>
                                   <a
                                     href="#"
@@ -927,14 +896,14 @@ const Header = () => {
                               </>
                             ) : (
                               <>
-                                <li className="active col">
-                                  <Link className="primary-text mx-2" to="/">
-                                    {" "}
-                                    Home{" "}
-                                    <i className="fa fa-angle-down fa-indicator"></i>
-                                  </Link>
+                                <li className="active col-1">
+                                  <img
+                                      className=" img-fluid offset-sm-0 offset-4 m-0"
+                                      src={window.location.origin + "/images/logo.png"}
+                                      alt="logo"
+                                  />
                                 </li>
-                                <li className="col">
+                                <li className="col text-center d-flex flex-column justify-content-center h5">
                                   <Link
                                     className="primary-text mx-2 "
                                     to="/myaccount"
@@ -944,7 +913,7 @@ const Header = () => {
                                     <i className="fa fa-angle-down fa-indicator"></i>
                                   </Link>
                                 </li>
-                                <li className="col">
+                                <li className="col text-center d-flex flex-column justify-content-center h5">
                                   <Link
                                     className="primary-text mx-2 "
                                     to="/matches"
@@ -953,7 +922,7 @@ const Header = () => {
                                     <i className="fa fa-angle-down fa-indicator"></i>
                                   </Link>
                                 </li>
-                                <li className="col">
+                                <li className="col text-center d-flex flex-column justify-content-center h5">
                                   <Link
                                     className="primary-text mx-2"
                                     to="/search"
@@ -962,7 +931,7 @@ const Header = () => {
                                     <i className="fa fa-angle-down fa-indicator"></i>
                                   </Link>
                                 </li>
-                                <li className="col">
+                                <li className="col text-center d-flex flex-column justify-content-center h5">
                                   <div
                                     className="menu d-sm-none d-block"
                                     onClick={() => {
@@ -1008,8 +977,8 @@ const Header = () => {
                                   margin: "0 auto",
                                   objectFit:"cover",
                                   borderRadius:"50%",
-                                  width: "auto",
-                                  objectFit:'cover', }}
+
+                                 }}
                               /></>:<>
                                <img
                                 src={
@@ -1020,7 +989,6 @@ const Header = () => {
                                   height:"70px",  
                                   display: "inline",
                                   margin: "0 auto",
-                                  objectFit:"cover",
                                   borderRadius:"50%",
                                   objectFit:'cover', }}
                               /></>}

@@ -10,10 +10,10 @@ const PartnerPreference = () => {
   const [maxValueHeight, set_maxHeight] = useState(6.1);
   const [minValueAge, set_minValueAge] = useState(25);
   const [maxValueAge, set_maxValueAge] = useState(75);
-  const [country, setCountries] = useState();
+  const [countries, setCountries] = useState();
   const [state, setStates] = useState();
   const [city, setCities] = useState();
-  const [cast, setCasts] = useState();
+  const [casts, setCasts] = useState();
 
   const handleInputHeight = (e) => {
     set_minHeight(e.minHeight);
@@ -48,21 +48,10 @@ const PartnerPreference = () => {
     }else if(event.target.name=='state'){
       cities(event.target.value)
     }
-    // console.log(formValue);
+
   }
-  const countries = async()=>{
-    try {
-  
-        axios.get(`${store.url}get-countrys`,{
-        
-     }).then((response)=>{
-            const data = response.data[0].countrys
-            setCountries(data)
-        })
-      } catch(error) {
-        console.log(error)
-      }
-  }
+
+
   const states = async(country_id)=>{
     try {
       console.log('in function',country_id);
@@ -101,22 +90,7 @@ const PartnerPreference = () => {
         console.log(error)
       }
   }
-  const casts = async()=>{
-    try {
-      const token = localStorage.getItem('accessToken')
-          axios({
-            method: "get",
-            url: `${store.url}get-casts`,
-            headers: { "Content-Type": "multipart/form-data",    'Authorization': `Bearer ${token}`  },
-          
-     }).then((response)=>{
-            const data = response.data[0].casts
-            setCasts(data)
-        })
-      } catch(error) {
-        console.log(error)
-      }
-  }
+
   const handleSubmit = async(e) => {
     e.preventDefault()
     console.log('ok');
@@ -143,7 +117,7 @@ const user_id = JSON.parse(user)['id'];
       'Accept': 'application/json',
       'Authorization': `Bearer ${token}` 
   };
-  console.log(formData);
+
       const response =   await axios({
 
         method: "post",
@@ -151,20 +125,10 @@ const user_id = JSON.parse(user)['id'];
         data: formData,
         headers: headers,
         
-    }).then((response)=>{
-      //   setformValue({ 
-      //   material_status: '',
-      //   cast: '',
-      //   education: '',
-      //   country:'',
-      //   city:''
-      // })
-console.log('done');
-        const data = response.data
-        })
+    })
 
       } catch(error) {
-        console.log('nononononmnponpno');
+
         console.log(error)
       }
   }
@@ -208,15 +172,13 @@ console.log('done');
         console.log(error)
       }
   }
+useEffect(()=>{
+    const countries = JSON.parse(localStorage.getItem("countries"));
+    const casts = JSON.parse(localStorage.getItem("casts"));
+    setCountries(countries)
+    setCasts(casts)
+},[])
 
-  
-  useEffect(()=>{
-   const token = localStorage.getItem('accessToken')
-   const user = localStorage.getItem('user')
-   countries();
-   casts();
-  //  getPartner(token,JSON.parse(user).id)
-  },[])
 
   return (
     <Observer>
@@ -284,7 +246,7 @@ console.log('done');
 
                       <select className="form-control p-2" name="maritalStatus" value={formValue.material_status} onChange={handleChange} id="">
                         <option>Single</option>
-                        <option>Divorsed</option>
+                        <option>Divorced</option>
                         
                       </select>
                     </div>
@@ -319,7 +281,7 @@ console.log('done');
 
                       <select className="form-control p-2" name="country" value={formValue.country} onChange={handleChange} id="">
                     <option>select country</option>
-                      {country?.map((data) => (
+                      {countries?.map((data) => (
                                     <option value={data.id}>{data.name}</option>
                                    ))}
                       </select>
@@ -329,7 +291,7 @@ console.log('done');
                   </div>
                   <div className="form-group d-flex">
                     <div className="col-2 align-self-center">
-                    <label for="" className=''>Country</label>
+                    <label for="" className=''>State</label>
                     </div>
 
                     <div className="col-8 offset-sm-0 offset-1">
@@ -372,7 +334,7 @@ console.log('done');
                     <div className="mb-3">
 
                       <select className="form-control p-2" name="cast" value={formValue.cast} onChange={handleChange} id="">
-                      {cast?.map((data) => (
+                      {casts?.map((data) => (
                                     <option value={data.id}>{data.name}</option>
                                    ))}
                       </select>
@@ -380,6 +342,43 @@ console.log('done');
                     </div>
                     
                   </div>
+                    <div className="form-group d-flex">
+                        <div className="col-2 align-self-center">
+                            <label htmlFor="" className=''>Education Type</label>
+                        </div>
+
+                        <div className="col-8 offset-sm-0 offset-1">
+                            <div className="mb-3">
+
+                                <select className="form-control p-2" name="education_type"
+                                         id="">
+                                    <option>Select one</option>
+                                    <option value="Medical">Medical</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="IT">IT</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="form-group d-flex">
+                        <div className="col-2 align-self-center">
+                            <label htmlFor="" className=''>Mother Tongue</label>
+                        </div>
+
+                        <div className="col-8 offset-sm-0 offset-1">
+                            <div className="mb-3">
+
+                                <select className="form-control p-2" name="mother_tongue" id="">
+                                    <option>Select one</option>
+                                    <option>English</option>
+                                    <option>Urdu</option>
+                                    <option>Punjabi</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
                   <div className="col-12 text-center">
                   <button type='submit' className="button col-4 btn btn-theme rounded-sm animated right-icn" data-bs-dismiss="modal"><span>Save<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button> 
                   </div>

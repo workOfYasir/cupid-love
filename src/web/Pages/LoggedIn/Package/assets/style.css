@@ -31,7 +31,7 @@
   animation: animate 4s linear infinite;
 }
 
-@keyframes 
+@keyframes
 
 
 {
@@ -69,3 +69,88 @@
 color:black !important;
 background-color:white !important;
 }
+.pricing-card :hover {
+    transform: scale(1.04);
+    cursor: pointer;
+    /*box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);*/
+}
+.pricing-card:hover .name {
+    color: #0a53be;
+}
+custom-btn {
+    padding: 5px 30px !important;
+}
+.child-0:hover .custom-btn-0 {
+    color: #FFFFFF;
+    background-color: #0DD2F5;
+    border-radius: 50px;
+    box-shadow: 0 4px 2px -2px #0DD2F5;
+}
+.child-1:hover .custom-btn-1 {
+    color: #FFFFFF;
+    background-color: #0DD2F5;
+    border-radius: 50px;
+    box-shadow: 0 4px 2px -2px #0DD2F5;
+}
+.child-2:hover .custom-btn-2 {
+    color: #FFFFFF;
+    background-color: #0DD2F5;
+    border-radius: 50px;
+    box-shadow: 0 4px 2px -2px #0DD2F5;
+}
+.child-3:hover .custom-btn-3 {
+    color: #FFFFFF;
+    background-color: #0DD2F5;
+    border-radius: 50px;
+    box-shadow: 0 4px 2px -2px #0DD2F5;
+}
+.child-4:hover .custom-btn-4 {
+    color: #FFFFFF;
+    background-color: #0DD2F5;
+    border-radius: 50px;
+    box-shadow: 0 4px 2px -2px #0DD2F5;
+ }
+.child-5:hover .custom-btn-5 {
+    color: #FFFFFF;
+    background-color: #0DD2F5;
+    border-radius: 50px;
+    box-shadow: 0 4px 2px -2px #0DD2F5;
+}
+.child-6:hover .custom-btn-6 {
+    color: #FFFFFF;
+    background-color: #0DD2F5;
+    border-radius: 50px;
+    box-shadow: 0 4px 2px -2px #0DD2F5;
+}
+.child-7:hover .custom-btn-7 {
+    color: #FFFFFF;
+    background-color: #0DD2F5;
+    border-radius: 50px;
+    box-shadow: 0 4px 2px -2px #0DD2F5;
+}
+.child-0:hover .name-0 {
+    color: #0DD2F5;
+}
+.child-1:hover .name-1 {
+    color: #0DD2F5;
+}
+.child-2:hover .name-2 {
+    color: #0DD2F5;
+}
+.child-3:hover .name-3 {
+    color: #0DD2F5;
+}
+.child-4:hover .name-4 {
+    color: #0DD2F5;
+}
+.child-5:hover .name-5 {
+    color: #0DD2F5;
+}
+.child-6:hover .name-6 {
+    color: #0DD2F5;
+}
+.child-7:hover .name-7 {
+    color: #0DD2F5;
+}
+
+

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./assets/style.css";
 import axios from "axios";
@@ -105,7 +105,7 @@ const Profile = () => {
   const handleContact = () => {
     contactInfo();
   };
-  useLayoutEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("accessToken");
     getProfiles(token, param.userId)
     getProfile(token, param.userId);
@@ -209,9 +209,9 @@ const Profile = () => {
                       <hr className="col-12 m-2 d-block" />
                       <div className="col-12 d-block ">
                         <div className="col-6 d-flex pt-4">
-                          <div className="col-6  ">Age/Height</div>
+                          <div className="col-6  ">Height</div>
                           <div className="col-6" style={{ fontWeight: "bold" }}>
-                            {profileData?.height}
+                            {profileData?.age}/{profileData?.height}
                           </div>
                           <div className="col-6 ">Cast</div>
                           <div className="col-6" style={{ fontWeight: "bold" }}>
@@ -280,24 +280,21 @@ const Profile = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-3 overlay d-sm-block d-none">
+                <div className="col-sm-5 col-md-4 col-lg-3 col-xl-2  overlay d-sm-block d-none">
                   {profileData?.user.picture[0] == null ? (
-                    <img
-                      src="/images/profile/02.jpg"
-                      className="img-fluid rounded"
-                      alt=""
-                    />
+
+                      <img className="img-fluid rounded" src={window.location.origin + "/images/profile/default.png"} alt="" />
                   ) : (
                     <Carousel showThumbs={false}>
                       {profileData?.user.picture.map((image) => (
-                        <div>
+                        <div style={{width:'100%'}}>
                           <img
                             style={
                               profileData?.pictures_settings == "visible" ||
                               (data.pictures_settings == "premimum" &&
                                 data.user_subscription != null)
-                                ? { filter: "blur(0px)", width: "100%" }
-                                : { filter: "blur(8px)", width: "100%" }
+                                ? { filter: "blur(0px)", width: "inherit" }
+                                : { filter: "blur(8px)", width: "inherit" }
                             }
                             src={store.mediaUrl + image?.image_path}
                             className="img-fluid rounded"
@@ -319,11 +316,7 @@ const Profile = () => {
                     <br />
                   </div>
                   <div className="col-4 offset-sm-0 offset-4 pt-sm-0 pt-5 ">
-                    {/* {profileData?.user.picture!=null ?
-          <>  <img className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5" src={store.mediaUrl+profileData?.user.picture.image_path} alt="" />
-          <img className="img-fluid b-sm-radius d-sm-block d-none" src= {store.mediaUrl+profileData?.user.picture.image_path} alt="" /></>
-:
-<> */}
+
                     <img
                       className="w-75 b-sm-radius d-sm-none d-block m-auto  pt-sm-0 pt-5"
                       src={

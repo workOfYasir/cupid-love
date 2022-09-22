@@ -12,12 +12,12 @@ const Profile = () => {
   const [birthDay,setBirthDay]=useState();
   const [birthMonth,setBirthMonth]=useState();
   const [birthYear,setBirthYear]=useState();
-  const [country, setCountries] = useState();
+  const [countries, setCountries] = useState();
   const [state, setStates] = useState();
   const [city, setCities] = useState();
-  const [cast, setCasts] = useState();
-  const [religion, setReligions] = useState();
-  const [sector, setSectors] = useState();
+  const [casts, setCasts] = useState();
+  const [religions, setReligions] = useState();
+  const [sectors, setSectors] = useState();
 
   const fieldDisablity = () => {
     setEditFields(!editFields);
@@ -25,24 +25,21 @@ const Profile = () => {
   const [profileData, setProfile] = useState();
   const [formValue, setformValue] = React.useState({
     id: profileData?.id,
-    gender: "",
+    // gender: "",
     marital_status: "",
     first_name: "",
     last_name: "",
     email:"",
     dob: "",
     height: "",
-    id: "",
     disability: "",
-    blood_group: "",
     cast: "",
-    star: "",
     hobbies: "",
     interest: "",
-    edjucation: "",
+    qualification: "",
     company_name: "",
     work_with: "",
-    work_as: "",
+    job: "",
     income: "",
     country: "",
     state: "",
@@ -57,6 +54,15 @@ const Profile = () => {
     description: "",
     phone_number: "",
     whatsapp_number: "",
+    no_of_brothers:'',
+    no_of_sister:'',
+    family_type:'',
+    father_status:'',
+    mother_status:'',
+    brother_marital_status:'',
+    family_address:'',
+    living_with_family:'',
+    language:'',
   });
   const url = `${store.url}`;
   const handleChange = (event) => {
@@ -84,31 +90,33 @@ const Profile = () => {
     formData.append("user[first_name]", formValue.first_name);
     formData.append("user[last_name]", formValue.last_name);
     formData.append("user[email]", formValue.email);
-    formData.append("data[gender]", formValue.gender);
+    // formData.append("data[gender]", formValue.gender);
     formData.append("data[marital_status]", formValue.marital_status);
     formData.append("data[height]", formValue.height);
     formData.append("data[disability]", formValue.disability);
     formData.append("data[blood_group]", formValue.blood_group);
-    formData.append(
-      "data[date_of_Birth]",
-      formValue.date_of_Birth_year +
-        "-" +
-        formValue.date_of_Birth_month +
-        "-" +
-        formValue.date_of_Birth_day
-    );
+    formData.append("data[date_of_Birth]", formValue.date_of_Birth_year + "-" + formValue.date_of_Birth_month + "-" + formValue.date_of_Birth_day);
     formData.append("data[cast_id]", formValue.cast);
     formData.append("data[hobbies]", formValue.hobbies);
     formData.append("data[interest]", formValue.interest);
-    formData.append("data[qualification]", formValue.edjucation);
+    formData.append("data[qualification]", formValue.qualification);
     formData.append("data[working_with]", formValue.work_with);
     formData.append("data[job]", formValue.job);
-    formData.append("data[star]", formValue.star);
     formData.append("data[annual_income]", formValue.income);
     formData.append("data[town]", formValue.town);
     formData.append("data[about]", formValue.description);
-    formData.append("data[number]", formValue.number);
+    formData.append("data[number]", formValue.phone_number);
     formData.append("data[whatsapp_number]", formValue.whatsapp_number);
+    formData.append('data[no_of_brothers]',formValue.no_of_brothers)
+    formData.append('data[no_of_sister]',formValue.no_of_sister)
+    formData.append('data[family_type]',formValue.family_type)
+    formData.append('data[father_status]',formValue.father_status)
+    formData.append('data[mother_status]',formValue.mother_status)
+    formData.append('data[brother_marital_status]',formValue.brother_marital_status)
+    formData.append('data[living_with_family]',formValue.living_with_family)
+    formData.append('data[company_name]',formValue.company_name)
+    formData.append('data[language]',formValue.language)
+
     console.log("formData=============================>", formData);
     try {
      
@@ -159,7 +167,7 @@ const Profile = () => {
         cities(data["data"]["user"][0]['state_id']);
         setformValue({
               id: data["data"]['user'][0].id,
-              gender: data["data"]['user'][0].gender,
+              // gender: data["data"]['user'][0].gender,
               marital_status: data["data"]['user'][0].marital_status,
               first_name: data["data"]['user'][0].user.first_name,
               last_name: data["data"]['user'][0].user.last_name,
@@ -169,16 +177,15 @@ const Profile = () => {
               disability: data["data"]['user'][0].disability,
               blood_group: data["data"]['user'][0].blood_group,
               cast: data["data"]['user'][0]?.cast_id,
-              star: data["data"]['user'][0].star,
               hobbies: data["data"]['user'][0].hobbies,
               interest: data["data"]['user'][0].interest,
-              edjucation: data["data"]['user'][0].qualification,
+              qualification: data["data"]['user'][0].qualification,
               company_name: data["data"]['user'][0].company_name,
               work_with: data["data"]['user'][0].working_with,
               date_of_Birth_day: dob[2],
               date_of_Birth_month: dob[1],
               date_of_Birth_year: dob[0],
-              work_as: data["data"]['user'][0].job,
+              job: data["data"]['user'][0].job,
               income: data["data"]['user'][0].annual_income,
               country: data["data"]['user'][0].country_id,
               state: data["data"]['user'][0].state_id,
@@ -186,11 +193,21 @@ const Profile = () => {
               town: data["data"]['user'][0].town,
               religion: data["data"]['user'][0].religion_id,
               sector: data["data"]['user'][0].sector_id,
+              language: data["data"]['user'][0].language,
               living_since: data["data"]['user'][0].living_since,
               description: data["data"]['user'][0].about,
               phone_number: data["data"]['user'][0].number,
               whatsapp_number: data["data"]['user'][0].whatsapp_number,
-                  })
+              no_of_brothers: data["data"]['user'][0].no_of_brothers,
+              no_of_sister: data["data"]['user'][0].no_of_sister,
+              family_type: data["data"]['user'][0].family_type,
+              father_status: data["data"]['user'][0].father_status,
+              mother_status: data["data"]['user'][0].mother_status,
+              brother_marital_status: data["data"]['user'][0].brother_marital_status,
+              family_address: data["data"]['user'][0].family_address,
+              living_with_family: data["data"]['user'][0].living_with_family,
+              edjuction_sector:data["data"]['user'][0].edjuction_sector,
+              })
                   // toast.success("Profile Data Updated Successfully");
       });
     } catch (error) {
@@ -198,41 +215,8 @@ const Profile = () => {
     }
   };
 
-  const casts = async(access_token)=>{
-    try {
-       console.log('access_token',access_token);
-     axios.get(`${url}get-casts`,{
-        headers: {
-            'Authorization': `Bearer ${access_token}`
-          }
-     }).then((response)=>{
-            const data = response.data
-            setCasts(data[0].casts)
-        })
-      } catch(error) {
-        console.log(error)
-      }
-  }
-  const religions = async () => {
-    try {
-      axios.get(`${store.url}get-religions`, {}).then((response) => {
-        const data = response.data.religions;
-        setReligions(data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const countries = async () => {
-    try {
-      axios.get(`${store.url}get-countrys`, {}).then((response) => {
-        const data = response.data[0].countrys;
-        setCountries(data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+
 
   const states = async (country_id) => {
     try {
@@ -271,23 +255,20 @@ const Profile = () => {
     }
   };
 
-  const sectors = async () => {
-    try {
-      axios.get(`${store.url}get-sectors`, {}).then((response) => {
-        const data = response.data.sectors;
-        setSectors(data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     const user = localStorage.getItem("user");
-    countries();
-    sectors();
-    religions();
-    casts(token);
+
+    const countries = JSON.parse(localStorage.getItem("countries"));
+    const sectors = JSON.parse(localStorage.getItem("sectors"));
+    const religions = JSON.parse(localStorage.getItem("religions"));
+    const casts = JSON.parse(localStorage.getItem("casts"));
+
+    setReligions(religions)
+    setCountries(countries)
+    setCasts(casts)
+    setSectors(sectors)
     getProfile(token, JSON.parse(user).id);
   }, []);
   return (
@@ -304,11 +285,8 @@ const Profile = () => {
               <div className="col-sm-4 col-12">
                 <div className="card bg-dark text-white">
                   {profileData?.user.picture[0] == null ? (
-                    <img
-                      src="images/team/team-v1.png"
-                      className="card-img-top"
-                      alt="..."
-                    />
+
+                      <img className="card-img-top" src={window.location.origin + "/images/profile/default.png"} alt="" />
                   ) : (
                     <Carousel showThumbs={false}>
                       {profileData?.user.picture.map((image) => (
@@ -339,7 +317,7 @@ const Profile = () => {
               <div className="col-sm-8 col-12 text-center p-4 rounded shadow rounded-sm bg-white">
                 <div className="col-12">
                   <div className="col-6 d-flex pt-4">
-                    <div className="col-6  ">Age/Height</div>
+                    <div className="col-6  ">Height</div>
                     <div className="col-6" style={{ fontWeight: "bold" }}>
                       {profileData?.height}
                     </div>
@@ -380,13 +358,10 @@ const Profile = () => {
                 <div className="row">
                   <div className="col-md-12">
                     <form onSubmit={handleSubmit}>
-                      <span
-                        className="btn btn-sm "
-                        style={{ curser: "pointer", color: "red" }}
-                        onClick={fieldDisablity}
-                      >
-                        Edit
-                      </span>
+
+                      <button type="button"  onClick={fieldDisablity} className="btn btn-md btn-primary">
+                        Edit Settings
+                      </button>
                       <div className="user-dashboard-info-box bg-white">
                         <div className="section-title-02 mb-2 mt-4 d-grid">
                           <h4>Basic Information</h4>
@@ -398,6 +373,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -419,6 +395,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -437,9 +414,32 @@ const Profile = () => {
                           </div>
                           <div className="d-flex mb-3 col-md-6">
                             <label
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  color:'#D6358',
+                                  justifyContent: "center",
+                                }}
+                                className="form-label col text-dark"
+                            >
+                              Language
+                            </label>
+                            <input
+                                type="text"
+                                disabled={editFields}
+                                onChange={handleChange}
+                                name="language"
+                                style={editFields?{ fontWeight: "normal",borderBottom:".125rem solid pink" }:{ fontWeight: "normal",border:".0625rem solid pink",borderRadius:".375rem"}}
+                                className="form-control p-0 col"
+                                value={formValue?.language}
+                            />
+                          </div>
+                          <div className="d-flex mb-3 col-md-6">
+                            <label
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -462,6 +462,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -500,6 +501,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -516,53 +518,12 @@ const Profile = () => {
                               value={formValue?.whatsapp_number}
                             />
                           </div>
-                          <label className="d-block mb-3">Gender</label>
-                          <div className="d-flex mb-3 col-md-6">
-                            <div className="form-check form-check-inline">
-                              <input
-                                className="form-check-input"
-                                name="gender"
-                                value="Male"
-                                checked={
-                                  profileData?.gender == "Male" ? "checked" : ""
-                                }
-                                type="radio"
-                                id="customRadio1"
-                              />
-                              <label
-                                className="form-check-label"
-                                for="customRadio1"
-                              >
-                                {profileData?.gender}
-                              </label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                              <input
-                                className="form-check-input"
-                                type="radio"
-                                name="gender"
-                                value="Female"
-                                checked={
-                                  profileData?.gender == "Female"
-                                    ? "checked"
-                                    : ""
-                                }
-                                id="customRadio2"
-                              />
-                              <label
-                                className="form-check-label"
-                                for="customRadio2"
-                              >
-                                Female
-                              </label>
-                            </div>
-                          </div>
-
                           <div className="d-flex mb-3 col-md-6">
                             <label
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -585,6 +546,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -607,28 +569,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
-                                justifyContent: "center",
-                              }}
-                              className="form-label col text-dark"
-                            >
-                              Star
-                            </label>
-                            <input
-                              type="text"
-                              disabled={editFields}
-                              name="star"
-                              onChange={handleChange}
-                              style={editFields?{ fontWeight: "normal",borderBottom:".125rem solid pink" }:{ fontWeight: "normal",border:".0625rem solid pink",borderRadius:".375rem"}}
-                              className="form-control p-0 col"
-                              value={formValue?.star}
-                            />
-                          </div>
-
-                          <div className="d-flex mb-3 col-md-6">
-                            <label
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -646,32 +587,13 @@ const Profile = () => {
                             />
                           </div>
 
-                          <div className="d-flex mb-3 col-md-6">
-                            <label
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                              }}
-                              className="form-label col text-dark"
-                            >
-                              Blood Group
-                            </label>
-                            <input
-                              type="text"
-                              disabled={editFields}
-                              name="blood_group"
-                              onChange={handleChange}
-                              style={editFields?{ fontWeight: "normal",borderBottom:".125rem solid pink" }:{ fontWeight: "normal",border:".0625rem solid pink",borderRadius:".375rem"}}
-                              className="form-control p-0 col"
-                              value={formValue?.blood_group}
-                            />
-                          </div>
+
                           <div className="d-flex mb-3 col datetimepickers">
                             <label
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -760,18 +682,18 @@ const Profile = () => {
                                         onChange={handleChange}
                                         name="date_of_Birth_month"
                                       >
-                                        <option selected={birthMonth=="Jan"? true:false} vlaue="Jan">Jan</option>
-                                        <option selected={birthMonth=="Feb"? true:false} vlaue="Feb">Feb</option>
-                                        <option selected={birthMonth=="Mar"? true:false} vlaue="Mar">Mar</option>
-                                        <option selected={birthMonth=="Apr"? true:false} vlaue="Apr">Apr</option>
-                                        <option selected={birthMonth=="May"? true:false} vlaue="May">May</option>
-                                        <option selected={birthMonth=="Jun"? true:false} vlaue="Jun">Jun</option>
-                                        <option selected={birthMonth=="Jul"? true:false} vlaue="Jul">Jul</option>
-                                        <option selected={birthMonth=="Aug"? true:false} vlaue="Aug">Aug</option>
-                                        <option selected={birthMonth=="Sep"? true:false} vlaue="Sep">Sep</option>
-                                        <option selected={birthMonth=="Oct"? true:false} vlaue="Oct">Oct</option>
-                                        <option selected={birthMonth=="Nov"? true:false} vlaue="Nov">Nov</option>
-                                        <option selected={birthMonth=="Dec"? true:false} vlaue="Dec">Dec</option>
+                                        <option selected={birthMonth=="Jan"? true:false} value="Jan">Jan</option>
+                                        <option selected={birthMonth=="Feb"? true:false} value="Feb">Feb</option>
+                                        <option selected={birthMonth=="Mar"? true:false} value="Mar">Mar</option>
+                                        <option selected={birthMonth=="Apr"? true:false} value="Apr">Apr</option>
+                                        <option selected={birthMonth=="May"? true:false} value="May">May</option>
+                                        <option selected={birthMonth=="Jun"? true:false} value="Jun">Jun</option>
+                                        <option selected={birthMonth=="Jul"? true:false} value="Jul">Jul</option>
+                                        <option selected={birthMonth=="Aug"? true:false} value="Aug">Aug</option>
+                                        <option selected={birthMonth=="Sep"? true:false} value="Sep">Sep</option>
+                                        <option selected={birthMonth=="Oct"? true:false} value="Oct">Oct</option>
+                                        <option selected={birthMonth=="Nov"? true:false} value="Nov">Nov</option>
+                                        <option selected={birthMonth=="Dec"? true:false} value="Dec">Dec</option>
                                       </select>
                                     
                                       <select
@@ -854,7 +776,7 @@ const Profile = () => {
                       </div>
                       <div className="user-dashboard-info-box bg-white">
                         <div className="section-title-02 mb-2 mt-4 d-grid">
-                          <h4>Professional</h4>
+                          <h4>Education & Career</h4>
                         </div>
                         <div className="row shadow rounded-lg p-3">
                           <div className="d-flex mb-3 col-md-6">
@@ -862,6 +784,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -871,7 +794,7 @@ const Profile = () => {
                             <input
                               type="text"
                               disabled={editFields}
-                              name="work_as"
+                              name="job"
                               onChange={handleChange}
                               style={editFields?{ fontWeight: "normal",borderBottom:".125rem solid pink" }:{ fontWeight: "normal",border:".0625rem solid pink",borderRadius:".375rem"}}
                               className="form-control p-0 col"
@@ -883,6 +806,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -904,6 +828,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -920,11 +845,13 @@ const Profile = () => {
                               value={formValue?.company_name}
                             />
                           </div>
+
                           <div className="d-flex mb-3 col-md-6">
                             <label
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -941,8 +868,424 @@ const Profile = () => {
                               value={formValue?.work_with}
                             />
                           </div>
+                          <div className="d-flex mb-3 col-md-6">
+                            <label
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  color:'#D6358',
+                                  justifyContent: "center",
+                                }}
+                                className="form-label col text-dark"
+                            >
+                              Eduction Type
+                            </label>
+                            <input
+                                type="text"
+                                disabled={editFields}
+
+                                onChange={handleChange}
+                                style={editFields?{ display: "block",fontWeight: "normal",borderBottom:".125rem solid pink" }:{ display: "none"}}
+                                className="form-control p-0 col"
+                                value={
+                                  formValue?.edjuction_sector
+                                }
+                            />
+                            <select
+                                className="form-select"
+                                style={
+                                  editFields == true
+                                      ? { display: "none" }
+                                      : { display: "block",width:'inherit' }
+                                }
+                                onChange={handleChange}
+                                name="education_sector"
+                                aria-label="Default select example"
+                                id=""
+                            >
+                              <option hidden >Select</option>
+
+
+                              <option selected={profileData?.education_sector=='Medical'? true:false} value="Medical">Medical</option>
+                              <option selected={profileData?.education_sector=='Engineering'? true:false} value="Engineering">Engineering</option>
+                              <option selected={profileData?.education_sector=='IT'? true:false} value="IT">IT</option>
+
+                            </select>
+                          </div>
+
+                          <div className="d-flex mb-3 col-md-6">
+                            <label
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  color:'#D6358',
+                                  justifyContent: "center",
+                                }}
+                                className="form-label col text-dark"
+                            >
+                              Qualification
+                            </label>
+                          <input
+                              type="text"
+                              disabled={editFields}
+                              name="qualifiction"
+                              onChange={handleChange}
+                              style={editFields?{ fontWeight: "normal",borderBottom:".125rem solid pink" }:{ fontWeight: "normal",border:".0625rem solid pink",borderRadius:".375rem"}}
+                              className="form-control p-0 col"
+                              value={
+                                profileData?.qualification
+                              }
+                          />
+                          </div>
+
                         </div>
                       </div>
+
+                      <div className="user-dashboard-info-box bg-white">
+                        <div className="section-title-02 mb-2 mt-4 d-grid">
+                          <h4>Family </h4>
+                        </div>
+                        <div className="row shadow rounded-lg p-3">
+                          <div className="d-flex mb-3 col-md-6">
+                            <label
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  color:'#D6358',
+                                  justifyContent: "center",
+                                }}
+                                className="form-label col text-dark"
+                            >
+                              No Of Brothers
+                            </label>
+                            <input
+                                type="text"
+                                disabled={editFields}
+
+                                onChange={handleChange}
+                                style={editFields?{ display: "block",fontWeight: "normal",borderBottom:".125rem solid pink" }:{ display: "none"}}
+                                className="form-control p-0 col"
+                                value={
+                                  profileData?.no_of_brothers
+                                }
+                            />
+                            <select
+                                className="form-select"
+                                style={
+                                  editFields == true
+                                      ? { display: "none" }
+                                      : { display: "block",width:'inherit' }
+                                }
+                                onChange={handleChange}
+                                name="no_of_brothers"
+                                aria-label="Default select example"
+                                id=""
+                            >
+                              <option hidden >Select</option>
+
+
+                            <option selected={profileData?.no_of_brothers=='1'? true:false} value="1">1</option>
+                            <option selected={profileData?.no_of_brothers=='2'? true:false} value="2">2</option>
+                            <option selected={profileData?.no_of_brothers=='3'? true:false} value="3">3</option>
+                            <option selected={profileData?.no_of_brothers=='4'? true:false} value="4">4</option>
+                            <option selected={profileData?.no_of_brothers=='5'? true:false} value="5">5</option>
+                            <option selected={profileData?.no_of_brothers=='6'? true:false} value="6">6</option>
+                            <option selected={profileData?.no_of_brothers=='7'? true:false} value="7">7</option>
+                            <option selected={profileData?.no_of_brothers=='8'? true:false} value="8">8</option>
+                            <option selected={profileData?.no_of_brothers=='9'? true:false} value="9">9</option>
+                            <option selected={profileData?.no_of_brothers=='10'? true:false} value="10">10</option>
+
+                            </select>
+                          </div>
+
+                          <div className="d-flex mb-3 col-md-6">
+                            <label
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  color:'#D6358',
+                                  justifyContent: "center",
+                                }}
+                                className="form-label col text-dark"
+                            >
+                              No Of Sister
+                            </label>
+                            <input
+                                type="text"
+                                disabled={editFields}
+
+                                onChange={handleChange}
+                                style={editFields?{ display: "block",fontWeight: "normal",borderBottom:".125rem solid pink" }:{ display: "none"}}
+                                className="form-control p-0 col"
+                                value={
+                                  profileData?.no_of_sister
+                                }
+                            />
+                            <select
+                                className="form-select"
+                                style={
+                                  editFields == true
+                                      ? { display: "none" }
+                                      : { display: "block",width:'inherit' }
+                                }
+                                onChange={handleChange}
+                                name="no_of_sister"
+                                aria-label="Default select example"
+                                id=""
+                            >
+                              <option hidden >Select</option>
+                              <option selected={profileData?.no_of_sister=='1'? true:false} value="1">1</option>
+                              <option selected={profileData?.no_of_sister=='2'? true:false} value="2">2</option>
+                              <option selected={profileData?.no_of_sister=='3'? true:false} value="3">3</option>
+                              <option selected={profileData?.no_of_sister=='4'? true:false} value="4">4</option>
+                              <option selected={profileData?.no_of_sister=='5'? true:false} value="5">5</option>
+                              <option selected={profileData?.no_of_sister=='6'? true:false} value="6">6</option>
+                              <option selected={profileData?.no_of_sister=='7'? true:false} value="7">7</option>
+                              <option selected={profileData?.no_of_sister=='8'? true:false} value="8">8</option>
+                              <option selected={profileData?.no_of_sister=='9'? true:false} value="9">9</option>
+                              <option selected={profileData?.no_of_sister=='10'? true:false} value="10">10</option>
+
+                            </select>
+                          </div>
+
+                          <div className="d-flex mb-3 col-md-6">
+                            <label
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  color:'#D6358',
+                                  justifyContent: "center",
+                                }}
+                                className="form-label col text-dark"
+                            >
+                             Family Type
+                            </label>
+                            <input
+                                type="text"
+                                disabled={editFields}
+
+                                onChange={handleChange}
+                                style={editFields?{ display: "block",fontWeight: "normal",borderBottom:".125rem solid pink" }:{ display: "none"}}
+                                className="form-control p-0 col"
+                                value={
+                                  profileData?.family_type
+                                }
+                            />
+                            <select
+                                className="form-select"
+                                style={
+                                  editFields == true
+                                      ? { display: "none" }
+                                      : { display: "block",width:'inherit' }
+                                }
+                                onChange={handleChange}
+                                name="family_type"
+                                aria-label="Default select example"
+                                id=""
+                            >
+                              <option hidden >Select</option>
+                              <option selected={profileData?.family_type=='Joint'? true:false} value="Joint">Joint</option>
+                              <option selected={profileData?.family_type=='Seperate'? true:false} value="Seperate">Seperate</option>
+                            </select>
+                          </div>
+
+                          <div className="d-flex mb-3 col-md-6">
+                            <label
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  color:'#D6358',
+                                  justifyContent: "center",
+                                }}
+                                className="form-label col text-dark"
+                            >
+                              Father Status
+                            </label>
+                            <input
+                                type="text"
+                                disabled={editFields}
+
+                                onChange={handleChange}
+                                style={editFields?{ display: "block",fontWeight: "normal",borderBottom:".125rem solid pink" }:{ display: "none"}}
+                                className="form-control p-0 col"
+                                value={
+                                  profileData?.father_status
+                                }
+                            />
+                            <select
+                                className="form-select"
+                                style={
+                                  editFields == true
+                                      ? { display: "none" }
+                                      : { display: "block",width:'inherit' }
+                                }
+                                onChange={handleChange}
+                                name="father_status"
+                                aria-label="Default select example"
+                                id=""
+                            >
+                              <option hidden >Select</option>
+                              <option selected={profileData?.father_status==='Job Holder'? true:false} value="Job Holder">Job Holder</option>
+                              <option selected={profileData?.father_status==='Business Man'? true:false} value="Business Man">Business Man</option>
+                              <option selected={profileData?.father_status==='Retired'? true:false} value="Retired">Retired</option>
+                              <option selected={profileData?.father_status==='Expired'? true:false} value="Expired">Expired</option>
+                            </select>
+                          </div>
+
+                          <div className="d-flex mb-3 col-md-6">
+                            <label
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  color:'#D6358',
+                                  justifyContent: "center",
+                                }}
+                                className="form-label col text-dark"
+                            >
+                              Mother Status
+                            </label>
+                            <input
+                                type="text"
+                                disabled={editFields}
+
+                                onChange={handleChange}
+                                style={editFields?{ display: "block",fontWeight: "normal",borderBottom:".125rem solid pink" }:{ display: "none"}}
+                                className="form-control p-0 col"
+                                value={
+                                  formValue?.mother_status
+                                }
+                            />
+                            <select
+                                className="form-select"
+                                style={
+                                  editFields == true
+                                      ? { display: "none" }
+                                      : { display: "block",width:'inherit' }
+                                }
+                                onChange={handleChange}
+                                name="mother_status"
+                                aria-label="Default select example"
+                                id=""
+                            >
+                              <option hidden >Select</option>
+                              <option selected={profileData?.mother_status==='Job Holder'? true:false} value="Job Holder">Job Holder</option>
+                              <option selected={profileData?.mother_status==='Business Woman'? true:false} value="Business Woman">Business Man</option>
+                              <option selected={profileData?.mother_status==='Retired'? true:false} value="Retired">Retired</option>
+                              <option selected={profileData?.mother_status==='Expired'? true:false} value="Expired">Expired</option>
+                            </select>
+                          </div>
+
+                          <div className="d-flex mb-3 col-md-6">
+                            <label
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  color:'#D6358',
+                                  justifyContent: "center",
+                                }}
+                                className="form-label col text-dark"
+                            >
+                              Brother Martial Status
+                            </label>
+                            <input
+                                type="text"
+                                disabled={editFields}
+
+                                onChange={handleChange}
+                                style={editFields?{ display: "block",fontWeight: "normal",borderBottom:".125rem solid pink" }:{ display: "none"}}
+                                className="form-control p-0 col"
+                                value={
+                                  profileData?.brother_marital_status
+                                }
+                            />
+                            <select
+                                className="form-select"
+                                style={
+                                  editFields == true
+                                      ? { display: "none" }
+                                      : { display: "block",width:'inherit' }
+                                }
+                                onChange={handleChange}
+                                name="brother_marital_status"
+                                aria-label="Default select example"
+                                id=""
+                            >
+                              <option hidden >Select</option>
+                              <option selected={profileData?.brother_marital_status==='Married'? true:false} value="Married">Married</option>
+                              <option selected={profileData?.brother_marital_status==='Divorced'? true:false} value="Divorced">Divorced</option>
+                              <option selected={profileData?.brother_marital_status==='Single'? true:false} value="Single">Single</option>
+                            </select>
+                          </div>
+
+
+
+                          <div className="d-flex mb-3 col-md-6">
+                            <label
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  color:'#D6358',
+                                  justifyContent: "center",
+                                }}
+                                className="form-label col text-dark"
+                            >
+                              Living WIth Family
+                            </label>
+                            <input
+                                type="text"
+                                disabled={editFields}
+
+                                onChange={handleChange}
+                                style={editFields?{ display: "block",fontWeight: "normal",borderBottom:".125rem solid pink" }:{ display: "none"}}
+                                className="form-control p-0 col"
+                                value={
+                                  profileData?.living_with_family
+                                }
+                            />
+                            <select
+                                className="form-select"
+                                style={
+                                  editFields == true
+                                      ? { display: "none" }
+                                      : { display: "block",width:'inherit' }
+                                }
+                                onChange={handleChange}
+                                name="mother_status"
+                                aria-label="Default select example"
+                                id=""
+                            >
+                              <option hidden >Select</option>
+                              <option selected={profileData?.living_with_family==='Yes'? true:false} value="Yes">Yes</option>
+                              <option selected={profileData?.living_with_family==='No'? true:false} value="No">No</option>
+                            </select>
+                          </div>
+
+                          <div className="d-flex mb-3 col-md-6">
+                            <label
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  color:'#D6358',
+                                  justifyContent: "center",
+                                }}
+                                className="form-label col text-dark"
+                            >
+                              Family Address
+                            </label>
+                            <input
+                                type="text"
+                                disabled={editFields}
+                                name="family_address"
+                                onChange={handleChange}
+                                style={editFields?{ fontWeight: "normal",borderBottom:".125rem solid pink" }:{ fontWeight: "normal",border:".0625rem solid pink",borderRadius:".375rem"}}
+                                className="form-control p-0 col"
+                                value={formValue?.family_address}
+                            />
+                          </div>
+
+                        </div>
+                      </div>
+
                       <div className="user-dashboard-info-box bg-white">
                         <div className="section-title-02 mb-2 mt-4 d-grid">
                           <h4>Location</h4>
@@ -953,6 +1296,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -982,7 +1326,7 @@ const Profile = () => {
                               aria-label="Default select example"
                               id=""
                             > <option hidden >Select</option>
-                               {country?.map((data) => (
+                               {countries?.map((data) => (
                                     <option selected={profileData?.country_id==data.id? true:false} value={data.id}>{data.name}</option>
                                 ))}
                             </select>
@@ -993,6 +1337,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -1035,6 +1380,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -1076,6 +1422,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -1096,7 +1443,7 @@ const Profile = () => {
                       </div>
                       <div className="user-dashboard-info-box bg-white">
                         <div className="section-title-02 mb-2 mt-4 d-grid">
-                          <h4>Islamic </h4>
+                          <h4>Religious Background </h4>
                         </div>
                         <div className="row shadow rounded-lg p-3">
                           <div className="d-flex mb-3 col-md-6">
@@ -1104,6 +1451,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -1134,7 +1482,7 @@ const Profile = () => {
                               id=""
                             >
                               <option hidden >Select</option>
-                            {religion?.map((data) => (
+                            {religions?.map((data) => (
                                 <option selected={profileData?.religion_id==data.id? true:false} value={data.id}>{data.name}</option>
                             ))}
                             </select>
@@ -1145,6 +1493,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -1175,7 +1524,7 @@ const Profile = () => {
                               id=""
                             >
                               <option hidden >Select</option>
-                                {sector?.map((data) => (
+                                {sectors?.map((data) => (
                                     <option selected={profileData?.sector_id==data.id? true:false} value={data.id}>{data.name}</option>
                                 ))}
                             </select>
@@ -1186,6 +1535,7 @@ const Profile = () => {
                               style={{
                                 display: "flex",
                                 flexDirection: "column",
+                                color:'#D6358',
                                 justifyContent: "center",
                               }}
                               className="form-label col text-dark"
@@ -1207,7 +1557,7 @@ const Profile = () => {
                         </div>
                       </div>
                       <button type="submit" className="btn btn-md btn-primary">
-                        Edit Settings
+                        Save Changes
                       </button>
                     </form>
                   </div>

@@ -1,16 +1,19 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import './styles.css';
-
+import Pusher from "pusher-js";
+import './bootstrap'
+import StoreContext from "./../../../store";
 class Chatpanel extends React.Component {
 
     constructor(props){
         super(props);
+
         this.state = {
             msg_list:[],
             user_list:[],
             active_user:[]
         }
-        //alert(user.id);
+
         this.handleEve = this.handleEve.bind(this);
         this.subscribeToPusher = this.subscribeToPusher.bind(this);
         this.loadUsers = this.loadUsers.bind(this);
@@ -20,6 +23,7 @@ class Chatpanel extends React.Component {
     }
 
     componentDidMount(){
+
         this.loadUsers();
         this.subscribeToPusher();
     }
@@ -34,12 +38,13 @@ class Chatpanel extends React.Component {
     }
 
     loadUsers(){
-        let tok = document.querySelector('meta[name="csrf-token"]').content;
-        fetch('http://127.0.0.1:8000/fetchUsers',{
+        let tok = localStorage.getItem("accessToken");
+        console.log('tok===>>>>',tok)
+        fetch('http://urgentrishtaadmin.urgentrishta.co/api/fetchUsers',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
-                X_CSRF_TOKEN:tok,
+                'Authorization':`Bearer ${tok}`,
                 'Accept':'application/json'
             }
         })
@@ -68,13 +73,14 @@ class Chatpanel extends React.Component {
                 break;
             }
         }
-        let tok = document.querySelector('meta[name="csrf-token"]').content;
-        // alert(el_id.target.id);
-        fetch('http://127.0.0.1:8000/fetchmessages?rec_id='+clicked_user_id,{
+        let tok = localStorage.getItem("accessToken");
+
+        fetch(`http://urgentrishtaadmin.urgentrishta.co/api/fetchmessages?rec_id=${clicked_user_id}`
+            ,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
-                X_CSRF_TOKEN:tok,
+                'Authorization':`Bearer ${tok}`,
                 'Accept':'application/json'
             }
         })
@@ -89,12 +95,17 @@ class Chatpanel extends React.Component {
                 //console.log(JSON.stringify(dat[x].message));
                 arr.push(dat[x]);
             }
-            this.setState({msg_list:[]});
+            // this.setState({msg_list:[]});
+            this.setState({
+                msg_list:this.state.msg_list.splice(0,this.state.msg_list.length)
+            });
+            console.log('arrarrarrarrarrarrarr',arr)
             this.setState({
                 msg_list:this.state.msg_list.concat(arr)
             });
         })
         .catch((error) => {
+
             console.error(error);
         });
     }
@@ -103,16 +114,16 @@ class Chatpanel extends React.Component {
     handleEve(e){
         let msg = document.getElementById('chat_tbox').value;
 
-        let tok = document.querySelector('meta[name="csrf-token"]').content;
+        let tok = localStorage.getItem("accessToken");
 
         let activeUserId = this.state.active_user[0].id;
 
 
-        fetch('http://127.0.0.1:8000/messages?message='+msg+'&rec_id='+activeUserId,{
+        fetch(`http://urgentrishtaadmin.urgentrishta.co/api/messages?message=${msg}&rec_id=${activeUserId}`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
-                'X-CSRF-TOKEN':tok,
+                'Authorization': `Bearer ${tok}`,
                 'Accept':'application/json'
             },
             //body:JSON.stringify(data)
@@ -125,31 +136,26 @@ class Chatpanel extends React.Component {
             console.error(error);
         });
 
-        //this.subscribeToPusher();
+        // this.subscribeToPusher();
 
 
     }
 
     subscribeToPusher(){
-        let a_tok = document.querySelector('meta[name="csrf-token"]').content;
 
+        let a_tok = localStorage.getItem("accessToken");
         //suscribing to pusher channel
         Pusher.logToConsole = true;
-        var pusher = new Pusher('b9d75e318c96e51439eb', {
-            cluster: 'ap2',
-            authEndpoint:'/broadcasting/auth',
-            auth:{
-                headers:{
-                    'X-CSRF-TOKEN':a_tok
-                }
-            }
+        var pusher = new Pusher('309d1b258d720b06a5de', {
+            cluster: 'mt1',
         });
         var new_msg = [];
-        var channel = pusher.subscribe('private-chat-'+user.id);
-        channel.bind('App\\Events\\MessageEvent',(d) => {
+        let user = localStorage.getItem("user");
+        var channel = pusher.subscribe('chat');
+        channel.bind('message',(d) => {
 
             //checking sent message from sender side
-            if(d.sender_id == user.id){
+            if(d.sender_id == JSON.parse(user)["id"]){
                 if(this.state.active_user[0].id == d.rec_id){
                     //alert('you have sent message to this user.');
                     this.setState({msg_list:this.state.msg_list.concat(d)});
@@ -157,7 +163,7 @@ class Chatpanel extends React.Component {
             }
 
             //checking message has been received or not
-            if(d.sender_id != user.id){
+            if(d.sender_id != JSON.parse(user)["id"]){
                 if(this.state.active_user.length != 0){
                     if(this.state.active_user[0].id == d.sender_id){
                         //alert('you have sent message to this user.');
@@ -178,12 +184,17 @@ class Chatpanel extends React.Component {
 
 
     render(){
+        let user = localStorage.getItem("user");
         let isAnyUserActive=false;
         if(this.state.active_user.length != 0){
             isAnyUserActive=true;
         }
         return (
             <div className="container">
+                <div className="row">
+                    <div className="col-md">
+                        <div id="chat_panel_container">
+                            <div className="container">
 
                 <div className="row no-gutters">
                     <div className="col-3">
@@ -193,8 +204,8 @@ class Chatpanel extends React.Component {
                                 <ul id="user_list" className="user_list list-group">
                                     {this.state.user_list.map((number) =>
                                     <a href="#">
-                                        <li id={"user_"+number.id} onClick={this.loadChats} className="list-group-item d-flex justify-content-between align-items-center" key={'user_'+number.id}>
-                                            {number.name}
+                                        <li id={"user_"+number.id} onClick={this.loadChats} className=" text-dark list-group-item d-flex justify-content-between align-items-center" key={'user_'+number.id}>
+                                            {number.first_name}
                                             <span className="badge badge-primary badge-pill">14</span>
                                         </li>
                                     </a>  )}
@@ -208,7 +219,7 @@ class Chatpanel extends React.Component {
                             <div className="card-body">
                                 <ul id="chat_list" className="chat_list">
                                     {this.state.msg_list.map((msgs) =>
-                                        (msgs.sender_id==user.id)?
+                                        (msgs.sender_id==JSON.parse(user)["id"])?
                                         <div className="sent" id={msgs.id} key={msgs.id}>{msgs.message}</div>
                                         :
                                         <div className="replies" id={msgs.id} key={msgs.id}>{msgs.message}</div>
@@ -221,6 +232,15 @@ class Chatpanel extends React.Component {
                                 <input type="submit" className="btn btn-primary btn-sm" value="GO" onClick={this.handleEve} />
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md">
+                        <div id="chat_submit_container"></div>
                     </div>
                 </div>
             </div>

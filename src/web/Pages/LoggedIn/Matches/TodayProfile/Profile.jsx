@@ -1,14 +1,14 @@
-import React, { useLayoutEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./assets/style.css";
 import axios from "axios";
 import { Observer } from "mobx-react-lite";
-import Header from "./../../../Components/SubHeader";
-import Footer from "./../../../Components/Footer";
-import { StoreContext } from "./../../../store";
+import Header from "../../../../Components/SubHeader";
+import Footer from "../../../../Components/Footer";
+import { StoreContext } from "./../../../../store";
 import { useParams } from "react-router-dom";
 import { data } from "jquery";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+
 import { Carousel } from "react-responsive-carousel";
 
 const Profile = () => {
@@ -27,7 +27,7 @@ const Profile = () => {
   const store = useContext(StoreContext);
   const param = useParams();
 
-  const getProfile = async (Faccess_token, user_id) => {
+  const getProfile = async (access_token, user_id) => {
     try {
       const userId = new FormData();
       userId.append("user_id", user_id);
@@ -37,7 +37,7 @@ const Profile = () => {
         Authorization: `Bearer ${access_token}`,
       };
       const response = await axios({
-        method: "post",
+        method: "get",
         url: `${store.url}get-today-profile`,
         data: userId,
         headers: headers,
@@ -78,10 +78,10 @@ const Profile = () => {
     try {
       const userId = new FormData();
       userId.append("user_id", user_id)
-    const headers = { 
+    const headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': `Bearer ${access_token}` 
+      'Authorization': `Bearer ${access_token}`
   };
       const response =   await axios({
 
@@ -89,13 +89,13 @@ const Profile = () => {
         url: `${store.url}get-profiles-matches`,
         data: userId,
         headers: headers,
-              
-        
+
+
      }).then((response)=>{
             const data = response.data
             setQualification(data[0]['qualification'])
             setProfiles(data[0]['profiles'])
-        
+
         })
 
       } catch(error) {
@@ -105,16 +105,17 @@ const Profile = () => {
   const handleContact = () => {
     contactInfo();
   };
-  useLayoutEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("accessToken");
-    getProfiles(token, param.userId)
-    getProfile(token, param.userId);
+    const user = localStorage.getItem('user')
+    getProfiles(token, JSON.parse(user).id)
+    getProfile(token, JSON.parse(user).id)
   }, []);
   return (
     <Observer>
       {() => (
         <>
-          <Header />
+
           <div className="w-100 h-100 bg-grey pt-5">
             <div className="container mt-3">
               <div className="row">
@@ -151,17 +152,17 @@ const Profile = () => {
                               aria-labelledby="dropdownMenuButton1"
                             >
                               <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                                   Action
                                 </a>
                               </li>
                               <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                                   Another action
                                 </a>
                               </li>
                               <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                                   Something else here
                                 </a>
                               </li>
@@ -170,7 +171,7 @@ const Profile = () => {
                         </div>
                       </div>
                       <div className="col-12 d-flex">
-                        
+
                         <div class="dropdown">
                           <a
                             class=" dropdown-toggle"
@@ -188,17 +189,17 @@ const Profile = () => {
                             aria-labelledby="dropdownMenuButton1"
                           >
                             <li>
-                              <a class="dropdown-item" href="#">
+                              <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                                 Action
                               </a>
                             </li>
                             <li>
-                              <a class="dropdown-item" href="#">
+                              <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                                 Another action
                               </a>
                             </li>
                             <li>
-                              <a class="dropdown-item" href="#">
+                              <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                                 Something else here
                               </a>
                             </li>
@@ -209,7 +210,7 @@ const Profile = () => {
                       <hr className="col-12 m-2 d-block" />
                       <div className="col-12 d-block ">
                         <div className="col-6 d-flex pt-4">
-                          <div className="col-6  ">Age/Height</div>
+                          <div className="col-6  ">Height</div>
                           <div className="col-6" style={{ fontWeight: "bold" }}>
                             {profileData?.age}/{profileData?.height}
                           </div>
@@ -261,7 +262,7 @@ const Profile = () => {
                             ></i>
                           </h1>
                           Connect Now
-                        </div> 
+                        </div>
                         <div className="col-12 text-center" style={editFields?{display:"none"}:{display:"block"}}>
                           <a href="Tel:923324010410" className="btn px-5 py-1 m-1 btn-white border rounded b-radius" >
                            <i className="fa fa-phone" aria-hidden="true"></i> Call
@@ -282,11 +283,7 @@ const Profile = () => {
                 </div>
                 <div className="col-sm-5 col-md-4 col-lg-3 col-xl-2  overlay d-sm-block d-none">
                   {profileData?.user.picture[0] == null ? (
-                    <img
-                      src="/images/profile/02.jpg"
-                      className="img-fluid rounded"
-                      alt=""
-                    />
+                      <img className="img-fluid" src={window.location.origin + "/images/profile/default.png"} alt="" />
                   ) : (
                     <Carousel showThumbs={false}>
                       {profileData?.user.picture.map((image) => (
@@ -415,17 +412,17 @@ const Profile = () => {
                             aria-labelledby="dropdownMenuButton1"
                           >
                             <li>
-                              <a class="dropdown-item" href="#">
+                              <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                                 Action
                               </a>
                             </li>
                             <li>
-                              <a class="dropdown-item" href="#">
+                              <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                                 Another action
                               </a>
                             </li>
                             <li>
-                              <a class="dropdown-item" href="#">
+                              <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                                 Something else here
                               </a>
                             </li>
@@ -452,17 +449,17 @@ const Profile = () => {
                           aria-labelledby="dropdownMenuButton1"
                         >
                           <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                               Action
                             </a>
                           </li>
                           <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                               Another action
                             </a>
                           </li>
                           <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#">
                               Something else here
                             </a>
                           </li>
@@ -540,19 +537,19 @@ const Profile = () => {
                   <div className="col-12">
                     <div className="employers-list">
                       <div className="employers-list-logo">
-                       
+
                            {data.user.picture[0]==null?
-              
+
               <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='img-fluid' srcset="" />
-              : 
-               <img src={store.mediaUrl+data?.user?.picture[0].image_path} alt="" style={data.pictures_settings=='visible' ||((data?.pictures_settings=='premimum') && (data?.user_subscription!=null))?{filter: 'blur(0px)'}:{filter: 'blur(8px)'}} className='img-fluid' srcset="" /> 
+              :
+               <img src={store.mediaUrl+data?.user?.picture[0].image_path} alt="" style={data.pictures_settings=='visible' ||((data?.pictures_settings=='premimum') && (data?.user_subscription!=null))?{filter: 'blur(0px)'}:{filter: 'blur(8px)'}} className='img-fluid' srcset="" />
              }
                       </div>
                       <div className="employers-list-details">
                         <div className="employers-list-info">
                           <div className="employers-list-title">
                             <h5 className="mb-0">
-                              <a href=""> <b>{data?.user.first_name+' '+data?.user.last_name}</b></a>
+                              <a href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile"> <b>{data?.user.first_name+' '+data?.user.last_name}</b></a>
                             </h5>
                           </div>
                           <div className="employers-list-option">
@@ -566,7 +563,7 @@ const Profile = () => {
                     </div>
                   </div>
                   ))}
-                
+
                 </div>
                 <div className="col-sm-7 col-12  shadow bg-white rounded mb-5 mt-5 ms-sm-5 m-0">
                   <ul
@@ -578,7 +575,7 @@ const Profile = () => {
                         className="btn  active ms-0"
                         id="tab-01"
                         data-bs-toggle="tab"
-                        href="#tab-10"
+                        href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#tab-10"
                         role="tab"
                         aria-controls="tab-10"
                         aria-selected="true"
@@ -591,7 +588,7 @@ const Profile = () => {
                         className="btn "
                         id="tab-02"
                         data-bs-toggle="tab"
-                        href="#tab-11"
+                        href="src/web/Pages/LoggedIn/Matches/TodayProfile/Profile#tab-11"
                         role="tab"
                         aria-controls="tab-11"
                         aria-selected="false"
@@ -1123,7 +1120,6 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <Footer />
         </>
       )}
     </Observer>

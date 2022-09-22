@@ -25,7 +25,6 @@ const AdvanceSearch = () => {
     max_age:"",
     country:"",
     state:"",
-    city:"",
     religion:"",
     sector:"",
     cast:"",

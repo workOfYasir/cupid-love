@@ -6,10 +6,25 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import axios from "axios";
 import { StoreContext } from "./../../../store";
+import Dashboard from "../MyAccount/Dashboard/Dashboard";
 
 const Pricing = () => {
   const store = useContext(StoreContext);
   const [plans, setPlans] = useState();
+  const [componentCount, setComponentCount] = useState([]);
+
+
+  const onClickAddDashboardComponent = event => {
+    if(store.count===0){
+      setComponentCount(componentCount.concat(<Dashboard/>));
+      console.log(componentCount)
+      store.setCount(store.count++);
+    }else if(store.count>0){
+      setComponentCount(componentCount.splice(-1));
+      store.setCount(0);
+      setComponentCount(componentCount.concat(<Dashboard/>));
+    }
+  };
   const getPlans = async (access_token, user_id) => {
     try {
       const headers = {
@@ -56,11 +71,9 @@ const Pricing = () => {
               <div className="col-3 text-white d-flex justify-content-center ">
                 <h3 className="logo-font">Urgent Rishta</h3>
               </div>
-              <div className="offset-6 col-3">
-                {/* <button className="btn text-white d-flex justify-content-center border btn-premimum">
-                  Premimum Now
-                </button> */}
-                <Link to="/matches" className="btn text-white d-flex justify-content-center border btn-premimum">Skip</Link>
+              <div className="offset-6 col-2">
+
+                <Link to="/myaccount" className="btn text-white d-flex justify-content-center border btn-premimum">Skip</Link>
               </div>
             </div>
             <div className="col-12 text-center text-white pb-5">
@@ -70,25 +83,25 @@ const Pricing = () => {
               </div>
             </div>
 
-            <div className="d-sm-flex d-none col-12 justify-content-center pt-5 ">
-              {plans?.map((plan) => (
-                <div className="col-2-5 ">
-                  <div className="shadow text-dark rounded bg-white text-center p-0 m-1 pb-2">
-                    <div className="col-12 pt-3">
+            <div className="d-sm-flex d-none col-12 justify-content-center pricing-card pt-5 container">
+              {plans?.map((plan,index) => (
+                <div className={"col child-"+index}>
+                  <div className="shadow text-dark rounded bg-white text-center p-2 m-1 pb-2">
+                    <div className={"col-12 pt-3 name-"+index}>
                       <h6>{plan.name}</h6>
                     </div>
                     <div className="col-12 pt-1">&nbsp;</div>
-                    <div className="col-12">
-                      <b className="text-success">
-                        {plan.discount != null ? plan.discount + "%" : ""}
+                    <div className="col-12 py-1">
+                      <b className="text-success" style={{fontSize:'18px'}}>
+                        {plan.discount != null ? plan.discount + "% " : ""}
                       </b>
                       {plan.discount != null ? <del>PKR {plan.price}</del> : ""}
                     </div>
                     <div className="col-12">
                       {plan.discount != null ? (
-                        <>PKR {(plan.price * plan.discount) / 100}</>
+                        <h2>PKR {(plan.price * plan.discount) / 100}</h2>
                       ) : (
-                        <>{plan.price}</>
+                        <h2>{plan.price}</h2>
                       )}
                     </div>
                     <div className="col-12">
@@ -100,69 +113,71 @@ const Pricing = () => {
                       ).toFixed(2)}{" "}
                       per month
                     </div>
-                    <div className="col-12 p-1">
+                    <div className="col-12 py-1">
                       <a
                         target="_blank"
+                        style={{padding: '5px 30px !important'}}
+                        className={"btn btn-light custom-btn custom-btn-"+index}
                         href="https://api.whatsapp.com/send?phone=923324010410&text=Hello this is the starting message"
                       >
                         Continue
                       </a>
                       {/* <Link className="btn btn-outline" to="/matches">Continue</Link> */}
                     </div>
-                    <div className="col-12 p-1">
-                      <div className="d-flex">
+                    <div className="col-12 py-1">
+                      <div className="d-flex col-12">
                         {plan.messages !=  0  ? (
-                          <>
-                            <div className="col-1 text-success">✔</div>
+                          <div className='d-flex col-12 py-1'>
+                            <div className="col-1 text-success ">✔</div>
                             <div className="col-11 text-start">
                               Send unlimited Messages
                             </div>
-                          </>
+                          </div>
                         ) : (
-                          <>
+                          <div className='d-flex col-12 py-1'>
                             <div className="col-1"></div>
                             <div className="col-11 text-start">
                               <del>Send unlimited Messages </del>
                             </div>
-                          </>
+                          </div>
                         )}
                       </div>
                     </div>
-                    <div className="col-12 p-1">
-                      <div className="d-flex">
+                    <div className="col-12 py-1">
+                      <div className="d-flex col-12">
                         {plan.view_contacts !=  0  ? (
-                          <>
+                          <div className='d-flex col-12 py-1'>
                             <div className="col-1 text-success">✔</div>
                             <div className="col-11 text-start">
                               View upto 75 Contact Numbers
                             </div>
-                          </>
+                          </div>
                         ) : (
-                          <>
+                          <div className='d-flex col-12 py-1'>
                             <div className="col-1"></div>
                             <div className="col-11 text-start">
                               <del> View upto 75 Contact Numbers </del>
                             </div>
-                          </>
+                          </div>
                         )}
                       </div>
                     </div>
-                    <div className="col-12 p-1">
-                      <div className="d-flex">
+                    <div className="col-12 py-1">
+                      <div className="d-flex col-12">
                         {plan.standout_profile !=  0  ? (
-                          <>
+                          <div className='d-flex col-12 py-1'>
                             <div className="col-1 text-success">✔</div>
                             <div className="col-11 text-start">
                               Standout from other Profiles
                             </div>
-                          </>
+                          </div>
                         ) : (
-                          <>
+                          <div className='d-flex col-12 py-1'>
                             <div className="col-1"></div>
                             <div className="col-11 text-start">
                               <del>Standout from other Profiles </del>
                             </div>
-                          </>
+                          </div>
                         )}
                       </div>
                     </div>
@@ -178,7 +193,7 @@ const Pricing = () => {
               >
                 <div className="carousel-inner" style={{ height: "500px" }}>
                   {plans?.map((plan,key) => (
-                    <div className={"carousel-item h-50 p-4" + (key==0?"active":"")}>
+                    <div className={"carousel-item h-50 p-4 " + (key==0?"active":"")}>
                       <div className="slider-content">
                         <div className="container mt-3">
                           <div className="row carousel-caption align-items-center h-100">
@@ -315,20 +330,20 @@ const Pricing = () => {
             </section>
           </div>
           <div className="container-fluid bg-grey">
-            <div
-              className="col-12 text-center shadow bg-white rounded p-5"
-              style={{ borderTop: "5px solid red" }}
-            >
-              <h4>Select Plan</h4>
-              <div className="col-12 text-center">
-                Experience Personalised Matchmaking starting at PKR 20,500
-              </div>
+            {/*<div*/}
+            {/*  className="col-12 text-center shadow bg-white rounded p-5"*/}
+            {/*  style={{ borderTop: "5px solid red" }}*/}
+            {/*>*/}
+            {/*  <h4>Select Plan</h4>*/}
+            {/*  <div className="col-12 text-center">*/}
+            {/*    Experience Personalised Matchmaking starting at PKR 20,500*/}
+            {/*  </div>*/}
 
-              <Link class="btn btn-outline pt-2" to="/matches" role="button">
-                {" "}
-                View Plan{" "}
-              </Link>
-            </div>
+            {/*  <Link class="btn btn-outline pt-2" to="/matches" role="button">*/}
+            {/*    {" "}*/}
+            {/*    View Plan{" "}*/}
+            {/*  </Link>*/}
+            {/*</div>*/}
             <div className="col-12 ">
               <div className="col-12 text-center">
                 <h3 className="pt-5">
@@ -431,7 +446,7 @@ const Pricing = () => {
                             data-bs-parent="#accordion-Two"
                           >
                             <div class="accordion-body">
-                              <p>
+                              <p className="text-justify text-dark">
                                 As a Premium member, you can chat unlimited with
                                 your Matches, view their contact numbers and
                                 view hidden photos. You also get Premium
@@ -462,7 +477,7 @@ const Pricing = () => {
                             data-bs-parent="#accordion-Two"
                           >
                             <div class="accordion-body">
-                              <p>
+                              <p className="text-justify text-dark">
                                 {" "}
                                 We keep you informed from time to time whenever
                                 you are eligible for different discounts and
@@ -492,7 +507,7 @@ const Pricing = () => {
                               data-bs-parent="#accordion-Two"
                             >
                               <div class="accordion-body">
-                                <p>
+                                <p className="text-justify text-dark">
                                   We offer multiple Online and Offline payment
                                   options for you to pick and choose from based
                                   on your location. Choose your preferred plan
@@ -524,7 +539,7 @@ const Pricing = () => {
                               data-bs-parent="#accordion-Two"
                             >
                               <div class="accordion-body">
-                                <p>
+                                <p className="text-justify text-dark">
                                   We go to great lengths to make sure you get
                                   the best possible experience here. Every
                                   single profile is screened & your matches are

@@ -8,6 +8,7 @@ import PublicProfile from './Pages/LoggedIn/Profile/Profile'
 import SearchedMatches from "./Pages/LoggedIn/Matches/SearchedMatches/SearchedMatches";
 import ProtectedRoutes from "./ProtectedRoutes"
 import PreventRoutes from "./PreventRoutes"
+import Chatpanel from "./Pages/LoggedIn/Chat/chatpanel";
 
 const Router = () => {
   
@@ -24,6 +25,7 @@ const Router = () => {
           <Route exact path="/search" element={<AuthHome/>} />
           <Route exect path='/pricing' element={<Pricing/>} />
           <Route exact path="/public/profile/:userId" element={<PublicProfile/>} />
+          <Route exect path='/chat' element={<Chatpanel/>} />
           <Route exact path="/searched/profile" element={<SearchedMatches/>} />
         {/* </Route> */}
       </Routes >

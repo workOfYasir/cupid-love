@@ -25,7 +25,7 @@ const Gallery = () => {
             <ul className="nav nav-tabs nav-tabs-02" role="tablist">
               
               <li className="nav-item">
-                <a className="nav-link" id="tab-04" data-bs-toggle="tab" href="#tab-07" role="tab" aria-controls="tab-07" aria-selected="false">Photo Album</a>
+                <a className="nav-link" id="tab-04" data-bs-toggle="tab" href="#tab-07" role="tab" aria-controls="tab-07" aria-selected="false">Photo Gallery</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" id="tab-05" data-bs-toggle="tab" href="#tab-08" role="tab" aria-controls="tab-08" aria-selected="false">Settings</a>

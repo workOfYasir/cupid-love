@@ -12,13 +12,13 @@ import 'react-toastify/dist/ReactToastify.css';
 const MyMatches = () => {
   // const [qualification, setQualification] = React.useState();
   const [editFields, setEditFields] = useState(true);
-  const [religion, setReligions] = useState();
-  const [country, setCountries] = useState();
-  const [state, setStates] = useState();
-  const [city, setCities] = useState();
-  const [cast, setCasts] = useState();
-  const [sector, setSectors] = useState();
-
+  const [religions, setReligions] = useState();
+  const [countries, setCountries] = useState();
+  const [states, setStates] = useState();
+  const [cities, setCities] = useState();
+  const [casts, setCasts] = useState();
+  const [sectors, setSectors] = useState();
+  const [profile,setProfile] = useState()
   const fieldDisablity = () => {
     setEditFields(!editFields);
   };
@@ -46,7 +46,7 @@ const MyMatches = () => {
   });
   const store = useContext(StoreContext);
   const navigate = useNavigate();
-  const [profileData, setProfile] = useState();
+  const [profileData, setProfiles] = useState();
 
   const handleChange = (event) => {
     setformValue({
@@ -77,7 +77,6 @@ const MyMatches = () => {
 
     try {
 
-      console.log(formData);
       const response = await axios({
         method: "post",
         url: `${store.url}get-profiles`,
@@ -90,7 +89,7 @@ const MyMatches = () => {
        
         const data = response.data;
         // setQualification(data[0]["qualification"]);
-        setProfile(data[0]["profiles"]);
+        setProfiles(data[0]["profiles"]);
       });
     } catch (error) {
       console.log(error);
@@ -128,109 +127,49 @@ const MyMatches = () => {
       console.log(error);
     }
   }
-  const religions = async (access_token) => {
-    try {
-      axios.get(`${store.url}get-religions`, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          'Authorization': `Bearer ${access_token}`
-        }
-      }).then((response) => {
-        const data = response.data.religions;
-        setReligions(data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const countries = async (access_token) => {
-    try {
-      axios.get(`${store.url}get-countrys`, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          'Authorization': `Bearer ${access_token}`
-        }
-      }).then((response) => {
-        const data = response.data[0].countrys;
-        setCountries(data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const states = async (access_token) => {
-    try {
+  const getProfile = async(access_token,user_id)=>{
 
-      axios({
-        method: "get",
-        url: `${store.url}get-states`,
-        headers: { "Content-Type": "multipart/form-data", 'Authorization': `Bearer ${access_token}` },
-      }).then((response) => {
-        const data = response.data.states;
-        setStates(data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const cities = async (access_token) => {
     try {
-
-      axios({
-        method: "get",
-        url: `${store.url}get-cities`,
-        headers: {
-          "Content-Type": "multipart/form-data",
-          'Authorization': `Bearer ${access_token}`
-        },
-      }).then((response) => {
-        const data = response.data.cities;
-        setCities(data);
-      });
-    } catch (error) {
-      console.log(error);
+      const userId = new FormData();
+      userId.append("user_id", user_id)
+      const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${access_token}`
+      };
+      const response =   await axios({
+        method: "post",
+        url: `${store.url}get-profile`,
+        data: userId,
+        headers: headers,
+      }).then((response)=>{
+        const data = response.data
+        console.log('data==================>',data['data']['user'][0]['user']['user_plan']);
+        setProfile(data['data']['user'][0])
+      })
+    } catch(error) {
+      console.log(error)
     }
-  };
-  const sectors = async (access_token) => {
-    try {
-      axios.get(`${store.url}get-sectors`, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          'Authorization': `Bearer ${access_token}`
-        }
-      }).then((response) => {
-        const data = response.data.sectors;
-        setSectors(data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const casts = async(access_token)=>{
-    try {
-       console.log('access_token',access_token);
-     axios.get(`${store.url}get-casts`,{
-        headers: {
-            "Content-Type": "multipart/form-data",
-            'Authorization': `Bearer ${access_token}`
-          }
-     }).then((response)=>{
-            const data = response.data
-            setCasts(data[0].casts)
-        })
-      } catch(error) {
-        console.log(error)
-      }
   }
+
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    const user = localStorage.getItem("user");
-    religions(token)
-    countries(token)
-    states(token)
-    cities(token)
-    sectors(token)
-    casts(token)
+    const token = localStorage.getItem('accessToken')
+    const user = localStorage.getItem('user')
+    const countries = JSON.parse(localStorage.getItem("countries"));
+    console.log(countries)
+    const states = JSON.parse(localStorage.getItem("states"));
+    const cities = JSON.parse(localStorage.getItem("cities"));
+    const sectors = JSON.parse(localStorage.getItem("sectors"));
+    const religions = JSON.parse(localStorage.getItem("religions"));
+    const casts = JSON.parse(localStorage.getItem("casts"));
+
+     setReligions(religions)
+     setCountries(countries)
+     setStates(states)
+     setCities(cities)
+     setCasts(casts)
+     setSectors(sectors)
+    getProfile(token,JSON.parse(user).id)
     filter(formValue);
   }, [formValue]);
 
@@ -344,7 +283,7 @@ const MyMatches = () => {
                       </div>
                       <div className="collapse show" id="dateposted">
                         <div className="widget-content">
-                        {religion?.map((data) => (
+                        {religions?.map((data) => (
                           <div className="form-check">
                             <input
                               className="form-check-input"
@@ -383,7 +322,7 @@ const MyMatches = () => {
                       </div>
                       <div className="collapse show" id="dateposted">
                         <div className="widget-content">
-                        {sector?.map((data) => (
+                        {sectors?.map((data) => (
                           <div className="form-check">
                             <input
                               className="form-check-input"
@@ -1102,7 +1041,7 @@ const MyMatches = () => {
                       </div>
                       <div className="collapse show" id="dateposted">
                         <div className="widget-content">
-                        {cast?.map((data) => (
+                        {casts?.map((data) => (
                           <div className="form-check">
                             <input
                               className="form-check-input"
@@ -1125,128 +1064,13 @@ const MyMatches = () => {
                       </div>
                     </div>
                     <hr />
-                    <div className="widget bg-white p-1 shadow rounded">
-                      <div className="widget-title widget-collapse bg-grey">
-                        <h6>Country Living In</h6>
-                        <a
-                          className="ms-auto"
-                          data-bs-toggle="collapse"
-                          href="#dateposted"
-                          role="button"
-                          aria-expanded="false"
-                          aria-controls="dateposted"
-                        >
-                          {" "}
-                        </a>
-                      </div>
-                      <div className="collapse show" id="dateposted">
-                        <div className="widget-content">
-                        {country?.map((data) => (
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="country"
-                              value={data.id}
-                              onClick={handleChange}
-                              id="dateposted2"
-                            />
-                            <label
-                              className="form-check-label"
-                              for="dateposted2"
-                            >
-                              {data.name}
-                            </label>
-                          </div>
-                        ))}
-                         
-                        </div>
-                      </div>
-                    </div>
-                    <hr />
-                    <div className="widget bg-white p-1 shadow rounded">
-                      <div className="widget-title widget-collapse bg-grey">
-                        <h6>State Living In</h6>
-                        <a
-                          className="ms-auto"
-                          data-bs-toggle="collapse"
-                          href="#dateposted"
-                          role="button"
-                          aria-expanded="false"
-                          aria-controls="dateposted"
-                        >
-                          {" "}
-                        </a>
-                      </div>
-                      <div className="collapse show" id="dateposted">
-                        <div className="widget-content">
-                        {state?.map((data) => (
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="state"
-                              value={data.id}
-                              onClick={handleChange}
-                              id="dateposted2"
-                            />
-                            <label
-                              className="form-check-label"
-                              for="dateposted2"
-                            >
-                              {data.name}
-                            </label>
-                          </div>
-                        ))}
-                         
-                        </div>
-                      </div>
-                    </div>
-                    <hr />
-                    <div className="widget bg-white p-1 shadow rounded">
-                      <div className="widget-title widget-collapse bg-grey">
-                        <h6>City Living In</h6>
-                        <a
-                          className="ms-auto"
-                          data-bs-toggle="collapse"
-                          href="#dateposted"
-                          role="button"
-                          aria-expanded="false"
-                          aria-controls="dateposted"
-                        >
-                          {" "}
-                        </a>
-                      </div>
-                      <div className="collapse show" id="dateposted">
-                        <div className="widget-content">
-                        {city?.map((data) => (
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="city"
-                              value={data.id}
-                              onClick={handleChange}
-                              id="dateposted2"
-                            />
-                            <label
-                              className="form-check-label"
-                              for="dateposted2"
-                            >
-                              {data.name}
-                            </label>
-                          </div>
-                        ))}
-                         
-                        </div>
-                      </div>
-                    </div>
-                    <hr />
+
                   </div>
                 </div>
 
                 <div className="col-lg-9">
-                  {profileData?.map((data) => (
+                  {profileData?.map((data,index) => (
+                      <>
                     <div
                       className="employers-list mb-5 shadow rounded p-0 pt-sm-0 pt-5 "
                     >
@@ -1502,7 +1326,9 @@ const MyMatches = () => {
                           <div className="col-12 font-style-italic text-sm-white text-dark">
                             Like This Profile
                           </div>
-                          <div onClick={fieldDisablity}  style={editFields?{display:"block",textAlign:"center"}:{display:"none"}}>
+                          <div data-bs-toggle="modal"
+                               data-bs-target={"#myMatches-"+index}
+                               style={editFields?{display:"block",textAlign:"center",cursor: 'pointer',}:{display:"none"}}>
                           <h1>
                             <i
                               class="fa fa-check-circle text-success"
@@ -1510,7 +1336,7 @@ const MyMatches = () => {
                             ></i>
                           </h1>
                           Connect Now
-                        </div> 
+                        </div>
                           {data.user?.user_plan!=null?
                           <>
                         <div className="col-12 text-center" style={editFields?{display:"none"}:{display:"block"}}>
@@ -1546,20 +1372,20 @@ const MyMatches = () => {
                           </a>
                           </>:
                           <>
-                           <a 
+                           <a
                            onClick={handleToast}
                            className="btn px-5 py-1 m-1 btn-white border rounded b-radius">
                           <i class="fa fa-comment" aria-hidden="true"></i> Chat
                           </a>
                           </>}
-                        </div>  
+                        </div>
                           </>
                           :
                           <>
                           </>
                           }
-                          
-                        
+
+
                         </div>
                       </div>
                       <div className="d-sm-none d-flex col-12">
@@ -1581,50 +1407,81 @@ const MyMatches = () => {
                         </div>
                       </div>
                     </div>
+                    <div
+                    className="modal fade"
+                    id={"myMatches-"+index}
+                    tabIndex="-1"
+                    aria-labelledby={"myMatches-"+index}
+                    aria-hidden="true"
+
+                    >
+                    <div className="modal-dialog " >
+                    <div className="modal-content clearfix bg-content-sm">
+
+                    <h4
+                    className="modal-title title divider-3 text-dark"
+                    id={"myMatches-"+index}
+                    >
+                    </h4>
+                    <div className="modal-body ">
+                    <div className="card w-75 m-auto">
+                    <div className="card-body text-dark col-12">
+                    <div style={{textAlign:'end'}}><i className="fa fa-solid fa-lock"></i></div>
+                    <div className="d-flex">
+                    <div className="col-3">
+                  {data.user.picture[0] == null ?
+
+                    <img src={process.env.PUBLIC_URL + "/images/thumbnail/thum-1.jpg"} alt=""
+                    className='border-radius-50' srcSet=""/>
+                    :
+                    <img src={store.mediaUrl + data?.user?.picture[0].image_path} alt=""
+                    style={data.pictures_settings == 'visible' || ((data?.pictures_settings == 'premimum') && (data?.user_subscription != null)) ? {filter: 'blur(0px)'} : {filter: 'blur(8px)'}}
+                    className='border-radius-50' srcSet=""/>
+                  }
+                    </div>
+                    <div className="col">
+                    <b>{data?.user.first_name}</b><br/>
+                    <span>{data?.height}, {data?.qualification}, {data?.language}, {data?.country?.name} ,{data?.city?.name}</span>
+                    </div>
+                    </div>
+                    <div className="d-block mt-3">
+                    <strong> {profile?.user?.user_plan.length==0?'Phone: +0932-**** ***':'Phone: '+data?.number}</strong>
+                    <br/>
+                    <strong>{profile?.user?.user_plan.length==0?'Email: ****@gmail.com':'Email: '+data?.user?.email}</strong>
+                    </div>
+                    <hr style={{margin:'10px !important'}}/>
+                    <b className="d-flex col-12">
+                    <a href={profile?.user?.user_plan.length!=0?"https://api.whatsapp.com/send?phone="+data?.number+"&text=Hello this is the starting message":"#"} className="col text-success" style={{fontSize:'15px'}}>
+                    <i className="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
+                    </a>
+                    <span className="col text-primary" style={{fontSize:'15px'}}>
+                    <i className="fa fa-comment" aria-hidden="true"></i> Chat
+                    </span>
+                    <a target="_blank" href={"tel:"+profile?.user?.user_plan.length!=0?data?.number:"#"} className="col text-danger" style={{fontSize:'15px'}} >
+                    <i className="fa fa-phone" aria-hidden="true"></i> Call
+                    </a>
+                    </b>
+                    </div>
+                    </div>
+
+                    <div className="text-center">
+                    <Link
+                    to='/pricing'
+                    className="button  btn btn-theme rounded-sm animated right-icn pl-2"
+                    >
+                    View Plans
+                    </Link>
+                    </div>
+                    </div>
+
+                    </div>
+
+                    </div>
+                    </div>
+                      </>
                   ))}
           
-                  {/* <div className="row">
-                    <div className="col-12 text-center mt-4 mt-sm-5">
-                      <ul className="pagination justify-content-center mb-0">
-                        <li className="page-item disabled">
-                          {" "}
-                          <span className="page-link b-radius-none">
-                            Prev
-                          </span>{" "}
-                        </li>
-                        <li className="page-item active" aria-current="page">
-                          <span className="page-link">1 </span>{" "}
-                          <span className="sr-only">(current)</span>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            2
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            3
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            ...
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            25
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          {" "}
-                          <a className="page-link" href="#">
-                            Next
-                          </a>{" "}
-                        </li>
-                      </ul>
-                    </div>
-                  </div> */}
+
                 </div>
               </div>
             </div>
