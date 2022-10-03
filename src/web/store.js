@@ -38,16 +38,19 @@ export const StoreProvider = (props) => {
     count: 0,
     setCount: action((e) => (store.token = e)),
 
+    requests: ([]),
+    setRequests: action((e) => (store.token = e)),
+
 
     // url
-    // url:"http://127.0.0.1:8000/api/",
-    url:"http://urgentrishtaadmin.urgentrishta.co/api/",
+    url:"http://127.0.0.1:8000/api/",
+    // url:"http://urgentrishtaadmin.urgentrishta.co/api/",
     setUrl: action((e) => (store.url = e)),
 
     
     // url
-    // mediaUrl:"http://127.0.0.1:8000/",
-    mediaUrl:"http://urgentrishtaadmin.urgentrishta.co/public/",
+    mediaUrl:"http://127.0.0.1:8000/",
+    // mediaUrl:"http://urgentrishtaadmin.urgentrishta.co/public/",
     setMediaUrl: action((e) => (store.mediaUrl = e)),
       
   }));

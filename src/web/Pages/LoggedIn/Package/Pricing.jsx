@@ -5,7 +5,7 @@ import "./assets/style.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import axios from "axios";
-import { StoreContext } from "./../../../store";
+import { StoreContext } from "../../../store";
 import Dashboard from "../MyAccount/Dashboard/Dashboard";
 
 const Pricing = () => {

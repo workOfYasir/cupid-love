@@ -2,105 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="656d3675-af74-4426-8c55-b3506376d808" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/web/validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/animate.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/animate.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/bootstrap-select.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/bootstrap-select.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/bootstrap-slider.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/bootstrap-slider.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/flaticon.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/flaticon.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/font-awesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/font-awesome.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/general.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/magnific-popup/magnific-popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/magnific-popup/magnific-popup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/mega-menu/mega_menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/mega-menu/mega_menu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/owl-carousel/owl.carousel.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/owl-carousel/owl.carousel.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/owl-carousel/owl.video.play.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/owl-carousel/owl.video.play.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/skills-graph/jqbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/skills-graph/jqbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/skins/skin-default.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/skins/skin-default.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style-customizer.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style-customizer.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/Flaticon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/Flaticon.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/fontawesome-webfont5b62.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfont5b62.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/bg/17.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/bg/17.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/bg/gradient-overlay.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/bg/gradient-overlay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/form-icon/skin-default.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/form-icon/skin-default.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/login-img.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/login-img.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/pattern/pattern2.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/pattern/pattern2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/pattern/pattern3.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/pattern/pattern3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/register-img.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/register-img.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/bootstrap-slider.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/bootstrap-slider.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/countdown/jquery.downCount.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/countdown/jquery.downCount.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/counter/jquery.countTo.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/counter/jquery.countTo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/isotope/isotope.pkgd.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/isotope/isotope.pkgd.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery-3.6.0.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jquery-3.6.0.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery.appear.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jquery.appear.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery.simple-text-rotator.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jquery.simple-text-rotator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/magnific-popup/jquery.magnific-popup.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/magnific-popup/jquery.magnific-popup.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/mega-menu/mega_menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/mega-menu/mega_menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/owl-carousel/owl.carousel.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/owl-carousel/owl.carousel.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/popper.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/popper.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/select/jquery-select.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/select/jquery-select.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/skills-graph/jqbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/skills-graph/jqbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/style-customizer.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/style-customizer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reportWebVitals.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Components/Footer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Components/SubHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Components/SubHeader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Components/images/pattern/pattern2.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Components/images/pattern/pattern2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Components/images/pattern/pattern3.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Components/images/pattern/pattern3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Error.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Error.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Layouts/Loader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Layouts/Loader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Layouts/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Layouts/custom.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/CreateProfile/CreateProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/CreateProfile/CreateProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/CreateProfile/assets/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/CreateProfile/assets/css/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/Home/Components/images/bg/17.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/Home/Components/images/bg/17.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/Home/Components/images/bg/gradient-overlay.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/Home/Components/images/bg/gradient-overlay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/Home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Chat/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Chat/bootstrap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Chat/chatpanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Chat/chatpanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/MoreMatches/MoreMatches.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/MoreMatches/MoreMatches.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/MyMatches/MyMatches.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/MyMatches/MyMatches.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/NearMe/NearMe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/NearMe/NearMe.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/NewMatches/NewMatches.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/NewMatches/NewMatches.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/RecentlyView/RecentlyView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/RecentlyView/RecentlyView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/SearchedMatches/SearchedMatches.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/SearchedMatches/SearchedMatches.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/TodayProfile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/TodayProfile/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/assets/css/card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/assets/css/card.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Gallery.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Gallery.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Photos/Photos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Photos/Photos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Settings/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Settings/Settings.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/More/More.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/More/More.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/PartnerPreference/PartnerPreference.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/PartnerPreference/PartnerPreference.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/PartnerPreference/assets/css/preferences.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/PartnerPreference/assets/css/preferences.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Profile/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Settings/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Settings/Settings.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/Pricing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/Pricing.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/assets/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Profile/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Profile/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Profile/assets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Search/AdvanceSearch/AdvanceSearch.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Search/AdvanceSearch/AdvanceSearch.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Search/BasicSearch/BasicSearch.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Search/BasicSearch/BasicSearch.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/PreventRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/PreventRoutes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/ProtectedRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/ProtectedRoutes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Router.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +43,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dell/Downloads/laragon-portable/www/cupid-love/src/web/Pages/LoggedIn/Chat&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dell/Downloads/laragon-portable/www/cupid-love&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
@@ -187,7 +102,24 @@
       <workItem from="1663708951229" duration="2270000" />
       <workItem from="1663783165681" duration="1052000" />
       <workItem from="1663866457996" duration="4094000" />
-      <workItem from="1663872703806" duration="1127000" />
+      <workItem from="1663872703806" duration="1312000" />
+      <workItem from="1663903901611" duration="886000" />
+      <workItem from="1664034469471" duration="659000" />
+      <workItem from="1664079762053" duration="1292000" />
+      <workItem from="1664085881711" duration="1819000" />
+      <workItem from="1664092787023" duration="8249000" />
+      <workItem from="1664113791206" duration="4779000" />
+      <workItem from="1664212236721" duration="2872000" />
+      <workItem from="1664250024086" duration="2725000" />
+      <workItem from="1664293798056" duration="16070000" />
+      <workItem from="1664378670052" duration="308000" />
+      <workItem from="1664477089759" duration="2054000" />
+      <workItem from="1664702654948" duration="2982000" />
+      <workItem from="1664706645907" duration="2501000" />
+      <workItem from="1664712287527" duration="26000" />
+      <workItem from="1664717331984" duration="4618000" />
+      <workItem from="1664816738380" duration="491000" />
+      <workItem from="1664817507548" duration="3543000" />
     </task>
     <servers />
   </component>
@@ -204,5 +136,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>

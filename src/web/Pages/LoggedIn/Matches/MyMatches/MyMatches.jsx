@@ -8,9 +8,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Pusher from "pusher-js";
 
 const MyMatches = () => {
-  // const [qualification, setQualification] = React.useState();
   const [editFields, setEditFields] = useState(true);
   const [religions, setReligions] = useState();
   const [countries, setCountries] = useState();
@@ -47,6 +47,12 @@ const MyMatches = () => {
   const store = useContext(StoreContext);
   const navigate = useNavigate();
   const [profileData, setProfiles] = useState();
+  const [notify,setNotify] = useState({
+    msgList: [],
+    userList: [],
+    activeUser: []
+  })
+
 
   const handleChange = (event) => {
     setformValue({
@@ -89,11 +95,31 @@ const MyMatches = () => {
        
         const data = response.data;
         // setQualification(data[0]["qualification"]);
+        //friend_request
         setProfiles(data[0]["profiles"]);
+        // console.log(data[0]["profiles"][0]['user']);
       });
     } catch (error) {
       console.log(error);
     }
+  }
+  async function sendRequest(reciever_id){
+    const token = localStorage.getItem("accessToken");
+    const rec_id = new FormData();
+    rec_id.append("rec_id", reciever_id );
+    const response = await axios({
+      method: "post",
+      url: `${store.url}friend-request`,
+      data:rec_id,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((response) => {
+
+      // const data = response.data;
+      // navigate("/public/profile/" + viewed_id);
+    });
   }
 
   async function profileView(viewed_id) {
@@ -104,12 +130,7 @@ const MyMatches = () => {
     formData.append("viewer_id", viewer_id);
     formData.append("viewed_id", viewed_id);
     try {
-      const headers = {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      };
-      console.log(formData);
+
       const response = await axios({
         method: "post",
         url: `${store.url}recent-visit`,
@@ -144,7 +165,6 @@ const MyMatches = () => {
         headers: headers,
       }).then((response)=>{
         const data = response.data
-        console.log('data==================>',data['data']['user'][0]['user']['user_plan']);
         setProfile(data['data']['user'][0])
       })
     } catch(error) {
@@ -152,11 +172,51 @@ const MyMatches = () => {
     }
   }
 
+
+  const subscribeToPusher=()=>{
+
+    let a_tok = localStorage.getItem("accessToken");
+    //suscribing to pusher channel
+    Pusher.logToConsole = true;
+    var pusher = new Pusher('309d1b258d720b06a5de', {
+      cluster: 'mt1',
+    });
+    var new_msg = [];
+    let user = localStorage.getItem("user");
+    var channel = pusher.subscribe('chat');
+    channel.bind('message',(d) => {
+
+      //checking sent message from sender side
+      if(d.sender_id == JSON.parse(user)["id"]){
+        if(notify.activeUser[0].id == d.rec_id){
+          //alert('you have sent message to this user.');
+          setNotify({msgList:notify.msgList.concat(d)});
+        }
+      }
+
+      //checking message has been received or not
+      if(d.sender_id != JSON.parse(user)["id"]){
+        if(notify.active_user.length != 0){
+          if(notify.active_user[0].id == d.sender_id){
+            //alert('you have sent message to this user.');
+            this.setState({msg_list:notify.msg_list.concat(d)});
+          }
+          else{
+            var id_to_notify = document.getElementById('user_'+d.sender_id);
+          }
+        }
+        else{
+          alert('no active user, you got a new message : '+d.message);
+        }
+      }
+
+    });
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('accessToken')
     const user = localStorage.getItem('user')
     const countries = JSON.parse(localStorage.getItem("countries"));
-    console.log(countries)
     const states = JSON.parse(localStorage.getItem("states"));
     const cities = JSON.parse(localStorage.getItem("cities"));
     const sectors = JSON.parse(localStorage.getItem("sectors"));
@@ -1178,6 +1238,7 @@ const MyMatches = () => {
                           </div>
                         </>
                       )}
+
                       <div className="col-sm-5 offset-12 p-2">
                         <div className="col-12 d-flex">
                           <div className="col-sm-8 col-12 d-flex">
@@ -1295,7 +1356,15 @@ const MyMatches = () => {
                         <div className="col-12 d-block ">
                           <div className="col-12 d-flex pt-1">
                             <div className="col-6 text-start text-sm-white text-dark  ">
-                              {data.age}
+                              {data.age}/ {data.height}
+                            </div>
+                            <div className="col-6 text-start text-sm-white text-dark ">
+                              {data.marital_status}
+                            </div>
+                          </div>
+                          <div className="col-12 d-flex pt-1">
+                            <div className="col-6 text-start text-sm-white text-dark  ">
+                              {data.religion == null ? "" : data.religion.name}
                             </div>
                             <div className="col-6 text-start text-sm-white text-dark ">
                               {data.cast == null ? "" : data.cast.name}
@@ -1303,10 +1372,10 @@ const MyMatches = () => {
                           </div>
                           <div className="col-12 d-flex pt-1">
                             <div className="col-6 text-start text-sm-white text-dark ">
-                              {data.country == null ? "" : data.country.name}
+                              {data.state == null ? "" : data.state.name}
                             </div>
                             <div className="col-6 text-start text-sm-white text-dark ">
-                              {data.religion == null ? "" : data.religion.name}
+                              {data.city == null ? "" : data.city.name}
                             </div>
                           </div>
 
@@ -1318,6 +1387,14 @@ const MyMatches = () => {
                               {data.job}
                             </div>
                           </div>
+                          <div className="col-12 d-flex pt-1">
+                            About <br/>
+                            <div className="col-12 d-sm-block d-none " style={{ overflow: 'hidden', whiteSpace: 'nowrap'}}>
+                              <br/>
+                              {data.about}...See More
+
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <hr className="col-12 m-2 d-sm-none d-block" />
@@ -1326,17 +1403,48 @@ const MyMatches = () => {
                           <div className="col-12 font-style-italic text-sm-white text-dark">
                             Like This Profile
                           </div>
-                          <div data-bs-toggle="modal"
-                               data-bs-target={"#myMatches-"+index}
-                               style={editFields?{display:"block",textAlign:"center",cursor: 'pointer',}:{display:"none"}}>
-                          <h1>
-                            <i
-                              class="fa fa-check-circle text-success"
-                              aria-hidden="true"
-                            ></i>
-                          </h1>
-                          Connect Now
-                        </div>
+                          {data?.user?.friend_request!=null  ?
+
+                                  <>
+                                    <div data-bs-toggle="modal"
+                                         data-bs-target={"#myMatches-" + index}
+                                         style={editFields ? {
+                                           display: "block",
+                                           textAlign: "center",
+                                           cursor: 'pointer',
+                                         } : {display: "none"}}>
+                                      <h1>
+                                        <i
+                                            className="fa fa-user text-success"
+                                            aria-hidden="true"
+                                        ></i>
+                                      </h1>
+                                      Friend
+                                    </div>
+                                  </>
+                                  :
+                              <>
+                                <div  onClick={() => {
+                                        sendRequest(data.user_id);
+                                      }}
+                                     style={editFields ? {
+                                       display: "block",
+                                       textAlign: "center",
+                                       cursor: 'pointer',
+                                     } : {display: "none"}}>
+                                  <h1>
+                                    <i
+                                        className="fa fa-check-circle text-success"
+                                        aria-hidden="true"
+                                    ></i>
+                                  </h1>
+                                  <div id={"connection_btn" + index}>
+                                  Connect Now
+                                  </div>
+                                </div>
+                              </>
+                          }
+
                           {data.user?.user_plan!=null?
                           <>
                         <div className="col-12 text-center" style={editFields?{display:"none"}:{display:"block"}}>
@@ -1407,6 +1515,7 @@ const MyMatches = () => {
                         </div>
                       </div>
                     </div>
+
                     <div
                     className="modal fade"
                     id={"myMatches-"+index}

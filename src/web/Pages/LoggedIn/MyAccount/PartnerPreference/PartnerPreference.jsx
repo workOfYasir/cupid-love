@@ -14,6 +14,7 @@ const PartnerPreference = () => {
   const [state, setStates] = useState();
   const [city, setCities] = useState();
   const [casts, setCasts] = useState();
+  const [religions, setReligions] = useState();
 
   const handleInputHeight = (e) => {
     set_minHeight(e.minHeight);
@@ -24,14 +25,15 @@ const PartnerPreference = () => {
     set_maxValueAge(e.maxValueAge);
   };
   const store = useContext(StoreContext);
-  const [profileData,setPartner] = useState()
   const [formValue, setformValue] = React.useState({
     gender: '',
-    material_status: '',
+    marital_status: '',
     cast: '',
     education: '',
     country:'',
     state:'',
+      religion:'',
+      mother_tongue:'',
     city:''
   });
   const handleChange = (event) => {
@@ -42,13 +44,10 @@ const PartnerPreference = () => {
     });
     if(event.target.name=='country' ){
       console.log(event.target.value);
-
       states(event.target.value)
-
     }else if(event.target.name=='state'){
       cities(event.target.value)
     }
-
   }
 
 
@@ -99,7 +98,7 @@ const PartnerPreference = () => {
     const formData = new FormData();
 const user_id = JSON.parse(user)['id'];
     formData.append('data[user_id]',user_id)
-    formData.append('data[martial_status]',formValue.material_status)
+    formData.append('data[martial_status]',formValue.marital_status)
     formData.append('data[min_height]',minValueHeight)
     formData.append('data[min_age]',minValueAge)
     formData.append('data[max_height]',maxValueHeight)
@@ -109,8 +108,11 @@ const user_id = JSON.parse(user)['id'];
     formData.append('data[country_living_in]',formValue.country)
     formData.append('data[state_living_in]',formValue.state)
     formData.append('data[city/district]',formValue.city)
+      formData.append('data[cast_id]',formValue.cast)
+      formData.append('data[religion]',formValue.religion)
+      formData.append('data[mother_tongue]',formValue.mother_tongue)
 
-    try {
+      try {
    
     const headers = { 
       'Content-Type': 'application/json',
@@ -175,8 +177,11 @@ const user_id = JSON.parse(user)['id'];
 useEffect(()=>{
     const countries = JSON.parse(localStorage.getItem("countries"));
     const casts = JSON.parse(localStorage.getItem("casts"));
+    const religions = JSON.parse(localStorage.getItem("religions"));
+
     setCountries(countries)
     setCasts(casts)
+    setReligions(religions)
 },[])
 
 
@@ -236,23 +241,7 @@ useEffect(()=>{
                     </div>
                     
                   </div>
-                  <div className="form-group d-flex">
-                    <div className="col-2 align-self-center">
-                    <label for="" className=''>Marital status</label>
-                    </div>
 
-                    <div className="col-8 offset-sm-0 offset-1">
-                    <div className="mb-3">
-
-                      <select className="form-control p-2" name="maritalStatus" value={formValue.material_status} onChange={handleChange} id="">
-                        <option>Single</option>
-                        <option>Divorced</option>
-                        
-                      </select>
-                    </div>
-                    </div>
-                    
-                  </div>
                   <div className="form-group d-flex">
                     <div className="col-2 align-self-center">
                     <label for="" className=''>Education</label>
@@ -262,6 +251,7 @@ useEffect(()=>{
                     <div className="mb-3">
 
                       <select className="form-control p-2" name="education" value={formValue.education} onChange={handleChange}  id="">
+                          <option>select</option>
                         <option>Graduation</option>
                         <option>Bacholar</option>
                         <option>Master</option>
@@ -334,6 +324,7 @@ useEffect(()=>{
                     <div className="mb-3">
 
                       <select className="form-control p-2" name="cast" value={formValue.cast} onChange={handleChange} id="">
+                          <option>select</option>
                       {casts?.map((data) => (
                                     <option value={data.id}>{data.name}</option>
                                    ))}
@@ -344,13 +335,32 @@ useEffect(()=>{
                   </div>
                     <div className="form-group d-flex">
                         <div className="col-2 align-self-center">
+                            <label htmlFor="" className=''>Cast</label>
+                        </div>
+
+                        <div className="col-8 offset-sm-0 offset-1">
+                            <div className="mb-3">
+
+                                <select className="form-control p-2" name="religion" value={formValue.religion}
+                                        onChange={handleChange} id="">
+                                    <option>select</option>
+                                    {religions?.map((data) => (
+                                        <option value={data.id}>{data.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="form-group d-flex">
+                        <div className="col-2 align-self-center">
                             <label htmlFor="" className=''>Education Type</label>
                         </div>
 
                         <div className="col-8 offset-sm-0 offset-1">
                             <div className="mb-3">
 
-                                <select className="form-control p-2" name="education_type"
+                                <select className="form-control p-2" onChange={handleChange} value={formValue.education} name="education"
                                          id="">
                                     <option>Select one</option>
                                     <option value="Medical">Medical</option>
@@ -363,13 +373,29 @@ useEffect(()=>{
                     </div>
                     <div className="form-group d-flex">
                         <div className="col-2 align-self-center">
+                        <label className="form-label">Material Status</label>
+                        </div>
+                        <div className="col-8 offset-sm-0 offset-1">
+                        <div className="mb-3">
+                        <select className="form-control p-2"  onChange={handleChange} name="marital_status" aria-label="Default select example" id="">
+                            <option>Select one</option>
+                            <option value="Single">Single</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Window">Window</option>
+                            <option value="Married">Married</option>
+
+                        </select>
+                        </div>
+                        </div>
+                    </div>
+                    <div className="form-group d-flex">
+                        <div className="col-2 align-self-center">
                             <label htmlFor="" className=''>Mother Tongue</label>
                         </div>
 
                         <div className="col-8 offset-sm-0 offset-1">
                             <div className="mb-3">
-
-                                <select className="form-control p-2" name="mother_tongue" id="">
+                                <select className="form-control p-2" onChange={handleChange} name="mother_tongue" id="">
                                     <option>Select one</option>
                                     <option>English</option>
                                     <option>Urdu</option>

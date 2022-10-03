@@ -809,3 +809,14 @@ Action-box Page
 .font-lato{
   display: none !important;
 }
+.logo-toggle::after{
+  visibility: hidden;
+}
+.dropdown-menu{
+  max-height: 380px;
+  overflow-y: auto;
+
+}
+.dropdown-logo-menu{
+  min-width: 16rem !important;
+}

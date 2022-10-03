@@ -9,6 +9,7 @@ import { Carousel } from "react-responsive-carousel";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const NewMatches = () => {
   const [qualification, setQualification] = React.useState();
   const [religions, setReligions] = useState();
@@ -48,6 +49,25 @@ const NewMatches = () => {
   const store = useContext(StoreContext);
   const navigate = useNavigate();
   const [profileData, setProfiles] = useState();
+
+  async function sendRequest(reciever_id){
+    const token = localStorage.getItem("accessToken");
+    const rec_id = new FormData();
+    rec_id.append("rec_id", reciever_id );
+    const response = await axios({
+      method: "post",
+      url: `${store.url}friend-request`,
+      data:rec_id,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((response) => {
+
+      // const data = response.data;
+      // navigate("/public/profile/" + viewed_id);
+    });
+  }
 
   const handleChange = (event) => {
     setformValue({
@@ -1324,16 +1344,57 @@ const NewMatches = () => {
                           <div className="col-12 font-style-italic text-sm-white text-dark">
                             Like This Profile
                           </div>
-                          <div data-bs-toggle="modal"
-                               data-bs-target={"#newMatches-"+index}  style={editFields?{display:"block",textAlign:"center",cursor:"pointer"}:{display:"none"}}>
-                          <h1>
-                            <i
-                              class="fa fa-check-circle text-success"
-                              aria-hidden="true"
-                            ></i>
-                          </h1>
-                          Connect Now
-                        </div>
+                        {/*  <div data-bs-toggle="modal"*/}
+                        {/*       data-bs-target={"#newMatches-"+index}  style={editFields?{display:"block",textAlign:"center",cursor:"pointer"}:{display:"none"}}>*/}
+                        {/*  <h1>*/}
+                        {/*    <i*/}
+                        {/*      class="fa fa-check-circle text-success"*/}
+                        {/*      aria-hidden="true"*/}
+                        {/*    ></i>*/}
+                        {/*  </h1>*/}
+                        {/*  Connect Now*/}
+                        {/*</div>*/}
+                          {data?.user?.friend_request!=null  ?
+
+                              <>
+                                <div data-bs-toggle="modal"
+                                     data-bs-target={"#newMatches-" + index}
+                                     style={editFields ? {
+                                       display: "block",
+                                       textAlign: "center",
+                                       cursor: 'pointer',
+                                     } : {display: "none"}}>
+                                  <h1>
+                                    <i
+                                        className="fa fa-user text-success"
+                                        aria-hidden="true"
+                                    ></i>
+                                  </h1>
+                                  Friend
+                                </div>
+                              </>
+                              :
+                              <>
+                                <div  onClick={() => {
+                                  sendRequest(data.user_id);
+                                }}
+                                      style={editFields ? {
+                                        display: "block",
+                                        textAlign: "center",
+                                        cursor: 'pointer',
+                                      } : {display: "none"}}>
+                                  <h1>
+                                    <i
+                                        className="fa fa-check-circle text-success"
+                                        aria-hidden="true"
+                                    ></i>
+                                  </h1>
+                                  <div id={"connection_btn" + index}>
+                                    Connect Now
+                                  </div>
+                                </div>
+                              </>
+                          }
                           {data.user?.user_plan!=null?
                           <>
                         <div className="col-12 text-center" style={editFields?{display:"none"}:{display:"block"}}>

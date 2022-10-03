@@ -25,7 +25,7 @@ class Chatpanel extends React.Component {
     componentDidMount(){
 
         this.loadUsers();
-        this.subscribeToPusher();
+        // this.subscribeToPusher();
     }
 
     getActiveUser(){
@@ -40,7 +40,7 @@ class Chatpanel extends React.Component {
     loadUsers(){
         let tok = localStorage.getItem("accessToken");
         console.log('tok===>>>>',tok)
-        fetch('http://urgentrishtaadmin.urgentrishta.co/api/fetchUsers',{
+        fetch('http://127.0.0.1:8000/api/fetchUsers',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
@@ -75,7 +75,7 @@ class Chatpanel extends React.Component {
         }
         let tok = localStorage.getItem("accessToken");
 
-        fetch(`http://urgentrishtaadmin.urgentrishta.co/api/fetchmessages?rec_id=${clicked_user_id}`
+        fetch(`http://127.0.0.1:8000/api/fetchmessages?rec_id=${clicked_user_id}`
             ,{
             method:'POST',
             headers:{
@@ -118,8 +118,7 @@ class Chatpanel extends React.Component {
 
         let activeUserId = this.state.active_user[0].id;
 
-
-        fetch(`http://urgentrishtaadmin.urgentrishta.co/api/messages?message=${msg}&rec_id=${activeUserId}`,{
+        fetch(`http://127.0.0.1:8000/api/messages?message=${msg}&rec_id=${activeUserId}`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
@@ -136,7 +135,7 @@ class Chatpanel extends React.Component {
             console.error(error);
         });
 
-        // this.subscribeToPusher();
+        this.subscribeToPusher();
 
 
     }
@@ -178,7 +177,7 @@ class Chatpanel extends React.Component {
                 }
             }
 
-        });
+        },channel.unbind('message'));
     }
 
 

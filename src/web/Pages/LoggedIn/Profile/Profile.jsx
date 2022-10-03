@@ -717,53 +717,7 @@ const Profile = () => {
                             </div>
                           </div>
                         </div>
-                        <h4 className="d-flex">
-                          <div className="b-radius">
-                            <i class="fa fa-book px-1" aria-hidden="true"></i>
-                          </div>
 
-                          <div className="flex-column justify-content-center d-flex px-3">
-                            Background
-                          </div>
-                        </h4>
-                        <div className="p-border-t-md">
-                          <div className="col-11 p-border-md b-left">
-                            <ul>
-                              <li>
-                                {" "}
-                                {profileData?.religion == null
-                                  ? ""
-                                  : profileData?.religion.name}
-                              </li>
-                              <li>
-                                {" "}
-                                {profileData?.cast == null
-                                  ? ""
-                                  : profileData?.cast.name}
-                              </li>
-                              <li>
-                                {" "}
-                                {profileData?.hobbies}, {profileData?.interest}
-                              </li>
-                              <li>
-                                {" "}
-                                Lives in{" "}
-                                {profileData?.city == null
-                                  ? ""
-                                  : profileData?.city.name}
-                                ,{" "}
-                                {profileData?.state == null
-                                  ? ""
-                                  : profileData?.state.name}
-                                ,{" "}
-                                {profileData?.country == null
-                                  ? ""
-                                  : profileData?.country.name}{" "}
-                                (Citizen)
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
                         <h4 className="d-flex">
                           <div className="b-radius">
                             <i class="fa fa-users" aria-hidden="true"></i>
@@ -774,9 +728,7 @@ const Profile = () => {
                           </div>
                         </h4>
                         <div className="p-border-t-md">
-                          {/* <div className="col-11 p-border-md b-left">
-        Her father is employed and her mother is a homemaker. She has 1 brother (unmarried) and 3 sisters (1 married).
-        </div> */}
+
                         </div>
                         <h4 className="d-flex">
                           <div className="b-radius">

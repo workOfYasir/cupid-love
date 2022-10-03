@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import axios from 'axios';
 import { StoreContext } from "./../../../../../store";
 import { Observer } from "mobx-react-lite";
@@ -7,16 +7,50 @@ import 'react-toastify/dist/ReactToastify.css';
 const Photos = () => {
   const store = useContext(StoreContext);
   const [image, setImage] = useState([]);
+  const [pictures,setPicture] = useState();
+  const [storePictures,setStorePicture] = useState();
+  const [deletePictures,setDeletePicture] = useState();
   const [formValue, setformValue] = React.useState({
     image: [],
-    
   });
+  const deleteImage = async (picture_id) => {
+    try {
+      const token = localStorage.getItem('accessToken')
+      const pictureData = new FormData;
+      pictureData.append('id',picture_id)
+      await axios({
+        method:"post",
+        headers:{ 'Content-Type': 'multipart/form-data', 'Authorization': `Bearer ${token}`  },
+        data:pictureData,
+        url:`${store.url}image-delete`
+      }).then((response)=>{
+        const data = response.data
+        setDeletePicture(data);
+      })
+    }catch (e) {
+      console.log(e)
+    }
+  }
+  const getImages = async ()=>{
+    try{
+      const token = localStorage.getItem('accessToken')
+      await axios({
+        method:"get",
+        headers:{ 'Content-Type': 'multipart/form-data', 'Authorization': `Bearer ${token}`  },
+        url:`${store.url}images`
+      }).then((response)=>{
+        const data = response.data
+        setPicture(data);
+      })
+    }catch(e){
+      console.log(e)
+    }
+  }
   const handleChange = (event) => {
     setformValue({
-image: [...event.target.files]
-    });
-console.log(formValue.image);
-  }
+    image: [...event.target.files]
+        });
+      }
   const handleSubmit = async(e) => {
     e.preventDefault()
     
@@ -24,16 +58,15 @@ console.log(formValue.image);
     const user = localStorage.getItem('user')
     const user_id = JSON.parse(user)['id'];
     const formData = new FormData();
- 
 
-  for (let i = 0; i < formValue.image.length; i++) {
-    formData.append(`image[]`, formValue.image[i]);
-  }
-  formData.append('user_id',user_id)
-console.log('========>',formValue.image);
+    for (let i = 0; i < formValue.image.length; i++) {
+      formData.append(`image[]`, formValue.image[i]);
+    }
+    // formData.append(`image`, formValue.image);
+    formData.append('user_id',user_id)
+
     try {
 
-  // console.log(formData);
       const response =   await axios({
 
         method: "post",
@@ -41,25 +74,41 @@ console.log('========>',formValue.image);
         data: formData,
         timeout: 120000,
         headers: { 'Content-Type': 'multipart/form-data', 'Authorization': `Bearer ${token}`  },
-        
-    }).then((response)=>{
-        // setformValue({image:''})
+
+        }).then((response)=>{
+
             const data = response.data
+            setStorePicture(data);
             toast.success("Photos Successfully Added")
-            // setProfile(data[0])
+
         })
-        // navigate('/pricing')
+
       } catch(error) {
         console.log(error)
       }
   }
+  useEffect(() => {
+    getImages()
+  }, [storePictures,deletePictures]);
+
   return (
     <Observer>
     {()=>(
         <>
-          
-            
+
+          <div className="row">
+            {pictures?.map((data)=>(
+                <>
+                <div className="col-3">
+                 <div className="col text-end" style={{cursor:"pointer"}} onClick={()=>(deleteImage(data?.id))}>❌</div>
+                  <img src={store.mediaUrl+data?.image_path} className="img-fluid"/>
+                </div>
+                </>
+            ))}
+          </div>
+          <hr/>
              <div className="d-flex">
+
              
             <div className="col-sm-3 col-6 p-1">
                 <div className="thumbnail">
