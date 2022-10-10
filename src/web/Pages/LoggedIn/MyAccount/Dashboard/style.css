@@ -1,0 +1,28 @@
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+
+}
+.custom-file-input::before {
+    content: '➕';
+    display: inline-block;
+    background: linear-gradient(top, #d63384, #d63384);
+    border: 1px solid #999;
+
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+
+    position:absolute;
+    bottom:270px;
+    right:-15px;
+    padding: 10px !important;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+}

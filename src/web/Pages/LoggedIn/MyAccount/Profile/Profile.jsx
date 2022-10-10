@@ -70,9 +70,7 @@ const Profile = () => {
       ...formValue,
       [event.target.name]: event.target.value,
     });
-    console.log(event.target.value);
     if (event.target.name == "country") {
-      console.log(event.target.value);
       states(event.target.value);
     } else if (event.target.name == "state") {
       cities(event.target.value);
@@ -84,13 +82,11 @@ const Profile = () => {
     const token = localStorage.getItem("accessToken");
     const user = localStorage.getItem("user");
     const formData = new FormData();
-    // console.log('formValue',user['id']);
     const user_id = JSON.parse(user)["id"];
     formData.append("data[id]", profileData?.id);
     formData.append("user[first_name]", formValue.first_name);
     formData.append("user[last_name]", formValue.last_name);
     formData.append("user[email]", formValue.email);
-    // formData.append("data[gender]", formValue.gender);
     formData.append("data[marital_status]", formValue.marital_status);
     formData.append("data[height]", formValue.height);
     formData.append("data[disability]", formValue.disability);
@@ -117,7 +113,6 @@ const Profile = () => {
     formData.append('data[company_name]',formValue.company_name)
     formData.append('data[language]',formValue.language)
 
-    console.log("formData=============================>", formData);
     try {
      
       console.log(formData);
@@ -208,15 +203,11 @@ const Profile = () => {
               living_with_family: data["data"]['user'][0].living_with_family,
               edjuction_sector:data["data"]['user'][0].edjuction_sector,
               })
-                  // toast.success("Profile Data Updated Successfully");
       });
     } catch (error) {
       console.log(error);
     }
   };
-
-
-
 
   const states = async (country_id) => {
     try {
@@ -285,28 +276,27 @@ const Profile = () => {
               <div className="col-sm-4 col-12">
                 <div className="card bg-dark text-white">
                   {profileData?.user.picture[0] == null ? (
-
-                      <img className="card-img-top" src={window.location.origin + "/images/profile/default.png"} alt="" />
-                  ) : (
-                    <Carousel showThumbs={false}>
-                      {profileData?.user.picture.map((image) => (
-                        <div>
-                          <img
-                            src={store.mediaUrl + image?.image_path}
-                            style={
-                              profileData?.pictures_settings == "visible" ||
-                              (profileData?.pictures_settings == "premimum" &&
-                                profileData?.user_subscription != null)
-                                ? { filter: "blur(0rem)" }
-                                : { filter: "blur(.5rem)" }
-                            }
-                            className="card-img-top"
-                            alt="..."
-                          />
-                        </div>
-                      ))}
-                    </Carousel>
-                  )}
+                    <img className="card-img-top" src={window.location.origin + "/images/profile/default.png"} alt="" />
+                    ) : (
+                      <Carousel showThumbs={false}>
+                        {profileData?.user.picture.map((image) => (
+                          <div>
+                            <img
+                              src={store.mediaUrl + image?.image_path}
+                              style={
+                                profileData?.pictures_settings == "visible" ||
+                                (profileData?.pictures_settings == "premimum" &&
+                                  profileData?.user_subscription != null)
+                                  ? { filter: "blur(0rem)" }
+                                  : { filter: "blur(.5rem)" }
+                              }
+                              className="card-img-top"
+                              alt="..."
+                            />
+                          </div>
+                        ))}
+                      </Carousel>
+                    )}
 
                   <div className="card-img-overlay"></div>
                   <a href="#" className="card-link">
@@ -1412,7 +1402,7 @@ const Profile = () => {
                             >
                               <option hidden >Select</option>
                                 {city?.map((data) => (
-                                    <option selected={profileData?.city_id==data.id? true:false} value={data.id}>{data.name}</option>
+                                    <option selected={profileData?.city_id==data.id ? true:false} value={data.id}>{data.name}</option>
                                 ))}
                             </select>
                           </div>

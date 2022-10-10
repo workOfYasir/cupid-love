@@ -17,13 +17,10 @@ import BasicSearch from './../Pages/LoggedIn/Search/BasicSearch/BasicSearch'
 import AdvanceSearch from './../Pages/LoggedIn/Search/AdvanceSearch/AdvanceSearch'
 import { StoreContext } from "./../store";
 import Header from './Header'
-import {action} from "mobx";
 
 const SubHeader = () => {
   const location = useLocation()
   const store = useContext(StoreContext);
-
-  const [TodayProfileComponent, setTodayProfileComponent] = useState([]);
 
   const [componentCount, setComponentCount] = useState([]);
 
@@ -211,14 +208,13 @@ const SubHeader = () => {
               <li className="nav-item">
                 <a className="btn text-light " onClick={onClickAddPartnerPreferenceComponent}>Partnership Prefernces</a>
               </li>
-              <li>
-                <Link
-                    to="/chat"
-
-                >
-                  CHat
-                </Link>
-              </li>
+              {/*<li>*/}
+              {/*  <Link*/}
+              {/*      to="/chat"*/}
+              {/*  >*/}
+              {/*    CHat*/}
+              {/*  </Link>*/}
+              {/*</li>*/}
             </ul>
           </div>
         </div>

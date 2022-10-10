@@ -368,157 +368,6 @@ const Header = () => {
         <>
           <header id="header" className="dark">
 
-            {/*<div*/}
-            {/*    className="modal fade"*/}
-            {/*    id="forgotPassword"*/}
-            {/*    tabIndex="-1"*/}
-            {/*    aria-labelledby="exampleModalLabel"*/}
-            {/*    aria-hidden="true"*/}
-            {/*>*/}
-            {/*  <div className="modal-dialog">*/}
-            {/*    {email==null?*/}
-            {/*        <form onSubmit={forgotPasswordEmailMatch}>*/}
-            {/*      <div className="modal-content login-1-form clearfix text-center">*/}
-            {/*        <h4*/}
-            {/*            className="modal-title title divider-3 text-dark"*/}
-            {/*            id="exampleModalLabel"*/}
-            {/*        >*/}
-            {/*          <div className="col-12">*/}
-            {/*            <img*/}
-            {/*                className="w-25 mb-2 offset-sm-0 offset-4 m-0"*/}
-            {/*                src={window.location.origin + "/images/logo.png"}*/}
-            {/*                alt="logo"*/}
-            {/*            /></div>*/}
-            {/*          Forgot Password*/}
-            {/*        </h4>*/}
-
-            {/*        <div className="modal-body">*/}
-            {/*          <div className="">*/}
-            {/*            <div className="row">*/}
-            {/*              <div className="section-field mb-3 ">*/}
-            {/*                <div className="field-widget d-inline-flex">*/}
-            {/*                  {" "}*/}
-            {/*                  <i className="glyph-icon flaticon-user p-1"></i>*/}
-            {/*                  <input*/}
-            {/*                      id="name"*/}
-            {/*                      className="web form-control"*/}
-            {/*                      type="text"*/}
-            {/*                      placeholder="Email"*/}
-            {/*                      required*/}
-            {/*                      name="email"*/}
-            {/*                      value={formValue.email}*/}
-            {/*                      onChange={handleChange}*/}
-            {/*                  />*/}
-            {/*                </div>*/}
-            {/*              </div>*/}
-            {/*            </div>*/}
-
-            {/*            <div className="clearfix"></div>*/}
-
-            {/*            <div className="clearfix"></div>*/}
-            {/*          </div>*/}
-            {/*        </div>*/}
-            {/*        <div className="modal-footer">*/}
-            {/*          <div className="col-12 text-center">*/}
-            {/*            <div className="section-field text-uppercase col-12  ">*/}
-            {/*              {" "}*/}
-            {/*              <a*/}
-            {/*                  className="button  btn btn-theme rounded-sm animated right-icn"*/}
-            {/*                  data-bs-dismiss="modal"*/}
-            {/*              >*/}
-            {/*                <span>*/}
-            {/*                  Close*/}
-            {/*                  <i*/}
-            {/*                      className="glyph-icon flaticon-hearts"*/}
-            {/*                      aria-hidden="true"*/}
-            {/*                  ></i>*/}
-            {/*                </span>*/}
-            {/*              </a>*/}
-            {/*              <button*/}
-            {/*                  type="submit"*/}
-            {/*                  className="button  btn btn-theme rounded-sm animated right-icn pl-2"*/}
-            {/*              >*/}
-            {/*                sign in*/}
-            {/*              </button>*/}
-            {/*              /!* <Link to='/pricing' className="button  btn btn-theme rounded-sm animated right-icn pl-2"data-bs-dismiss="modal"><span>sign in<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></Link> *!/*/}
-            {/*            </div>*/}
-            {/*          </div>*/}
-            {/*        </div>*/}
-            {/*      </div>*/}
-            {/*    </form>*/}
-            {/*        :*/}
-            {/*    <form>*/}
-            {/*      <div className="modal-content login-1-form clearfix text-center">*/}
-            {/*        <h4*/}
-            {/*            className="modal-title title divider-3 text-dark"*/}
-            {/*            id="exampleModalLabel"*/}
-            {/*        >*/}
-            {/*          <div className="col-12">*/}
-            {/*            <img*/}
-            {/*                className="w-25 mb-2 offset-sm-0 offset-4 m-0"*/}
-            {/*                src={window.location.origin + "/images/logo.png"}*/}
-            {/*                alt="logo"*/}
-            {/*            /></div>*/}
-            {/*          Forgot Password*/}
-            {/*        </h4>*/}
-
-            {/*        <div className="modal-body">*/}
-            {/*          <div className="">*/}
-            {/*            <input type="hidden" value="email"/>*/}
-            {/*            <div className="row">*/}
-            {/*              <div className="section-field mb-3 ">*/}
-            {/*                <div className="field-widget d-inline-flex">*/}
-            {/*                  {" "}*/}
-            {/*                  <i className="glyph-icon flaticon-padlock p-1"></i>*/}
-            {/*                  <input*/}
-            {/*                      id="Password"*/}
-            {/*                      className="Password form-control"*/}
-            {/*                      type="password"*/}
-            {/*                      placeholder="Password"*/}
-            {/*                      name="password"*/}
-            {/*                      value={formValue.password}*/}
-            {/*                      onChange={handleChange}*/}
-            {/*                  />*/}
-            {/*                </div>*/}
-            {/*              </div>*/}
-            {/*            </div>*/}
-
-            {/*            <div className="clearfix"></div>*/}
-
-            {/*            <div className="clearfix"></div>*/}
-            {/*          </div>*/}
-            {/*        </div>*/}
-            {/*        <div className="modal-footer">*/}
-            {/*          <div className="col-12 text-center">*/}
-            {/*            <div className="section-field text-uppercase col-12  ">*/}
-            {/*              {" "}*/}
-            {/*              <a*/}
-            {/*                  className="button  btn btn-theme rounded-sm animated right-icn"*/}
-            {/*                  data-bs-dismiss="modal"*/}
-            {/*              >*/}
-            {/*                <span>*/}
-            {/*                  Close*/}
-            {/*                  <i*/}
-            {/*                      className="glyph-icon flaticon-hearts"*/}
-            {/*                      aria-hidden="true"*/}
-            {/*                  ></i>*/}
-            {/*                </span>*/}
-            {/*              </a>*/}
-            {/*              <button*/}
-            {/*                  type="submit"*/}
-            {/*                  className="button  btn btn-theme rounded-sm animated right-icn pl-2"*/}
-            {/*              >*/}
-            {/*                sign in*/}
-            {/*              </button>*/}
-            {/*              /!* <Link to='/pricing' className="button  btn btn-theme rounded-sm animated right-icn pl-2"data-bs-dismiss="modal"><span>sign in<i className="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></Link> *!/*/}
-            {/*            </div>*/}
-            {/*          </div>*/}
-            {/*        </div>*/}
-            {/*      </div>*/}
-            {/*    </form>*/}
-            {/*    }*/}
-            {/*  </div>*/}
-            {/*</div>*/}
 
             <div
               className="modal fade"
@@ -1237,12 +1086,14 @@ const Header = () => {
                                     <div className="form-group mb-3">
                                       <div className="profile-info">
                                         <p className="mb-0 text-dark">
-                                          <i
-                                              className="fa fa-info-circle"
-                                              aria-hidden="true"
-                                          ></i>{" "}
-                                          by clicking submit you are agreeing to our
-                                          terms and conditions of use.
+                                          <Link to="/terms" className="text-dark">
+                                            <i
+                                                className="fa fa-info-circle"
+                                                aria-hidden="true"
+                                            ></i>{" "}
+                                            by clicking submit you are agreeing to our
+                                            terms and conditions of use.
+                                          </Link>
                                         </p>
                                       </div>
                                     </div>
@@ -1344,13 +1195,13 @@ const Header = () => {
                                   </a>
                                 </li>
                                 <li>
-                                  <a
+                                  <af
                                     href="#"
                                     data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"
                                   >
                                     Login
-                                  </a>
+                                  </af>
                                 </li>
                                 <li>
                                   <Link

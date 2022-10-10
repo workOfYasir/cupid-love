@@ -41,6 +41,8 @@ export const StoreProvider = (props) => {
     requests: ([]),
     setRequests: action((e) => (store.token = e)),
 
+    countFriendRequests:0,
+    setCountFriendRequests: action((e) => (store.token = e)),
 
     // url
     url:"http://127.0.0.1:8000/api/",

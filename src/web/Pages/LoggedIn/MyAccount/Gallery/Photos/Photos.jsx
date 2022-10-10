@@ -101,7 +101,7 @@ const Photos = () => {
                 <>
                 <div className="col-3">
                  <div className="col text-end" style={{cursor:"pointer"}} onClick={()=>(deleteImage(data?.id))}>❌</div>
-                  <img src={store.mediaUrl+data?.image_path} className="img-fluid"/>
+                  <img src={window.location.origin +"images/loading.gif"} className="img-fluid"/>
                 </div>
                 </>
             ))}

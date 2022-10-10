@@ -9,7 +9,8 @@ import SearchedMatches from "./Pages/LoggedIn/Matches/SearchedMatches/SearchedMa
 import ProtectedRoutes from "./ProtectedRoutes"
 import PreventRoutes from "./PreventRoutes"
 import Chatpanel from "./Pages/LoggedIn/Chat/chatpanel";
-
+import FriendsTab from "./Pages/LoggedIn/FriendRequests/FriendsTab";
+import Terms from "./Pages/Terms/Terms"
 const Router = () => {
   
   return (
@@ -27,6 +28,8 @@ const Router = () => {
           <Route exact path="/public/profile/:userId" element={<PublicProfile/>} />
           <Route exect path='/chat' element={<Chatpanel/>} />
           <Route exact path="/searched/profile" element={<SearchedMatches/>} />
+          <Route exact path="/terms" element={<Terms/>} />
+          <Route exact path="/friendslist" element={<FriendsTab/>} />
         {/* </Route> */}
       </Routes >
     </BrowserRouter>

@@ -8,6 +8,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import Profile from './../Profile/Profile'
 import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
+import './style.css'
 
 const Dashboard = () => {
   const store = useContext(StoreContext);
@@ -18,7 +20,8 @@ const Dashboard = () => {
   const [profileYouViewed,setProfileYouVisit]=useState()
   const [profileViewedYou,setProfileVisitedYou]=useState()
   const [qualification, setQualification] = useState()
-
+  const [profileImage,setProfileImage] = useState()
+  const [storedPicture,setStoredPicture] = useState()
   const getProfile = async(access_token,user_id)=>{
 
     try {
@@ -117,6 +120,44 @@ const Dashboard = () => {
         console.log(error)
       }
   }
+  const handleChange = (event) => {
+    setProfileImage( event.target.files[0]);
+    handleSubmit(event.target.files[0])
+  }
+  async function handleSubmit(profileImage) {
+  // const handleSubmit = async(e) => {
+  //   e.preventDefault()
+
+    const token = localStorage.getItem('accessToken')
+    const user = localStorage.getItem('user')
+    const user_id = JSON.parse(user)['id'];
+    const formData = new FormData();
+
+    formData.append(`image`, profileImage);
+    formData.append('user_id',user_id)
+
+    try {
+
+      const response =   await axios({
+
+        method: "post",
+        url: `${store.url}profile-image`,
+        data: formData,
+        timeout: 120000,
+        headers: { 'Content-Type': 'multipart/form-data', 'Authorization': `Bearer ${token}`  },
+
+      }).then((response)=>{
+
+        const data = response.data
+        setStoredPicture(data);
+        toast.success("Photos Successfully Added")
+
+      })
+
+    } catch(error) {
+      console.log(error)
+    }
+  }
   useEffect(()=>{
     const token = localStorage.getItem('accessToken')
     const user = localStorage.getItem('user')
@@ -125,7 +166,7 @@ const Dashboard = () => {
     getPremium(token)
     getProfiles(token,JSON.parse(user).id)
     getStats(token,user)
-  },[])
+  },[storedPicture])
   return (
     <Observer>
     {()=>(
@@ -148,6 +189,14 @@ const Dashboard = () => {
                         </Carousel>
                              
                             }
+                      <div >
+                        {/*<form onSubmit={handleSubmit}  encType="multipart/form-data">*/}
+                          <label title="Upload Profile Picture" className="btn btn-primary img-plus" for = "">➕</label>
+                          <input type="file" className="custom-file-input" style={{opacity:0}} name="image" onChange={handleChange}/>
+                          {/*<button title="Upload Profile Picture" className="btn btn-primary img-plus">➕</button>*/}
+                        {/*</form>*/}
+                        {/*<a href="#" data-bs-toggle="modal" data-bs-target="#uploadPicture" title="Upload Profile Picture" className="btn btn-primary img-plus">➕</a>*/}
+                      </div>
 
                       <div className="row p-0 m-0">
                         <div className="col-6 p-3">
@@ -175,6 +224,20 @@ const Dashboard = () => {
                         </div>
                         <hr className='border-style-groove' />
                       </div>
+                      {profileData?.user_plan==null ?
+                      <div className="row p-0 m-0">
+                        <div className="col-6 p-3">
+                          <div className="col-12">
+                            Pricing Plan
+                          </div>
+
+                        </div>
+                        {/*<div className="col-6 d-flex align-items-center">*/}
+                          <Link to="/pricing" className="col-6 d-flex align-items-center"> <b> Upgrade to Premium  </b></Link>
+                        {/*</div>*/}
+                        <hr className='border-style-groove' />
+                      </div>
+                          :<></>}
                       <div className="row p-0 m-0">
                         <div className="col-7 p-3">
                         <div className="col-12">
@@ -237,7 +300,7 @@ const Dashboard = () => {
                           </div>
                           <div className="blog-slider__content text-black">
                             <span className="blog-slider__code">26 December 2019</span>
-                            <div className="blog-slider__title">Tips to Improve</div>
+                            <div className="blog-slider__title">Tips to Improve </div>
                             <div className="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
                             <a href="#" className="button btn-theme rouneded-sm animated right-icn">READ MORE</a>
                           </div>

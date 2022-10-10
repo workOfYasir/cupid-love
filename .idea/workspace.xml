@@ -2,20 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="656d3675-af74-4426-8c55-b3506376d808" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/web/validation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Components/Footer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/CreateProfile/CreateProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/CreateProfile/CreateProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Chat/chatpanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Chat/chatpanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Components/SubHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Components/SubHeader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Pages/AboutUs/AboutUs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/AboutUs/AboutUs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/FriendsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/FriendsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/RecievedRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/RecievedRequest.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/SentRequests.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/SentRequests.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/MyMatches/MyMatches.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/MyMatches/MyMatches.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/NewMatches/NewMatches.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/NewMatches/NewMatches.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Gallery.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Gallery.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Photos/Photos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Photos/Photos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/PartnerPreference/PartnerPreference.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/PartnerPreference/PartnerPreference.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Profile/Profile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/Pricing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/Pricing.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Profile/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/assets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Pages/Terms/Terms.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/Terms/Terms.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Router.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +30,13 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,6 +56,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/dell/Downloads/laragon-portable/www/cupid-love&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
@@ -119,7 +132,14 @@
       <workItem from="1664712287527" duration="26000" />
       <workItem from="1664717331984" duration="4618000" />
       <workItem from="1664816738380" duration="491000" />
-      <workItem from="1664817507548" duration="3543000" />
+      <workItem from="1664817507548" duration="3833000" />
+      <workItem from="1664903515629" duration="6989000" />
+      <workItem from="1665046365517" duration="5198000" />
+      <workItem from="1665079230698" duration="5550000" />
+      <workItem from="1665301869357" duration="3736000" />
+      <workItem from="1665312423213" duration="2469000" />
+      <workItem from="1665321646768" duration="5261000" />
+      <workItem from="1665420805559" duration="2165000" />
     </task>
     <servers />
   </component>
