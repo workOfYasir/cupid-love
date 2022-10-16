@@ -226,7 +226,10 @@ const Home = () => {
                         </div>
                     </li>
                     <li>
-                        <div className="timeline-badge"><img className="img-fluid" src={window.location.origin + "/images/timeline/03.png"} alt="" /></div>
+                        <div className="timeline-badge">
+                            <img src={window.location.origin +"/images/aboutus02.jpg"} style={{  borderRadius: '50%'}} className="img-fluid"/>
+                            {/* <img className="img-fluid" src={window.location.origin + "/images/timeline/03.png"} alt="" /> */}
+                        </div>
                         <div className="timeline-panel">
                         <div className="timeline-heading text-center">
                             <h4 className="timeline-title divider-3">Communicating with your personalized matchmaker</h4>

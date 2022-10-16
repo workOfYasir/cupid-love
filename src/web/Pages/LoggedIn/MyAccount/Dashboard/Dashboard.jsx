@@ -170,253 +170,359 @@ const Dashboard = () => {
   return (
     <Observer>
     {()=>(
-        <>
-              <div className='container mt-3' >
-                <div className='row'>
-                  <div className="col-12 col-sm-4 ">
-                    <div className="card border-0 shadow">
-                    {profileData?.user.picture[0]==null ?
+      <>
+        <div className='container mt-3' >
+          <div className='row'>
+                <div className="col-12 col-sm-4 ">
+                  <div className="card border-0 shadow">
+                  {profileData?.user.picture[0]==null ?
 
-                        <img className="card-img-top" src={window.location.origin + "/images/profile/default.png"} alt="" />
-                              :
-                              <Carousel showThumbs={false}>
-                              {profileData?.user.picture.map((image) => (
-                                <div>
-                               <img src={store.mediaUrl+image?.image_path} className="card-img-top" alt="..."/>
-                              </div>
-                            ))}
-                          
-                        </Carousel>
-                             
-                            }
-                      <div >
-                        {/*<form onSubmit={handleSubmit}  encType="multipart/form-data">*/}
-                          <label title="Upload Profile Picture" className="btn btn-primary img-plus" for = "">➕</label>
-                          <input type="file" className="custom-file-input" style={{opacity:0}} name="image" onChange={handleChange}/>
-                          {/*<button title="Upload Profile Picture" className="btn btn-primary img-plus">➕</button>*/}
-                        {/*</form>*/}
-                        {/*<a href="#" data-bs-toggle="modal" data-bs-target="#uploadPicture" title="Upload Profile Picture" className="btn btn-primary img-plus">➕</a>*/}
-                      </div>
+                      <img className="card-img-top" src={window.location.origin + "/images/profile/default.png"} alt="" />
+                            :
+                            <Carousel showThumbs={false}>
+                            {profileData?.user.picture.map((image) => (
+                              <div>
+                             <img src={store.mediaUrl+image?.image_path} className="card-img-top" alt="..."/>
+                            </div>
+                          ))}
 
-                      <div className="row p-0 m-0">
-                        <div className="col-6 p-3">
-                          <div className="col-12 ">
-                            <h6 className='text-dark'>{profileData?.user.first_name}</h6>
-                          
-                          </div>
-                          <div className="col-12">
-                          {profileData?.user.uid}
-                          </div>
+                      </Carousel>
+
+                          }
+                    <div >
+                      {/*<form onSubmit={handleSubmit}  encType="multipart/form-data">*/}
+                        <label title="Upload Profile Picture" className="btn btn-primary img-plus" for = "">➕</label>
+                        <input type="file" className="custom-file-input" style={{opacity:0}} name="image" onChange={handleChange}/>
+                        {/*<button title="Upload Profile Picture" className="btn btn-primary img-plus">➕</button>*/}
+                      {/*</form>*/}
+                      {/*<a href="#" data-bs-toggle="modal" data-bs-target="#uploadPicture" title="Upload Profile Picture" className="btn btn-primary img-plus">➕</a>*/}
+                    </div>
+
+                    <div className="row p-0 m-0">
+                      <div className="col-6 p-3">
+                        <div className="col-12 ">
+                          <h6 className='text-dark'>{profileData?.user.first_name}</h6>
+
                         </div>
-
-                        <hr className='border-style-groove' />
-                      </div>
-                      <div className="row p-0 m-0">
-                        <div className="col-6 p-3">
                         <div className="col-12">
-                        Account Type
-                          </div>
-
-                          
+                        {profileData?.user.uid}
                         </div>
-                        <div className="col-6 d-flex align-items-center">
-                          <b>  <a href="#" className='col text-end'> {profileData?.user_plan!=null?profileData?.user_plan.name:'Free Membership'}</a>        </b>
-                        </div>
-                        <hr className='border-style-groove' />
                       </div>
-                      {profileData?.user_plan==null ?
-                      <div className="row p-0 m-0">
-                        <div className="col-6 p-3">
-                          <div className="col-12">
-                            Pricing Plan
-                          </div>
 
+                      <hr className='border-style-groove' />
+                    </div>
+                    <div className="row p-0 m-0">
+                      <div className="col-6 p-3">
+                      <div className="col-12">
+                      Account Type
                         </div>
-                        {/*<div className="col-6 d-flex align-items-center">*/}
-                          <Link to="/pricing" className="col-6 d-flex align-items-center"> <b> Upgrade to Premium  </b></Link>
-                        {/*</div>*/}
-                        <hr className='border-style-groove' />
+
+
                       </div>
-                          :<></>}
-                      <div className="row p-0 m-0">
-                        <div className="col-7 p-3">
+                      <div className="col-6 d-flex align-items-center">
+                        <b>  <a href="#" className='col text-end'> {profileData?.user_plan!=null?profileData?.user_plan.name:'Free Membership'}</a>        </b>
+                      </div>
+                      <hr className='border-style-groove' />
+                    </div>
+                    {profileData?.user_plan==null ?
+                    <div className="row p-0 m-0">
+                      <div className="col-6 p-3">
                         <div className="col-12">
-                        Mobile no. is verified
-                          </div>
-                          <div className="col-12 ">
-                            <a href='#' className='text-info'>Verify your ID</a>
-                          
-                          </div>
-                          
+                          Pricing Plan
                         </div>
-                        <div className="col-5 d-flex align-items-center">
-                          <a href="#" className='col text-end'>
-                          <i className="fa fa-shield" aria-hidden="true"></i>
-                          </a>
-                        </div>
-                        <hr className='border-style-groove' />
+
                       </div>
+                      {/*<div className="col-6 d-flex align-items-center">*/}
+                        <Link to="/pricing" className="col-6 d-flex align-items-center"> <b> Upgrade to Premium  </b></Link>
+                      {/*</div>*/}
+                      <hr className='border-style-groove' />
+                    </div>
+                        :<></>}
+                    {/* <div className="row p-0 m-0">
+                      <div className="col-7 p-3">
+                      <div className="col-12">
+                      Mobile no. is verified
+                        </div>
+                        <div className="col-12 ">
+                          <a href='#' className='text-info'>Verify your ID</a>
+
+                        </div>
+
+                      </div>
+                      <div className="col-5 d-flex align-items-center">
+                        <a href="#" className='col text-end'>
+                        <i className="fa fa-shield" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                      <hr className='border-style-groove' />
+                    </div> */}
+                  </div>
+                </div>
+
+                <div className="col p-sm-3">
+                <h4>Your Activity Summary</h4>
+                  <div className="col-12 d-flex">
+                    <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
+                      <h3>1</h3>
+                      <span> Pending Invetation</span>
+                    </div>
+                    <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
+                      <h3>{profileYouViewed}</h3>
+                      <span> Profiles You Visit</span>
+                    </div>
+                    <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
+                      <h3>{profileViewedYou}</h3>
+                      <span> Recent Visitors</span>
                     </div>
                   </div>
-                  
-                  <div className="col p-sm-3">
-                  <h4>Your Activity Summary</h4>
-                    <div className="col-12 d-flex">
-                      <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
-                        <h3>1</h3>
-                        <span> Pending Invetation</span>
-                      </div>
-                      <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
-                        <h3>{profileYouViewed}</h3>
-                        <span> Profiles You Visit</span>
-                      </div>
-                      <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
-                        <h3>{profileViewedYou}</h3>
-                        <span> Recent Visitors</span>
-                      </div>
+                  <div className="col-12 d-flex">
+                    <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
+                      <h3>2</h3>
+                      <span> Chat Viewed</span>
                     </div>
-                    <div className="col-12 d-flex">
-                      <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
-                        <h3>2</h3>
-                        <span> Chat Viewed</span>
-                      </div>
-                      <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
-                        <h3>3</h3>
-                        <span> Chat Initial</span>
-                      </div>
-                      <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
-                        <h3>{view_contacts}</h3>
-                        <span> View Contacts</span>
-                      </div>
+                    <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
+                      <h3>3</h3>
+                      <span> Chat Initial</span>
                     </div>
-                    <div className="col-12 d-flex pt-5">
-                    
-                      <div className="blog-slider ">
-                      <div className="blog-slider__wrp swiper-wrapper">
-                        <div className="blog-slider__item swiper-slide">
-                          <div className="blog-slider__img">
-                            
-                            <img src={window.location.origin +"/images/pattern/bg.webp"}  />
-                          </div>
-                          <div className="blog-slider__content text-black">
-                            <span className="blog-slider__code">26 December 2019</span>
-                            <div className="blog-slider__title">Tips to Improve </div>
-                            <div className="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
-                            <a href="#" className="button btn-theme rouneded-sm animated right-icn">READ MORE</a>
-                          </div>
+                    <div className="col-4 m-1 shadow-sm px-3 rounded bg-white">
+                      <h3>{view_contacts}</h3>
+                      <span> View Contacts</span>
+                    </div>
+                  </div>
+                  <div className="col-12 d-flex pt-5">
+
+                    <div className="blog-slider ">
+                    <div className="blog-slider__wrp swiper-wrapper">
+                      <div className="blog-slider__item swiper-slide">
+                        <div className="blog-slider__img">
+
+                          <img src={window.location.origin +"/images/pattern/bg.webp"}  />
                         </div>
-                      
-                        
-                      </div>
-                      <div className="blog-slider__pagination"></div>
-                    </div>
+                        <div className="blog-slider__content text-black">
+                          <span className="blog-slider__code">26 December 2019</span>
+                          <div className="blog-slider__title">Tips to Improve </div>
+                          <div className="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
+                        </div>
                       </div>
 
-                  
+
+                    </div>
+                    <div className="blog-slider__pagination"></div>
                   </div>
+                    </div>
+
 
                 </div>
-                <div className="pt-sm-5 pt-1">
-                  <div className="col-12 d-sm-flex d-none">
-                  <div className="col-4 m-2">
-                  <h5>Premium Matches </h5>
-                  </div>
-                  <div className="col-4 m-2">
-                  <h5>New Matches</h5>
-                  </div>
-                  <div className="col-4 m-2">
-                  <h5>Recommended Matches </h5>
-                  </div>
-                  </div>
-                  <div className="col-12 d-sm-flex d-block">
-                  <h5 className='p-3 pt-5 col-12 text-center d-block d-sm-none'>Premium Matches </h5>
-                 
-                  <div className="col-sm-4 col-12 m-sm-2 m-0  shadow bg-white">
-                 
-                  {premiumData?.map((data,index) => (
-                    <>
-                  <div className="col-12 p-4 d-flex rounded">
-                
-                    <div className="col-3">
-                  
-                      {data?.user_profile.user.picture[0]==null?
-              
-                      <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='border-radius-50' srcset="" />
-                      : 
-                       <img src={store.mediaUrl+data?.user_profile?.user?.picture[0].image_path} alt="" style={data?.user_profile.pictures_settings=='visible' ||((data?.user_profile.pictures_settings=='premimum') && (data?.user_profile.user_subscription!=null))?{filter: 'blur(0px)'}:{filter: 'blur(8px)'}} className='border-radius-50' srcset="" />
-                     } 
+
+              </div>
+          <div className="pt-sm-5 pt-1">
+            <div className="col-12 d-sm-flex d-none">
+            <div className="col-4 m-2">
+            <h5>Premium Matches </h5>
+            </div>
+            <div className="col-4 m-2">
+            <h5>New Matches</h5>
+            </div>
+            <div className="col-4 m-2">
+            <h5>Recommended Matches </h5>
+            </div>
+            </div>
+            <div className="col-12 d-sm-flex d-block">
+            <h5 className='p-3 pt-5 col-12 text-center d-block d-sm-none'>Premium Matches </h5>
+
+            <div className="col-sm-4 col-12 m-sm-2 m-0  shadow bg-white">
+
+            {premiumData?.map((data,index) => (
+              <>
+            <div className="col-12 p-4 d-flex rounded">
+
+              <div className="col-3">
+
+                {data?.user_profile.user.picture[0]==null?
+
+                <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='border-radius-50' srcset="" />
+                :
+                 <img src={store.mediaUrl+data?.user_profile?.user?.picture[0].image_path} alt="" style={data?.user_profile.pictures_settings=='visible' ||((data?.user_profile.pictures_settings=='premimum') && (data?.user_profile.user_subscription!=null))?{filter: 'blur(0px)'}:{filter: 'blur(8px)'}} className='border-radius-50' srcset="" />
+               }
+              </div>
+              <div className="col">
+                <b>{data?.first_name+' '+data?.last_name}</b> <span className="bg-danger p-1 text-white rounded"><i class="fa fa-diamond" aria-hidden="true"></i>Premium+</span><br/>
+                <span>{ data?.user_profile.height}, {data?.user_profile.language}, {data?.user_profile?.country?.name}</span>
+              </div>
+              <div className="col-2 cursor-pointer">
+                <i
+                    data-bs-toggle="modal"
+                    data-bs-target={"#premiumModel-"+index}
+                    style={{
+                      borderRadius: '100%',
+                      fontSize: '28px',
+                      border: '2px green solid',
+                      padding: '8px 10px 8px 10px',
+                      cursor: 'pointer',
+                    }}
+                    className="fa fa-check-circle text-success"
+                    aria-hidden="true"
+                ></i>
+              </div>
+            </div>
+            <hr className='border-style-groove' />
+            <div
+                className="modal fade"
+                  id={"premiumModel-"+index}
+                tabIndex="-1"
+                aria-labelledby={"premiumModel-"+index}
+                aria-hidden="true"
+            >
+            <div className="modal-dialog">
+              <div className="modal-content clearfix bg-content-sm">
+                <h4
+                    className="modal-title title divider-3 text-dark"
+                    id={"premiumModel-"+index}
+                >
+                </h4>
+
+                <div className="modal-body ">
+                  <div className="card w-75 m-auto">
+                    <div className="card-body text-dark col-12">
+                      <div style={{textAlign:'end'}}><i className="fa fa-solid fa-lock"></i></div>
+                      <div className="d-flex">
+                        <div className="col-3">
+                          {data.user_profile.user.picture[0] == null ?
+
+                              <img src={process.env.PUBLIC_URL + "/images/thumbnail/thum-1.jpg"} alt=""
+                                   className='border-radius-50' srcSet=""/>
+                              :
+                              <img src={store.mediaUrl + data?.user?.picture[0].image_path} alt=""
+                                   style={data.user_profile.pictures_settings == 'visible' || ((data?.user_profile.pictures_settings == 'premimum') && (data?.user_profile.user_subscription != null)) ? {filter: 'blur(0px)'} : {filter: 'blur(8px)'}}
+                                   className='border-radius-50' srcSet=""/>
+                          }
+                        </div>
+                        <div className="col">
+                          <b>{data?.first_name}</b><br/>
+                          <span>{data?.user_profile?.height}, {data?.user_profile?.qualification}, {data?.user_profile?.language}, {data?.user_profile?.country?.name} ,{data?.user_profile.city?.name}</span>
+                        </div>
+                      </div>
+                      <div className="d-block mt-3">
+                        <strong>{profileData?.user_plan==null?'Phone: +0932-**** ***':'Phone: '+data?.user_profile.number}</strong>
+                        <br/>
+                        <strong>{profileData?.user_plan==null?'Email: ****@gmail.com':'Email: '+data?.email}</strong>
+                      </div>
+                      <hr style={{margin:'10px !important'}}/>
+                      <b className="d-flex col-12">
+                        <a href={profileData?.user_plan!=null?"https://api.whatsapp.com/send?phone="+data?.user_profile.number+"&text=Hello this is the starting message":"#"} className="col text-success" style={{fontSize:'15px'}}>
+                          <i className="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
+                        </a>
+                        <span className="col text-primary" style={{fontSize:'15px'}}>
+                                <i className="fa fa-comment" aria-hidden="true"></i> Chat
+                              </span>
+                        <a target="_blank" href={"tel:"+profileData?.user_plan!=null?data?.user_profile.number:"#"} className="col text-danger" style={{fontSize:'15px'}} >
+                          <i className="fa fa-phone" aria-hidden="true"></i> Call
+                        </a>
+                      </b>
                     </div>
-                    <div className="col">
-                      <b>{data?.first_name+' '+data?.last_name}</b> <span className="bg-danger p-1 text-white rounded"><i class="fa fa-diamond" aria-hidden="true"></i>Premium+</span><br/>
-                      <span>{ data?.user_profile.height}, {data?.user_profile.language}, {data?.user_profile?.country?.name}</span>
-                    </div>
-                    <div className="col-2 cursor-pointer">
-                      <i
-                          data-bs-toggle="modal"
-                          data-bs-target={"#premiumModel-"+index}
-                          style={{
-                            borderRadius: '100%',
-                            fontSize: '28px',
-                            border: '2px green solid',
-                            padding: '8px 10px 8px 10px',
-                            cursor: 'pointer',
-                          }}
-                          className="fa fa-check-circle text-success"
-                          aria-hidden="true"
-                      ></i>
-                    </div>
                   </div>
-                  <hr className='border-style-groove' />
-                  <div
-                      className="modal fade"
-                        id={"premiumModel-"+index}
-                      tabIndex="-1"
-                      aria-labelledby={"premiumModel-"+index}
-                      aria-hidden="true"
-                  >
+
+                  <div className="text-center">
+                    <Link
+                        to='/pricing'
+                        className="button  btn btn-theme rounded-sm animated right-icn pl-2"
+                    >
+                      View Plans
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+              </>
+            ))}
+
+            </div>
+            <h5 className='p-3 col-12 text-center d-block d-sm-none'>New Matches</h5>
+
+            <div className="col-sm-4 col-12 m-sm-2 m-0 shadow bg-white">
+            {profiles?.map((data,index) => (
+              <>
+            <div className="col-12 p-4 d-flex rounded">
+
+              <div className="col-3">
+                {data.user.picture[0]==null?
+
+                <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='border-radius-50' srcset="" />
+                :
+                 <img src={store.mediaUrl+data?.user?.picture[0].image_path} alt="" style={data.pictures_settings=='visible' ||((data?.pictures_settings=='premimum') && (data?.user_subscription!=null))?{filter: 'blur(0px)'}:{filter: 'blur(8px)'}} className='border-radius-50' srcset="" />
+               }
+              </div>
+              <div className="col">
+                <b>{data?.user.first_name}</b><br/>
+                <span>{ data?.height}, {data?.language}, {data?.country?.name}, {data?.city?.name}</span>
+              </div>
+              <div className="col-2">
+                <i
+                    data-bs-toggle="modal"
+                    data-bs-target={"#newMatches-"+index}
+                    style={{
+                      borderRadius: '100%',
+                      fontSize: '28px',
+                      border: '2px green solid',
+                      padding: '8px 10px 8px 10px',
+                      cursor: 'pointer',
+                    }}
+                    className="fa fa-check-circle text-success"
+                    aria-hidden="true"
+                ></i>
+              </div>
+            </div>
+            <hr className='border-style-groove' />
+                <div
+                    className="modal fade"
+                    id={"newMatches-"+index}
+                    tabIndex="-1"
+                    aria-labelledby={"newMatches-"+index}
+                    aria-hidden="true"
+                >
                   <div className="modal-dialog">
                     <div className="modal-content clearfix bg-content-sm">
                       <h4
                           className="modal-title title divider-3 text-dark"
-                          id={"premiumModel-"+index}
+                          id={"newMatches-"+index}
                       >
                       </h4>
-
                       <div className="modal-body ">
                         <div className="card w-75 m-auto">
                           <div className="card-body text-dark col-12">
                             <div style={{textAlign:'end'}}><i className="fa fa-solid fa-lock"></i></div>
                             <div className="d-flex">
                               <div className="col-3">
-                                {data.user_profile.user.picture[0] == null ?
+                                {data.user.picture[0] == null ?
 
                                     <img src={process.env.PUBLIC_URL + "/images/thumbnail/thum-1.jpg"} alt=""
                                          className='border-radius-50' srcSet=""/>
                                     :
                                     <img src={store.mediaUrl + data?.user?.picture[0].image_path} alt=""
-                                         style={data.user_profile.pictures_settings == 'visible' || ((data?.user_profile.pictures_settings == 'premimum') && (data?.user_profile.user_subscription != null)) ? {filter: 'blur(0px)'} : {filter: 'blur(8px)'}}
+                                         style={data.pictures_settings == 'visible' || ((data?.pictures_settings == 'premimum') && (data?.user_subscription != null)) ? {filter: 'blur(0px)'} : {filter: 'blur(8px)'}}
                                          className='border-radius-50' srcSet=""/>
                                 }
                               </div>
                               <div className="col">
-                                <b>{data?.first_name}</b><br/>
-                                <span>{data?.user_profile?.height}, {data?.user_profile?.qualification}, {data?.user_profile?.language}, {data?.user_profile?.country?.name} ,{data?.user_profile.city?.name}</span>
+                                <b>{data?.user.first_name}</b><br/>
+                                <span>{data?.height}, {data?.qualification}, {data?.language}, {data?.country?.name} ,{data?.city?.name}</span>
                               </div>
                             </div>
                             <div className="d-block mt-3">
-                              <strong>{profileData?.user_plan==null?'Phone: +0932-**** ***':'Phone: '+data?.user_profile.number}</strong>
+                              <strong>{profileData?.user?.user_plan.length==0?'Phone: +0932-**** ***':'Phone: '+data?.number}</strong>
                               <br/>
-                              <strong>{profileData?.user_plan==null?'Email: ****@gmail.com':'Email: '+data?.email}</strong>
+                              <strong>{profileData?.user?.user_plan.length==0?'Email: ****@gmail.com':'Email: '+data?.user?.email}</strong>
                             </div>
                             <hr style={{margin:'10px !important'}}/>
                             <b className="d-flex col-12">
-                              <a href={profileData?.user_plan!=null?"https://api.whatsapp.com/send?phone="+data?.user_profile.number+"&text=Hello this is the starting message":"#"} className="col text-success" style={{fontSize:'15px'}}>
+                              <a href={profileData?.user?.user_plan.length!=0?"https://api.whatsapp.com/send?phone="+data?.number+"&text=Hello this is the starting message":"#"} className="col text-success" style={{fontSize:'15px'}}>
                                 <i className="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
                               </a>
                               <span className="col text-primary" style={{fontSize:'15px'}}>
-                                      <i className="fa fa-comment" aria-hidden="true"></i> Chat
-                                    </span>
-                              <a target="_blank" href={"tel:"+profileData?.user_plan!=null?data?.user_profile.number:"#"} className="col text-danger" style={{fontSize:'15px'}} >
+                                <i className="fa fa-comment" aria-hidden="true"></i> Chat
+                              </span>
+                              <a target="_blank" href={"tel:"+profileData?.user?.user_plan.length!=0?data?.number:"#"} className="col text-danger" style={{fontSize:'15px'}} >
                                 <i className="fa fa-phone" aria-hidden="true"></i> Call
                               </a>
                             </b>
@@ -434,234 +540,127 @@ const Dashboard = () => {
                       </div>
                     </div>
                   </div>
-                  </div>
-                    </>
-                  ))}
-
-                  </div>
-                  <h5 className='p-3 col-12 text-center d-block d-sm-none'>New Matches</h5>
-                 
-                  <div className="col-sm-4 col-12 m-sm-2 m-0 shadow bg-white">
-                  {profiles?.map((data,index) => (
-                    <>
-                  <div className="col-12 p-4 d-flex rounded">
-                
-                    <div className="col-3">
-                      {data.user.picture[0]==null?
-              
-                      <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='border-radius-50' srcset="" />
-                      : 
-                       <img src={store.mediaUrl+data?.user?.picture[0].image_path} alt="" style={data.pictures_settings=='visible' ||((data?.pictures_settings=='premimum') && (data?.user_subscription!=null))?{filter: 'blur(0px)'}:{filter: 'blur(8px)'}} className='border-radius-50' srcset="" />
-                     } 
-                    </div>
-                    <div className="col">
-                      <b>{data?.user.first_name}</b><br/>
-                      <span>{ data?.height}, {data?.language}, {data?.country?.name}, {data?.city?.name}</span>
-                    </div>
-                    <div className="col-2">
-                      <i
-                          data-bs-toggle="modal"
-                          data-bs-target={"#newMatches-"+index}
-                          style={{
-                            borderRadius: '100%',
-                            fontSize: '28px',
-                            border: '2px green solid',
-                            padding: '8px 10px 8px 10px',
-                            cursor: 'pointer',
-                          }}
-                          className="fa fa-check-circle text-success"
-                          aria-hidden="true"
-                      ></i>
-                    </div>
-                  </div>
-                  <hr className='border-style-groove' />
-                      <div
-                          className="modal fade"
-                          id={"newMatches-"+index}
-                          tabIndex="-1"
-                          aria-labelledby={"newMatches-"+index}
-                          aria-hidden="true"
-                      >
-                        <div className="modal-dialog">
-                          <div className="modal-content clearfix bg-content-sm">
-                            <h4
-                                className="modal-title title divider-3 text-dark"
-                                id={"newMatches-"+index}
-                            >
-                            </h4>
-                            <div className="modal-body ">
-                              <div className="card w-75 m-auto">
-                                <div className="card-body text-dark col-12">
-                                  <div style={{textAlign:'end'}}><i className="fa fa-solid fa-lock"></i></div>
-                                  <div className="d-flex">
-                                    <div className="col-3">
-                                      {data.user.picture[0] == null ?
-
-                                          <img src={process.env.PUBLIC_URL + "/images/thumbnail/thum-1.jpg"} alt=""
-                                               className='border-radius-50' srcSet=""/>
-                                          :
-                                          <img src={store.mediaUrl + data?.user?.picture[0].image_path} alt=""
-                                               style={data.pictures_settings == 'visible' || ((data?.pictures_settings == 'premimum') && (data?.user_subscription != null)) ? {filter: 'blur(0px)'} : {filter: 'blur(8px)'}}
-                                               className='border-radius-50' srcSet=""/>
-                                      }
-                                    </div>
-                                    <div className="col">
-                                      <b>{data?.user.first_name}</b><br/>
-                                      <span>{data?.height}, {data?.qualification}, {data?.language}, {data?.country?.name} ,{data?.city?.name}</span>
-                                    </div>
-                                  </div>
-                                  <div className="d-block mt-3">
-                                    <strong>{profileData?.user?.user_plan.length==0?'Phone: +0932-**** ***':'Phone: '+data?.number}</strong>
-                                    <br/>
-                                    <strong>{profileData?.user?.user_plan.length==0?'Email: ****@gmail.com':'Email: '+data?.user?.email}</strong>
-                                  </div>
-                                  <hr style={{margin:'10px !important'}}/>
-                                  <b className="d-flex col-12">
-                                    <a href={profileData?.user?.user_plan.length!=0?"https://api.whatsapp.com/send?phone="+data?.number+"&text=Hello this is the starting message":"#"} className="col text-success" style={{fontSize:'15px'}}>
-                                      <i className="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
-                                    </a>
-                                    <span className="col text-primary" style={{fontSize:'15px'}}>
-                                      <i className="fa fa-comment" aria-hidden="true"></i> Chat
-                                    </span>
-                                    <a target="_blank" href={"tel:"+profileData?.user?.user_plan.length!=0?data?.number:"#"} className="col text-danger" style={{fontSize:'15px'}} >
-                                      <i className="fa fa-phone" aria-hidden="true"></i> Call
-                                    </a>
-                                  </b>
-                                </div>
-                              </div>
-
-                              <div className="text-center">
-                                <Link
-                                    to='/pricing'
-                                    className="button  btn btn-theme rounded-sm animated right-icn pl-2"
-                                >
-                                  View Plans
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  ))}
+                </div>
+              </>
+            ))}
 
 
-  </div>
-  <h5 className='p-3 col-12 text-center d-block d-sm-none'>Recommended Matches</h5>
-   
-  <div className="col-sm-4 col-12 m-sm-2 m-0 shadow bg-white">
+</div>
+<h5 className='p-3 col-12 text-center d-block d-sm-none'>Recommended Matches</h5>
 
-  {profiles?.map((data,index) => (
-                    <>
-                  <div className="col-12 p-4 d-flex rounded">
-                
-                    <div className="col-3">
-                      {data.user.picture[0]==null?
-              
-                      <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='border-radius-50' srcset="" />
-                      : 
-                       <img src={store.mediaUrl+data?.user?.picture[0].image_path} alt="" style={data.pictures_settings=='visible' ||((data?.pictures_settings=='premimum') && (data?.user_subscription!=null))?{filter: 'blur(0px)'}:{filter: 'blur(8px)'}} className='border-radius-50' srcset="" />
-                     } 
-                    </div>
-                    <div className="col">
-                      <b>{data?.user.first_name}</b><br/>
-                      <span>{ data?.height}, {data?.language}, {data?.country?.name}, {data?.city?.name}</span>
-                    </div>
-                    <div className="col-2">
-                      <i
-                          data-bs-toggle="modal"
-                          data-bs-target={"#myMatches-"+index}
-                          style={{
-                            borderRadius: '100%',
-                            fontSize: '28px',
-                            border: '2px green solid',
-                            padding: '8px 10px 8px 10px',
-                            cursor: 'pointer',
-                          }}
-                          className="fa fa-check-circle text-success"
-                          aria-hidden="true"
-                      ></i>
-                    </div>
-                  </div>
-                  <hr className='border-style-groove' />
-                      <div
-                          className="modal fade"
+<div className="col-sm-4 col-12 m-sm-2 m-0 shadow bg-white">
+
+{profiles?.map((data,index) => (
+              <>
+            <div className="col-12 p-4 d-flex rounded">
+
+              <div className="col-3">
+                {data.user.picture[0]==null?
+
+                <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='border-radius-50' srcset="" />
+                :
+                 <img src={store.mediaUrl+data?.user?.picture[0].image_path} alt="" style={data.pictures_settings=='visible' ||((data?.pictures_settings=='premimum') && (data?.user_subscription!=null))?{filter: 'blur(0px)'}:{filter: 'blur(8px)'}} className='border-radius-50' srcset="" />
+               }
+              </div>
+              <div className="col">
+                <b>{data?.user.first_name}</b><br/>
+                <span>{ data?.height}, {data?.language}, {data?.country?.name}, {data?.city?.name}</span>
+              </div>
+              <div className="col-2">
+                <i
+                    data-bs-toggle="modal"
+                    data-bs-target={"#myMatches-"+index}
+                    style={{
+                      borderRadius: '100%',
+                      fontSize: '28px',
+                      border: '2px green solid',
+                      padding: '8px 10px 8px 10px',
+                      cursor: 'pointer',
+                    }}
+                    className="fa fa-check-circle text-success"
+                    aria-hidden="true"
+                ></i>
+              </div>
+            </div>
+            <hr className='border-style-groove' />
+                <div
+                    className="modal fade"
+                    id={"myMatches-"+index}
+                    tabIndex="-1"
+                    aria-labelledby={"myMatches-"+index}
+                    aria-hidden="true"
+
+                >
+                  <div className="modal-dialog " >
+                    <div className="modal-content clearfix bg-content-sm">
+
+                      <h4
+                          className="modal-title title divider-3 text-dark"
                           id={"myMatches-"+index}
-                          tabIndex="-1"
-                          aria-labelledby={"myMatches-"+index}
-                          aria-hidden="true"
-
                       >
-                        <div className="modal-dialog " >
-                          <div className="modal-content clearfix bg-content-sm">
+                      </h4>
+                      <div className="modal-body ">
+                        <div className="card w-75 m-auto">
+                          <div className="card-body text-dark col-12">
+                            <div style={{textAlign:'end'}}><i className="fa fa-solid fa-lock"></i></div>
+                            <div className="d-flex">
+                            <div className="col-3">
+                              {data.user.picture[0] == null ?
 
-                            <h4
-                                className="modal-title title divider-3 text-dark"
-                                id={"myMatches-"+index}
-                            >
-                            </h4>
-                            <div className="modal-body ">
-                              <div className="card w-75 m-auto">
-                                <div className="card-body text-dark col-12">
-                                  <div style={{textAlign:'end'}}><i className="fa fa-solid fa-lock"></i></div>
-                                  <div className="d-flex">
-                                  <div className="col-3">
-                                    {data.user.picture[0] == null ?
-
-                                        <img src={process.env.PUBLIC_URL + "/images/thumbnail/thum-1.jpg"} alt=""
-                                             className='border-radius-50' srcSet=""/>
-                                        :
-                                        <img src={store.mediaUrl + data?.user?.picture[0].image_path} alt=""
-                                             style={data.pictures_settings == 'visible' || ((data?.pictures_settings == 'premimum') && (data?.user_subscription != null)) ? {filter: 'blur(0px)'} : {filter: 'blur(8px)'}}
-                                             className='border-radius-50' srcSet=""/>
-                                    }
-                                  </div>
-                                  <div className="col">
-                                    <b>{data?.user.first_name}</b><br/>
-                                    <span>{data?.height}, {data?.qualification}, {data?.language}, {data?.country?.name} ,{data?.city?.name}</span>
-                                  </div>
-                                  </div>
-                                  <div className="d-block mt-3">
-                                      <strong>{profileData?.user?.user_plan.length==0?'Phone: +0932-**** ***':'Phone: '+data?.whatsapp_number}</strong>
-                                    <br/>
-                                      <strong>{profileData?.user?.user_plan.length==0?'Email: ****@gmail.com':'Email: '+data?.user?.email}</strong>
-                                  </div>
-                                  <hr style={{margin:'10px !important'}}/>
-                                  <b className="d-flex col-12">
-                                    <a href={profileData?.user?.user_plan.length!=0?"https://api.whatsapp.com/send?phone="+data?.number+"&text=Hello this is the starting message":"#"} className="col text-success" style={{fontSize:'15px'}}>
-                                      <i className="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
-                                    </a>
-                                    <span className="col text-primary" style={{fontSize:'15px'}}>
-                                      <i className="fa fa-comment" aria-hidden="true"></i> Chat
-                                    </span>
-                                    <a target="_blank" href={"tel:"+profileData?.user?.user_plan.length!=0?data?.number:"#"} className="col text-danger" style={{fontSize:'15px'}} >
-                                      <i className="fa fa-phone" aria-hidden="true"></i> Call
-                                    </a>
-                                  </b>
-                                </div>
-                              </div>
-
-                              <div className="text-center">
-                                <Link
-                                    to='/pricing'
-                                    className="button  btn btn-theme rounded-sm animated right-icn pl-2"
-                                >
-                                  View Plans
-                                </Link>
-                              </div>
+                                  <img src={process.env.PUBLIC_URL + "/images/thumbnail/thum-1.jpg"} alt=""
+                                       className='border-radius-50' srcSet=""/>
+                                  :
+                                  <img src={store.mediaUrl + data?.user?.picture[0].image_path} alt=""
+                                       style={data.pictures_settings == 'visible' || ((data?.pictures_settings == 'premimum') && (data?.user_subscription != null)) ? {filter: 'blur(0px)'} : {filter: 'blur(8px)'}}
+                                       className='border-radius-50' srcSet=""/>
+                              }
                             </div>
-
+                            <div className="col">
+                              <b>{data?.user.first_name}</b><br/>
+                              <span>{data?.height}, {data?.qualification}, {data?.language}, {data?.country?.name} ,{data?.city?.name}</span>
+                            </div>
+                            </div>
+                            <div className="d-block mt-3">
+                                <strong>{profileData?.user?.user_plan.length==0?'Phone: +0932-**** ***':'Phone: '+data?.whatsapp_number}</strong>
+                              <br/>
+                                <strong>{profileData?.user?.user_plan.length==0?'Email: ****@gmail.com':'Email: '+data?.user?.email}</strong>
+                            </div>
+                            <hr style={{margin:'10px !important'}}/>
+                            <b className="d-flex col-12">
+                              <a href={profileData?.user?.user_plan.length!=0?"https://api.whatsapp.com/send?phone="+data?.number+"&text=Hello this is the starting message":"#"} className="col text-success" style={{fontSize:'15px'}}>
+                                <i className="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
+                              </a>
+                              <span className="col text-primary" style={{fontSize:'15px'}}>
+                                <i className="fa fa-comment" aria-hidden="true"></i> Chat
+                              </span>
+                              <a target="_blank" href={"tel:"+profileData?.user?.user_plan.length!=0?data?.number:"#"} className="col text-danger" style={{fontSize:'15px'}} >
+                                <i className="fa fa-phone" aria-hidden="true"></i> Call
+                              </a>
+                            </b>
                           </div>
+                        </div>
 
+                        <div className="text-center">
+                          <Link
+                              to='/pricing'
+                              className="button  btn btn-theme rounded-sm animated right-icn pl-2"
+                          >
+                            View Plans
+                          </Link>
                         </div>
                       </div>
-                    </>
-                  ))}
+
                     </div>
+
                   </div>
                 </div>
+              </>
+            ))}
               </div>
-        </>
+            </div>
+          </div>
+        </div>
+      </>
     )}
     </Observer>
   )

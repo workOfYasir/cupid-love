@@ -206,6 +206,7 @@ const Header = () => {
         },
       }).then((response) => {
         const data = response.data;
+        console.log('data');
         setCountries(data.country)
         setCasts(data.cast)
         setReligions(data.religion)
@@ -353,12 +354,12 @@ const Header = () => {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
 
-    // console.log('token=>',token)
+
+    data()
     if(token!=null){
-        // if(requestsAction.length===0){
-          getRequests(token)
-        // }
-      data()
+
+      getRequests(token)
+
       getPicture(token)
     }
   }, [requests]);

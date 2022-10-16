@@ -3,25 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="656d3675-af74-4426-8c55-b3506376d808" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Components/Footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Components/SubHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Components/SubHeader.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/AboutUs/AboutUs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/AboutUs/AboutUs.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/FriendsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/FriendsTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/web/Pages/CreateProfile/CreateProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/CreateProfile/CreateProfile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/RecievedRequest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/RecievedRequest.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/SentRequests.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/FriendRequests/SentRequests.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/MyMatches/MyMatches.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/MyMatches/MyMatches.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/NewMatches/NewMatches.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Matches/NewMatches/NewMatches.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Dashboard/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Gallery.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Gallery.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Photos/Photos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Gallery/Photos/Photos.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/MyAccount/Profile/Profile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/Pricing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/Pricing.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/LoggedIn/Package/assets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/Pages/Terms/Terms.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Pages/Terms/Terms.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/web/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/Router.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/web/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/web/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +128,14 @@
       <workItem from="1665301869357" duration="3736000" />
       <workItem from="1665312423213" duration="2469000" />
       <workItem from="1665321646768" duration="5261000" />
-      <workItem from="1665420805559" duration="2165000" />
+      <workItem from="1665420805559" duration="3961000" />
+      <workItem from="1665431938169" duration="1585000" />
+      <workItem from="1665479537406" duration="1489000" />
+      <workItem from="1665501100436" duration="845000" />
+      <workItem from="1665515750135" duration="1758000" />
+      <workItem from="1665593668334" duration="1958000" />
+      <workItem from="1665674890495" duration="2000" />
+      <workItem from="1665674920938" duration="15000" />
     </task>
     <servers />
   </component>

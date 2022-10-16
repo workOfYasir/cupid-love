@@ -408,7 +408,7 @@ const SentRequests = () => {
                                                 Like This Profile
                                             </div>
 
-                                            <div onClick={()=>{requestAction(data?.sender_id,'Rejected')}}
+                                            <div
                                                  style={editFields ? {
                                                      display: "block",
                                                      textAlign: "center",
@@ -420,8 +420,8 @@ const SentRequests = () => {
                                                         aria-hidden="true"
                                                     ></i>
                                                 </h1>
-                                                <div id={"connection_btn" + index}>
-                                                    cancel
+                                                <div onClick={()=>{requestAction(data?.sender_id,'Rejected')}} id={"connection_btn" + index}>
+                                                    Cancel
                                                 </div>
                                             </div>
 
@@ -432,7 +432,7 @@ const SentRequests = () => {
                                                          style={editFields ? {display: "none"} : {display: "block"}}>
                                                         {data.user?.user_plan.view_contacts != null ?
                                                             <>
-                                                                <a href="Tel:923324010410"
+                                                                <a href="Tel:923040227000"
                                                                    className="btn px-5 py-1 m-1 btn-white border rounded b-radius">
                                                                     <i className="fa fa-phone"
                                                                        aria-hidden="true"></i> Call
@@ -449,7 +449,7 @@ const SentRequests = () => {
                                                         {(data.user?.user_plan.view_contacts != null || data.user?.user_plan.messages != null) ? <>
                                                             <a
                                                                 target="_blank"
-                                                                href="https://api.whatsapp.com/send?phone=923324010410&text=Hello this is the starting message"
+                                                                href="https://api.whatsapp.com/send?phone=923040227000&text=Hello this is the starting message"
                                                                 className="btn px-4 py-1 m-1 btn-success border rounded b-radius">
                                                                 <i className="fa fa-whatsapp"
                                                                    aria-hidden="true"></i> Whatsapp
@@ -486,26 +486,7 @@ const SentRequests = () => {
 
                                         </div>
                                     </div>
-                                    {/*<div className="d-sm-none d-flex col-12">*/}
-                                    {/*    <div*/}
-                                    {/*        className="col-6 text-left col-8 d-flex flex-column justify-content-center">*/}
-                                    {/*        {" "}*/}
-                                    {/*        Like This Profile*/}
-                                    {/*    </div>*/}
-                                    {/*    <div className="col-6 d-flex">*/}
-                                    {/*        <div*/}
-                                    {/*            className="col-8 d-flex flex-column text-sm-white text-dark justify-content-center">*/}
-                                    {/*            Connect Now*/}
-                                    {/*        </div>*/}
-                                    {/*        <div className="col-2">*/}
-                                    {/*            <i*/}
-                                    {/*                className="fa fa-check-circle text-success"*/}
-                                    {/*                style={{fontSize: "2.5rem"}}*/}
-                                    {/*                aria-hidden="true"*/}
-                                    {/*            ></i>*/}
-                                    {/*        </div>*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
+
                                 </div>
 
                                 <div

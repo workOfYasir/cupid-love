@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { data } from "jquery";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import { ToastContainer, toast } from "react-toastify";
 
 const Profile = () => {
   const [profileData, setProfile] = useState();
@@ -21,6 +22,8 @@ const Profile = () => {
   const [qualification, setQualification] = useState()
   const [profiles, setProfiles] = useState()
   const [editFields, setEditFields] = useState(true);
+  const [plan, setPlan] = useState(false);
+  
   const fieldDisablity = () => {
     setEditFields(!editFields);
   };
@@ -43,7 +46,8 @@ const Profile = () => {
         headers: headers,
       }).then((response) => {
         const data = response.data;
-        console.log(data["data"]["auth_user"]);
+
+        setPlan(data['data']['user_plan'])
         setProfile(data["data"]["user"][0]);
         setUserData(data["data"]["other_user"]);
         setAuthUserData(data["data"]["auth_user"]["image"][0]);
@@ -53,9 +57,11 @@ const Profile = () => {
       console.log(error);
     }
   };
-  async function contactInfo() {
-    const token = localStorage.getItem("accessToken");
+  async function contactInfo(user_id) {
     try {
+      const token = localStorage.getItem("accessToken");
+      const userId = new FormData();
+      userId.append("user_id", user_id)
       const headers = {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -64,11 +70,18 @@ const Profile = () => {
       const response = await axios({
         method: "post",
         url: `${store.url}contact-no`,
+        data:userId,
         headers: headers,
       }).then((response) => {
         const data = response.data;
-        setEmail(data[1]);
-        setPhone(data[0]);
+        console.log(data['msg']);
+        if(data['msg_status']==true){
+          toast.error(data['msg']);
+        }else{
+          setEmail(data[1]);
+          setPhone(data[0]);
+        }
+ 
       });
     } catch (error) {
       console.log(error);
@@ -102,8 +115,9 @@ const Profile = () => {
         console.log(error)
       }
   }
-  const handleContact = () => {
-    contactInfo();
+
+  const handleContact = (user_id) => {
+    contactInfo(user_id);
   };
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -133,41 +147,9 @@ const Profile = () => {
                           <div className="col-1">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                           </div>
-                          <div className="col-4">
-                            <span class="badge bg-secondary">New</span>
-                          </div>
+                         
                         </div>
-                        <div className="col-4 text-end">
-                          <div class="dropdown">
-                            <a
-                              class=" dropdown-toggle"
-                              type="button"
-                              id="dropdownMenuButton1"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            ></a>
-                            <ul
-                              class="dropdown-menu"
-                              aria-labelledby="dropdownMenuButton1"
-                            >
-                              <li>
-                                <a class="dropdown-item" href="#">
-                                  Action
-                                </a>
-                              </li>
-                              <li>
-                                <a class="dropdown-item" href="#">
-                                  Another action
-                                </a>
-                              </li>
-                              <li>
-                                <a class="dropdown-item" href="#">
-                                  Something else here
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                       
                       </div>
                       <div className="col-12 d-flex">
                         
@@ -250,10 +232,10 @@ const Profile = () => {
                     <div className="col-4 p-border">
                       <div className="h-100 b-left">
                         <div className="col-12 font-style-italic text-center">
-                          <div className="text-primary">Upgrade</div>
+                          <div className="text-primary"><Link to="/pricing">Upgrade</Link></div>
                           to Contact her directly
                         </div>
-                        <div onClick={fieldDisablity}  style={editFields?{display:"block",textAlign:"center"}:{display:"none"}}>
+                        <div data-bs-toggle="modal" data-bs-target={"#myMatches"} style={editFields?{display:"block",textAlign:"center"}:{display:"none"}}>
                           <h1>
                             <i
                               class="fa fa-check-circle text-success"
@@ -262,22 +244,79 @@ const Profile = () => {
                           </h1>
                           Connect Now
                         </div> 
-                        <div className="col-12 text-center" style={editFields?{display:"none"}:{display:"block"}}>
-                          <a href="Tel:923324010410" className="btn px-5 py-1 m-1 btn-white border rounded b-radius" >
-                           <i className="fa fa-phone" aria-hidden="true"></i> Call
-                          </a>
-                          <a
-                          target="_blank"
-                          href="https://api.whatsapp.com/send?phone=923324010410&text=Hello this is the starting message"
-                           className="btn px-4 py-1 m-1 btn-success border rounded b-radius">
-                            <i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
-                          </a>
-                          <a className="btn px-5 py-1 m-1 btn-white border rounded b-radius">
-                          <i class="fa fa-comment" aria-hidden="true"></i> Chat
-                          </a>
-                        </div>
+                        
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div
+                    className="modal fade"
+                    id={"myMatches"}
+                    tabIndex="-1"
+                    aria-labelledby={"myMatches"}
+                    aria-hidden="true"
+                >
+                  <div className="modal-dialog " >
+                    <div className="modal-content clearfix bg-content-sm">
+
+                      <h4
+                          className="modal-title title divider-3 text-dark"
+                          id={"myMatches"}
+                      >
+                      </h4>
+                      <div className="modal-body ">
+                        <div className="card w-75 m-auto">
+                          <div className="card-body text-dark col-12">
+                            <div style={{textAlign:'end'}}><i className="fa fa-solid fa-lock"></i></div>
+                            <div className="d-flex">
+                              <div className="col-3">
+                                {profileData?.user.picture[0] == null ?
+
+                                    <img src={process.env.PUBLIC_URL + "/images/thumbnail/thum-1.jpg"} alt=""
+                                          className='border-radius-50' srcSet=""/>
+                                    :
+                                    <img src={store.mediaUrl + profileData?.user?.picture[0].image_path} alt=""
+                                          style={profileData.pictures_settings == 'visible' || ((profileData?.pictures_settings == 'premimum') && (profileData?.user_subscription != null)) ? {filter: 'blur(0px)'} : {filter: 'blur(8px)'}}
+                                          className='border-radius-50' srcSet=""/>
+                                }
+                              </div>
+                              <div className="col">
+                                <b>{profileData?.user.first_name}</b><br/>
+                                <span>{profileData?.height}, {profileData?.qualification}, {profileData?.language}, {profileData?.country?.name} ,{profileData?.city?.name}</span>
+                              </div>
+                            </div>
+                            <div className="d-block mt-3">
+                              <strong> {plan==false?'Phone: +0932-**** ***':'Phone: '+profileData?.number}</strong>
+                              <br/>
+                              <strong>{plan==false?'Email: ****@gmail.com':'Email: '+profileData?.user?.email}</strong>
+                            </div>
+                            <hr style={{margin:'10px !important'}}/>
+                            <b className="d-flex col-12">
+                              <a href={plan==true?"https://api.whatsapp.com/send?phone="+profileData?.number+"&text=Hello this is the starting message":"#"} className="col text-success" style={{fontSize:'15px'}}>
+                                <i className="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
+                              </a>
+                              <span className="col text-primary" style={{fontSize:'15px'}}>
+                                <i className="fa fa-comment" aria-hidden="true"></i> Chat
+                              </span>
+                              <a target="_blank" href={"tel:"+plan==true?profileData?.number:"#"} className="col text-danger" style={{fontSize:'15px'}} >
+                                <i className="fa fa-phone" aria-hidden="true"></i> Call
+                              </a>
+                            </b>
+                          </div>
+                        </div>
+
+                        <div className="text-center">
+                          <Link
+                              to='/pricing'
+                              className="button btn btn-theme rounded-sm animated right-icn pl-2"
+                          >
+                            View Plans
+                          </Link>
+                        </div>
+                      </div>
+
+                    </div>
+
                   </div>
                 </div>
                 <div className="col-sm-5 col-md-4 col-lg-3 col-xl-2  overlay d-sm-block d-none">
@@ -331,9 +370,7 @@ const Profile = () => {
                       }
                       alt=""
                     />
-                    {/* </> */}
-
-                    {/* } */}
+                  
                   </div>
                   <div className="d-block d-sm-none">
                     <div className="text-sm-dark text-white m-auto">
@@ -398,97 +435,36 @@ const Profile = () => {
                           You & Her
                         </div>
                       </div>
-                      <div className="col-4 d-sm-block d-none text-end text-dark">
-                        <div class="dropdown">
-                          <a
-                            class=" dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                          ></a>
-                          <ul
-                            class="dropdown-menu"
-                            aria-labelledby="dropdownMenuButton1"
-                          >
-                            <li>
-                              <a class="dropdown-item" href="#">
-                                Action
-                              </a>
-                            </li>
-                            <li>
-                              <a class="dropdown-item" href="#">
-                                Another action
-                              </a>
-                            </li>
-                            <li>
-                              <a class="dropdown-item" href="#">
-                                Something else here
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+                     
                     </div>
                     <div className="col-12 d-sm-flex d-none">
                       <div className="col-6 "> </div>
-                      <div class="dropdown">
-                        <a
-                          class=" dropdown-toggle"
-                          type="button"
-                          id="dropdownMenuButton1"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          <i class="fa fa-male" aria-hidden="true"></i>
-                          <i class="fa fa-female" aria-hidden="true"></i>
-                          You & Her
-                        </a>
-                        <ul
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenuButton1"
-                        >
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Action
-                            </a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Another action
-                            </a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Something else here
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
+                     
                     </div>
 
                     <hr className="col-12 m-2 d-sm-block d-none" />
                     <div className="col-12 d-block ">
                       <div className="col-12 d-flex pt-1">
                         <div className="col-6 text-start text-sm-dark text-white  ">
-                          25 5.7ft
+                          {profileData?.age+' /'+profileData?.height}
+                        
                         </div>
                         <div className="col-6 text-start text-sm-dark text-white ">
-                          Bhatti
+                          {profileData?.cast?.name}
                         </div>
                       </div>
                       <div className="col-12 d-flex pt-1">
                         <div className="col-6 text-start text-sm-dark text-white ">
-                          Pakistani
+                          {profileData?.country?.name}
                         </div>
                         <div className="col-6 text-start text-sm-dark text-white ">
-                          Islam
+                          {profileData?.religion?.name}
                         </div>
                       </div>
 
                       <div className="col-12 d-flex pt-1">
-                        <div className="col-6 d-sm-block d-none ">BSCS</div>
-                        <div className="col-6 d-sm-block d-none">Engineer</div>
+                        <div className="col-6 d-sm-block d-none "> {profileData?.qualification}</div>
+                        <div className="col-6 d-sm-block d-none"> {profileData?.job}</div>
                       </div>
                     </div>
                   </div>
@@ -540,11 +516,11 @@ const Profile = () => {
                        
                            {data.user.picture[0]==null?
               
-              <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='img-fluid' srcset="" />
-              : 
-               <img src={store.mediaUrl+data?.user?.picture[0].image_path} alt="" style={data.pictures_settings=='visible' ||((data?.pictures_settings=='premimum') && (data?.user_subscription!=null))?{filter: 'blur(0px)'}:{filter: 'blur(8px)'}} className='img-fluid' srcset="" /> 
-             }
-                      </div>
+                            <img src={ process.env.PUBLIC_URL +"/images/thumbnail/thum-1.jpg"} alt="" className='img-fluid' srcset="" />
+                            : 
+                            <img src={store.mediaUrl+data?.user?.picture[0].image_path} alt="" style={data.pictures_settings=='visible' ||((data?.pictures_settings=='premimum') && (data?.user_subscription!=null))?{filter: 'blur(0px)'}:{filter: 'blur(8px)'}} className='img-fluid' srcset="" /> 
+                          }
+                        </div>
                       <div className="employers-list-details">
                         <div className="employers-list-info">
                           <div className="employers-list-title">
@@ -555,7 +531,7 @@ const Profile = () => {
                           <div className="employers-list-option">
                             <ul className="list-unstyled">
                               <li className="m-0 p-0">{data?.working_with}</li>
-                              <li className="m-0 p-0">       24 yr,{ data?.height}, Urdu, {data?.user?.country?.name}</li>
+                              <li className="m-0 p-0">, {data?.age} yr, { data?.height}, {data?.language} , {data?.user?.country?.name}</li>
                             </ul>
                           </div>
                         </div>
@@ -700,7 +676,7 @@ const Profile = () => {
                             </div>
                             <div
                               className="col-6 d-flex flex-column justify-content-center"
-                              onClick={handleContact}
+                              onClick={()=>(handleContact(profileData?.user?.id))}
                               style={
                                 email == null && number == null
                                   ? { display: "block", margin: "-5px" }
@@ -717,7 +693,6 @@ const Profile = () => {
                             </div>
                           </div>
                         </div>
-
                         <h4 className="d-flex">
                           <div className="b-radius">
                             <i class="fa fa-users" aria-hidden="true"></i>
@@ -728,7 +703,6 @@ const Profile = () => {
                           </div>
                         </h4>
                         <div className="p-border-t-md">
-
                         </div>
                         <h4 className="d-flex">
                           <div className="b-radius">
@@ -751,7 +725,6 @@ const Profile = () => {
                             </ul>
                           </div>
                         </div>
-
                         <h4 className="d-flex">
                           <div className="b-radius">
                             <i class="fa fa-book px-1" aria-hidden="true"></i>
@@ -967,8 +940,7 @@ const Profile = () => {
                                   <span>
                                     {userData?.religion}:{userData?.community}
                                   </span>
-                                  {/* <div className="more showMore"  tabindex="0">...<span className=" text-primary">More</span></div>
-          <div className="less showLess" tabindex="0"><span className=" text-primary" tabindex="0">Less</span></div> */}
+                                 
                                   <span class="span2 float-right" tabindex="0">
                                     <div className="text-primary">
                                       ... more{" "}
@@ -1032,7 +1004,6 @@ const Profile = () => {
                                 </div>
                               )}
                             </div>
-
                             <hr className="m-2 p-0" />
                             <div className="row">
                               <div className="col-10">
@@ -1061,7 +1032,6 @@ const Profile = () => {
                                 </div>
                               )}
                             </div>
-
                             <hr className="m-2 p-0" />
                           </div>
                         </div>

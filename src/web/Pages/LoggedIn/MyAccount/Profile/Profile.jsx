@@ -64,7 +64,6 @@ const Profile = () => {
     living_with_family:'',
     language:'',
   });
-  const url = `${store.url}`;
   const handleChange = (event) => {
     setformValue({
       ...formValue,
@@ -1278,7 +1277,7 @@ const Profile = () => {
 
                       <div className="user-dashboard-info-box bg-white">
                         <div className="section-title-02 mb-2 mt-4 d-grid">
-                          <h4>Location</h4>
+                          <h4> {(profileData?.gender=='Male')?'Groom':'Bride'} Location</h4>
                         </div>
                         <div className="row shadow rounded-lg p-3">
                           <div className="d-flex mb-3 col-md-6">

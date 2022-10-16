@@ -83,8 +83,13 @@ const CreateProfile = () => {
         e.preventDefault()
         if(formValue.phone_number===''){
             toast.error("Phone number can not be null");
+        }else if(((formValue.phone_number).match("[a-zA-z]") || (formValue.phone_number).match("[!@#$%&*()_+=|<>?{}\\[\\]~-]"))){
+            toast.error('Phone number can not be other than number')
+        }else if((  formValue.phone_number).length < 10  ){
+            toast.error('phone number can not be of '+ (  formValue.phone_number).length +' length')
+        }else if((formValue.phone_number).length > 13 ){
+            toast.error('phone number can not be of '+ (  formValue.phone_number).length +' length')
         }else{
-
         const token = localStorage.getItem('accessToken')
         const user = localStorage.getItem('user')
         const formData = new FormData();
@@ -165,7 +170,7 @@ const CreateProfile = () => {
         } catch(error) {
             console.log(error)
         }
-        }
+    }
     }
 
     return (
@@ -204,9 +209,23 @@ const CreateProfile = () => {
                                                             <label className="form-label">Mother Tongue</label>
                                                             <select className="form-select"  onChange={handleChange} name="Language" aria-label="Default select example" id="">
                                                                 <option>Select one</option>
-                                                                <option value="Urdu">Urdu</option>
+
+
+                                                                <option value="Balochi">Balochi</option>
+                                                                <option value="Brahui">Brahui</option>
                                                                 <option value="English">English</option>
+                                                                <option value="Gujrati">Gujrati</option>
+                                                                <option value="Hindko">Hindko</option>
+                                                                <option value="Kashmiri">Kashmiri</option>
+                                                                <option value="Marwari">Marwari</option>
+                                                                <option value="Pashto">Pashto</option>
+                                                                <option value="Persian">Persian</option>
                                                                 <option value="Punjabi">Punjabi</option>
+                                                                <option value="Saraiki">Saraiki</option>
+                                                                <option value="Shina" >Shina</option>
+                                                                <option value="Sindhi">Sindhi</option>
+                                                                <option value="Urdu">Urdu</option>
+                                                                <option value="Other">Other</option>
 
                                                             </select>
                                                         </div>
@@ -218,7 +237,7 @@ const CreateProfile = () => {
                                                                 <option value="Divorced">Divorced</option>
                                                                 <option value="Window">Window</option>
                                                                 <option value="Married">Married</option>
-
+                                                                <option value="Seperated">Seperated</option>
                                                             </select>
                                                         </div>
 
@@ -329,11 +348,42 @@ const CreateProfile = () => {
 
                                                                 <select className="form-select" aria-label="Default select example" onChange={handleChange} name="edjucation_type" id="">
                                                                     <option>Select one</option>
-                                                                    <option value="Medical">Medical</option>
-                                                                    <option value="Engineering">Engineering</option>
-                                                                    <option value="IT">IT</option>
 
-                                                                </select>
+                                                                                    <option value="Accounting/Finance">Accounting/Finance</option>
+                                                                                    <option value="Advertising/Media">Advertising/Media</option>
+                                                                                    <option value="Arts/Culture/Music">Arts/Culture/Music</option>
+                                                                                    <option value="Builder/Farmer">Builder/Farmer</option>
+                                                                                    <option value="Software Eng/Computer">Software Eng/Computer</option>
+                                                                                    <option value="Beauty/Cosmetics/Fashion">Beauty/Cosmetics/Fashion</option>
+                                                                                    <option value="Logistics/Warehouse">Logistics/Warehouse</option>
+                                                                                    <option value="Defense/Forces/Security">Defense/Forces/Security</option>
+                                                                                    <option value="Doctor/Medical Officer">Doctor/Medical Officer</option>
+                                                                                    <option value="Education/Academic">Education/Academic</option>
+                                                                                    <option value="Engineering/Architecture">Engineering/Architecture</option>
+                                                                                    <option value="Health Care/Nurse">Health Care/Nurse</option>
+                                                                                    <option value="Hospitality/Tourism/Chef">Hospitality/Tourism/Chef</option>
+                                                                                    <option value="Manager/Human Resources">Manager/Human Resources</option>
+                                                                                    <option value="Banking/Insurance">Banking/Insurance</option>
+                                                                                    <option value="Internet/New Media">Internet/New Media</option>
+                                                                                    <option value="Lawyer/Legal">Lawyer/Legal</option>
+                                                                                    <option value="Marketing/Sales">Marketing/Sales</option>
+                                                                                    <option value="Political/Professor">Political/Professor</option>
+                                                                                    <option value="Business/Entrepreneur">Business/Entrepreneur</option>
+                                                                                    <option value="Public/Customer">Public/Customer</option>
+                                                                                    <option value="Relations">Relations</option>
+                                                                                    <option value="Publishing/Print/Graphics">Publishing/Print/Graphics</option>
+                                                                                    <option value="Research/Scientist">Research/Scientist</option>
+                                                                                    <option value="Retired/Charity">Retired/Charity</option>
+                                                                                    <option value="Secretary/Office">Secretary/Office</option>
+                                                                                    <option value="Student">Student</option>
+                                                                                    <option value="Teacher/Lecturer">Teacher/Lecturer</option>
+                                                                                    <option value="IT/Telecommunications">IT/Telecommunications</option>
+                                                                                    <option value="Transport/Manufacturing">Transport/Manufacturing</option>
+                                                                                    <option value="Government/Department">Government/Department</option>
+                                                                                    <option value="Writer/Journalist">Writer/Journalist</option>
+                                                                                    <option value="Other/Self Employed">Other/Self Employed</option>
+                                                                                    <option value="Unemployed/Housewife">Unemployed/Housewife</option>
+                                                                                                                    </select>
                                                             </div>
                                                             <div className="row mb-3">
                                                                 <label htmlFor="exampleInput">University</label>
@@ -370,17 +420,26 @@ const CreateProfile = () => {
                                                                 <label className="form-label">Monthly Income</label>
                                                                 <select className="form-select" aria-label="Default select example" onChange={handleChange} name="income" id="">
                                                                     <option>Select one</option>
-                                                                    <option value="20000">20,000</option>
-                                                                    <option value="30000">30,000</option>
-                                                                    <option value="40000">40,000</option>
-                                                                    <option value="50000">50,000</option>
-                                                                    <option value="60000">60,000</option>
-                                                                    <option value="70000">70,000</option>
-                                                                    <option value="80000">80,000</option>
-                                                                    <option value="90000">90,000</option>
-                                                                    <option value="100000">100,000</option>
-                                                                    <option value="100000+">100,000 +</option>
-
+                                                                    <option value="25000">20,000-30,000</option>
+                                                                    <option value="35000">30,000-40,000</option>
+                                                                    <option value="45000">40,000-50,000</option>
+                                                                    <option value="55000">50,000-60,000</option>
+                                                                    <option value="65000">60,000-70,000</option>
+                                                                    <option value="75000">70,000-80,000</option>
+                                                                    <option value="85000">80,000-90,000</option>
+                                                                    <option value="95000">90,000-100,000</option>
+                                                                    <option value="125000">100,000-150,000</option>
+                                                                    <option value="175000">150,000-200,000</option>
+                                                                    <option value="225000">200,000-250,000</option>
+                                                                    <option value="275000">250,000-300,000</option>
+                                                                    <option value="350000">300,000-400,000</option>
+                                                                    <option value="450000">400,000-500,000</option>
+                                                                    <option value="550000">500,000-600,000</option>
+                                                                    <option value="650000">600,000-700,000</option>
+                                                                    <option value="750000">700,000-800,000</option>
+                                                                    <option value="850000">800,000-900,000</option>
+                                                                    <option value="950000">900,000-1000,000</option>
+                                                                    <option value="1500000">1000,000-1500,000</option>
                                                                 </select>
                                                             </div>
                                                             <div className="mb-3">
@@ -525,6 +584,7 @@ const CreateProfile = () => {
                                                                 <option value="Married">Married</option>
                                                                 <option value="Divorced">Divorced</option>
                                                                 <option value="Single">Single</option>
+                                                                <option value="Seperated">Seperated</option>
                                                             </select>
                                                         </div>
 

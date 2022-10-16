@@ -428,7 +428,7 @@ const RecievedRequest = () => {
                                                 </>
                                                 :
                                                 <>
-                                                    <div onClick={()=>{requestAction(data?.sender_id,'Rejected')}}
+                                                    <div
                                                          style={editFields ? {
                                                              display: "block",
                                                              textAlign: "center",
@@ -440,8 +440,11 @@ const RecievedRequest = () => {
                                                                 aria-hidden="true"
                                                             ></i>
                                                         </h1>
-                                                        <div id={"connection_btn" + index}>
-                                                            Connect Now
+                                                        <div onClick={()=>{requestAction(data?.sender_id,'Rejected')}} id={"connection_btn" + index}>
+                                                            Cancel
+                                                        </div>
+                                                        <div onClick={()=>{requestAction(data?.sender_id,'Accepted')}} id={"connection_btn" + index}>
+                                                            Cancel
                                                         </div>
                                                     </div>
                                                 </>
@@ -453,7 +456,7 @@ const RecievedRequest = () => {
                                                          style={editFields ? {display: "none"} : {display: "block"}}>
                                                         {data.user?.user_plan.view_contacts != null ?
                                                             <>
-                                                                <a href="Tel:923324010410"
+                                                                <a href="Tel:923040227000"
                                                                    className="btn px-5 py-1 m-1 btn-white border rounded b-radius">
                                                                     <i className="fa fa-phone"
                                                                        aria-hidden="true"></i> Call
@@ -470,7 +473,7 @@ const RecievedRequest = () => {
                                                         {(data.user?.user_plan.view_contacts != null || data.user?.user_plan.messages != null) ? <>
                                                             <a
                                                                 target="_blank"
-                                                                href="https://api.whatsapp.com/send?phone=923324010410&text=Hello this is the starting message"
+                                                                href="https://api.whatsapp.com/send?phone=923040227000&text=Hello this is the starting message"
                                                                 className="btn px-4 py-1 m-1 btn-success border rounded b-radius">
                                                                 <i className="fa fa-whatsapp"
                                                                    aria-hidden="true"></i> Whatsapp

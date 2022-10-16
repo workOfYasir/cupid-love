@@ -12,7 +12,7 @@ const Pricing = () => {
   const store = useContext(StoreContext);
   const [plans, setPlans] = useState();
   const [componentCount, setComponentCount] = useState([]);
-
+  const [loop,setLoop] = useState([0,1,2,3,4])
 
   const onClickAddDashboardComponent = event => {
     if(store.count===0){
@@ -331,10 +331,10 @@ const Pricing = () => {
                                     </div>
                                     <hr/>
                                     <div className="d-block">
-                                      <p><b>Note: </b>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                      <p><b>Note: </b>Once you choose the desired Package then kindly pay the dues of selected Package at the above mentioned account number and send the recipt of the payment to the whatsapp by clicking on the whatsapp icon which is showing below.</p>
                                       <div className="justify-content-center d-flex">
 
-                                          <a className="col-2"  href="https://api.whatsapp.com/send?phone=923324010410&text=Hello this is the starting message">
+                                          <a className="col-2"  href="https://api.whatsapp.com/send?phone=923040227000&text=Hello this is the starting message">
                                             <img
                                                 className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
                                                 src={window.location.origin + "/images/whatsapp.svg"}
@@ -355,7 +355,7 @@ const Pricing = () => {
                 </div>
                 <hr/>
                 <div className="d-sm-flex d-none col-12 justify-content-center  pt-5 container-fluid">
-                  <div className="pricing-card col child">
+                  <div className=" col child">
                     <div className="shadow text-dark rounded bg-white text-center p-2 m-1 pb-2">
                       <div className="col">
                         <img  src={
@@ -383,7 +383,8 @@ const Pricing = () => {
                       <div className="col-12 py-1">
                         <a
                             style={{padding: '5px 30px !important'}}
-                            className="btn btn-light custom-btn custom-btn"
+                            className="btn btn-light custom-btn custom-btn" data-bs-toggle="modal"
+                            data-bs-target="#pricing-card-0"
                         >
                           Continue
                         </a>
@@ -399,7 +400,7 @@ const Pricing = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="pricing-card col child">
+                  <div className=" col child">
                     <div className="shadow text-dark rounded bg-white text-center p-2 m-1 pb-2">
                       <div className="col">
                         <img  src={
@@ -428,7 +429,8 @@ const Pricing = () => {
                       <div className="col-12 py-1">
                         <a
                             style={{padding: '5px 30px !important'}}
-                            className="btn btn-light custom-btn custom-btn"
+                            className="btn btn-light custom-btn custom-btn" data-bs-toggle="modal"
+                            data-bs-target="#pricing-card-1"
                         >
                           Continue
                         </a>
@@ -444,7 +446,7 @@ const Pricing = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="pricing-card col child">
+                  <div className=" col child">
                     <div className="shadow text-dark rounded bg-white text-center p-2 m-1 pb-2">
                       <div className="col">
                         <img  src={
@@ -473,7 +475,8 @@ const Pricing = () => {
                       <div className="col-12 py-1">
                         <a
                             style={{padding: '5px 30px !important'}}
-                            className="btn btn-light custom-btn custom-btn"
+                            className="btn btn-light custom-btn custom-btn"data-bs-toggle="modal"
+                            data-bs-target="#pricing-card-2"
                         >
                           Continue
                         </a>
@@ -489,7 +492,7 @@ const Pricing = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="pricing-card col child">
+                  <div className=" col child">
                     <div className="shadow text-dark rounded bg-white text-center p-2 m-1 pb-2">
                       <div className="col">
                         <img  src={
@@ -518,7 +521,8 @@ const Pricing = () => {
                       <div className="col-12 py-1">
                         <a
                             style={{padding: '5px 30px !important'}}
-                            className="btn btn-light custom-btn custom-btn"
+                            className="btn btn-light custom-btn custom-btn"data-bs-toggle="modal"
+                            data-bs-target="#pricing-card-3"
                         >
                           Continue
                         </a>
@@ -534,7 +538,7 @@ const Pricing = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="pricing-card col child">
+                  <div className=" col child">
                     <div className="shadow text-dark rounded bg-white text-center p-2 m-1 pb-2">
                       <div className="col">
                         <img  src={
@@ -563,7 +567,8 @@ const Pricing = () => {
                       <div className="col-12 py-1">
                         <a
                             style={{padding: '5px 30px !important'}}
-                            className="btn btn-light custom-btn custom-btn"
+                            className="btn btn-light custom-btn custom-btn"data-bs-toggle="modal"
+                            data-bs-target="#pricing-card-4"
                         >
                           Continue
                         </a>
@@ -581,6 +586,823 @@ const Pricing = () => {
                     </div>
                   </div>
 
+                  <div
+                    className="modal fade"
+                    id={"pricing-card-0"}
+                    tabIndex="-1"
+                    aria-labelledby={"pricing-card-0"}
+                    aria-hidden="true"
+                  >
+                    <div className="modal-dialog modal-dialog-scrollable modal-fullscreen" >
+                      <div className="modal-content clearfix" style={{background:'#dfdede'}}>
+                        <h4
+                            className="modal-title title divider-3 text-dark"
+                            id={"pricing-card-0"}
+                        >
+                        </h4>
+                        <div className="modal-body ">
+                          <a
+                              className="rounded-sm animated right-icn"
+                              data-bs-dismiss="modal"
+                          >
+                            <span className="display-5" style={{color:"D63583"}}>
+                              🔙
+                            </span>
+                          </a>
+                          <div className="justify-content-center px-5 row">
+                            <div className="display-6 text-dark text-center col">
+                              <b>Basic Package</b>
+                            </div>
+                          </div>
+
+                          <div className="row px-5 justify-content-center">
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="p-5">
+                                <img
+                                    className="img-fluid mt-3 mb-2 offset-sm-0 offset-4"
+                                    src={window.location.origin + "/images/bank/allied.png"}
+
+                                /></div>
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(47, 70, 175, 1) 0%, rgba(9, 23, 80, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Branch Code: </b> <p className="text-end col m-0">047 KHAYBAN E JANAH LHR</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">04770010047772550010</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >IBAN: </b> <p className="text-end col m-0">PK56ABPA04770010047772550010<br/>&nbsp;</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="px-5">
+                                <img
+                                    className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                    src={window.location.origin + "/images/bank/jazzCash.png"}
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(157, 35, 35, 1) 0%, rgba(91, 1, 3, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account Name: </b> <p className="text-end col m-0">Usman Zaheer</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">03040227000</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Address: </b> <p className="text-end col m-0">14 A C Block River View Lahore, <br/> Near Abdul Sattar Edhi Road</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="p-5">
+                                <img
+                                  className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                  src={window.location.origin + "/images/bank/easyPaisa.png"}
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(74, 164, 77, 1) 0%, rgba(1, 91, 11, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account Name: </b> <p className="text-end col m-0">Usman Zaheer</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">03040227000</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Address: </b> <p className="text-end col m-0">14 A C Block River View Lahore, <br/> Near Abdul Sattar Edhi Road</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="row mt-5 justify-content-center">
+                            <div className="col-6 p-5  rounded bg-white">
+                              <div className="d-flex">
+                                <div className="col">
+                                  <h3 style={{color:"#D63583"}}>Basic Package</h3>
+                                </div>
+                                <div className="col text-end">
+
+                                  <h4 className="text-dark">PKR 20,000</h4>
+
+                                  </div>
+                              </div>
+                              <hr/>
+                              <div className="d-block">
+                                <p><b>Note: </b>Once you choose the desired Package then kindly pay the dues of selected Package at the above mentioned account number and send the recipt of the payment to the whatsapp by clicking on the whatsapp icon which is showing below.</p>
+                                <div className="justify-content-center d-flex">
+
+                                  <a className="col-2"  href="https://api.whatsapp.com/send?phone=923040227000&text=Hello this is the starting message">
+                                    <img
+                                        className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                        src={window.location.origin + "/images/whatsapp.svg"}
+                                    />
+                                  </a>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div
+                      className="modal fade"
+                      id={"pricing-card-1"}
+                      tabIndex="-1"
+                      aria-labelledby={"pricing-card-1"}
+                      aria-hidden="true"
+                  >
+                    <div className="modal-dialog modal-dialog-scrollable modal-fullscreen" >
+                      <div className="modal-content clearfix" style={{background:'#dfdede'}}>
+                        <h4
+                            className="modal-title title divider-3 text-dark"
+                            id={"pricing-card-1"}
+                        >
+                        </h4>
+                        <div className="modal-body ">
+                          <a
+                              className="rounded-sm animated right-icn"
+                              data-bs-dismiss="modal"
+                          >
+                            <span className="display-5" style={{color:"D63583"}}>
+                              🔙
+                            </span>
+                          </a>
+                          <div className="justify-content-center px-5 row">
+                            <div className="display-6 text-dark text-center col">
+                              <b>Standard Package</b>
+                            </div>
+                          </div>
+
+                          <div className="row px-5 justify-content-center">
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="p-5">
+                                <img
+                                    className="img-fluid mt-3 mb-2 offset-sm-0 offset-4"
+                                    src={window.location.origin + "/images/bank/allied.png"}
+
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(47, 70, 175, 1) 0%, rgba(9, 23, 80, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Branch Code: </b> <p className="text-end col m-0">047 KHAYBAN E JANAH LHR</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">04770010047772550010</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >IBAN: </b> <p className="text-end col m-0">PK56ABPA04770010047772550010<br/>&nbsp;</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="px-5">
+                                <img
+                                    className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                    src={window.location.origin + "/images/bank/jazzCash.png"}
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(157, 35, 35, 1) 0%, rgba(91, 1, 3, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account Name: </b> <p className="text-end col m-0">Usman Zaheer</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">03040227000</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Address: </b> <p className="text-end col m-0">14 A C Block River View Lahore, <br/> Near Abdul Sattar Edhi Road</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="p-5">
+                                <img
+                                    className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                    src={window.location.origin + "/images/bank/easyPaisa.png"}
+
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(74, 164, 77, 1) 0%, rgba(1, 91, 11, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account Name: </b> <p className="text-end col m-0">Usman Zaheer</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">03040227000</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Address: </b> <p className="text-end col m-0">14 A C Block River View Lahore, <br/> Near Abdul Sattar Edhi Road</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="row mt-5 justify-content-center">
+                            <div className="col-6 p-5  rounded bg-white">
+                              <div className="d-flex">
+                                <div className="col">
+                                  <h3 style={{color:"#D63583"}}>Standard Package</h3>
+                                </div>
+                                <div className="col text-end">
+
+                                <h4 className="text-dark">PKR 20,000</h4>
+
+                                </div>
+                              </div>
+                              <hr/>
+                              <div className="d-block">
+                                <p><b>Note: </b>Once you choose the desired Package then kindly pay the dues of selected Package at the above mentioned account number and send the recipt of the payment to the whatsapp by clicking on the whatsapp icon which is showing below.</p>
+                                <div className="justify-content-center d-flex">
+
+                                  <a className="col-2"  href="https://api.whatsapp.com/send?phone=923040227000&text=Hello this is the starting message">
+                                    <img
+                                        className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                        src={window.location.origin + "/images/whatsapp.svg"}
+                                    />
+                                  </a>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div
+                      className="modal fade"
+                      id={"pricing-card-2"}
+                      tabIndex="-1"
+                      aria-labelledby={"pricing-card-2"}
+                      aria-hidden="true"
+                  >
+                    <div className="modal-dialog modal-dialog-scrollable modal-fullscreen" >
+                      <div className="modal-content clearfix" style={{background:'#dfdede'}}>
+                        <h4
+                            className="modal-title title divider-3 text-dark"
+                            id={"pricing-card-2"}
+                        >
+                        </h4>
+                        <div className="modal-body ">
+                          <a
+                              className="rounded-sm animated right-icn"
+                              data-bs-dismiss="modal"
+                          >
+                            <span className="display-5" style={{color:"D63583"}}>
+                              🔙
+                            </span>
+                          </a>
+                          <div className="justify-content-center px-5 row">
+                            <div className="display-6 text-dark text-center col">
+                              <b>Super Standard</b>
+                            </div>
+                          </div>
+
+                          <div className="row px-5 justify-content-center">
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="p-5">
+                                <img
+                                    className="img-fluid mt-3 mb-2 offset-sm-0 offset-4"
+                                    src={window.location.origin + "/images/bank/allied.png"}
+
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(47, 70, 175, 1) 0%, rgba(9, 23, 80, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Branch Code: </b> <p className="text-end col m-0">047 KHAYBAN E JANAH LHR</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">04770010047772550010</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >IBAN: </b> <p className="text-end col m-0">PK56ABPA04770010047772550010<br/>&nbsp;</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="px-5">
+                                <img
+                                    className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                    src={window.location.origin + "/images/bank/jazzCash.png"}
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(157, 35, 35, 1) 0%, rgba(91, 1, 3, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account Name: </b> <p className="text-end col m-0">Usman Zaheer</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">03040227000</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Address: </b> <p className="text-end col m-0">14 A C Block River View Lahore, <br/> Near Abdul Sattar Edhi Road</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="p-5">
+                                <img
+                                    className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                    src={window.location.origin + "/images/bank/easyPaisa.png"}
+
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(74, 164, 77, 1) 0%, rgba(1, 91, 11, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account Name: </b> <p className="text-end col m-0">Usman Zaheer</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">03040227000</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Address: </b> <p className="text-end col m-0">14 A C Block River View Lahore, <br/> Near Abdul Sattar Edhi Road</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="row mt-5 justify-content-center">
+                            <div className="col-6 p-5  rounded bg-white">
+                              <div className="d-flex">
+                                <div className="col">
+                                  <h3 style={{color:"#D63583"}}>Super Standard</h3>
+                                </div>
+                                <div className="col text-end">
+
+                                  <h4 className="text-dark">PKR 50,000</h4>
+
+                                </div>
+                              </div>
+                              <hr/>
+                              <div className="d-block">
+                                <p><b>Note: </b>Once you choose the desired Package then kindly pay the dues of selected Package at the above mentioned account number and send the recipt of the payment to the whatsapp by clicking on the whatsapp icon which is showing below.</p>
+                                <div className="justify-content-center d-flex">
+
+                                  <a className="col-2"  href="https://api.whatsapp.com/send?phone=923040227000&text=Hello this is the starting message">
+                                    <img
+                                        className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                        src={window.location.origin + "/images/whatsapp.svg"}
+                                    />
+                                  </a>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div
+                      className="modal fade"
+                      id={"pricing-card-3"}
+                      tabIndex="-1"
+                      aria-labelledby={"pricing-card-3"}
+                      aria-hidden="true"
+                  >
+                    <div className="modal-dialog modal-dialog-scrollable modal-fullscreen" >
+                      <div className="modal-content clearfix" style={{background:'#dfdede'}}>
+                        <h4
+                            className="modal-title title divider-3 text-dark"
+                            id={"pricing-card-3"}
+                        >
+                        </h4>
+                        <div className="modal-body ">
+                          <a
+                              className="rounded-sm animated right-icn"
+                              data-bs-dismiss="modal"
+                          >
+                            <span className="display-5" style={{color:"D63583"}}>
+                              🔙
+                            </span>
+                          </a>
+                          <div className="justify-content-center px-5 row">
+                            <div className="display-6 text-dark text-center col">
+                              <b>Elite Package</b>
+                            </div>
+                          </div>
+
+                          <div className="row px-5 justify-content-center">
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="p-5">
+                                <img
+                                    className="img-fluid mt-3 mb-2 offset-sm-0 offset-4"
+                                    src={window.location.origin + "/images/bank/allied.png"}
+
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(47, 70, 175, 1) 0%, rgba(9, 23, 80, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Branch Code: </b> <p className="text-end col m-0">047 KHAYBAN E JANAH LHR</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">04770010047772550010</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >IBAN: </b> <p className="text-end col m-0">PK56ABPA04770010047772550010<br/>&nbsp;</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="px-5">
+                                <img
+                                    className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                    src={window.location.origin + "/images/bank/jazzCash.png"}
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(157, 35, 35, 1) 0%, rgba(91, 1, 3, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account Name: </b> <p className="text-end col m-0">Usman Zaheer</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">03040227000</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Address: </b> <p className="text-end col m-0">14 A C Block River View Lahore, <br/> Near Abdul Sattar Edhi Road</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="p-5">
+                                <img
+                                    className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                    src={window.location.origin + "/images/bank/easyPaisa.png"}
+
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(74, 164, 77, 1) 0%, rgba(1, 91, 11, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account Name: </b> <p className="text-end col m-0">Usman Zaheer</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">03040227000</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Address: </b> <p className="text-end col m-0">14 A C Block River View Lahore, <br/> Near Abdul Sattar Edhi Road</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="row mt-5 justify-content-center">
+                            <div className="col-6 p-5  rounded bg-white">
+                              <div className="d-flex">
+                                <div className="col">
+                                  <h3 style={{color:"#D63583"}}>Elite Package</h3>
+                                </div>
+                                <div className="col text-end">
+
+                                  <h4 className="text-dark">PKR 50,000</h4>
+
+                                </div>
+                              </div>
+                              <hr/>
+                              <div className="d-block">
+                                <p><b>Note: </b>Once you choose the desired Package then kindly pay the dues of selected Package at the above mentioned account number and send the recipt of the payment to the whatsapp by clicking on the whatsapp icon which is showing below.</p>
+                                <div className="justify-content-center d-flex">
+
+                                  <a className="col-2"  href="https://api.whatsapp.com/send?phone=923040227000&text=Hello this is the starting message">
+                                    <img
+                                        className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                        src={window.location.origin + "/images/whatsapp.svg"}
+                                    />
+                                  </a>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div
+                      className="modal fade"
+                      id={"pricing-card-4"}
+                      tabIndex="-1"
+                      aria-labelledby={"pricing-card-4"}
+                      aria-hidden="true"
+                  >
+                    <div className="modal-dialog modal-dialog-scrollable modal-fullscreen" >
+                      <div className="modal-content clearfix" style={{background:'#dfdede'}}>
+                        <h4
+                            className="modal-title title divider-3 text-dark"
+                            id={"pricing-card-4"}
+                        >
+                        </h4>
+                        <div className="modal-body ">
+                          <a
+                              className="rounded-sm animated right-icn"
+                              data-bs-dismiss="modal"
+                          >
+                            <span className="display-5" style={{color:"D63583"}}>
+                              🔙
+                            </span>
+                          </a>
+                          <div className="justify-content-center px-5 row">
+                            <div className="display-6 text-dark text-center col">
+                              <b>Super Elite Package</b>
+                            </div>
+                          </div>
+
+                          <div className="row px-5 justify-content-center">
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="p-5">
+                                <img
+                                    className="img-fluid mt-3 mb-2 offset-sm-0 offset-4"
+                                    src={window.location.origin + "/images/bank/allied.png"}
+
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(47, 70, 175, 1) 0%, rgba(9, 23, 80, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Branch Code: </b> <p className="text-end col m-0">047 KHAYBAN E JANAH LHR</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">04770010047772550010</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >IBAN: </b> <p className="text-end col m-0">PK56ABPA04770010047772550010<br/>&nbsp;</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="px-5">
+                                <img
+                                    className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                    src={window.location.origin + "/images/bank/jazzCash.png"}
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(157, 35, 35, 1) 0%, rgba(91, 1, 3, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account Name: </b> <p className="text-end col m-0">Usman Zaheer</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">03040227000</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Address: </b> <p className="text-end col m-0">14 A C Block River View Lahore, <br/> Near Abdul Sattar Edhi Road</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="bg-white rounded shadow-lg col-3 m-2 h-100 p-0 d-flex flex-column justify-content-center" >
+                              <div className="p-5">
+                                <img
+                                    className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                    src={window.location.origin + "/images/bank/easyPaisa.png"}
+
+                                /></div>
+
+                              <div style={{backgroundImage: "radial-gradient(farthest-corner at 50% 50%, rgba(74, 164, 77, 1) 0%, rgba(1, 91, 11, 1) 100%)"}}>
+                                <div className="p-5">
+                                  <div className="display-7 py-5 text-light text-center"> <b>Account Details</b></div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account Name: </b> <p className="text-end col m-0">Usman Zaheer</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Account No: </b> <p className="text-end col m-0">03040227000</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                  <div className="display-8 py-1 text-light">
+                                    <div className="col d-flex p-0 m-0">
+                                      <b >Address: </b> <p className="text-end col m-0">14 A C Block River View Lahore, <br/> Near Abdul Sattar Edhi Road</p>
+                                    </div>
+                                    <hr className="m-2"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="row mt-5 justify-content-center">
+                            <div className="col-6 p-5  rounded bg-white">
+                              <div className="d-flex">
+                                <div className="col">
+                                  <h3 style={{color:"#D63583"}}>Super Elite Package</h3>
+                                </div>
+                                <div className="col text-end">
+
+                                  <h4 className="text-dark">PKR 220,000</h4>
+
+                                </div>
+                              </div>
+                              <hr/>
+                              <div className="d-block">
+                                <p><b>Note: </b>Once you choose the desired Package then kindly pay the dues of selected Package at the above mentioned account number and send the recipt of the payment to the whatsapp by clicking on the whatsapp icon which is showing below. </p>
+                                <div className="justify-content-center d-flex">
+
+                                  <a className="col-2"  href="https://api.whatsapp.com/send?phone=923040227000&text=Hello this is the starting message">
+                                    <img
+                                        className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
+                                        src={window.location.origin + "/images/whatsapp.svg"}
+                                    />
+                                  </a>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
                 <section id="home-slider" className="fullscreen d-sm-none d-block">
                   <div
@@ -870,10 +1692,10 @@ const Pricing = () => {
                                         </div>
                                         <hr/>
                                         <div className="d-block">
-                                          <p><b>Note: </b>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                          <p><b>Note: </b>Once you choose the desired Package then kindly pay the dues of selected Package at the above mentioned account number and send the recipt of the payment to the whatsapp by clicking on the whatsapp icon which is showing below.</p>
                                           <div className="justify-content-center d-flex">
 
-                                            <a className="col-2"  href="https://api.whatsapp.com/send?phone=923324010410&text=Hello this is the starting message">
+                                            <a className="col-2"  href="https://api.whatsapp.com/send?phone=923040227000&text=Hello this is the starting message">
                                               <img
                                                   className="img-fluid mb-2 offset-sm-0 offset-4 m-0"
                                                   src={window.location.origin + "/images/whatsapp.svg"}
@@ -947,9 +1769,8 @@ const Pricing = () => {
                           <b> What payment options do you offer?</b>
                         </div>
                         <div className="col-12">
-                          We offer multiple Online and Offline payment options for
-                          you to pick and choose from based on your location. Choose
-                          your preferred plan and move forward to see the various
+                          We offer direct bank transfer payment options. Choose
+                          your preferred plan and sent the recipt by whatsapp and move forward to see the various
                           options available to you.
                         </div>
                       </div>
@@ -960,7 +1781,7 @@ const Pricing = () => {
                           style={{ height: "210px" }}
                       >
                         <div className="col-12">
-                          <b>How can I be safe on Shaadi.com?</b>
+                          <b>How can I be safe on UrgentRishta.co?</b>
                         </div>
                         <div className="col-12">
                           We go to great lengths to make sure you get the best
@@ -1081,7 +1902,7 @@ const Pricing = () => {
                                       aria-expanded="false"
                                       aria-controls="collapsefive"
                                   >
-                                    How can I be safe on Shaadi.com?{" "}
+                                    How can I be safe on UrgentRishta.co?{" "}
                                     <i class="fas fa-chevron-down fa-xs"></i>
                                   </button>
                                 </h2>

@@ -52,8 +52,6 @@ const MyMatches = () => {
     userList: [],
     activeUser: []
   })
-
-
   const handleChange = (event) => {
     setformValue({
       ...formValue,
@@ -120,7 +118,6 @@ const MyMatches = () => {
       // navigate("/public/profile/" + viewed_id);
     });
   }
-
   async function profileView(viewed_id) {
     const token = localStorage.getItem("accessToken");
     const user = localStorage.getItem("user");
@@ -170,8 +167,6 @@ const MyMatches = () => {
       console.log(error)
     }
   }
-
-
   const subscribeToPusher=()=>{
 
     let a_tok = localStorage.getItem("accessToken");
@@ -236,7 +231,6 @@ const MyMatches = () => {
       <Observer>
         {() => (
             <>
-              {/* <ToastContainer/> */}
               <section className="space-ptb">
                 <div className="container mt-3">
                   <div className="row">
@@ -1185,13 +1179,13 @@ const MyMatches = () => {
                                           value="Send"
                                           className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"
                                       >
-                              <span>
-                                Request a Photo{" "}
-                                <i
-                                    className="glyph-icon flaticon-hearts"
-                                    aria-hidden="true"
-                                ></i>
-                              </span>
+                                      <span>
+                                        Request a Photo{" "}
+                                        <i
+                                            className="glyph-icon flaticon-hearts"
+                                            aria-hidden="true"
+                                        ></i>
+                                      </span>
                                       </button>
                                     </div>
                                   </>
@@ -1243,112 +1237,48 @@ const MyMatches = () => {
                                   <div className="col-sm-8 col-12 d-flex">
                                     <div className="col-sm-7 col-6 text-start">
                                       <h5 className="d-sm-block d-none">
-                                <span style={{ curser:'pointer' }}
-                                      onClick={() => {
-                                        profileView(data.user_id);
-                                      }}
-                                >
-                                  {data.user.first_name +
-                                      " " +
-                                      data.user.last_name}
-                                </span>
+                                        <span style={{ curser:'pointer' }}
+                                              onClick={() => {
+                                                profileView(data.user_id);
+                                              }}
+                                        >
+                                          {data.user.first_name +
+                                              " " +
+                                              data.user.last_name}
+                                        </span>
                                         {/* <Link to={"/public/profile/"+data.user_id}>{data.user.first_name+' '+data.user.last_name}</Link> */}
                                       </h5>
                                       <div
                                           className="d-sm-none text-sm-dark text-white d-block"
                                           style={{ fontSize: "1.125rem" }}
                                       >
-                                <span
-                                    onClick={() => {
-                                      profileView(data.user_id);
-                                    }}
-                                >
-                                  {data.user.first_name +
-                                      " " +
-                                      data.user.last_name}
-                                </span>
+                                      <span
+                                          onClick={() => {
+                                            profileView(data.user_id);
+                                          }}
+                                      >
+                                        {data.user.first_name +
+                                            " " +
+                                            data.user.last_name}
+                                      </span>
                                         {/* <Link to={"/public/profile/"+data.user_id}> a {data.user.first_name+' '+data.user.last_name}</Link> */}
                                       </div>
                                     </div>
                                     <div className="col-1 d-sm-block d-none">
                                       <i class="fa fa-lock" aria-hidden="true"></i>
                                     </div>
-                                    <div className="col-4 d-sm-block d-none">
-                                      <span class="badge bg-secondary">New</span>
-                                    </div>
+                                  
                                     <div className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
                                       <i class="fa fa-male" aria-hidden="true"></i>
                                       <i class="fa fa-female" aria-hidden="true"></i>
                                       You & Her
                                     </div>
                                   </div>
-                                  <div className="col-4 d-sm-block d-none text-end text-dark">
-                                    <div class="dropdown">
-                                      <a
-                                          class=" dropdown-toggle"
-                                          type="button"
-                                          id="dropdownMenuButton1"
-                                          data-bs-toggle="dropdown"
-                                          aria-expanded="false"
-                                      ></a>
-                                      <ul
-                                          class="dropdown-menu"
-                                          aria-labelledby="dropdownMenuButton1"
-                                      >
-                                        <li>
-                                          <a class="dropdown-item" href="#">
-                                            Action
-                                          </a>
-                                        </li>
-                                        <li>
-                                          <a class="dropdown-item" href="#">
-                                            Another action
-                                          </a>
-                                        </li>
-                                        <li>
-                                          <a class="dropdown-item" href="#">
-                                            Something else here
-                                          </a>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div>
+                                 
                                 </div>
                                 <div className="col-12 d-sm-flex d-none">
                                   <div className="col-6 "> </div>
-                                  <div class="dropdown">
-                                    <a
-                                        class=" dropdown-toggle"
-                                        type="button"
-                                        id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                    >
-                                      <i class="fa fa-male" aria-hidden="true"></i>
-                                      <i class="fa fa-female" aria-hidden="true"></i>
-                                      You & Her
-                                    </a>
-                                    <ul
-                                        class="dropdown-menu"
-                                        aria-labelledby="dropdownMenuButton1"
-                                    >
-                                      <li>
-                                        <a class="dropdown-item" href="#">
-                                          Action
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a class="dropdown-item" href="#">
-                                          Another action
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a class="dropdown-item" href="#">
-                                          Something else here
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
+                             
                                 </div>
 
                                 <hr className="col-12 m-2 d-sm-block d-none" />
@@ -1379,10 +1309,10 @@ const MyMatches = () => {
                                   </div>
 
                                   <div className="col-12 d-flex pt-1">
-                                    <div className="col-6 d-sm-block d-none ">
+                                    <div className="col-6 d-sm-block d-none  text-dark">
                                       {data.qualification}
                                     </div>
-                                    <div className="col-6 d-sm-block d-none">
+                                    <div className="col-6 d-sm-block d-none text-dark">
                                       {data.job}
                                     </div>
                                   </div>
@@ -1449,7 +1379,7 @@ const MyMatches = () => {
                                         <div className="col-12 text-center" style={editFields?{display:"none"}:{display:"block"}}>
                                           { data.user?.user_plan.view_contacts!=null?
                                               <>
-                                                <a href="Tel:923324010410" className="btn px-5 py-1 m-1 btn-white border rounded b-radius" >
+                                                <a href="Tel:923040227000" className="btn px-5 py-1 m-1 btn-white border rounded b-radius" >
                                                   <i className="fa fa-phone" aria-hidden="true"></i> Call
                                                 </a>
                                               </>
@@ -1462,7 +1392,7 @@ const MyMatches = () => {
                                           { (data.user?.user_plan.view_contacts!=null || data.user?.user_plan.messages!=null)?<>
                                             <a
                                                 target="_blank"
-                                                href="https://api.whatsapp.com/send?phone=923324010410&text=Hello this is the starting message"
+                                                href="https://api.whatsapp.com/send?phone=923040227000&text=Hello this is the starting message"
                                                 className="btn px-4 py-1 m-1 btn-success border rounded b-radius">
                                               <i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
                                             </a>
@@ -1563,8 +1493,8 @@ const MyMatches = () => {
                                             <i className="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
                                           </a>
                                           <span className="col text-primary" style={{fontSize:'15px'}}>
-                    <i className="fa fa-comment" aria-hidden="true"></i> Chat
-                    </span>
+                                            <i className="fa fa-comment" aria-hidden="true"></i> Chat
+                                          </span>
                                           <a target="_blank" href={"tel:"+profile?.user?.user_plan.length!=0?data?.number:"#"} className="col text-danger" style={{fontSize:'15px'}} >
                                             <i className="fa fa-phone" aria-hidden="true"></i> Call
                                           </a>
@@ -1575,7 +1505,7 @@ const MyMatches = () => {
                                     <div className="text-center">
                                       <Link
                                           to='/pricing'
-                                          className="button  btn btn-theme rounded-sm animated right-icn pl-2"
+                                          className="button btn btn-theme rounded-sm animated right-icn pl-2"
                                       >
                                         View Plans
                                       </Link>

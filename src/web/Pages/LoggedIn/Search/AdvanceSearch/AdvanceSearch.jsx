@@ -904,7 +904,7 @@ const AdvanceSearch = () => {
                         <div className="col-12 text-center" style={editFields?{display:"none"}:{display:"block"}}>
                           { data.user?.user_plan.view_contacts!=null?
                           <>
-                          <a href="Tel:923324010410" className="btn px-5 py-1 m-1 btn-white border rounded b-radius" >
+                          <a href="Tel:923040227000" className="btn px-5 py-1 m-1 btn-white border rounded b-radius" >
                            <i className="fa fa-phone" aria-hidden="true"></i> Call
                           </a>
                           </>
@@ -917,7 +917,7 @@ const AdvanceSearch = () => {
                           { (data.user?.user_plan.view_contacts!=null || data.user?.user_plan.messages!=null)?<>
                             <a
                           target="_blank"
-                          href="https://api.whatsapp.com/send?phone=923324010410&text=Hello this is the starting message"
+                          href="https://api.whatsapp.com/send?phone=923040227000&text=Hello this is the starting message"
                            className="btn px-4 py-1 m-1 btn-success border rounded b-radius">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
                           </a>

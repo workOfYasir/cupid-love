@@ -4,9 +4,10 @@ import React,{useState,useContext,useEffect} from "react";
 import { StoreContext } from "./store";
 import Error from './Error'
 const ProtectedRoutes = () => {
-  const store = useContext(StoreContext);
-  useEffect(() => {
-  },[store.token])
-    return (store.token === true ? <Outlet /> : <Error/> )
+    const token = localStorage.getItem("accessToken");
+    const user = localStorage.getItem("user");
+ 
+    return (token !=null ? <Outlet /> :  <Navigate to="/" replace/> )
 }
+//
 export default ProtectedRoutes;
