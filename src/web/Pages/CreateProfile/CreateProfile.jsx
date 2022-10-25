@@ -339,15 +339,54 @@ const CreateProfile = () => {
                                                             <div className="mb-3">
                                                                 <label className="form-label">Eduction</label>
 
-                                                                <input name="edjucation" type="text" onChange={handleChange} className="form-control p-2 form-field" />
+                                                              
+                                                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="edjucation" id="">
+                                                              
+<option value="Phd">    Phd </option>
+<option value="MS/Mphil">    MS/Mphil</option>
+<option value="CA/ACCA/ACMA">    CA/ACCA/ACMA</option>
+<option value="FCPS/Specialization/MD">    FCPS/Specialization/MD</option>
+<option value="MBBS">    MBBS</option>
+<option value="BDS">    BDS</option>
+<option value="DPharm/DPT">    DPharm/DPT</option>
+<option value="DVM">    DVM</option>
+<option value="Nutrition and Dietetics">    Nutrition and Dietetics</option>
+<option value="Architecture/Designing/BFA">    Architecture/Designing/BFA</option>
+<option value="LLB/LLM">    LLB/LLM</option>
+<option value="Engineering Software/IT Engineer MBA/MSc/MCs/BS Mcom/MA/M.ed">    Engineering Software/IT Engineer MBA/MSc/MCs/BS Mcom/MA/M.ed</option>
+<option value="BBA/BSc/Bcs">    BBA/BSc/Bcs</option>
+<option value="Bcom/ BA/B.ED">    Bcom/ BA/B.ED</option>
+<option value="O/A Level">    O/A Level</option>
+<option value="Fsc/ICS/Icom FA/Diploma ">    Fsc/ICS/Icom FA/Diploma </option>
+<option value="Matric and Below Aalim/Hafiz Others">    Matric and Below Aalim/Hafiz Others</option></select>
+                                                            </div>
 
+                                                            {/* <div className="mb-3">
+                                                                <label className="form-label">Eduction Sector</label>
+
+                                                            </div> */}
+                                                            <div className="row mb-3">
+                                                                <label htmlFor="exampleInput">University</label>
+                                                                <div className="form-group">
+                                                                    <input type="text" className="form-control p-2   form-field" value={formValue.university} onChange={handleChange} name='university' id="exampleInput" placeholder="Enter University" />
+                                                                </div>
                                                             </div>
 
                                                             <div className="mb-3">
-                                                                <label className="form-label">Eduction Sector</label>
-
-                                                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="edjucation_type" id="">
+                                                                <label className="form-label">Work With</label>
+                                                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="work_with" id="">
                                                                     <option>Select one</option>
+                                                                    <option value="Govt Job">Govt Job</option>
+                                                                    <option value="Private Job">Private Job</option>
+                                                                    <option value="Business">Business</option>
+
+                                                                </select>
+                                                            </div>
+                                                            <div className="mb-3">
+                                                                <label className="form-label">Profession</label>
+                                                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="job" id="">
+                                                              
+                                                                                                                                   <option>Select one</option>
 
                                                                                     <option value="Accounting/Finance">Accounting/Finance</option>
                                                                                     <option value="Advertising/Media">Advertising/Media</option>
@@ -383,32 +422,7 @@ const CreateProfile = () => {
                                                                                     <option value="Writer/Journalist">Writer/Journalist</option>
                                                                                     <option value="Other/Self Employed">Other/Self Employed</option>
                                                                                     <option value="Unemployed/Housewife">Unemployed/Housewife</option>
-                                                                                                                    </select>
-                                                            </div>
-                                                            <div className="row mb-3">
-                                                                <label htmlFor="exampleInput">University</label>
-                                                                <div className="form-group">
-                                                                    <input type="text" className="form-control p-2   form-field" value={formValue.university} onChange={handleChange} name='university' id="exampleInput" placeholder="Enter University" />
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="mb-3">
-                                                                <label className="form-label">Work With</label>
-                                                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="work_with" id="">
-                                                                    <option>Select one</option>
-                                                                    <option value="Govt Job">Govt Job</option>
-                                                                    <option value="Private Job">Private Job</option>
-                                                                    <option value="Business">Business</option>
-
-                                                                </select>
-                                                            </div>
-                                                            <div className="mb-3">
-                                                                <label className="form-label">As</label>
-                                                                <select className="form-select" aria-label="Default select example" onChange={handleChange} name="job" id="">
-                                                                    <option>Select one</option>
-                                                                    <option value="Banking">Banking</option>
-                                                                    <option value="Software Developer">Software Developer</option>
-                                                                    <option value="Engineer">Engineer</option>
+                                                                                                              
 
                                                                 </select>
                                                             </div>
@@ -442,11 +456,7 @@ const CreateProfile = () => {
                                                                     <option value="1500000">1000,000-1500,000</option>
                                                                 </select>
                                                             </div>
-                                                            <div className="mb-3">
-                                                                <label className="form-label">Town</label>
 
-                                                                <input type="text" className="form-control form-field p-2  " value={formValue.town} onChange={handleChange} name='town' id="exampleInput" placeholder="Enter Town" />
-                                                            </div>
                                                             <div className="form-group mb-3">
                                                                 <label className="title divider-3 text-dark mb-3">about me</label>
                                                                 <textarea className="form-control bg-white form-field" value={formValue.description} onChange={handleChange} name='description' rows="3"></textarea>
@@ -471,7 +481,7 @@ const CreateProfile = () => {
                                                     <div className="col-md-12 text-start text-capitalize text-white">
 
                                                         <div className="row">
-                                                            <label htmlFor="exampleInput">House Size</label>
+                                                            <label htmlFor="exampleInput">House Size in marla</label>
                                                             <div className="form-group mb-3">
 
                                                                 <input type="text" className="form-control form-field p-2  " value={formValue.house_size} onChange={handleChange} name='house_size' id="exampleInput" placeholder="Enter House Size" />
@@ -491,6 +501,11 @@ const CreateProfile = () => {
                                                             </div>
 
                                                         </div>
+                                                        <div className="mb-3">
+                                                                <label className="form-label">Town</label>
+
+                                                                <input type="text" className="form-control form-field p-2  " value={formValue.town} onChange={handleChange} name='town' id="exampleInput" placeholder="Enter Town" />
+                                                            </div>
 
                                                         <div className="row">
                                                             <label htmlFor="exampleInput">Number</label>
@@ -568,24 +583,14 @@ const CreateProfile = () => {
 
                                                         <div className="mb-3">
                                                             <label className="form-label">Brother Martial Status</label>
-                                                            <select className="form-select" aria-label="Default select example" onChange={handleChange} name="brother_marital_status" id="">
-                                                                <option>Select one</option>
-                                                                <option value="Married">Married</option>
-                                                                <option value="Divorced">Divorced</option>
-                                                                <option value="Single">Single</option>
-                                                                <option value="Seperated">Seperated</option>
-                                                            </select>
+                                                            <input type="text" className="form-control form-field p-2" value={formValue.brother_marital_status}onChange={handleChange} name="brother_marital_status"/>
+                                                          
                                                         </div>
 
                                                         <div className="mb-3">
-                                                            <label className="form-label">Sister Martial Status</label>
-                                                            <select className="form-select" aria-label="Default select example" onChange={handleChange} name="sister_marital_status" id="">
-                                                                <option>Select one</option>
-                                                                <option value="Married">Married</option>
-                                                                <option value="Divorced">Divorced</option>
-                                                                <option value="Single">Single</option>
-                                                                <option value="Seperated">Seperated</option>
-                                                            </select>
+                                                            <label className="form-label">Sister Martial Status</label>                                                            <input type="text" className="form-control form-field p-2" value={formValue.brother_marital_status}onChange={handleChange} name="brother_marital_status"/>
+                                                            <input type="text" className="form-control form-field p-2" value={formValue.sister_marital_status}onChange={handleChange} name="sister_marital_status"/>
+                                                          
                                                         </div>
 
 

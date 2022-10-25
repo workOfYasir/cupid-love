@@ -8,7 +8,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 
 const SearchedMatches = ({ data }) => {
-console.log('======================>',data);
   const store = useContext(StoreContext);
   const navigate = useNavigate();
   const [editFields, setEditFields] = useState(true);

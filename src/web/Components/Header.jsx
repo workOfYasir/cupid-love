@@ -6,6 +6,14 @@ import { Link, useLocation } from "react-router-dom";
 import { Observer } from "mobx-react-lite";
 import axios from "axios";
 import { StoreContext } from "./../store";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../firebase";
+import { setDoc, doc, Timestamp, updateDoc , collection,
+  query,
+  where,
+  onSnapshot,
+  getDocs
+} from "firebase/firestore";
 
 const Header = () => {
   const [picture, setPicture] = useState();
@@ -137,6 +145,19 @@ const Header = () => {
       console.log(error);
     }
   };
+  const userLogin = async (email, password) => {
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      await updateDoc(doc(db, "users", result.user.uid), {
+        isOnline: true,
+      });
+      console.log(result);
+      localStorage.setItem("uid",result.user.uid);
+  
+    } catch (err) {
+      alert("Email Pr Password Not Correct");
+    }
+  };
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
     document.body.classList.remove("model-open");
@@ -153,31 +174,89 @@ const Header = () => {
         url: `${store.url}login`,
         data: loginFormData,
         headers: { "Content-Type": "multipart/form-data" },
-      }).then((response) => {
-        toast.success("LoggedIn Successfully");
-        localStorage.setItem("accessToken", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        store.setToken(true)
-        setformValue({
-          email: "",
-          password: "",
+      })
+        .then(async (response) => {
+          console.log("Responseeee", response);
+          const usersRef = collection(db, "users");
+          const q = query(usersRef, where("email", "==", formValue.email));
+
+         
+          const querySnapshot = await getDocs(q);
+          const allusers = querySnapshot.docs.map((docSnap) =>
+            docSnap.data()
+          );
+          if (allusers.length === 1 && allusers[0].email === formValue.email) {
+            userLogin(formValue.email, "zaqxswcde1");
+            toast.success("Logged In Successfully");
+            localStorage.setItem("accessToken", response.data.token);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+            localStorage.setItem("gender",response.data.gender);
+
+            store.setToken(true);
+            setformValue({
+              email: "",
+              password: "",
+            });
+            document
+              .getElementById("exampleModalLabel")
+              .classList.remove("show");
+            document.body.classList.remove("model-open");
+            document.body.style.overflow = "unset";
+            document.body.style.paddingRight = "0px";
+            navigate("/pricing");
+            
+          } else {
+            console.log("Hellow")
+            try {
+              const result = await createUserWithEmailAndPassword(
+                auth,
+                formValue.email,
+                "zaqxswcde1"
+              );
+              await setDoc(doc(db, "users", result.user.uid), {
+                uid: result.user.uid,
+                name : `${response.data.user.first_name} ${response.data.user.last_name}`,
+                gender : `${response.data.gender}`,
+                email: result.user.email,
+                createdAt: Timestamp.fromDate(new Date()),
+                isOnline: true,
+              });
+              // navigation.replace("HomeScreen");
+              // alert("Success");
+              console.log(result.gender,"dhsjdhjshdjshdj")
+              toast.success("Logged In Successfully");
+              localStorage.setItem("accessToken", response.data.token);
+              localStorage.setItem("user", JSON.stringify(response.data.user));
+              localStorage.setItem("uid",result.user.uid);
+              localStorage.setItem("gender",result.user.gender);
+              let user = localStorage.getItem("uid")
+              console.log(user,"ksdjksjdkjk")
+              store.setToken(true);
+              setformValue({
+                email: "",
+                password: "",
+              });
+              document
+                .getElementById("exampleModalLabel")
+                .classList.remove("show");
+              document.body.classList.remove("model-open");
+              document.body.style.overflow = "unset";
+              document.body.style.paddingRight = "0px";
+              navigate("/pricing");
+            } catch (err) {
+              alert(err);
+            }
+          }
+        })
+        .catch(function (error) {
+          if (error.response) {
+            toast.error("Credentials not exist check your email and password");
+          }
         });
-        document.getElementById("exampleModalLabel").classList.remove("show");
-        document.body.classList.remove("model-open");
-        document.body.style.overflow = "unset";
-        document.body.style.paddingRight = "0px";
-        navigate("/pricing");
-
-
-      }).catch(function (error) {
-        if (error.response) {
-          toast.error("Credentials not exist check your email and password");
-        }
-      });
-
-      console.log(response);
+    
+     
     } catch (error) {
-      console.log(error);
+      console.log(error, "error");
     }
   };
   const handleChange = (event) => {
@@ -193,7 +272,6 @@ const Header = () => {
       cities(event.target.value);
     }
   };
-
   const data = async (access_token) => {
     try {
 
@@ -279,36 +357,32 @@ const Header = () => {
       console.log(error);
     }
   };
-
   const handleSubmitRegister = async (e) => {
     e.preventDefault();
-    if(formValue.email!=''||formValue.first_name!=''||formValue.last_name!=''||formValue.On_behalf!='') {
-      console.log('formValue.email',formValue.email)
 
-
-      const registerFormData = new FormData();
-
-      registerFormData.append("userData[email]", formValue.email);
-      registerFormData.append("userData[first_name]", formValue.first_name);
-      registerFormData.append("userData[last_name]", formValue.last_name);
-      registerFormData.append('userProfile[gender]',formValue.gender)
-      registerFormData.append("userData[password]", formValue.password);
-      registerFormData.append("userProfile[On_behalf]", formValue.On_behalf);
-      registerFormData.append(
-          "userProfile[date_of_Birth]",
-          formValue.date_of_Birth_year +
-          "-" +
-          formValue.date_of_Birth_month +
-          "-" +
-          formValue.date_of_Birth_day
-      );
-      registerFormData.append("userProfile[sector_id]", formValue.sector_id);
-      registerFormData.append("userProfile[religion_id]", formValue.religion_id);
-      registerFormData.append("userProfile[country_id]", formValue.country);
-      registerFormData.append("userProfile[state_id]", formValue.state);
-      registerFormData.append("userProfile[city_id]", formValue.city);
-      // console.log(registerFormData,formValue);
-      try {
+    try {
+        if(formValue.email!=''||formValue.first_name!=''||formValue.last_name!=''||formValue.On_behalf!='') {
+          const registerFormData = new FormData();
+    
+          registerFormData.append("userData[email]", formValue.email);
+          registerFormData.append("userData[first_name]", formValue.first_name);
+          registerFormData.append("userData[last_name]", formValue.last_name);
+          registerFormData.append('userProfile[gender]',formValue.gender)
+          registerFormData.append("userData[password]", formValue.password);
+          registerFormData.append("userProfile[On_behalf]", formValue.On_behalf);
+          registerFormData.append(
+              "userProfile[date_of_Birth]",
+              formValue.date_of_Birth_year +
+              "-" +
+              formValue.date_of_Birth_month +
+              "-" +
+              formValue.date_of_Birth_day
+          );
+          registerFormData.append("userProfile[sector_id]", formValue.sector_id);
+          registerFormData.append("userProfile[religion_id]", formValue.religion_id);
+          registerFormData.append("userProfile[country_id]", formValue.country);
+          registerFormData.append("userProfile[state_id]", formValue.state);
+          registerFormData.append("userProfile[city_id]", formValue.city);
         const loginResponse = await axios({
           method: "post",
           url: `${store.url}register`,
@@ -319,8 +393,27 @@ const Header = () => {
             toast.error("required fields are missing");
           }
         });
+        const result = await createUserWithEmailAndPassword(
+          auth,
+          formValue.email,
+          "zaqxswcde1"
+        );
+        await setDoc(doc(db, "users", result.user.uid), {
+          uid: result.user.uid,
+          name : `${formValue.first_name} ${formValue.last_name}`,
+          gender : `${formValue.gender}`,
+          email: result.user.email,
+          createdAt: Timestamp.fromDate(new Date()),
+          isOnline: true,
+        });
+        
         localStorage.setItem("accessToken", loginResponse.data.token);
         localStorage.setItem("user", JSON.stringify(loginResponse.data.user));
+        localStorage.setItem("uid",result.user.uid);
+        localStorage.setItem("gender",result.user.gender);
+        let user = localStorage.getItem("uid")
+        console.log(user,"ksdjksjdkjk")
+
         setformValue({
           password: "",
           first_name: "",
@@ -344,16 +437,29 @@ const Header = () => {
 
         navigate("/createProfile");
 
+      }else{
+        toast.error("required fields are missing2");
+      }
       } catch (error) {
         // console.log(error);
       }
-    }else{
-      toast.error("required fields are missing2");
-    }
   };
+  const handleTabClosing = () => {
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('user')
+}
+
+const alertUser = (event) => {
+    event.preventDefault()
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('user')
+    event.returnValue = ''
+}
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
 
+    const user = localStorage.getItem("user");
+    console.log(user);
 
     data()
     if(token!=null){
@@ -361,6 +467,12 @@ const Header = () => {
       getRequests(token)
 
       getPicture(token)
+    }
+    window.addEventListener('beforeunload', alertUser)
+    window.addEventListener('unload', handleTabClosing)
+    return () => {
+        window.removeEventListener('beforeunload', alertUser)
+        window.removeEventListener('unload', handleTabClosing)
     }
   }, [requests]);
   return (
@@ -1184,10 +1296,10 @@ const Header = () => {
                             {location.pathname == "/" ||
                             location.pathname == "" ? (
                               <>
-
                                 <li>
                                   <a
                                     href="#"
+                                    className="text-white"
                                     data-bs-toggle="modal"
                                     data-bs-target="#exampleModal2"
                                     id="register"
@@ -1196,21 +1308,15 @@ const Header = () => {
                                   </a>
                                 </li>
                                 <li>
-                                  <af
+                                  <a
                                     href="#"
+                                    className="text-white"
                                     data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"
                                   >
                                     Login
-                                  </af>
-                                </li>
-                                <li>
-                                  <Link
-                                     to="/createProfile"
-                                  >
-                                    Login
-                                  </Link>
-                                </li>
+                                  </a>
+                                </li>                         
                               </>
                             ) : (
                               <>
@@ -1272,7 +1378,7 @@ const Header = () => {
                           ""
                         ) : (
                           <>
-                            <div className=" col d-sm-flex d-none flex-column justify-content-center">
+                            <div className="col d-sm-flex d-none flex-column justify-content-center">
                               <Link
                                 to="/pricing"
                                 className="btn btn-outline border"
@@ -1280,67 +1386,81 @@ const Header = () => {
                                 <i class="fa fa-diamond" aria-hidden="true"></i> Upgrade
                               </Link>
                             </div>
-                            <div className="col  d-flex flex-column justify-content-center">
-                              {picture?.image_path==null?<>
-                                <img
-                                src={
-                                  window.location.origin +
-                                  "/images/counter/04.png"
-                                }
-                                className="rounded"
-                                style={{ 
-                                  width:"60px",
-                                  height:"60px",  
-                                  display: "inline",
-                                  margin: "0 auto",
-                                  objectFit:"cover",
-                                  borderRadius:"50%",
+                            <div className="col d-flex flex-column justify-content-center">
+                              <>
+                                {picture?.image_path==null?<>
+                                  <img
+                                  src={
+                                    window.location.origin +
+                                    "/images/counter/04.png"
+                                  }
+                                  className="rounded"
+                                  style={{ 
+                                    width:"60px",
+                                    height:"60px",  
+                                    display: "inline",
+                                    margin: "0 auto",
+                                    objectFit:"cover",
+                                    borderRadius:"50%",
 
-                                 }}
-                              /></>:<>
+                                  }}
+                                /></>:<>
 
-                                <div className="dropdown m-auto">
-                                  <a
-                                      className=" dropdown-toggle logo-toggle"
-                                      type="button"
-                                      id="dropdownMenuButton1"
-                                      data-bs-toggle="dropdown"
-                                      aria-expanded="false"
-                                  >
-                                    <img
-                                        src={
-                                            store.mediaUrl+picture?.image_path
-                                        }
-                                        style={{
-                                          width:"70px",
-                                          height:"70px",
-                                          display: "inline",
-                                          margin: "0 auto",
-                                          borderRadius:"50%",
-                                          objectFit:'cover', }}
-                                    />
-                                  </a>
-                                  <ul
-                                      className="dropdown-menu dropdown-logo-menu"
-                                      aria-labelledby="dropdownMenuButton1"
-                                  >
-                                    {requests?.map((data)=>(
-                                        <> <li>
-                                          <a className="dropdown-item" href="#" >
-                                            {data?.sender_name}
-                                          </a>
-                                          <button className="btn btn-sm btn-primary" onClick={()=>{requestAction(data?.sender_id,'Rejected')}}>Cancel</button>
-                                          <button className="btn btn-sm btn-primary" onClick={()=>{requestAction(data?.sender_id,'Accepted')}}>Accept</button>
-                                        </li></>
-                                    ))}
+                                  <div className="dropdown m-auto">
+                                  
+                                    <a
+                                        className=" dropdown-toggle logo-toggle"
+                                        type="button"
+                                        id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                      <img
+                                          src={
+                                              store.mediaUrl+picture?.image_path
+                                          }
+                                          style={{
+                                            width:"70px",
+                                            height:"70px",
+                                            display: "inline",
+                                            margin: "0 auto",
+                                            borderRadius:"50%",
+                                            objectFit:'cover', }}
+                                      />
+                                    </a>
+                                    <ul
+                                        className="dropdown-menu dropdown-logo-menu"
+                                        aria-labelledby="dropdownMenuButton1"
+                                    >
+                                      {requests?.map((data)=>(
+                                          <> <li>
+                                            <a className="dropdown-item" href="#" >
+                                              {data?.sender_name}
+                                            </a>
+                                            <button className="btn btn-sm btn-primary" onClick={()=>{requestAction(data?.sender_id,'Rejected')}}>Cancel</button>
+                                            <button className="btn btn-sm btn-primary" onClick={()=>{requestAction(data?.sender_id,'Accepted')}}>Accept</button>
+                                          </li></>
+                                      ))}
 
 
 
-                                  </ul>
-                                </div>
+                                    </ul>
+                                  </div>
 
-                              </>}
-                             
+                                </>}
+                              </>
+                            </div>
+                            <div   className=" col flex-column d-flex justify-content-center">
+                            <button 
+                              className="button  btn btn-outline border "
+                              style={{ height:"fit-content" }}
+                                  onClick={()=>{
+                                    localStorage.removeItem('accessToken')
+                                    localStorage.removeItem('user')
+                                    navigate('/')
+
+                                  }}>logout
+                                  </button>
                             </div>
                           </>
                         )}

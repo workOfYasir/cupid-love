@@ -19,8 +19,12 @@ const NewMatches = () => {
   const [casts, setCasts] = useState();
   const [sectors, setSectors] = useState();
   const [profile,setProfile] = useState()
+  const [viewCheck,setViewCheck] = useState(true)
 
   const [editFields, setEditFields] = useState(true);
+  const viewCastList = () => {
+    setViewCheck(!viewCheck)
+  }
   const fieldDisablity = () => {
     setEditFields(!editFields);
   };
@@ -74,8 +78,6 @@ const NewMatches = () => {
       ...formValue,
       [event.target.name]: event.target.value,
     });
-    console.log('formValue==========>'. event.target.value);
-
   };
   async function filter(formValue) {
     const token = localStorage.getItem("accessToken");
@@ -110,6 +112,7 @@ const NewMatches = () => {
       }).then((response) => {
 
         const data = response.data;
+        console.log('data[0]["profiles"]',data[0]["profiles"][2]["cast"]["name"]);
         setQualification(data[0]["qualification"]);
         setProfiles(data[0]["profiles"]);
       });
@@ -163,7 +166,6 @@ const NewMatches = () => {
         headers: headers,
       }).then((response)=>{
         const data = response.data
-        console.log('data==================>',data['data']['user'][0]['user']['user_plan']);
         setProfile(data['data']['user'][0])
       })
     } catch(error) {
@@ -182,9 +184,6 @@ const NewMatches = () => {
     const casts = JSON.parse(localStorage.getItem("casts"));
 
     setReligions(religions)
-    // setCountries(countries)
-    // setStates(states)
-    // setCities(cities)
     setCasts(casts)
     setSectors(sectors)
     getProfile(token,JSON.parse(user).id)
@@ -735,132 +734,6 @@ const NewMatches = () => {
                             </div>
                           </div>
                         </div>
-                        <hr />
-
-
-                        <div className="widget bg-white p-1 shadow rounded">
-                          <div className="widget-title widget-collapse bg-grey">
-                            <h6>Blood Group</h6>
-                            <a
-                                className="ms-auto"
-                                data-bs-toggle="collapse"
-                                href="#gender"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="gender"
-                            >
-                              <i className="fa fa-chevron-down"></i>
-                            </a>
-                          </div>
-                          <div className="collapse show" id="gender">
-                            <div className="widget-content">
-                              <div className="form-check">
-                                <input
-                                    type="radio"
-                                    className="form-check-input"
-                                    value={"A+"}
-                                    name="blood_group"
-                                    onClick={handleChange}
-                                    id="gender1"
-                                />
-                                <label className="form-check-label" for="gender1">
-                                  A+
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                    type="radio"
-                                    className="form-check-input"
-                                    value={"A-"}
-                                    name="blood_group"
-                                    onClick={handleChange}
-                                    id="gender2"
-                                />
-                                <label className="form-check-label" for="gender2">
-                                  A-
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                    type="radio"
-                                    className="form-check-input"
-                                    value={"B-"}
-                                    name="blood_group"
-                                    onClick={handleChange}
-                                    id="gender2"
-                                />
-                                <label className="form-check-label" for="gender2">
-                                  B-
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                    type="radio"
-                                    className="form-check-input"
-                                    value={"B+"}
-                                    name="blood_group"
-                                    onClick={handleChange}
-                                    id="gender2"
-                                />
-                                <label className="form-check-label" for="gender2">
-                                  B+
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                    type="radio"
-                                    className="form-check-input"
-                                    value={"AB-"}
-                                    name="blood_group"
-                                    onClick={handleChange}
-                                    id="gender2"
-                                />
-                                <label className="form-check-label" for="gender2">
-                                  AB-
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                    type="radio"
-                                    className="form-check-input"
-                                    value={"AB+"}
-                                    name="blood_group"
-                                    onClick={handleChange}
-                                    id="gender2"
-                                />
-                                <label className="form-check-label" for="gender2">
-                                  AB+
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                    type="radio"
-                                    className="form-check-input"
-                                    value={"O-"}
-                                    name="blood_group"
-                                    onClick={handleChange}
-                                    id="gender2"
-                                />
-                                <label className="form-check-label" for="gender2">
-                                  O-
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                    type="radio"
-                                    className="form-check-input"
-                                    value={"O+"}
-                                    name="blood_group"
-                                    onClick={handleChange}
-                                    id="gender2"
-                                />
-                                <label className="form-check-label" for="gender2">
-                                  O+
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
 
 
                         <hr />
@@ -1045,7 +918,7 @@ const NewMatches = () => {
                         <hr />
                         <div className="widget bg-white p-1 shadow rounded">
                           <div className="widget-title widget-collapse bg-grey">
-                            <h6>Cast</h6>
+                            <h6 onClick={viewCastList}>Cast</h6>
                             <a
                                 className="ms-auto"
                                 data-bs-toggle="collapse"
@@ -1059,8 +932,8 @@ const NewMatches = () => {
                           </div>
                           <div className="collapse show" id="dateposted">
                             <div className="widget-content">
-                              {casts?.map((data) => (
-                                  <div className="form-check">
+                              {casts?.map((data,index) => (
+                                  <div className="form-check" style={ index > 5 ? viewCheck ? {display:"none"} : {display:"block"} : {display:"block"} } >
                                     <input
                                         className="form-check-input"
                                         type="radio"
@@ -1144,13 +1017,13 @@ const NewMatches = () => {
                                           value="Send"
                                           className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"
                                       >
-                              <span>
-                                Request a Photo{" "}
-                                <i
-                                    className="glyph-icon flaticon-hearts"
-                                    aria-hidden="true"
-                                ></i>
-                              </span>
+                                      <span>
+                                        Request a Photo{" "}
+                                        <i
+                                            className="glyph-icon flaticon-hearts"
+                                            aria-hidden="true"
+                                        ></i>
+                                      </span>
                                       </button>
                                     </div>
                                   </>
@@ -1185,13 +1058,13 @@ const NewMatches = () => {
                                           value="Send"
                                           className="button btn-lg btn-theme rouneded-sm animated right-icn mb-0"
                                       >
-                              <span>
-                                Request a Photo
-                                <i
-                                    className="glyph-icon flaticon-hearts"
-                                    aria-hidden="true"
-                                ></i>
-                              </span>
+                                      <span>
+                                        Request a Photo
+                                        <i
+                                            className="glyph-icon flaticon-hearts"
+                                            aria-hidden="true"
+                                        ></i>
+                                      </span>
                                       </button>
                                     </div>
                                   </>
@@ -1199,115 +1072,39 @@ const NewMatches = () => {
 
                               <div className="col-sm-5 offset-12 p-2">
                                 <div className="col-12 d-flex">
-                                  <div className="col-sm-8 col-12 d-flex">
+                                  <div className="col-12 d-flex">
                                     <div className="col-sm-7 col-6 text-start">
                                       <h5 className="d-sm-block d-none">
-                                <span style={{curser: 'pointer'}}
-                                      onClick={() => {
-                                        profileView(data.user_id);
-                                      }}
-                                >
-                                  {data.user.first_name +
-                                      " " +
-                                      data.user.last_name}
-                                </span>
-                                        {/* <Link to={"/public/profile/"+data.user_id}>{data.user.first_name+' '+data.user.last_name}</Link> */}
+                                        <span style={{curser: 'pointer'}}
+                                              onClick={() => {
+                                                profileView(data.user_id);
+                                              }}
+                                        >
+                                          {data.user.first_name +
+                                              " " +
+                                              data.user.last_name}
+                                        </span>
+                                       
                                       </h5>
                                       <div
                                           className="d-sm-none text-sm-dark text-white d-block"
                                           style={{fontSize: "1.125rem"}}
                                       >
-                                <span
-                                    onClick={() => {
-                                      profileView(data.user_id);
-                                    }}
-                                >
-                                  {data.user.first_name +
-                                      " " +
-                                      data.user.last_name}
-                                </span>
-                                        {/* <Link to={"/public/profile/"+data.user_id}> a {data.user.first_name+' '+data.user.last_name}</Link> */}
+                                      <span className="col"
+                                          onClick={() => {
+                                            profileView(data.user_id);
+                                          }}
+                                      >
+                                        {data.user.first_name +
+                                            " " +
+                                            data.user.last_name}
+                                      </span>
+                                        
                                       </div>
                                     </div>
                                     <div className="col-1 d-sm-block d-none">
                                       <i className="fa fa-lock" aria-hidden="true"></i>
                                     </div>
-                                    <div className="col-4 d-sm-block d-none">
-                                      <span className="badge bg-secondary">New</span>
-                                    </div>
-                                    <div
-                                        className="col-sm-3 text-sm-dark text-white col-6 d-sm-none d-block text-start">
-                                      <i className="fa fa-male" aria-hidden="true"></i>
-                                      <i className="fa fa-female" aria-hidden="true"></i>
-                                      You & Her
-                                    </div>
-                                  </div>
-                                  <div className="col-4 d-sm-block d-none text-end text-dark">
-                                    <div className="dropdown">
-                                      <a
-                                          className=" dropdown-toggle"
-                                          type="button"
-                                          id="dropdownMenuButton1"
-                                          data-bs-toggle="dropdown"
-                                          aria-expanded="false"
-                                      ></a>
-                                      <ul
-                                          className="dropdown-menu"
-                                          aria-labelledby="dropdownMenuButton1"
-                                      >
-                                        <li>
-                                          <a className="dropdown-item" href="#">
-                                            Action
-                                          </a>
-                                        </li>
-                                        <li>
-                                          <a className="dropdown-item" href="#">
-                                            Another action
-                                          </a>
-                                        </li>
-                                        <li>
-                                          <a className="dropdown-item" href="#">
-                                            Something else here
-                                          </a>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-12 d-sm-flex d-none">
-                                  <div className="col-6 "></div>
-                                  <div className="dropdown">
-                                    <a
-                                        className=" dropdown-toggle"
-                                        type="button"
-                                        id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                    >
-                                      <i className="fa fa-male" aria-hidden="true"></i>
-                                      <i className="fa fa-female" aria-hidden="true"></i>
-                                      You & Her
-                                    </a>
-                                    <ul
-                                        className="dropdown-menu"
-                                        aria-labelledby="dropdownMenuButton1"
-                                    >
-                                      <li>
-                                        <a className="dropdown-item" href="#">
-                                          Action
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a className="dropdown-item" href="#">
-                                          Another action
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a className="dropdown-item" href="#">
-                                          Something else here
-                                        </a>
-                                      </li>
-                                    </ul>
                                   </div>
                                 </div>
 
@@ -1322,7 +1119,7 @@ const NewMatches = () => {
                                     </div>
                                   </div>
                                   <div className="col-12 d-flex pt-1">
-                                    <div className="col-6 text-start text-sm-white text-dark  ">
+                                    <div className="col-6 text-start text-sm-white text-dark ">
                                       {data.religion == null ? "" : data.religion.name}
                                     </div>
                                     <div className="col-6 text-start text-sm-white text-dark ">
@@ -1331,6 +1128,7 @@ const NewMatches = () => {
                                   </div>
                                   <div className="col-12 d-flex pt-1">
                                     <div className="col-6 text-start text-sm-white text-dark ">
+                                
                                       {data.state == null ? "" : data.state.name}
                                     </div>
                                     <div className="col-6 text-start text-sm-white text-dark ">

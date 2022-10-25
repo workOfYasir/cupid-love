@@ -1793,7 +1793,7 @@ const Pricing = () => {
                       </div>
                     </div>
                   </div>
-
+{/* 
                   <section class="space-pb">
                     <div class="container">
                       <div class="row justify-content-center">
@@ -1929,7 +1929,7 @@ const Pricing = () => {
                         </div>
                       </div>
                     </div>
-                  </section>
+                  </section> */}
                 </div>
                 <div className="col-12 text-center">
                   Didn't find what you are looking for? Find it on our{" "}

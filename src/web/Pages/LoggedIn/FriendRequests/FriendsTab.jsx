@@ -36,10 +36,10 @@ const FriendsTab = () => {
                         <div className="justify-content-center">
                             <ul className="nav nav-tabs d-flex justify-content-center col-12 nav-tabs-02">
                                 <li className="nav-item">
-                                    <a className="btn text-light ms-0 p-2 text-dark" onClick={onClickAddSentRequestComponent} >Dashboard</a>
+                                    <a className="btn text-light ms-0 p-2 text-dark" onClick={onClickAddSentRequestComponent} >Sent Requests</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="btn text-light ms-0 p-2 text-dark" onClick={onClickAddRecievedRequestComponent} >Dashboard</a>
+                                    <a className="btn text-light ms-0 p-2 text-dark" onClick={onClickAddRecievedRequestComponent} >Recieved Requests</a>
                                 </li>
                             </ul>
                         </div>

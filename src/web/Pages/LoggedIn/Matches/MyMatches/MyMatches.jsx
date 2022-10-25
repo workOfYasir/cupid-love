@@ -1094,7 +1094,7 @@ const MyMatches = () => {
                           </div>
                           <div className="collapse show" id="dateposted">
                             <div className="widget-content">
-                              {casts?.map((data) => (
+                              {casts?.map((data,index) => (
                                   <div className="form-check">
                                     <input
                                         className="form-check-input"
@@ -1246,7 +1246,7 @@ const MyMatches = () => {
                                               " " +
                                               data.user.last_name}
                                         </span>
-                                        {/* <Link to={"/public/profile/"+data.user_id}>{data.user.first_name+' '+data.user.last_name}</Link> */}
+                                        
                                       </h5>
                                       <div
                                           className="d-sm-none text-sm-dark text-white d-block"
@@ -1261,7 +1261,7 @@ const MyMatches = () => {
                                             " " +
                                             data.user.last_name}
                                       </span>
-                                        {/* <Link to={"/public/profile/"+data.user_id}> a {data.user.first_name+' '+data.user.last_name}</Link> */}
+                                      
                                       </div>
                                     </div>
                                     <div className="col-1 d-sm-block d-none">

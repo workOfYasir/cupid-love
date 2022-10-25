@@ -12,6 +12,7 @@ import {toast} from "react-toastify";
 import './style.css'
 
 const Dashboard = () => {
+  const current = new Date();
   const store = useContext(StoreContext);
   const [profileData,setProfile] = useState()
   const [premiumData,setPremium] = useState()
@@ -238,24 +239,6 @@ const Dashboard = () => {
                       <hr className='border-style-groove' />
                     </div>
                         :<></>}
-                    {/* <div className="row p-0 m-0">
-                      <div className="col-7 p-3">
-                      <div className="col-12">
-                      Mobile no. is verified
-                        </div>
-                        <div className="col-12 ">
-                          <a href='#' className='text-info'>Verify your ID</a>
-
-                        </div>
-
-                      </div>
-                      <div className="col-5 d-flex align-items-center">
-                        <a href="#" className='col text-end'>
-                        <i className="fa fa-shield" aria-hidden="true"></i>
-                        </a>
-                      </div>
-                      <hr className='border-style-groove' />
-                    </div> */}
                   </div>
                 </div>
 
@@ -299,9 +282,9 @@ const Dashboard = () => {
                           <img src={window.location.origin +"/images/pattern/bg.webp"}  />
                         </div>
                         <div className="blog-slider__content text-black">
-                          <span className="blog-slider__code">26 December 2019</span>
+                          <span className="blog-slider__code">{current.getDate()}</span>
                           <div className="blog-slider__title">Tips to Improve </div>
-                          <div className="blog-slider__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
+                          <div className="blog-slider__text">Update and Complete Your Profile Accordingly</div>
                         </div>
                       </div>
 

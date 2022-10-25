@@ -36,9 +36,10 @@ const Router = () => {
      
 
       <Routes>
+          <Route exect path='/createProfile' element={<CreateProfile/>} />
+          <Route exact path="/aboutus" element={<AboutUs/>} />
         <Route element={<PreventRoutes/>}>
         <Route exact path="/"  element={<Home/>} />
-          <Route exect path='/createProfile' element={<CreateProfile/>} />
         </Route>
         <Route element={<ProtectedRoutes/>}>
           <Route exact path="/myaccount" element={<AuthHome/>} />
@@ -48,7 +49,8 @@ const Router = () => {
           <Route exact path="/public/profile/:userId" element={<PublicProfile/>} />
           <Route exect path='/chat' element={<Chatpanel/>} />
           <Route exact path="/searched/profile" element={<SearchedMatches/>} />
-          <Route exact path="/aboutus" element={<AboutUs/>} />
+     
+          <Route exact path="/friendslist" element={<FriendsTab/>} />
         </Route>
       </Routes>
 

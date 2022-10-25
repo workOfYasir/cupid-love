@@ -1,5 +1,5 @@
 import React,{ useEffect,useState ,useContext} from 'react'
-import MultiRangeSlider from "multi-range-slider-react";
+import MultiRangeSlider,{ChangeResult } from "multi-range-slider-react";
 import { Observer } from "mobx-react-lite";
 import axios from 'axios'; 
 import { StoreContext } from "./../../../../store";
@@ -89,7 +89,6 @@ const PartnerPreference = () => {
         console.log(error)
       }
   }
-
   const handleSubmit = async(e) => {
     e.preventDefault()
     console.log('ok');
@@ -134,7 +133,6 @@ const user_id = JSON.parse(user)['id'];
         console.log(error)
       }
   }
-
   const getPartner = async(access_token,user_id)=>{
     try {
       const userId = new FormData();
@@ -203,16 +201,18 @@ useEffect(()=>{
 
                     <div className="col-8 offset-sm-0 offset-1">
                     <MultiRangeSlider
-                      min={0}
-                      max={100}
-                      step={5}
+                      min={18}
+                      max={50}
+                      step={32}
                       ruler={true}
                       label={true}
                       preventWheel={false}
                       minValue={minValueAge}
                       maxValue={maxValueAge}
-                      onInput={(e) => {
-                        handleInputAge(e);
+                  
+                      onInput={(e: ChangeResult) => {
+                        set_minValueAge(e.minValue);
+                        set_maxValueAge(e.maxValue);
                       }}
                     />
                     </div>
@@ -233,8 +233,9 @@ useEffect(()=>{
                       preventWheel={false}
                       minValue={minValueHeight}
                       maxValue={maxValueHeight}
-                      onInput={(e) => {
-                        handleInputHeight(e);
+                      onInput={(e: ChangeResult) => {
+                        set_minHeight(e.minValue);
+                        set_maxHeight(e.maxValue);
                       }}
                     />
                     

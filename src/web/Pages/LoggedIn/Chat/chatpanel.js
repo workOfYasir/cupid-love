@@ -1,249 +1,152 @@
-import React,{useContext} from 'react';
-import './styles.css';
-import Pusher from "pusher-js";
-import './bootstrap'
-import StoreContext from "./../../../store";
-class Chatpanel extends React.Component {
+import React, { useEffect, useState } from "react";
+import { db, auth, storage } from "../../../firebase";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  addDoc,
+  Timestamp,
+  orderBy,
+  setDoc,
+  doc,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import User from "../../../Components/ChatComponents/User";
+import MessageForm from "../../../Components/ChatComponents/MessageForm";
+import Message from "../../../Components/ChatComponents/Message";
 
-    constructor(props){
-        super(props);
+const ChatPanel = () => {
+  const [users, setUsers] = useState([]);
+  const [chat, setChat] = useState("");
+  const [text, setText] = useState("");
+  const [img, setImg] = useState("");
+  const [msgs, setMsgs] = useState([]);
 
-        this.state = {
-            msg_list:[],
-            user_list:[],
-            active_user:[]
-        }
+  const user1 = localStorage.getItem("uid");
+  const gender = localStorage.getItem("gender");
+  console.log(gender,"Gender")
 
-        this.handleEve = this.handleEve.bind(this);
-        this.subscribeToPusher = this.subscribeToPusher.bind(this);
-        this.loadUsers = this.loadUsers.bind(this);
-        this.loadChats = this.loadChats.bind(this);
-        this.getActiveUser = this.getActiveUser.bind(this);
+  useEffect(() => {
+    const usersRef = collection(db, "users");
+    // create query object
+    const q = query(usersRef, where("gender", "!=", `${gender}`));
+    // execute query
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      let users = [];
+      querySnapshot.forEach((doc) => {
+        users.push(doc.data());
+      });
+      setUsers(users);
+    });
+    return () => unsub();
+  }, []);
 
+  const selectUser = async (user) => {
+    setChat(user);
+
+    const user2 = user.uid;
+    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+
+    const msgsRef = collection(db, "messages", id, "chat");
+    const q = query(msgsRef, orderBy("createdAt", "asc"));
+
+    onSnapshot(q, (querySnapshot) => {
+      let msgs = [];
+      querySnapshot.forEach((doc) => {
+        msgs.push(doc.data());
+      });
+      setMsgs(msgs);
+    });
+
+    // get last message b/w logged in user and selected user
+    const docSnap = await getDoc(doc(db, "lastMsg", id));
+    // if last message exists and message is from selected user
+    if (docSnap.data() && docSnap.data().from !== user1) {
+      // update last message doc, set unread to false
+      await updateDoc(doc(db, "lastMsg", id), { unread: false });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const user2 = chat.uid;
+
+    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+
+    let url;
+    if (img) {
+      const imgRef = ref(
+        storage,
+        `images/${new Date().getTime()} - ${img.name}`
+      );
+      const snap = await uploadBytes(imgRef, img);
+      const dlUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
+      url = dlUrl;
     }
 
-    componentDidMount(){
+    await addDoc(collection(db, "messages", id, "chat"), {
+      text,
+      from: user1,
+      to: user2,
+      createdAt: Timestamp.fromDate(new Date()),
+      media: url || "",
+    });
 
-        this.loadUsers();
-        // this.subscribeToPusher();
-    }
+    await setDoc(doc(db, "lastMsg", id), {
+      text,
+      from: user1,
+      to: user2,
+      createdAt: Timestamp.fromDate(new Date()),
+      media: url || "",
+      unread: true,
+    });
 
-    getActiveUser(){
-        if(this.state.active_user.length == 0){
-            return;
-        }
-        else{
-            return this.state.active_user[0];
-        }
-    }
-
-    loadUsers(){
-        let tok = localStorage.getItem("accessToken");
-        console.log('tok===>>>>',tok)
-        fetch('http://127.0.0.1:8000/api/fetchUsers',{
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization':`Bearer ${tok}`,
-                'Accept':'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(dat => {
-            let arr = [];
-            for(var x=0;x<dat.length;x++){
-                arr.push(dat[x]);
-            }
-            this.setState({user_list:this.state.user_list.concat(arr)});
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    }
-
-    loadChats(el_id){
-        let clicked_user_id = el_id.target.id;
-        clicked_user_id = clicked_user_id.substr(5,clicked_user_id.length);
-
-
-        for(var eu=0;eu<this.state.user_list.length;eu++){
-            if(this.state.user_list[eu].id == clicked_user_id){
-                this.setState({active_user:this.state.active_user.splice(0,this.state.active_user.length)});
-                this.setState({active_user:this.state.active_user.concat(this.state.user_list[eu])});
-                break;
-            }
-        }
-        let tok = localStorage.getItem("accessToken");
-
-        fetch(`http://127.0.0.1:8000/api/fetchmessages?rec_id=${clicked_user_id}`
-            ,{
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization':`Bearer ${tok}`,
-                'Accept':'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(dat => {
-            this.setState({
-                //activeUser:this.state.activeUser.push(this.state.user_list[clicked_user_id
-            });
-            console.log(JSON.stringify(dat));
-            let arr = [];
-            for(var x=0;x<dat.length;x++){
-                //console.log(JSON.stringify(dat[x].message));
-                arr.push(dat[x]);
-            }
-            // this.setState({msg_list:[]});
-            this.setState({
-                msg_list:this.state.msg_list.splice(0,this.state.msg_list.length)
-            });
-            console.log('arrarrarrarrarrarrarr',arr)
-            this.setState({
-                msg_list:this.state.msg_list.concat(arr)
-            });
-        })
-        .catch((error) => {
-
-            console.error(error);
-        });
-    }
-
-
-    handleEve(e){
-        let msg = document.getElementById('chat_tbox').value;
-
-        let tok = localStorage.getItem("accessToken");
-
-        let activeUserId = this.state.active_user[0].id;
-
-        fetch(`http://127.0.0.1:8000/api/messages?message=${msg}&rec_id=${activeUserId}`,{
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization': `Bearer ${tok}`,
-                'Accept':'application/json'
-            },
-            //body:JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(dat => {
-            console.log('from handleve : '+JSON.stringify(dat));
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-
-        this.subscribeToPusher();
-
-
-    }
-
-    subscribeToPusher(){
-
-        let a_tok = localStorage.getItem("accessToken");
-        //suscribing to pusher channel
-        Pusher.logToConsole = true;
-        var pusher = new Pusher('309d1b258d720b06a5de', {
-            cluster: 'mt1',
-        });
-        var new_msg = [];
-        let user = localStorage.getItem("user");
-        var channel = pusher.subscribe('chat');
-        channel.bind('message',(d) => {
-
-            //checking sent message from sender side
-            if(d.sender_id == JSON.parse(user)["id"]){
-                if(this.state.active_user[0].id == d.rec_id){
-                    //alert('you have sent message to this user.');
-                    this.setState({msg_list:this.state.msg_list.concat(d)});
-                }
-            }
-
-            //checking message has been received or not
-            if(d.sender_id != JSON.parse(user)["id"]){
-                if(this.state.active_user.length != 0){
-                    if(this.state.active_user[0].id == d.sender_id){
-                        //alert('you have sent message to this user.');
-                        this.setState({msg_list:this.state.msg_list.concat(d)});
-                    }
-                    else{
-                        var id_to_notify = document.getElementById('user_'+d.sender_id);
-                    }
-                }
-                else{
-                    alert('no active user, you got a new message : '+d.message);
-                }
-            }
-
-        },channel.unbind('message'));
-    }
-
-
-
-    render(){
-        let user = localStorage.getItem("user");
-        let isAnyUserActive=false;
-        if(this.state.active_user.length != 0){
-            isAnyUserActive=true;
-        }
-        return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md">
-                        <div id="chat_panel_container">
-                            <div className="container">
-
-                <div className="row no-gutters">
-                    <div className="col-3">
-                        <div className="card">
-                            <div className="card-header">card header</div>
-                            <div className="card-body">
-                                <ul id="user_list" className="user_list list-group">
-                                    {this.state.user_list.map((number) =>
-                                    <a href="#">
-                                        <li id={"user_"+number.id} onClick={this.loadChats} className=" text-dark list-group-item d-flex justify-content-between align-items-center" key={'user_'+number.id}>
-                                            {number.first_name}
-                                            <span className="badge badge-primary badge-pill">14</span>
-                                        </li>
-                                    </a>  )}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card">
-                            <div className="card-header">{isAnyUserActive?this.state.active_user[0].name:'no active'}</div>
-                            <div className="card-body">
-                                <ul id="chat_list" className="chat_list">
-                                    {this.state.msg_list.map((msgs) =>
-                                        (msgs.sender_id==JSON.parse(user)["id"])?
-                                        <div className="sent" id={msgs.id} key={msgs.id}>{msgs.message}</div>
-                                        :
-                                        <div className="replies" id={msgs.id} key={msgs.id}>{msgs.message}</div>
-
-                                    )}
-                                </ul>
-                            </div>
-                            <div className="card-footer">
-                                <input type="text" id="chat_tbox" className="form-control" placeholder="Enter message..." />
-                                <input type="submit" className="btn btn-primary btn-sm" value="GO" onClick={this.handleEve} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    setText("");
+    setImg("");
+  };
+  return (
+    <div className="home_container">
+      <div className="users_container">
+        {users.map((user) => (
+          <User
+            key={user.uid}
+            user={user}
+            selectUser={selectUser}
+            user1={user1}
+            chat={chat}
+          />
+        ))}
+      </div>
+      <div className="messages_container">
+        {chat ? (
+          <>
+            <div className="messages_user">
+              <h3>{chat.name}</h3>
             </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md">
-                        <div id="chat_submit_container"></div>
-                    </div>
-                </div>
+            <div className="messages">
+              {msgs.length
+                ? msgs.map((msg, i) => (
+                    <Message key={i} msg={msg} user1={user1} />
+                  ))
+                : null}
             </div>
-        );
-    }
-}
-export default Chatpanel;
+            <MessageForm
+              handleSubmit={handleSubmit}
+              text={text}
+              setText={setText}
+              setImg={setImg}
+            />
+          </>
+        ) : (
+          <h3 className="no_conv">Select a user to start conversation</h3>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ChatPanel;

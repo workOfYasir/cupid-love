@@ -191,11 +191,11 @@ const Profile = () => {
                       <hr className="col-12 m-2 d-block" />
                       <div className="col-12 d-block ">
                         <div className="col-6 d-flex pt-4">
-                          <div className="col-6  ">Height</div>
+                          <div className="col-6 "><h6>Height</h6></div>
                           <div className="col-6" style={{ fontWeight: "bold" }}>
                             {profileData?.age}/{profileData?.height}
                           </div>
-                          <div className="col-6 ">Cast</div>
+                          <div className="col-6 "><h6>Cast</h6></div>
                           <div className="col-6" style={{ fontWeight: "bold" }}>
                             {profileData?.cast == null
                               ? ""
@@ -203,13 +203,13 @@ const Profile = () => {
                           </div>
                         </div>
                         <div className="col-6 d-flex pt-4">
-                          <div className="col-6 ">National</div>
+                          <div className="col-6 "><h6>National</h6></div>
                           <div className="col-6" style={{ fontWeight: "bold" }}>
                             {profileData?.country == null
                               ? ""
                               : profileData?.country.name}
                           </div>
-                          <div className="col-6 ">Religion</div>
+                          <div className="col-6 "><h6>Religion</h6></div>
                           <div className="col-6" style={{ fontWeight: "bold" }}>
                             {profileData?.religion == null
                               ? ""
@@ -217,11 +217,11 @@ const Profile = () => {
                           </div>
                         </div>
                         <div className="col-6 d-flex pt-4">
-                          <div className="col-6 ">Education</div>
+                          <div className="col-6 "><h6>Education</h6></div>
                           <div className="col-6" style={{ fontWeight: "bold" }}>
                             {profileData?.qualification}
                           </div>
-                          <div className="col-6 ">Job</div>
+                          <div className="col-6 "><h6>Job</h6></div>
                           <div className="col-6" style={{ fontWeight: "bold" }}>
                             {profileData?.job}
                           </div>
@@ -276,7 +276,7 @@ const Profile = () => {
                                           className='border-radius-50' srcSet=""/>
                                     :
                                     <img src={store.mediaUrl + profileData?.user?.picture[0].image_path} alt=""
-                                          style={profileData.pictures_settings == 'visible' || ((profileData?.pictures_settings == 'premimum') && (profileData?.user_subscription != null)) ? {filter: 'blur(0px)'} : {filter: 'blur(8px)'}}
+                                          style={profileData.pictures_settings === 'visible' || ((profileData?.pictures_settings === 'premimum') && (profileData?.user_subscription != null)) ? {filter: 'blur(0px)'} : {filter: 'blur(8px)'}}
                                           className='border-radius-50' srcSet=""/>
                                 }
                               </div>
@@ -319,14 +319,13 @@ const Profile = () => {
 
                   </div>
                 </div>
-                <div className="col-sm-5 col-md-4 col-lg-3 col-xl-2  overlay d-sm-block d-none">
+                <div className="col-sm-5 col-md-4 col-lg-3 col-xl-2 overlay d-sm-block d-none">
                   {profileData?.user.picture[0] == null ? (
-
                       <img className="img-fluid rounded" src={window.location.origin + "/images/profile/default.png"} alt="" />
                   ) : (
                     <Carousel showThumbs={false}>
                       {profileData?.user.picture.map((image) => (
-                        <div style={{width:'100%'}}>
+             
                           <img
                             style={
                               profileData?.pictures_settings == "visible" ||
@@ -339,7 +338,7 @@ const Profile = () => {
                             className="img-fluid rounded"
                             alt=""
                           />
-                        </div>
+             
                       ))}
                     </Carousel>
                   )}

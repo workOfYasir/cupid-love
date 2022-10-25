@@ -4,8 +4,8 @@ import Header from './../../Components/Header'
 import Footer from './../../Components/Footer'
 import { StoreContext } from "./../../store";
 import axios from "axios";
-import bg1 from './Components/images/bg/bg-1.jpg'
-import bg2 from './Components/images/bg/bg-2.jpg'
+import bg1 from './Components/images/banner3.jpg'
+import bg2 from './Components/images/banner4.jpg'
 import pattern2 from './../../Components/images/pattern/02.png'
 import pattern3 from './../../Components/images/pattern/03.png'
 // import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader

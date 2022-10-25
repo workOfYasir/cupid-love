@@ -23,11 +23,10 @@ const Footer = () => {
                     </div>
                     <div className="social-icons color-hover primary-text">
                         <ul>
-                        <li className="social-facebook"><a href="#"><i className="fa fa-facebook"></i></a></li>
-                        <li className="social-twitter"><a href="#"><i className="fa fa-twitter"></i></a></li>
-                        <li className="social-dribbble"><a href="#"><i className="fa fa-dribbble"></i></a></li>
-                        <li className="social-gplus"><a href="#"><i className="fa fa-google-plus"></i></a></li>
-                        <li className="social-youtube"><a href="#"><i className="fa fa-youtube"></i></a></li>
+                        <li className="social-facebook"><a href="https://www.facebook.com/overseasrishtay/"><i className="fa fa-facebook"></i></a></li>
+                        <li className="social-twitter"><a href="https://instagram.com/urgentrishta?igshid=YmMyMTA2M2Y="><i className="fa fa-instagram"></i></a></li>
+                        <li className="social-dribbble"><a href="https://wa.me/message/MSEVZQ7FHJQIA1"><i className="fa fa-whatsapp"></i></a></li>
+              
                         </ul>
                     </div>
                     <p className="text-dark">© 2022  - UrgentRishta All Right Reserved </p>
